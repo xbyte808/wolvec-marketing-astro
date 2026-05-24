@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import FourTierAutonomy from '../components/FourTierAutonomy.astro';
+import Competitive from '../components/Competitive.astro';
+import TrustSafety from '../components/TrustSafety.astro';
+import EarlyAccessCTA from '../components/EarlyAccessCTA';
+---
+
+<Layout title="Wolvec — AI Coaching for Online Fitness Coaches">
+  <main class="pt-16">
+    <Hero />
+    <HowItWorks />
+    <FourTierAutonomy />
+    <Competitive />
+    <TrustSafety />
+
+    <!-- Early Access Section -->
+    <section id="early-access" class="py-24 px-6 bg-brand-muted">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+          <h2 class="text-4xl font-bold text-white mb-4">Apply for early access</h2>
+          <p class="text-neutral-400 text-lg">
+            We're onboarding a small group of design-partner coaches. No cost. 6 months of free
+            platform access in exchange for feedback during our early access window.
+          </p>
+        </div>
+
+        <EarlyAccessCTA client:load />
+      </div>
+    </section>
+  </main>
+</Layout>

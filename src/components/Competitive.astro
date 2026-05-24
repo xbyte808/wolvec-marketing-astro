@@ -1,0 +1,87 @@
+---
+const rows = [
+  {
+    platform: 'Coachvox AI',
+    whatTheyDo: 'AI clone tool for coaches (any vertical)',
+    gap: 'Requires an existing content library to clone from. No fitness-vertical focus. No intake interview.',
+  },
+  {
+    platform: 'Delphi.ai',
+    whatTheyDo: 'AI clone with monetization features (any vertical)',
+    gap: 'Horizontal positioning — not built for fitness coaching. No guided intake. Broad IP license in ToS is a risk for coaches with proprietary frameworks.',
+  },
+  {
+    platform: 'Trainerize',
+    whatTheyDo: 'Full-stack coaching ops platform with AI-assisted workflow tools (AI Workout Builder, Smart Meal Planner, summaries)',
+    gap: 'No coach clone. Explicit positioning: "You\'re still the coach." AI supports; it doesn\'t replace your presence between sessions. You still answer every DM.',
+  },
+  {
+    platform: 'Everfit',
+    whatTheyDo: 'Full-stack coaching ops platform with AI-assisted programming and group coaching tools',
+    gap: 'No coach clone. Coaches still handle all client messaging manually.',
+  },
+  {
+    platform: 'TrueCoach',
+    whatTheyDo: 'Workout delivery and coach-client messaging, athletic and performance focus',
+    gap: 'No coach clone. Messaging is human-only.',
+  },
+];
+---
+
+<section id="compare" class="py-24 px-6 bg-brand-muted">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-white mb-4">Where Wolvec fits</h2>
+      <p class="text-neutral-400 text-lg">
+        Most tools make you a better coach manager. Wolvec makes you a coach who scales.
+      </p>
+    </div>
+
+    <!-- Desktop table -->
+    <div class="hidden md:block overflow-hidden rounded-xl border border-white/10 mb-10">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-white/5 border-b border-white/10">
+            <th class="text-left text-neutral-400 font-semibold px-6 py-4 w-36">Platform</th>
+            <th class="text-left text-neutral-400 font-semibold px-6 py-4">What they do</th>
+            <th class="text-left text-neutral-400 font-semibold px-6 py-4">The gap</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row, i) => (
+            <tr class={`border-b border-white/5 ${i % 2 === 0 ? 'bg-brand/30' : ''}`}>
+              <td class="px-6 py-5 text-white font-semibold align-top">{row.platform}</td>
+              <td class="px-6 py-5 text-neutral-400 align-top leading-relaxed">{row.whatTheyDo}</td>
+              <td class="px-6 py-5 text-neutral-400 align-top leading-relaxed">{row.gap}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Mobile cards -->
+    <div class="md:hidden flex flex-col gap-4 mb-10">
+      {rows.map((row) => (
+        <div class="bg-brand border border-white/10 rounded-xl p-5 flex flex-col gap-3">
+          <h3 class="text-white font-semibold">{row.platform}</h3>
+          <p class="text-neutral-400 text-sm leading-relaxed">{row.whatTheyDo}</p>
+          <div class="border-t border-white/10 pt-3">
+            <p class="text-brand-accent text-xs font-semibold uppercase tracking-wider mb-1">The gap</p>
+            <p class="text-neutral-400 text-sm leading-relaxed">{row.gap}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Callout -->
+    <div class="bg-brand border border-brand-accent/30 rounded-xl p-8">
+      <h3 class="text-white font-bold text-xl mb-3">The Wolvec difference</h3>
+      <p class="text-neutral-400 leading-relaxed">
+        A 30-minute AI-driven intake interview creates your clone from a conversation. Works for
+        coaches who are new to online coaching and have no existing content library.
+        Fitness-vertical-native — not a horizontal tool repackaged for coaches. Your clone replaces
+        your presence between sessions, not just your program delivery.
+      </p>
+    </div>
+  </div>
+</section>
