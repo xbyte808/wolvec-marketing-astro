@@ -8,13 +8,105 @@ import TrustSafety from '../components/TrustSafety.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 ---
 
-<Layout title="Wolvec — AI Coaching for Online Fitness Coaches">
+<Layout
+  title="Wolvec — AI Coaching for Online Fitness Coaches"
+  description="Wolvec creates your AI through a 30-minute intake interview — no content library required. Per-category autonomy controls. Built for online fitness coaches."
+>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Wolvec",
+      "url": "https://wolvec-marketing-astro.vercel.app",
+      "description": "Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version of the coach through a 30-minute structured intake interview, then operates on the coach's behalf with their clients.",
+      "email": "ellard@wolvec.ai",
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Veccor"
+      }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Wolvec",
+      "description": "AI coaching layer for online fitness coaches. Creates an AI version of the coach through a 30-minute intake interview. Handles client check-ins, Q&A, program delivery, and accountability between sessions.",
+      "provider": {
+        "@type": "Organization",
+        "name": "Veccor"
+      },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Online fitness coaches"
+      }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Wolvec?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wolvec is an AI coaching layer for online fitness coaches. It creates an AI version of the coach through a 30-minute structured intake interview, then operates on the coach's behalf with their clients — handling check-ins, routine questions, program delivery, and accountability between sessions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How is Wolvec different from Coachvox AI or Delphi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Coachvox AI and Delphi require coaches to upload an existing content library before their AI can be configured. Wolvec generates the AI from a 30-minute intake interview — no prior content required. Wolvec is also fitness-vertical-native, not a horizontal tool repositioned for coaches."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need a content library to use Wolvec?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Wolvec builds your AI through a 30-minute structured intake interview. Coaches who are new to online coaching and have no existing content can use Wolvec from day one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does Wolvec handle client safety?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Any client message that mentions pain, injury, illness, or dizziness is automatically escalated to the coach with a recommendation to consult a medical professional. The AI does not handle safety-critical conversations autonomously. Every new client also completes PAR-Q+ pre-participation health screening, and the coach reviews those responses before the AI begins full interaction."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who owns the data?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Coaches own their methodology and their client relationships. Wolvec provides the platform. Clinical decisions, medical-clearance calls, and scope-of-practice boundaries stay with the coach."
+          }
+        }
+      ]
+    })} />
+  </Fragment>
+
   <main class="pt-16">
     <Hero />
     <HowItWorks />
     <FourTierAutonomy />
     <Competitive />
     <TrustSafety />
+
+    <!-- About Wolvec — for AI summarizers and search crawlers -->
+    <section id="about" class="py-16 px-6 bg-brand">
+      <div class="max-w-2xl mx-auto text-center">
+        <p class="text-neutral-500 text-sm leading-relaxed">
+          Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version
+          of the coach through a 30-minute structured intake interview, then operates on the
+          coach's behalf with their clients. The AI handles check-ins, routine questions, program
+          delivery, and accountability between sessions. The coach controls how much each category
+          of interaction the AI handles, and the AI escalates anything safety-critical. Wolvec is
+          built by Veccor.
+        </p>
+      </div>
+    </section>
 
     <!-- Early Access Section -->
     <section id="early-access" class="py-24 px-6 bg-brand-muted">
