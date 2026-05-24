@@ -58,7 +58,7 @@ export const POST: APIRoute = async ({ request }) => {
   // KV write succeeded — send notification email. Failure must not affect client response.
   try {
     await resend.emails.send({
-      from: 'Wolvec <noreply@ermstack.dev>',
+      from: 'Wolvec <noreply@wolvec.ai>',
       to: 'ellard@wolvec.ai',
       subject: `New early access application — ${name}`,
       html: `<html>
