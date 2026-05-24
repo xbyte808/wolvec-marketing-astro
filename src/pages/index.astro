@@ -6,6 +6,7 @@ import FourTierAutonomy from '../components/FourTierAutonomy.astro';
 import Competitive from '../components/Competitive.astro';
 import TrustSafety from '../components/TrustSafety.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
+import FAQ from '../components/FAQ.astro';
 ---
 
 <Layout
@@ -82,6 +83,14 @@ import EarlyAccessCTA from '../components/EarlyAccessCTA';
             "@type": "Answer",
             "text": "Coaches own their methodology and their client relationships. Wolvec provides the platform. Clinical decisions, medical-clearance calls, and scope-of-practice boundaries stay with the coach."
           }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I learn what's coming next from Wolvec?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We share our direction publicly on our roadmap page. Specific feature mechanics, product launches, and timing details go to our design-partner coaches first. If you want to be among the first to see what's coming, apply for early access."
+          }
         }
       ]
     })} />
@@ -107,6 +116,8 @@ import EarlyAccessCTA from '../components/EarlyAccessCTA';
         </p>
       </div>
     </section>
+
+    <FAQ />
 
     <!-- Early Access Section -->
     <section id="early-access" class="py-24 px-6 bg-brand-muted">
