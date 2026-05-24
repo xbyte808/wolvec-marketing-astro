@@ -23,46 +23,62 @@ const signals = [
 ];
 ---
 
-<section id="trust" class="py-24 px-6 bg-brand">
-  <div class="max-w-6xl mx-auto">
+<section id="trust" class="py-24 lg:py-32 px-6 lg:px-8 bg-white">
+  <div class="max-w-5xl mx-auto">
     <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold text-white mb-4">Built with your liability in mind</h2>
-      <p class="text-neutral-400 text-lg max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-4xl font-semibold text-slate-950 tracking-tight mb-4">Built with your liability in mind</h2>
+      <p class="text-slate-600 text-lg max-w-2xl mx-auto">
         Coaching carries responsibility. Wolvec is designed around that reality.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
       {signals.map((s) => (
-        <div class="bg-brand-muted border border-white/10 rounded-xl p-6 flex gap-5">
-          <div class="shrink-0 w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center">
+        <div class="bg-slate-50 border border-slate-100 rounded-xl p-6 flex gap-5">
+          <div class="shrink-0 w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center shadow-sm">
             {s.icon === 'shield' && (
-              <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
               </svg>
             )}
             {s.icon === 'check' && (
-              <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             )}
             {s.icon === 'bell' && (
-              <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
             )}
             {s.icon === 'user' && (
-              <svg class="w-5 h-5 text-brand-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <svg class="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             )}
           </div>
           <div>
-            <h3 class="text-white font-semibold mb-2">{s.title}</h3>
-            <p class="text-neutral-400 text-sm leading-relaxed">{s.body}</p>
+            <h3 class="text-slate-950 font-semibold mb-2">{s.title}</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">{s.body}</p>
           </div>
         </div>
       ))}
+    </div>
+
+    <!-- Feature Image -->
+    <div class="mt-12">
+      <div class="relative rounded-2xl overflow-hidden shadow-sm">
+        <img
+          src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1200&h=500&fit=crop&crop=center"
+          alt="Coach and client in a one-on-one training session"
+          class="w-full h-auto object-cover"
+        />
+        <div class="absolute inset-0 bg-white/90 flex items-center justify-center">
+          <div class="text-center px-6">
+            <p class="text-slate-950 text-2xl md:text-3xl font-semibold tracking-tight text-balance">Professional coaching. Responsibly scaled.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>

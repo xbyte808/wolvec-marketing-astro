@@ -1,34 +1,39 @@
 ---
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 bg-brand/95 backdrop-blur-sm border-b border-white/10">
-  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="text-white font-bold text-xl tracking-widest uppercase">
-      WOLVEC
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-100">
+  <div class="max-w-5xl mx-auto px-6 lg:px-8 py-4 flex items-center justify-between">
+    <!-- Logo + Wordmark -->
+    <a href="/" class="flex items-center gap-3">
+      <!-- Geometric Wolf Logo -->
+      <svg class="w-8 h-8 text-slate-800" viewBox="0 0 32 32" fill="currentColor">
+        <path d="M16 2L4 12L8 14L4 28L16 22L28 28L24 14L28 12L16 2ZM16 6L22 11L20 12L16 18L12 12L10 11L16 6ZM8 16L11 14L15 20V24L8 20V16ZM24 16V20L17 24V20L21 14L24 16Z"/>
+      </svg>
+      <span class="text-slate-950 font-semibold text-xl tracking-tight">Wolvec</span>
     </a>
 
     <div class="hidden md:flex items-center gap-8">
-      <a href="/#how-it-works" class="text-neutral-400 hover:text-white transition-colors text-sm font-medium">
+      <a href="/#how-it-works" class="text-slate-600 hover:text-slate-800 transition-colors text-sm font-medium">
         How it works
       </a>
-      <a href="/#compare" class="text-neutral-400 hover:text-white transition-colors text-sm font-medium">
+      <a href="/#compare" class="text-slate-600 hover:text-slate-800 transition-colors text-sm font-medium">
         Compare
       </a>
       <a
         href="/#early-access"
-        class="bg-brand-accent hover:bg-brand-accent/90 text-white text-sm font-semibold px-5 py-2 rounded-md transition-colors"
+        class="bg-slate-800 hover:bg-slate-900 text-white text-sm font-medium px-6 py-3 rounded-lg transition-colors"
       >
-        Early Access
+        Request access
       </a>
     </div>
 
-    <!-- Mobile: wordmark + CTA only -->
+    <!-- Mobile: Logo + CTA only -->
     <div class="flex md:hidden">
       <a
         href="/#early-access"
-        class="bg-brand-accent hover:bg-brand-accent/90 text-white text-sm font-semibold px-4 py-2 rounded-md transition-colors"
+        class="bg-slate-800 hover:bg-slate-900 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
       >
-        Early Access
+        Request access
       </a>
     </div>
   </div>
