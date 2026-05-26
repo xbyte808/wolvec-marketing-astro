@@ -3,27 +3,32 @@ const rows = [
   {
     platform: 'Coachvox AI',
     whatTheyDo: 'AI clone tool for coaches (any vertical)',
-    gap: 'Requires an existing content library to clone from. No fitness-vertical focus. No intake interview.',
+    gap: 'Requires an existing content library: books, blogs, podcasts. Mid-tier coaches without published content cannot use it.',
+    isWolvec: false,
   },
   {
     platform: 'Delphi.ai',
     whatTheyDo: 'AI clone with monetization features (any vertical)',
-    gap: 'Horizontal positioning — not built for fitness coaching. No guided intake. Broad IP license in ToS is a risk for coaches with proprietary frameworks.',
+    gap: 'Targets seven-figure creators (Robbins, Hussey, Hyman). Requires heavy audio and video content uploads. Not positioned for working online coaches.',
+    isWolvec: false,
   },
   {
-    platform: 'Trainerize',
-    whatTheyDo: 'Full-stack coaching ops platform with AI-assisted workflow tools (AI Workout Builder, Smart Meal Planner, summaries)',
-    gap: 'No coach clone. Explicit positioning: "You\'re still the coach." AI supports; it doesn\'t replace your presence between sessions. You still answer every DM.',
+    platform: 'Personal AI',
+    whatTheyDo: 'Personal AI assistant built from your data',
+    gap: 'Requires chat archives and voice memos. No fitness coaching focus. No coach-to-client deployment layer.',
+    isWolvec: false,
   },
   {
-    platform: 'Everfit',
-    whatTheyDo: 'Full-stack coaching ops platform with AI-assisted programming and group coaching tools',
-    gap: 'No coach clone. Coaches still handle all client messaging manually.',
+    platform: 'Custom GPTs',
+    whatTheyDo: 'Custom ChatGPT experience built from uploaded files',
+    gap: 'Requires uploaded files to train from. Clients need a ChatGPT account. No branded interface, no persistent memory, no lead capture.',
+    isWolvec: false,
   },
   {
-    platform: 'TrueCoach',
-    whatTheyDo: 'Workout delivery and coach-client messaging, athletic and performance focus',
-    gap: 'No coach clone. Messaging is human-only.',
+    platform: 'Wolvec',
+    whatTheyDo: 'AI coaching layer for online fitness coaches',
+    gap: 'NO content library required. Built from one conversation. Fitness-vertical-native. Mid-tier coach focus (10K-100K followers).',
+    isWolvec: true,
   },
 ];
 ---
@@ -49,10 +54,10 @@ const rows = [
         </thead>
         <tbody>
           {rows.map((row, i) => (
-            <tr class={`border-b border-white/5 ${i % 2 === 0 ? 'bg-brand/30' : ''}`}>
-              <td class="px-6 py-5 text-white font-semibold align-top">{row.platform}</td>
+            <tr class={`border-b border-white/5 ${row.isWolvec ? 'bg-brand-accent/10 border-brand-accent/20' : (i % 2 === 0 ? 'bg-brand/30' : '')}`}>
+              <td class={`px-6 py-5 font-semibold align-top ${row.isWolvec ? 'text-brand-accent' : 'text-white'}`}>{row.platform}</td>
               <td class="px-6 py-5 text-neutral-400 align-top leading-relaxed">{row.whatTheyDo}</td>
-              <td class="px-6 py-5 text-neutral-400 align-top leading-relaxed">{row.gap}</td>
+              <td class={`px-6 py-5 align-top leading-relaxed ${row.isWolvec ? 'text-brand-accent font-medium' : 'text-neutral-400'}`}>{row.gap}</td>
             </tr>
           ))}
         </tbody>
@@ -62,12 +67,12 @@ const rows = [
     <!-- Mobile cards -->
     <div class="md:hidden flex flex-col gap-4 mb-10">
       {rows.map((row) => (
-        <div class="bg-brand border border-white/10 rounded-xl p-5 flex flex-col gap-3">
-          <h3 class="text-white font-semibold">{row.platform}</h3>
+        <div class={`border rounded-xl p-5 flex flex-col gap-3 ${row.isWolvec ? 'bg-brand-accent/10 border-brand-accent/30' : 'bg-brand border-white/10'}`}>
+          <h3 class={`font-semibold ${row.isWolvec ? 'text-brand-accent' : 'text-white'}`}>{row.platform}</h3>
           <p class="text-neutral-400 text-sm leading-relaxed">{row.whatTheyDo}</p>
           <div class="border-t border-white/10 pt-3">
-            <p class="text-brand-accent text-xs font-semibold uppercase tracking-wider mb-1">The gap</p>
-            <p class="text-neutral-400 text-sm leading-relaxed">{row.gap}</p>
+            <p class="text-brand-accent text-xs font-semibold uppercase tracking-wider mb-1">{row.isWolvec ? 'Why Wolvec' : 'The gap'}</p>
+            <p class={`text-sm leading-relaxed ${row.isWolvec ? 'text-brand-accent font-medium' : 'text-neutral-400'}`}>{row.gap}</p>
           </div>
         </div>
       ))}
@@ -77,10 +82,10 @@ const rows = [
     <div class="bg-brand border border-brand-accent/30 rounded-xl p-8">
       <h3 class="text-white font-bold text-xl mb-3">The Wolvec difference</h3>
       <p class="text-neutral-400 leading-relaxed">
-        A 30-minute AI-driven intake interview creates your AI from a conversation. Works for
-        coaches who are new to online coaching and have no existing content library.
-        Fitness-vertical-native — not a horizontal tool repackaged for coaches. Your AI replaces
-        your presence between sessions, not just your program delivery.
+        Every alternative requires content you have to create before your AI can work. Coachvox
+        needs your blog. Delphi needs your podcast. Personal AI needs your chat history. Custom
+        GPTs need uploaded files. Wolvec builds your AI from one conversation. If you coach
+        clients online, that conversation is all you need.
       </p>
     </div>
   </div>
