@@ -94,7 +94,7 @@ export const POST: APIRoute = async ({ request }) => {
 </html>`,
     });
   } catch (error) {
-    console.error('Resend failed:', error);
+    console.error('Resend failed:', JSON.stringify(error, null, 2));
   }
 
   return new Response(JSON.stringify({ ok: true }), {

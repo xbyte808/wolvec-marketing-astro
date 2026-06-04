@@ -10,8 +10,8 @@ import FAQ from '../components/FAQ.astro';
 ---
 
 <Layout
-  title="Wolvec — AI Coaching for Online Fitness Coaches"
-  description="Wolvec creates your AI through a 30-minute intake interview — no content library required. Per-category autonomy controls. Built for online fitness coaches."
+  title="Wolvec: AI Coaching for Online Fitness Coaches"
+  description="Wolvec creates your AI from one conversation. No content library required. Per-category autonomy controls. Built for online fitness coaches."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -19,7 +19,7 @@ import FAQ from '../components/FAQ.astro';
       "@type": "Organization",
       "name": "Wolvec",
       "url": "https://wolvec-marketing-astro.vercel.app",
-      "description": "Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version of the coach through a 30-minute structured intake interview, then operates on the coach's behalf with their clients.",
+      "description": "Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients.",
       "email": "ellard@wolvec.ai",
       "parentOrganization": {
         "@type": "Organization",
@@ -30,7 +30,7 @@ import FAQ from '../components/FAQ.astro';
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Wolvec",
-      "description": "AI coaching layer for online fitness coaches. Creates an AI version of the coach through a 30-minute intake interview. Handles client check-ins, Q&A, program delivery, and accountability between sessions.",
+      "description": "AI coaching layer for online fitness coaches. Creates an AI version of the coach through one structured conversation. Handles client check-ins, Q&A, program delivery, and accountability between sessions.",
       "provider": {
         "@type": "Organization",
         "name": "Veccor"
@@ -49,7 +49,7 @@ import FAQ from '../components/FAQ.astro';
           "name": "What is Wolvec?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Wolvec is an AI coaching layer for online fitness coaches. It creates an AI version of the coach through a 30-minute structured intake interview, then operates on the coach's behalf with their clients — handling check-ins, routine questions, program delivery, and accountability between sessions."
+            "text": "Wolvec is an AI coaching layer for online fitness coaches. It creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients, handling check-ins, routine questions, program delivery, and accountability between sessions."
           }
         },
         {
@@ -57,7 +57,7 @@ import FAQ from '../components/FAQ.astro';
           "name": "How is Wolvec different from Coachvox AI or Delphi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Coachvox AI and Delphi require coaches to upload an existing content library before their AI can be configured. Wolvec generates the AI from a 30-minute intake interview — no prior content required. Wolvec is also fitness-vertical-native, not a horizontal tool repositioned for coaches."
+            "text": "Coachvox AI and Delphi require coaches to upload an existing content library before their AI can be configured. Wolvec generates the AI from one structured conversation. No prior content required. Wolvec is also fitness-vertical-native, not a horizontal tool repositioned for coaches."
           }
         },
         {
@@ -65,7 +65,7 @@ import FAQ from '../components/FAQ.astro';
           "name": "Do I need a content library to use Wolvec?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "No. Wolvec builds your AI through a 30-minute structured intake interview. Coaches who are new to online coaching and have no existing content can use Wolvec from day one."
+            "text": "No. Wolvec builds your AI through one structured conversation. Coaches who are new to online coaching and have no existing content can use Wolvec from day one."
           }
         },
         {
@@ -103,12 +103,12 @@ import FAQ from '../components/FAQ.astro';
     <Competitive />
     <TrustSafety />
 
-    <!-- About Wolvec — for AI summarizers and search crawlers -->
+    <!-- About Wolvec: for AI summarizers and search crawlers -->
     <section id="about" class="py-16 px-6 bg-brand">
       <div class="max-w-2xl mx-auto text-center">
         <p class="text-neutral-500 text-sm leading-relaxed">
           Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version
-          of the coach through a 30-minute structured intake interview, then operates on the
+          of the coach through one structured conversation, then operates on the
           coach's behalf with their clients. The AI handles check-ins, routine questions, program
           delivery, and accountability between sessions. The coach controls how much each category
           of interaction the AI handles, and the AI escalates anything safety-critical. Wolvec is
