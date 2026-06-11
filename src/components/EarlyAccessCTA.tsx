@@ -1,9 +1,68 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 type FormState = 'idle' | 'loading' | 'success' | 'error';
 
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (
+        el: HTMLElement,
+        opts: {
+          sitekey: string;
+          callback: (token: string) => void;
+          'expired-callback'?: () => void;
+          theme?: string;
+        }
+      ) => string;
+      reset: (widgetId?: string) => void;
+    };
+  }
+}
+
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY as string | undefined;
+const TURNSTILE_SCRIPT_SRC =
+  'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+
 export default function EarlyAccessCTA() {
   const [state, setState] = useState<FormState>('idle');
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const tokenRef = useRef<string>('');
+
+  useEffect(() => {
+    if (!TURNSTILE_SITE_KEY || !widgetRef.current) return;
+
+    function renderWidget() {
+      if (!window.turnstile || !widgetRef.current || widgetIdRef.current !== null) return;
+      widgetIdRef.current = window.turnstile.render(widgetRef.current, {
+        sitekey: TURNSTILE_SITE_KEY!,
+        theme: 'dark',
+        callback: (token: string) => {
+          tokenRef.current = token;
+        },
+        'expired-callback': () => {
+          tokenRef.current = '';
+        },
+      });
+    }
+
+    if (window.turnstile) {
+      renderWidget();
+      return;
+    }
+
+    const existing = document.querySelector<HTMLScriptElement>(
+      `script[src="${TURNSTILE_SCRIPT_SRC}"]`
+    );
+    const script = existing ?? document.createElement('script');
+    script.addEventListener('load', renderWidget);
+    if (!existing) {
+      script.src = TURNSTILE_SCRIPT_SRC;
+      script.async = true;
+      document.head.appendChild(script);
+    }
+    return () => script.removeEventListener('load', renderWidget);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -16,6 +75,7 @@ export default function EarlyAccessCTA() {
       yearsCoaching: (form.elements.namedItem('yearsCoaching') as HTMLSelectElement).value,
       clientCount: (form.elements.namedItem('clientCount') as HTMLSelectElement).value,
       currentPlatform: (form.elements.namedItem('currentPlatform') as HTMLInputElement).value,
+      turnstileToken: tokenRef.current,
     };
 
     try {
@@ -29,6 +89,10 @@ export default function EarlyAccessCTA() {
         setState('success');
       } else {
         setState('error');
+        if (window.turnstile && widgetIdRef.current !== null) {
+          tokenRef.current = '';
+          window.turnstile.reset(widgetIdRef.current);
+        }
       }
     } catch {
       setState('error');
@@ -133,6 +197,8 @@ export default function EarlyAccessCTA() {
           placeholder="e.g. Trainerize, Everfit, TrueCoach, or none"
         />
       </div>
+
+      {TURNSTILE_SITE_KEY && <div ref={widgetRef} className="flex justify-center" />}
 
       <button
         type="submit"
