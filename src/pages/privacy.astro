@@ -64,7 +64,7 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="bg-neutral-800 border border-neutral-600 rounded-md px-4 py-3 mb-4">
         <p class="text-sm text-neutral-400 italic leading-relaxed">
-          [ATTORNEY REVIEW]: Confirm that the de-identification process applied to behavioral interaction data meets the legal standard for de-identification under applicable law (including MHMDA, which defines "consumer health data" broadly and may capture behavioral inferences). If de-identification is not confirmed to meet the legal standard, opt-in consent for this data capture should be obtained.
+          [Wolvec draft - pending attorney review]: Wolvec does not embed third-party analytics or advertising SDKs in the platform. Behavioral interaction data used for platform improvement is derived from Wolvec's own operational logs. Before any such data is used for platform improvement, Wolvec (1) removes direct identifiers, including name, email address, and account identifiers, (2) aggregates the data so that it cannot reasonably be linked to an identified or identifiable individual, (3) publicly commits, in this policy, not to attempt to re-identify the data, and (4) prohibits any recipient of the data from attempting re-identification. This process is intended to satisfy the de-identification standards in RCW 19.373.010 (MHMDA) and the FTC's three-part de-identification test. If counsel concludes this process does not meet the applicable legal standard, Wolvec will obtain opt-in consent before capturing this data.
         </p>
       </div>
 
@@ -79,6 +79,7 @@ import Layout from '../layouts/Layout.astro';
         <li>Resend (email delivery): Agreement confirmation emails containing coach and client names and email addresses are sent via Resend's email delivery service.</li>
         <li>Neon (database storage): Your account data, program data, check-in responses, and coaching content are stored in Wolvec's managed database hosted by Neon, a serverless PostgreSQL provider.</li>
         <li>Vercel (platform operations): The Wolvec application is hosted and served by Vercel. Requests to the platform are processed through Vercel's serverless compute infrastructure.</li>
+        <li>Upstash via Vercel KV (early access applications): If you submit the early access application form on our marketing site, your submission (name, email address, and coaching background responses) is stored in a Vercel KV datastore operated by Upstash, a managed Redis provider, until we process your application.</li>
         <li>Cloudflare (security): Cloudflare provides edge security, DDoS protection, and web application firewall services. Cloudflare may process request metadata, including IP addresses, as part of security screening.</li>
         <li>Sentry (error monitoring): Application errors and performance data, which may include technical context about user sessions, are processed by Sentry for debugging and reliability purposes.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
@@ -128,11 +129,11 @@ import Layout from '../layouts/Layout.astro';
         For breaches affecting fewer than 500 individuals in a given state, we will log the breach and report it to the FTC on an annual basis, as required by the rule.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Civil penalty exposure: Violations of the FTC HBNR carry civil penalties of up to $51,744 per violation.
+        Civil penalty exposure: Violations of the FTC HBNR carry civil penalties of up to $53,088 per violation, as adjusted for inflation effective January 17, 2025. The FTC adjusts this figure annually under the Federal Civil Penalties Inflation Adjustment Act.
       </p>
       <div class="bg-neutral-800 border border-neutral-600 rounded-md px-4 py-3 mb-4">
         <p class="text-sm text-neutral-400 italic leading-relaxed">
-          [ATTORNEY REVIEW]: Confirm accuracy of per-violation penalty figure at time of publication; the FTC adjusts this figure periodically.
+          [Wolvec draft - pending attorney review]: The figure above reflects the January 2025 inflation adjustment (Federal Register adjustment published January 17, 2025, raising the maximum from $51,744 to $53,088). A further annual adjustment was published in the Federal Register on January 28, 2026. Counsel should confirm the current per-violation maximum against the most recent Federal Register adjustment at time of publication.
         </p>
       </div>
       <p class="text-neutral-300 leading-relaxed mb-4">
@@ -215,7 +216,7 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="bg-neutral-800 border border-neutral-600 rounded-md px-4 py-3 mb-4">
         <p class="text-sm text-neutral-400 italic leading-relaxed">
-          [ATTORNEY REVIEW]: Confirm that the current onboarding consent mechanism satisfies MHMDA's opt-in standard.
+          [Wolvec draft - pending attorney review]: Wolvec's consent mechanism is a standalone Client Consent and Acknowledgment document presented during client onboarding, before any health screening data is collected. The client must take affirmative action to consent: typing their full legal name as a signature and separately confirming they are at least 18 years old. Consent is recorded with the agreement version, timestamp, and IP address, and a signed PDF copy is emailed to the client. This consent is separate and distinct from acceptance of general terms of use. Counsel should confirm this mechanism satisfies MHMDA's requirements for valid authorization, including that the consent request clearly discloses the categories of consumer health data collected, the purposes of collection, and the entities with which the data is shared.
         </p>
       </div>
       <p class="text-neutral-300 leading-relaxed mb-4">
@@ -231,7 +232,7 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="bg-neutral-800 border border-neutral-600 rounded-md px-4 py-3 mb-4">
         <p class="text-sm text-neutral-400 italic leading-relaxed">
-          [ATTORNEY REVIEW]: Counsel should confirm whether Wolvec's collection of fitness and health-adjacent data constitutes "medical information" within the meaning of CMIA as extended by AB 1436. If confirmed, the following rights apply:
+          [Wolvec draft - pending attorney review]: Under AB 1436 (Cal. Civ. Code Section 56.06), a business that offers software to consumers for the purpose of allowing them to manage their information regarding their health, or for diagnosis or treatment purposes, is deemed a provider of health care for CMIA purposes. Wolvec's working position is that its PAR-Q+ health screening responses and injury or illness disclosures may qualify as "medical information" under this extension, while general fitness programming, workout logs, and goal data likely do not. Until counsel concludes otherwise, Wolvec applies the rights listed below to all health screening responses and injury or illness disclosures from California residents. Counsel should confirm this scoping.
         </p>
       </div>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
@@ -256,7 +257,7 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="bg-neutral-800 border border-neutral-600 rounded-md px-4 py-3 mb-4">
         <p class="text-sm text-neutral-400 italic leading-relaxed">
-          [ATTORNEY REVIEW]: Confirm whether any additional opt-in consent disclosures or specific notice obligations under Nevada SB 370 apply to Wolvec's current architecture that are not already covered by this section and by the Consumer Health Data Privacy Policy.
+          [Wolvec draft - pending attorney review]: Wolvec obtains affirmative, voluntary consent before collecting consumer health data from Nevada residents through the signed Client Consent and Acknowledgment and the health screening flow described in Section 5. Wolvec's review finds that this section, together with Sections 5 and 9, covers the SB 370 disclosure categories: the categories of consumer health data collected, the sources, the purposes of collection, the third parties with which the data is shared, the retention period, and consumer rights. Counsel should confirm whether SB 370 requires a separately maintained consumer health data privacy policy page or a dedicated homepage link, and whether any disclosure category remains unaddressed for Wolvec's current architecture.
         </p>
       </div>
       <p class="text-neutral-300 leading-relaxed mb-4">
@@ -272,7 +273,7 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <div class="bg-neutral-800 border border-neutral-600 rounded-md px-4 py-3 mb-4">
         <p class="text-sm text-neutral-400 italic leading-relaxed">
-          [ATTORNEY REVIEW]: Confirm that Wolvec's current consent mechanism satisfies the CTDPA opt-in standard for sensitive data collection. Confirm whether the Connecticut AG has issued guidance on what constitutes adequate opt-in consent in the fitness and health coaching context.
+          [Wolvec draft - pending attorney review]: Wolvec's consent mechanism for Connecticut residents is the same standalone signed consent described in Section 9: a distinct Client Consent and Acknowledgment requiring a typed full-name signature and an affirmative age attestation, recorded with version, timestamp, and IP address, completed before any sensitive health data is collected. Consent withdrawal requests sent to privacy@wolvec.ai are honored, and Wolvec ceases processing the affected sensitive data within the timeframe the CTDPA requires after receiving a revocation. As of June 2026, Wolvec has not identified Connecticut AG guidance specific to opt-in consent in the fitness and health coaching context. Counsel should confirm both points.
         </p>
       </div>
       <p class="text-neutral-300 leading-relaxed mb-4">
