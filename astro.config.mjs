@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://wolvec-marketing-astro.vercel.app',
+  site: 'https://wolvec.ai',
   output: 'static',
   adapter: vercel(),
   integrations: [react(), sitemap()],
