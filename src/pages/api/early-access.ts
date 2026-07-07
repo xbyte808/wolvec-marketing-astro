@@ -76,9 +76,9 @@ export const POST: APIRoute = async ({ request }) => {
     const { kv } = await import('@vercel/kv');
     const rlKey = `early-access:rl:${ip}`;
     const count = await kv.incr(rlKey);
-    if (count === 1) {
-      await kv.expire(rlKey, RATE_LIMIT_WINDOW_SECONDS);
-    }
+    // NX sets the TTL only when the key has none, so a lost expire after a
+    // past INCR can't leave an IP rate-limited forever.
+    await kv.expire(rlKey, RATE_LIMIT_WINDOW_SECONDS, 'NX');
     if (count > RATE_LIMIT_MAX) {
       return json(429, { error: 'Too many submissions. Please try again later.' });
     }
