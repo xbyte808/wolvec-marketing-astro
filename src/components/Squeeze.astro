@@ -1,0 +1,33 @@
+---
+const points = [
+  {
+    label: 'Always on',
+    body: 'Check-ins, form questions, "can I swap this" — every hour, every client, all landing in one inbox.',
+  },
+  {
+    label: 'Capped by time',
+    body: 'More clients means more messages. At some point you stop selling spots you can’t serve.',
+  },
+  {
+    label: 'No library',
+    body: 'Every "AI coach" wants a back catalog you never built. Yours lives in your head and your DMs.',
+  },
+];
+---
+
+<section id="squeeze" class="py-24 px-6 bg-surface-1">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display text-text mb-14 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]">
+      You didn&rsquo;t start coaching to answer the same DM forty times.
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {points.map((p) => (
+        <div class="border-t border-hairline-dark pt-6">
+          <h3 class="font-display text-text text-xl mb-3">{p.label}</h3>
+          <p class="text-text-soft text-[15.5px] leading-relaxed">{p.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

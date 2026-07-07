@@ -1,22 +1,28 @@
 ---
+import Logo from '../assets/wolvec-logo.svg';
 ---
 
-<footer class="border-t border-white/10 bg-brand">
-  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-    <div>
-      <span class="text-white font-bold text-lg tracking-widest uppercase">WOLVEC</span>
-      <p class="text-neutral-400 text-sm mt-1">AI coaching for online fitness coaches.</p>
+<footer class="border-t border-hairline-dark bg-ink">
+  <div class="max-w-6xl mx-auto px-6 py-12 flex flex-col gap-8">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-2.5">
+        <img src={Logo.src} alt="Wolvec" class="h-6 w-6" />
+        <div>
+          <span class="font-display text-text text-lg">Wolvec</span>
+          <p class="text-text-soft text-sm mt-0.5">The AI version of you.</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-2 text-sm text-text-soft">
+        <a href="/roadmap" class="hover:text-text transition-colors">Roadmap</a>
+        <a href="/blog" class="hover:text-text transition-colors">Blog</a>
+        <a href="/privacy" class="hover:text-text transition-colors">Privacy Policy</a>
+        <a href="/terms" class="hover:text-text transition-colors">Terms of Service</a>
+        <a href="/changelog" class="hover:text-text transition-colors">Changelog</a>
+        <a href="mailto:ellard@wolvec.ai" class="hover:text-text transition-colors">Contact</a>
+      </div>
     </div>
 
-    <div class="flex items-center gap-8 text-sm text-neutral-400">
-      <a href="/roadmap" class="hover:text-white transition-colors">Roadmap</a>
-      <a href="/blog" class="hover:text-white transition-colors">Blog</a>
-      <a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a>
-      <a href="/terms" class="hover:text-white transition-colors">Terms of Service</a>
-      <a href="/changelog" class="hover:text-white transition-colors">Changelog</a>
-      <a href="mailto:ellard@wolvec.ai" class="hover:text-white transition-colors">Contact</a>
-    </div>
-
-    <p class="text-neutral-400 text-xs">&copy; {new Date().getFullYear()} Wolvec. All rights reserved.</p>
+    <p class="text-text-soft text-xs">A Veccor company. &middot; &copy; 2026 Wolvec L.L.C.</p>
   </div>
 </footer>

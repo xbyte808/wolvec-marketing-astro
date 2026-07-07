@@ -1,15 +1,46 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand: #1a1a2e;
-  --color-brand-accent: #e94560;
-  --color-brand-muted: #16213e;
+  /* Wolvec brand tokens */
+  --color-ink: #0D0E11;
+  --color-surface-1: #16181D;
+  --color-surface-2: #1E2128;
+  --color-paper-1: #EEF0EE;
+  --color-paper-2: #FFFFFF;
 
-  --color-neutral-50: #f8f9fa;
-  --color-neutral-100: #f1f3f5;
-  --color-neutral-400: #868e96;
-  --color-neutral-700: #495057;
-  --color-neutral-900: #212529;
+  --color-text: #ECEEF1;
+  --color-text-soft: #A0A5AE;
+  --color-on-paper: #16181D;
+  --color-on-paper-soft: #5B6069;
 
-  --font-family-sans: 'Inter', system-ui, sans-serif;
+  /* Azure: decorative use on dark surfaces. azure-deep is the WCAG AA-safe
+     variant (~6.5:1 on white, ~6.5:1 white-on-fill) for any text or
+     interactive control, on paper or dark surfaces alike. */
+  --color-azure: #3B6BFF;
+  --color-azure-deep: #2451D9;
+
+  --color-safety-text: #ff8a80;
+  --color-safety-bg: #2a1215;
+
+  --color-hairline-dark: rgba(255, 255, 255, 0.10);
+  --color-hairline-light: rgba(13, 14, 17, 0.10);
+
+  --font-display: 'Oswald', system-ui, sans-serif;
+  --font-body: 'Archivo', system-ui, sans-serif;
+  --font-label: 'Space Mono', ui-monospace, monospace;
+
+  /* Legacy theme keys — kept so components we must not edit
+     (EarlyAccessCTA.tsx, privacy.astro, terms.astro, etc.) inherit the
+     new brand palette automatically. */
+  --color-brand: #0D0E11;
+  --color-brand-accent: #2451D9;
+  --color-brand-muted: #16181D;
+
+  --color-neutral-50: #EEF0EE;
+  --color-neutral-100: #F1F3F5;
+  --color-neutral-400: #A0A5AE;
+  --color-neutral-700: #5B6069;
+  --color-neutral-900: #16181D;
+
+  --font-family-sans: 'Archivo', system-ui, sans-serif;
 }

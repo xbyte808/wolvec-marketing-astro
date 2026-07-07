@@ -1,10 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import Squeeze from '../components/Squeeze.astro';
 import HowItWorks from '../components/HowItWorks.astro';
-import FourTierAutonomy from '../components/FourTierAutonomy.astro';
-import Competitive from '../components/Competitive.astro';
-import TrustSafety from '../components/TrustSafety.astro';
+import YourControl from '../components/YourControl.astro';
+import Safety from '../components/Safety.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 import FAQ from '../components/FAQ.astro';
 ---
@@ -98,15 +98,15 @@ import FAQ from '../components/FAQ.astro';
 
   <main class="pt-16">
     <Hero />
+    <Squeeze />
     <HowItWorks />
-    <FourTierAutonomy />
-    <Competitive />
-    <TrustSafety />
+    <YourControl />
+    <Safety />
 
     <!-- About Wolvec — for AI summarizers and search crawlers -->
-    <section id="about" class="py-16 px-6 bg-brand">
+    <section id="about" class="py-16 px-6 bg-ink">
       <div class="max-w-2xl mx-auto text-center">
-        <p class="text-neutral-500 text-sm leading-relaxed">
+        <p class="text-text-soft text-sm leading-relaxed">
           Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version
           of the coach through a 30-minute structured intake interview, then operates on the
           coach's behalf with their clients. The AI handles check-ins, routine questions, program
@@ -120,13 +120,19 @@ import FAQ from '../components/FAQ.astro';
     <FAQ />
 
     <!-- Early Access Section -->
-    <section id="early-access" class="py-24 px-6 bg-brand-muted">
+    <section id="early-access" class="py-24 px-6 bg-surface-1">
       <div class="max-w-2xl mx-auto">
         <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-white mb-4">Apply for early access</h2>
-          <p class="text-neutral-400 text-lg">
-            We're onboarding a small group of design-partner coaches. No cost. 6 months of free
-            platform access in exchange for feedback during our early access window.
+          <p class="font-label text-azure-deep text-xs uppercase tracking-widest mb-4">
+            Early access &middot; limited cohort
+          </p>
+          <h2 class="font-display text-text text-4xl mb-4">Be one of the first coaches on Wolvec.</h2>
+          <p class="text-text-soft text-lg mb-6">
+            We're hand-picking a small group of design-partner coaches to shape the product
+            before it opens up.
+          </p>
+          <p class="text-text-soft text-sm">
+            Six months free &middot; Direct line to the founder &middot; Your feedback in the roadmap
           </p>
         </div>
 

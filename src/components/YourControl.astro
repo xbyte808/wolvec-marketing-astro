@@ -1,0 +1,36 @@
+---
+const tiers = [
+  {
+    label: 'Off',
+    body: 'You reply personally. The AI stays quiet.',
+  },
+  {
+    label: 'Draft',
+    body: 'It writes, you approve. Every reply waits for your go.',
+  },
+  {
+    label: 'Auto',
+    body: 'It runs the category end to end.',
+  },
+];
+---
+
+<section id="your-control" class="py-24 px-6 bg-surface-1">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="font-display text-text mb-14 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]">
+      You decide what it handles.
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {tiers.map((tier, i) => (
+        <div class="bg-surface-2 border border-hairline-dark rounded-xl p-6 flex flex-col gap-3">
+          <div class="flex items-center gap-3">
+            <span class="font-label text-text-soft text-sm">0{i + 1}</span>
+            <h3 class="font-display text-text text-lg">{tier.label}</h3>
+          </div>
+          <p class="text-text-soft leading-relaxed text-sm">{tier.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
