@@ -19,6 +19,33 @@ export async function verifyTurnstile(token: string, ip: string): Promise<boolea
     body: new URLSearchParams({ secret, response: token, remoteip: ip }),
   });
 
-  const data = (await res.json()) as { success: boolean };
-  return data.success === true;
+  if (!res.ok) {
+    throw new Error(`Turnstile siteverify returned HTTP ${res.status}`);
+  }
+
+  const data = (await res.json()) as {
+    success: boolean;
+    hostname?: string;
+    'error-codes'?: string[];
+  };
+
+  if (data.success !== true) {
+    console.warn('[turnstile] verification rejected:', data['error-codes'] ?? []);
+    return false;
+  }
+
+  // Defense in depth against an over-broad sitekey domain allowlist:
+  // TURNSTILE_ALLOWED_HOSTNAMES is a comma-separated list of hostnames the
+  // widget may have been solved on. Unset = accept any (current behavior).
+  const allowed =
+    process.env.TURNSTILE_ALLOWED_HOSTNAMES ?? import.meta.env.TURNSTILE_ALLOWED_HOSTNAMES;
+  if (allowed) {
+    const hostnames = allowed.split(',').map((h: string) => h.trim().toLowerCase());
+    if (!data.hostname || !hostnames.includes(data.hostname.toLowerCase())) {
+      console.warn('[turnstile] token hostname not in allowlist:', data.hostname);
+      return false;
+    }
+  }
+
+  return true;
 }
