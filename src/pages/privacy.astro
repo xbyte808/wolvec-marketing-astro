@@ -75,8 +75,9 @@ import Layout from '../layouts/Layout.astro';
         <li>Vercel (platform operations): The Wolvec application is hosted and served by Vercel. Requests to the platform are processed through Vercel's serverless compute infrastructure.</li>
         <li>Upstash via Vercel KV (early access applications): If you submit the early access application form on our marketing site, your submission (name, email address, and coaching background responses) is stored in a Vercel KV datastore operated by Upstash, a managed Redis provider, until we process your application.</li>
         <li>Cloudflare (security): Cloudflare provides edge security, DDoS protection, and web application firewall services. Cloudflare may process request metadata, including IP addresses, as part of security screening.</li>
-        <li>Sentry (error monitoring): Application errors and performance data, which may include technical context about user sessions, are processed by Sentry for debugging and reliability purposes.</li>
+        <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, and other health content from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
+        <li>Google push notification infrastructure may be used to send generic operational alerts to coaches. These alerts are configured not to include client names, health information, or message content.</li>
       </ul>
       <p class="text-neutral-300 leading-relaxed mb-3">
         Wolvec uses these providers to process data on Wolvec's behalf and does not authorize them to use the data for unrelated purposes.
@@ -111,22 +112,13 @@ import Layout from '../layouts/Layout.astro';
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">5A. FTC Health Breach Notification</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec is subject to the FTC Health Breach Notification Rule (16 C.F.R. Part 318), as amended effective July 29, 2024. This rule applies to vendors of personal health records and related entities that are not regulated by HIPAA.
+        Wolvec maintains procedures to evaluate and respond to security incidents and unauthorized disclosures involving identifiable health-related information. Because Wolvec is not regulated by HIPAA and handles health-related information through a fitness and wellness technology platform, Wolvec treats the FTC Health Breach Notification Rule as applicable where required.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        What this means for you: If Wolvec discovers a security breach that results in unauthorized acquisition of your health-related data, including PAR-Q+ screening responses, injury or illness disclosures in check-ins or chat, or other health-adjacent information, we are required to notify you within 60 days of discovery. Notification will be sent to your registered email address.
+        If Wolvec discovers a breach of unsecured identifiable health-related information subject to the FTC Health Breach Notification Rule, Wolvec will provide notices to affected individuals, the FTC, and, where required, the media, in accordance with applicable law.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        If a breach affects 500 or more residents of a single state, we will also notify prominent media outlets in that state and the FTC simultaneously.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        For breaches affecting fewer than 500 individuals in a given state, we will log the breach and report it to the FTC on an annual basis, as required by the rule.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Civil penalty exposure: Violations of the FTC HBNR carry civil penalties of up to $53,088 per violation, as adjusted for inflation effective January 17, 2025. The FTC adjusts this figure annually under the Federal Civil Penalties Inflation Adjustment Act.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Our breach response: We maintain an internal breach response protocol with a designated HBNR officer responsible for overseeing notification. Details of our protocol are available upon written request to privacy@wolvec.ai.
+        The FTC Health Breach Notification Rule may apply not only to traditional cybersecurity incidents, but also to unauthorized disclosures of identifiable health-related information. Violations may result in civil penalties as set by the FTC and adjusted periodically for inflation.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">6. Data Retention and Deletion</h2>
