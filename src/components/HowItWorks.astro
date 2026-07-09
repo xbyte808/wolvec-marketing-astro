@@ -1,4 +1,6 @@
 ---
+import PhotoPlaceholder from './PhotoPlaceholder.astro';
+
 const steps = [
   {
     number: '01',
@@ -18,20 +20,30 @@ const steps = [
 ];
 ---
 
-<section id="how-it-works" class="py-24 px-6 bg-ink">
-  <div class="max-w-5xl mx-auto">
-    <h2 class="font-display text-text mb-16 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]">
+<section id="how-it-works" class="bg-ink">
+  <div class="max-w-5xl mx-auto px-6 pt-16 pb-2">
+    <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">How it works</p>
+    <h2 class="font-display text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
       Three steps. One conversation does the heavy lifting.
     </h2>
+  </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-      {steps.map((step) => (
-        <div class="flex flex-col gap-4">
-          <p class="font-label text-azure-deep text-sm">{step.number}</p>
-          <h3 class="font-display text-text text-xl">{step.title}</h3>
-          <p class="text-text-soft leading-relaxed text-[15.5px]">{step.body}</p>
+  <div class="grid grid-cols-1 md:grid-cols-3 mt-9">
+    {steps.map((step, i) => (
+      <div
+        class:list={[
+          'relative min-h-[420px] flex items-end p-8',
+          i < steps.length - 1 && 'md:border-r border-hairline-dark',
+        ]}
+      >
+        <PhotoPlaceholder class="absolute inset-0 opacity-85" />
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-ink/95"></div>
+        <div class="relative">
+          <p class="font-display text-azure text-5xl leading-[0.8] mb-3">{step.number}</p>
+          <h3 class="font-display text-white text-2xl mb-2">{step.title}</h3>
+          <p class="text-[#CFD2D7] text-[15.5px]">{step.body}</p>
         </div>
-      ))}
-    </div>
+      </div>
+    ))}
   </div>
 </section>

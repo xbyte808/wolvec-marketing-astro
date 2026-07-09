@@ -1,12 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
 import Squeeze from '../components/Squeeze.astro';
 import HowItWorks from '../components/HowItWorks.astro';
 import YourControl from '../components/YourControl.astro';
 import Safety from '../components/Safety.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 import FAQ from '../components/FAQ.astro';
+import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 ---
 
 <Layout
@@ -96,8 +98,9 @@ import FAQ from '../components/FAQ.astro';
     })} />
   </Fragment>
 
-  <main class="pt-16">
+  <main>
     <Hero />
+    <StatsBar />
     <Squeeze />
     <HowItWorks />
     <YourControl />
@@ -120,23 +123,37 @@ import FAQ from '../components/FAQ.astro';
     <FAQ />
 
     <!-- Early Access Section -->
-    <section id="early-access" class="py-24 px-6 bg-surface-1">
-      <div class="max-w-2xl mx-auto">
-        <div class="text-center mb-12">
-          <p class="font-label text-azure-deep text-xs uppercase tracking-widest mb-4">
-            Early access &middot; limited cohort
-          </p>
-          <h2 class="font-display text-text text-4xl mb-4">Be one of the first coaches on Wolvec.</h2>
-          <p class="text-text-soft text-lg mb-6">
-            We're hand-picking a small group of design-partner coaches to shape the product
-            before it opens up.
-          </p>
-          <p class="text-text-soft text-sm">
-            Six months free &middot; Direct line to the founder &middot; Your feedback in the roadmap
-          </p>
+    <section id="early-access" class="relative overflow-hidden py-26 px-6 text-center">
+      <PhotoPlaceholder class="absolute inset-0 opacity-80" />
+      <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,17,.7),rgba(13,14,17,.94))]"></div>
+
+      <div class="relative max-w-2xl mx-auto">
+        <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">
+          Early access &middot; limited cohort
+        </p>
+        <h2 class="font-display text-white text-[clamp(2.375rem,5vw+1rem,4.5rem)] leading-[0.92] mb-4">
+          Be one of the first coaches on <span class="text-azure">Wolvec</span>.
+        </h2>
+        <p class="text-[#D6D8DD] text-lg mb-9 max-w-md mx-auto text-balance">
+          We're hand-picking a small group of design-partner coaches to shape the product
+          before it opens up.
+        </p>
+
+        <div class="bg-surface-1/90 backdrop-blur-md border border-hairline-dark rounded-[22px] p-6 md:p-8 text-left">
+          <EarlyAccessCTA client:load />
         </div>
 
-        <EarlyAccessCTA client:load />
+        <div class="flex flex-wrap gap-6 justify-center mt-7 text-sm text-[#B7BAC1]">
+          <span class="inline-flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> Six months free
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> Direct line to the founder
+          </span>
+          <span class="inline-flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> Your feedback in the roadmap
+          </span>
+        </div>
       </div>
     </section>
   </main>

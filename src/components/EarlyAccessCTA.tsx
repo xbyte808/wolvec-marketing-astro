@@ -203,7 +203,7 @@ export default function EarlyAccessCTA() {
       <button
         type="submit"
         disabled={state === 'loading'}
-        className="mt-2 bg-brand-accent hover:bg-brand-accent/90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-lg px-8 py-4 rounded-md transition-colors"
+        className="mt-2 bg-brand-accent hover:bg-brand-accent/90 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-lg px-8 py-4 rounded-full transition-colors"
       >
         {state === 'loading' ? 'Submitting...' : 'Apply for early access'}
       </button>
