@@ -1,79 +1,75 @@
 ---
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/photos/hero.jpg';
 ---
 
-<section id="hero" class="pt-40 pb-24 px-6 bg-ink">
-  <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-    <div>
-      <p class="font-label text-azure-deep text-xs uppercase tracking-widest mb-6">
-        For online fitness coaches
-      </p>
+<section id="hero" class="relative overflow-hidden pt-40 pb-22 px-6 bg-ink text-center">
+  <Image
+    src={heroPhoto}
+    alt=""
+    width={1920}
+    height={960}
+    format="webp"
+    quality={75}
+    class="absolute inset-0 h-full w-full object-cover"
+    style="filter: grayscale(0.4) brightness(0.34)"
+  />
+  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(13,14,17,.55),rgba(13,14,17,.92))]"></div>
 
-      <h1 class="font-display text-text leading-[1.05] mb-6 text-[clamp(2.5rem,5vw+1.25rem,4.25rem)]">
-        The AI version of you.
-      </h1>
+  <div class="relative max-w-2xl mx-auto flex flex-col items-center">
+    <p class="font-label text-azure text-xs uppercase tracking-[0.28em] mb-4">
+      For online fitness coaches
+    </p>
 
-      <p class="text-text-soft text-[16.5px] md:text-lg leading-relaxed mb-10 max-w-lg">
-        One 30-minute interview becomes an AI that coaches your clients that sounds exactly like
-        you, the check-ins, the DMs, the everyday stuff. No content library required.
-      </p>
+    <h1 class="font-display text-white leading-[0.92] mb-0 text-[clamp(2.75rem,7vw,5.5rem)]">
+      The AI version<br />of <span class="text-azure">you</span>.
+    </h1>
 
-      <div class="flex flex-wrap items-center gap-4 mb-12">
-        <a
-          href="#early-access"
-          class="inline-block bg-azure-deep hover:bg-azure-deep/90 text-white font-semibold text-base px-7 py-3.5 rounded-md transition-colors"
-        >
-          Get early access
-        </a>
-        <a
-          href="#how-it-works"
-          class="inline-block text-text hover:text-azure-deep font-semibold text-base px-2 py-3.5 transition-colors"
-        >
-          See how it works
-        </a>
+    <p class="text-[#CFD2D7] text-lg mt-5 max-w-md text-balance">
+      One 30 minute interview becomes an AI that coaches your clients that sounds exactly like
+      you, the check-ins, the DMs, the everyday stuff. No content library required.
+    </p>
+
+    <div class="w-full max-w-md mt-9 bg-surface-1/85 backdrop-blur-md border border-hairline-dark rounded-[22px] p-5 shadow-2xl text-left">
+      <div class="flex items-center gap-3 pb-4 mb-4 border-b border-hairline-dark">
+        <div class="w-10 h-10 rounded-full bg-azure-deep flex items-center justify-center font-display text-white text-base shrink-0">
+          S
+        </div>
+        <div>
+          <p class="font-body font-bold text-sm text-text leading-tight">Sarah&rsquo;s AI</p>
+          <p class="font-label text-xs text-text-soft">replying to a client &middot; now</p>
+        </div>
       </div>
 
-      <div class="flex flex-wrap gap-x-10 gap-y-4 border-t border-hairline-dark pt-8">
-        <div>
-          <p class="font-display text-text text-2xl leading-none mb-1">30 min</p>
-          <p class="text-text-soft text-sm">One interview, no setup week</p>
-        </div>
-        <div>
-          <p class="font-display text-text text-2xl leading-none mb-1">24/7</p>
-          <p class="text-text-soft text-sm">That sounds exactly like you, on your rules</p>
-        </div>
+      <div class="max-w-[85%] bg-surface-2 text-text-soft text-sm leading-relaxed rounded-2xl rounded-bl-[5px] px-4 py-3 mb-3">
+        Stuck in a hotel this weekend, only dumbbells in the gym. Can I still get today&rsquo;s
+        session in?
+      </div>
+
+      <div class="max-w-[86%] ml-auto bg-azure-deep text-white text-sm font-medium leading-relaxed rounded-2xl rounded-br-[5px] px-4 py-3">
+        Totally. I&rsquo;ll swap you to today&rsquo;s push day with just dumbbells. Same
+        intent, same effort. Sending it over now. Hit me after and tell me how the
+        shoulders felt.
+      </div>
+
+      <div class="flex items-center justify-end gap-2 mt-3 font-label text-xs text-text-soft">
+        <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> in their words, on their rules
       </div>
     </div>
 
-    <div>
-      <div class="bg-surface-1 border border-hairline-dark rounded-2xl overflow-hidden shadow-2xl">
-        <div class="flex items-center gap-2 px-5 py-3.5 border-b border-hairline-dark bg-surface-2">
-          <span class="w-2 h-2 rounded-full bg-azure"></span>
-          <p class="font-label text-text-soft text-xs">
-            Sarah&rsquo;s AI &middot; replying to a client &middot; now
-          </p>
-        </div>
-
-        <div class="p-5 flex flex-col gap-4">
-          <div class="flex justify-end">
-            <div class="bg-azure-deep text-white text-sm leading-relaxed rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%]">
-              Stuck in a hotel this weekend, only dumbbells in the gym. Can I still get today&rsquo;s
-              session in?
-            </div>
-          </div>
-
-          <div class="flex justify-start">
-            <div class="bg-surface-2 text-text text-sm leading-relaxed rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-              Totally. I&rsquo;ll swap you to today&rsquo;s push day with just dumbbells. Same
-              intent, same effort. Sending it over now. Hit me after and tell me how the
-              shoulders felt.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <p class="font-label text-text-soft text-xs uppercase tracking-widest text-center mt-4">
-        in their words, on their rules
-      </p>
+    <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
+      <a
+        href="#early-access"
+        class="inline-flex items-center gap-2 bg-azure-deep hover:bg-azure-deep/90 text-white font-bold text-[15.5px] px-7 py-4 rounded-full transition-colors"
+      >
+        Get early access
+      </a>
+      <a
+        href="#how-it-works"
+        class="inline-flex items-center gap-2 bg-white/6 hover:border-azure border border-hairline-dark text-white font-semibold text-[15.5px] px-7 py-4 rounded-full transition-colors"
+      >
+        See how it works
+      </a>
     </div>
   </div>
 </section>

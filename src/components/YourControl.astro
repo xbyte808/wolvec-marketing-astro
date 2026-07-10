@@ -2,33 +2,39 @@
 const tiers = [
   {
     label: 'Off',
-    body: 'You reply personally. The AI stays quiet.',
+    bold: 'You reply personally.',
+    rest: ' The AI stays quiet.',
   },
   {
     label: 'Draft',
-    body: 'It writes, you approve. Every reply waits for your go.',
+    bold: 'It writes, you approve.',
+    rest: ' Every reply waits for your go.',
   },
   {
     label: 'Auto',
-    body: 'It runs the category end to end.',
+    bold: 'It runs the category',
+    rest: ' end to end.',
   },
 ];
 ---
 
-<section id="your-control" class="py-24 px-6 bg-surface-1">
+<section id="your-control" class="pt-21 pb-8 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
-    <h2 class="font-display text-text mb-14 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]">
+    <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">Your control</p>
+    <h2 class="font-display text-on-paper mb-10 text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
       You decide what it handles.
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
       {tiers.map((tier, i) => (
-        <div class="bg-surface-2 border border-hairline-dark rounded-xl p-6 flex flex-col gap-3">
-          <div class="flex items-center gap-3">
-            <span class="font-label text-text-soft text-sm">0{i + 1}</span>
-            <h3 class="font-display text-text text-lg">{tier.label}</h3>
+        <div class="bg-paper-2 border border-hairline-light rounded-2xl p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="font-label text-on-paper-soft text-sm">0{i + 1}</span>
+            <h3 class="font-display text-azure-deep text-2xl">{tier.label}</h3>
           </div>
-          <p class="text-text-soft leading-relaxed text-sm">{tier.body}</p>
+          <p class="text-on-paper-soft leading-relaxed text-sm">
+            <b class="text-on-paper font-semibold">{tier.bold}</b>{tier.rest}
+          </p>
         </div>
       ))}
     </div>
