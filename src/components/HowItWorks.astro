@@ -1,21 +1,27 @@
 ---
-import PhotoPlaceholder from './PhotoPlaceholder.astro';
+import { Image } from 'astro:assets';
+import step01Photo from '../assets/photos/step-01.jpg';
+import step02Photo from '../assets/photos/step-02.jpg';
+import step03Photo from '../assets/photos/step-03.jpg';
 
 const steps = [
   {
     number: '01',
     title: 'Talk it through',
     body: 'A 30-minute guided interview about how you program and coach. You just answer.',
+    photo: step01Photo,
   },
   {
     number: '02',
     title: 'We build your clone',
     body: 'An AI that carries your methodology and how you’d coach it. No uploads, no prompt engineering.',
+    photo: step02Photo,
   },
   {
     number: '03',
     title: 'It runs the in-between',
     body: 'Chat, check-ins, accountability — handled the way you’d say it, while you take the next client.',
+    photo: step03Photo,
   },
 ];
 ---
@@ -36,7 +42,16 @@ const steps = [
           i < steps.length - 1 && 'md:border-r border-hairline-dark',
         ]}
       >
-        <PhotoPlaceholder class="absolute inset-0 opacity-85" />
+        <Image
+          src={step.photo}
+          alt=""
+          width={900}
+          height={640}
+          format="webp"
+          quality={75}
+          class="absolute inset-0 h-full w-full object-cover"
+          style="filter: grayscale(0.35) brightness(0.5)"
+        />
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-ink/95"></div>
         <div class="relative">
           <p class="font-display text-azure text-5xl leading-[0.8] mb-3">{step.number}</p>

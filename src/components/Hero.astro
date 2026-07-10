@@ -1,9 +1,19 @@
 ---
-import PhotoPlaceholder from './PhotoPlaceholder.astro';
+import { Image } from 'astro:assets';
+import heroPhoto from '../assets/photos/hero.jpg';
 ---
 
 <section id="hero" class="relative overflow-hidden pt-40 pb-22 px-6 bg-ink text-center">
-  <PhotoPlaceholder class="absolute inset-0 opacity-80" />
+  <Image
+    src={heroPhoto}
+    alt=""
+    width={1920}
+    height={960}
+    format="webp"
+    quality={75}
+    class="absolute inset-0 h-full w-full object-cover"
+    style="filter: grayscale(0.4) brightness(0.34)"
+  />
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(13,14,17,.55),rgba(13,14,17,.92))]"></div>
 
   <div class="relative max-w-2xl mx-auto flex flex-col items-center">

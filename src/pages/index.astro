@@ -8,7 +8,8 @@ import YourControl from '../components/YourControl.astro';
 import Safety from '../components/Safety.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 import FAQ from '../components/FAQ.astro';
-import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
+import { Image } from 'astro:assets';
+import earlyAccessPhoto from '../assets/photos/early-access.jpg';
 ---
 
 <Layout
@@ -124,7 +125,16 @@ import PhotoPlaceholder from '../components/PhotoPlaceholder.astro';
 
     <!-- Early Access Section -->
     <section id="early-access" class="relative overflow-hidden py-26 px-6 text-center">
-      <PhotoPlaceholder class="absolute inset-0 opacity-80" />
+      <Image
+        src={earlyAccessPhoto}
+        alt=""
+        width={1920}
+        height={1000}
+        format="webp"
+        quality={75}
+        class="absolute inset-0 h-full w-full object-cover"
+        style="filter: grayscale(0.4) brightness(0.36)"
+      />
       <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,17,.7),rgba(13,14,17,.94))]"></div>
 
       <div class="relative max-w-2xl mx-auto">
