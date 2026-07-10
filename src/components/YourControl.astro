@@ -1,41 +1,23 @@
 ---
-const tiers = [
-  {
-    label: 'Off',
-    bold: 'You reply personally.',
-    rest: ' The AI stays quiet.',
-  },
-  {
-    label: 'Draft',
-    bold: 'It writes, you approve.',
-    rest: ' Every reply waits for your go.',
-  },
-  {
-    label: 'Auto',
-    bold: 'It runs the category',
-    rest: ' end to end.',
-  },
-];
+const tiers = ['Off', 'Draft', 'Auto'];
 ---
 
 <section id="your-control" class="pt-21 pb-8 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
     <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">Your control</p>
-    <h2 class="font-display text-on-paper mb-10 text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
-      You decide what it handles.
+    <h2 class="font-display text-on-paper mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+      You decide how much it handles, from nothing to everything.
     </h2>
+    <p class="text-on-paper-soft text-lg max-w-2xl text-balance">
+      Stay hands-on, approve every reply, or let it run. Your call, and you can change it any
+      time.
+    </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
-      {tiers.map((tier, i) => (
-        <div class="bg-paper-2 border border-hairline-light rounded-2xl p-5">
-          <div class="flex items-center gap-3 mb-2">
-            <span class="font-label text-on-paper-soft text-sm">0{i + 1}</span>
-            <h3 class="font-display text-azure-deep text-2xl">{tier.label}</h3>
-          </div>
-          <p class="text-on-paper-soft leading-relaxed text-sm">
-            <b class="text-on-paper font-semibold">{tier.bold}</b>{tier.rest}
-          </p>
-        </div>
+    <div class="flex flex-wrap items-center gap-3 mt-7">
+      {tiers.map((tier) => (
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-paper-2 border border-hairline-light font-label text-xs uppercase tracking-wide text-on-paper-soft">
+          {tier}
+        </span>
       ))}
     </div>
   </div>
