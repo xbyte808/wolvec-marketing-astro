@@ -15,17 +15,18 @@ const points = [
 ];
 ---
 
-<section id="squeeze" class="py-24 px-6 bg-surface-1">
+<section id="squeeze" class="py-21 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
-    <h2 class="font-display text-text mb-14 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]">
+    <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">The squeeze</p>
+    <h2 class="font-display text-on-paper mb-11 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
       You didn&rsquo;t start coaching to answer the same DM forty times.
     </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {points.map((p) => (
-        <div class="border-t border-hairline-dark pt-6">
-          <h3 class="font-display text-text text-xl mb-3">{p.label}</h3>
-          <p class="text-text-soft text-[15.5px] leading-relaxed">{p.body}</p>
+        <div class="border border-hairline-light rounded-2xl p-6 bg-paper-2">
+          <h3 class="font-display text-on-paper text-xl mb-2">{p.label}</h3>
+          <p class="text-on-paper-soft text-[15.5px] leading-relaxed">{p.body}</p>
         </div>
       ))}
     </div>
