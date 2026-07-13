@@ -4,6 +4,8 @@ import type { APIRoute } from 'astro';
 import { Resend } from 'resend';
 import { escapeHtml } from '../../lib/escape';
 import { verifyTurnstile } from '../../lib/turnstile';
+import { checkRateLimit } from '../../lib/rateLimit';
+import { getSql } from '../../lib/db';
 
 function getResend(): Resend | null {
   const key = process.env.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
@@ -16,7 +18,7 @@ const MAX_SELECT = 50;
 const MAX_PLATFORM = 200;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const RATE_LIMIT_WINDOW_SECONDS = 600;
+const RATE_LIMIT_WINDOW_MS = 600_000;
 const RATE_LIMIT_MAX = 5;
 
 function json(status: number, payload: Record<string, unknown>): Response {
@@ -72,42 +74,33 @@ export const POST: APIRoute = async ({ request }) => {
     return json(403, { error: 'Verification failed. Please try again.' });
   }
 
-  try {
-    const { kv } = await import('@vercel/kv');
-    const rlKey = `early-access:rl:${ip}`;
-    const count = await kv.incr(rlKey);
-    // NX sets the TTL only when the key has none, so a lost expire after a
-    // past INCR can't leave an IP rate-limited forever.
-    await kv.expire(rlKey, RATE_LIMIT_WINDOW_SECONDS, 'NX');
-    if (count > RATE_LIMIT_MAX) {
-      return json(429, { error: 'Too many submissions. Please try again later.' });
-    }
-  } catch (err) {
-    // Rate limiting must not take the form down if KV hiccups; storage below will surface real KV outages.
-    console.error('[early-access] rate limit check failed:', err);
+  // In-memory, best-effort rate limit (see lib/rateLimit.ts). Turnstile above is
+  // the primary abuse gate; this is a coarse per-instance throttle that replaces
+  // the removed KV-backed limiter.
+  const rl = checkRateLimit(`early-access:${ip}`, {
+    windowMs: RATE_LIMIT_WINDOW_MS,
+    maxRequests: RATE_LIMIT_MAX,
+  });
+  if (!rl.allowed) {
+    return json(429, { error: 'Too many submissions. Please try again later.' });
   }
 
   const submittedAt = new Date().toISOString();
 
-  const record = {
-    name,
-    email,
-    yearsCoaching,
-    clientCount,
-    currentPlatform,
-    submittedAt,
-  };
-
   try {
-    const { kv } = await import('@vercel/kv');
-    const key = `early-access:${Date.now()}:${email.replace('@', '_at_')}`;
-    await kv.set(key, JSON.stringify(record));
+    const sql = getSql();
+    await sql`
+      INSERT INTO early_access_submission
+        (name, email, years_coaching, client_count, current_platform, submitted_at)
+      VALUES
+        (${name}, ${email}, ${yearsCoaching}, ${clientCount}, ${currentPlatform}, ${submittedAt})
+    `;
   } catch (err) {
-    console.error('[early-access] KV write failed:', err);
+    console.error('[early-access] Neon write failed:', err);
     return json(500, { error: 'Storage error' });
   }
 
-  // KV write succeeded. Send notification email; failure must not affect client response.
+  // DB write succeeded. Send notification email; failure must not affect client response.
   try {
     const resend = getResend();
     if (!resend) throw new Error('RESEND_API_KEY is not configured');
@@ -143,7 +136,7 @@ export const POST: APIRoute = async ({ request }) => {
   </table>
   <p style="color: #868e96; font-size: 13px; margin-top: 24px;">
     Submitted: ${submittedAt}<br>
-    View all submissions in Upstash dashboard.
+    Stored in the marketing Neon database (early_access_submission).
   </p>
 </body>
 </html>`,
