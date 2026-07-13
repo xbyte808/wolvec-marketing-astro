@@ -49,6 +49,11 @@ import Layout from '../layouts/Layout.astro';
         <li>Error reports (via Sentry)</li>
       </ul>
 
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Prospective Coach / Early Access Signup Data</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Prospective Coach / Early Access Signup Data: name, email address, years coaching, approximate client count, current platform, and related information submitted through early-access or contact forms.
+      </p>
+
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">3. How We Use Your Information</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">We use collected information to:</p>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
@@ -75,7 +80,7 @@ import Layout from '../layouts/Layout.astro';
         <li>Vercel (platform operations): The Wolvec application is hosted and served by Vercel. Requests to the platform are processed through Vercel's serverless compute infrastructure.</li>
         <li>Neon (early access applications): If you submit the early access application form on our marketing site, your submission (name, email address, and coaching background responses) is stored in Wolvec's managed PostgreSQL database hosted by Neon, a serverless PostgreSQL provider, until we process your application.</li>
         <li>Cloudflare (security): Cloudflare provides edge security, DDoS protection, and web application firewall services. Cloudflare may process request metadata, including IP addresses, as part of security screening.</li>
-        <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, and other health content from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
+        <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, health content, session cookies, IP addresses, and other personal information from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
         <li>Google push notification infrastructure may be used to send generic operational alerts to coaches. These alerts are configured not to include client names, health information, or message content.</li>
       </ul>
