@@ -11,16 +11,27 @@
 //   node scripts/migrate-upstash-to-neon.mjs             # perform migration
 //
 // Requires in env or .env.local:
-//   KV_REST_API_URL, KV_REST_API_TOKEN  (production Upstash creds)
-//   DATABASE_URL                        (marketing Neon connection string)
+//   KV_REST_API_URL                                      (Upstash REST URL)
+//   KV_REST_API_READ_ONLY_TOKEN (preferred) or KV_REST_API_TOKEN
+//                                                        (Upstash read token)
+//   DATABASE_URL                       (marketing Neon connection string)
 import { neon } from '@neondatabase/serverless';
 import { loadEnv, requireEnv } from './_env.mjs';
 
 const DRY_RUN = process.argv.includes('--dry-run');
 
-// Known historical test rows: migrate NOT as real leads, but report their
-// presence rather than silently dropping them.
-const TEST_EMAILS = new Set(['test@test.com', 'ellard.morales@gmail.com', 'ellard@wolvec.ai']);
+// Known test rows: migrate NOT as real leads, but report their presence
+// rather than silently dropping them. The first three are the documented
+// historical test accounts; check@check.com and royce6789@hotmail.com were
+// identified during the 2026-07-12 migration as founder self-tests (no genuine
+// third-party leads existed in the store) and excluded per founder decision.
+const TEST_EMAILS = new Set([
+  'test@test.com',
+  'ellard.morales@gmail.com',
+  'ellard@wolvec.ai',
+  'check@check.com',
+  'royce6789@hotmail.com',
+]);
 
 // Delimiter for (email, submittedAt) dedupe keys. Neither an email nor an ISO
 // timestamp contains a pipe, so it is a safe, plain-text separator.
@@ -28,7 +39,11 @@ const SEP = '|';
 
 loadEnv();
 const KV_URL = requireEnv('KV_REST_API_URL');
-const KV_TOKEN = requireEnv('KV_REST_API_TOKEN');
+// Read-only token is sufficient (and preferred) — this script only SCANs/GETs.
+const KV_TOKEN = process.env.KV_REST_API_READ_ONLY_TOKEN || process.env.KV_REST_API_TOKEN;
+if (!KV_TOKEN) {
+  throw new Error('Missing Upstash read token: set KV_REST_API_READ_ONLY_TOKEN or KV_REST_API_TOKEN');
+}
 const sql = neon(requireEnv('DATABASE_URL'));
 
 async function kv(cmd) {
