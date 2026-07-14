@@ -1,0 +1,37 @@
+# Wolvec
+
+**Status: Pre-launch. Wolvec is not yet onboarding coaches and is accepting early-access applications. Everything below describes what Wolvec will offer at launch.**
+
+> Wolvec will be an AI coaching layer for online fitness coaches. It will create an AI version of the coach through one structured conversation, then operate on the coach's behalf with their clients: handling check-ins, routine questions, generating training programs grounded in the coach's actual methodology, and accountability between sessions. Built by Veccor.
+
+Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It provides fitness and wellness coaching support only, and does not diagnose, treat, or give medical advice.
+
+## How it will work
+
+- One guided conversation will build the coach's AI. No existing content library will be required.
+- Coaches will set autonomy per category of interaction, on a three-tier scale (Off / Draft / Auto), and will be able to change it at any time.
+- Any client message mentioning pain, injury, illness, or dizziness is automatically escalated to the human coach. The AI does not handle safety-critical conversations independently.
+- New clients will complete a PAR-Q+ pre-participation health screening, which the coach will review before the AI begins full interaction.
+- Coaches will retain ownership of their methodology and client relationships; Wolvec will provide the platform.
+
+## Programming and tracking, at launch
+
+- Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches will be able to add their own exercises and their own videos.
+- Program building: the AI will generate programs grounded in the coach's actual methodology. Coaches will be able to edit any program — swap exercises, adjust sets and reps, restructure — or build one from scratch.
+- Workout formats: supersets, circuits, AMRAP, and timed work.
+- Reusable program templates.
+- Progress tracking: clients will log every set. Coaches will see exercise history, weights, body metrics, and progress photos.
+- Weekly check-ins and post-workout ratings.
+
+## Key pages
+
+- [Homepage](https://wolvec.ai/): product overview, how it works, FAQ.
+- [Roadmap](https://wolvec.ai/roadmap): the four-phase build direction. Phase 1 (the core platform being built toward initial early access), Phase 2 (in-conversation program adjustments), Phase 3 (depth), Phase 4 (reach/marketplace). Wolvec does not commit to ship dates.
+- [Privacy Policy](https://wolvec.ai/privacy): data collection, use, and consumer health data disclosures (including Washington My Health My Data Act and CCPA sections).
+- [Blog](https://wolvec.ai/blog): no posts published yet as of this writing.
+- [Changelog](https://wolvec.ai/changelog): no entries published yet as of this writing.
+
+## Contact
+
+- Email: ellard@wolvec.ai
+- Early access applications: https://wolvec.ai/#early-access
