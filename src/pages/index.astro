@@ -45,6 +45,19 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
     })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Wolvec",
+      "url": "https://wolvec.ai",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Veccor"
+      }
+    })} />
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
         {
@@ -53,14 +66,6 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Wolvec is an AI coaching layer for online fitness coaches. It creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients, handling check-ins, routine questions, program delivery, and accountability between sessions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How is Wolvec different from Coachvox AI or Delphi?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Coachvox AI and Delphi require coaches to upload an existing content library before their AI can be configured. Wolvec generates the AI from one conversation. No prior content required. Wolvec is also built specifically for fitness coaching, not a horizontal tool repositioned for coaches."
           }
         },
         {
