@@ -1,7 +1,7 @@
 const VERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
 export async function verifyTurnstile(token: string, ip: string): Promise<boolean> {
-  const secret = process.env.TURNSTILE_SECRET_KEY ?? import.meta.env.TURNSTILE_SECRET_KEY;
+  const secret = process.env.TURNSTILE_SECRET_KEY;
 
   if (!secret) {
     if (import.meta.env.PROD || process.env.NODE_ENV === 'production') {
@@ -37,8 +37,7 @@ export async function verifyTurnstile(token: string, ip: string): Promise<boolea
   // Defense in depth against an over-broad sitekey domain allowlist:
   // TURNSTILE_ALLOWED_HOSTNAMES is a comma-separated list of hostnames the
   // widget may have been solved on. Unset = accept any (current behavior).
-  const allowed =
-    process.env.TURNSTILE_ALLOWED_HOSTNAMES ?? import.meta.env.TURNSTILE_ALLOWED_HOSTNAMES;
+  const allowed = process.env.TURNSTILE_ALLOWED_HOSTNAMES;
   if (allowed) {
     const hostnames = allowed.split(',').map((h: string) => h.trim().toLowerCase());
     if (!data.hostname || !hostnames.includes(data.hostname.toLowerCase())) {
