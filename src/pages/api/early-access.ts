@@ -8,7 +8,7 @@ import { checkRateLimit } from '../../lib/rateLimit';
 import { getSql } from '../../lib/db';
 
 function getResend(): Resend | null {
-  const key = process.env.RESEND_API_KEY ?? import.meta.env.RESEND_API_KEY;
+  const key = process.env.RESEND_API_KEY;
   return key ? new Resend(key) : null;
 }
 
@@ -17,6 +17,15 @@ const MAX_EMAIL = 254;
 const MAX_SELECT = 50;
 const MAX_PLATFORM = 200;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Must match the <option> values in components/EarlyAccessCTA.tsx exactly.
+const YEARS_COACHING_OPTIONS = new Set([
+  'Less than 6 months',
+  '6–12 months',
+  '1–2 years',
+  '2+ years',
+]);
+const CLIENT_COUNT_OPTIONS = new Set(['0–5', '6–15', '16–30', '30+']);
 
 const RATE_LIMIT_WINDOW_MS = 600_000;
 const RATE_LIMIT_MAX = 5;
@@ -29,8 +38,10 @@ function json(status: number, payload: Record<string, unknown>): Response {
 }
 
 function readIp(request: Request): string {
-  const fwd = request.headers.get('x-forwarded-for');
-  if (fwd) return fwd.split(',')[0]!.trim();
+  // x-real-ip is set by Vercel's edge from the actual connecting client and
+  // cannot be spoofed by the request. x-forwarded-for is client-suppliable
+  // and must not be used to key rate limiting. Matches the resolution logic
+  // in @vercel/functions' ipAddress().
   return request.headers.get('x-real-ip') ?? 'unknown';
 }
 
@@ -59,6 +70,9 @@ export const POST: APIRoute = async ({ request }) => {
   }
   if (!EMAIL_RE.test(email)) {
     return json(400, { error: 'Invalid email address' });
+  }
+  if (!YEARS_COACHING_OPTIONS.has(yearsCoaching) || !CLIENT_COUNT_OPTIONS.has(clientCount)) {
+    return json(400, { error: 'Invalid selection' });
   }
 
   const ip = readIp(request);
