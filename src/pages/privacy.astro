@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-06-02';
-const dateModified = '2026-07-13';
+const dateModified = '2026-07-21';
 ---
 
 <Layout title="Privacy Policy | Wolvec" description="Wolvec privacy policy. Effective June 2, 2026.">
@@ -28,7 +28,7 @@ const dateModified = '2026-07-13';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>June 2, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>July 13, 2026</time>
+        Last Updated: <time datetime={dateModified}>July 21, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Who We Are</h2>
@@ -70,6 +70,11 @@ const dateModified = '2026-07-13';
         <li>Error reports (via Sentry)</li>
       </ul>
 
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Google Sign-In Data</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Google Sign-In Data: If you choose to sign in using Google, Wolvec may receive basic Google account information such as your name, email address, profile identifier, and profile image, depending on the permissions you authorize. Wolvec uses this information to authenticate your account, maintain account security, and operate the Platform.
+      </p>
+
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">Prospective Coach / Early Access Signup Data</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Prospective Coach / Early Access Signup Data: name, email address, years coaching, approximate client count, current platform, and related information submitted through early-access or contact forms.
@@ -104,6 +109,7 @@ const dateModified = '2026-07-13';
         <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, health content, session cookies, IP addresses, and other personal information from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
         <li>Google push notification infrastructure may be used to send generic operational alerts to coaches. These alerts are configured not to include client names, health information, or message content.</li>
+        <li>Google Sign-In / Google OAuth: Wolvec may use Google authentication services to allow users to create or access their Wolvec account. Google may process login-related information according to Google's own terms and privacy policies. Wolvec uses Google Sign-In only for authentication and account-access purposes.</li>
       </ul>
       <p class="text-neutral-300 leading-relaxed mb-3">
         Wolvec uses these providers to process data on Wolvec's behalf and does not authorize them to use the data for unrelated purposes.
