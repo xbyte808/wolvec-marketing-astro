@@ -1,0 +1,147 @@
+---
+// ============================================================================
+// NOT LIVE. DO NOT IMPORT THIS COMPONENT INTO ANY PAGE.
+//
+// Staged replacement for the single-exchange chat mockup currently embedded
+// in src/components/Hero.astro (the "Sarah's AI" / hotel dumbbells bubble).
+// This version shows three tabbed demos, each a different coach persona and
+// scenario, illustrating a different capability (accountability, programming
+// adjustments, coaching-style Q&A).
+//
+// "Dana", "Sarah", and "Marcus" are illustrative placeholders only, not real
+// coaches or customers. Do not let copy near this component drift toward
+// testimonial framing (real names, real dates, "verified customer", etc.).
+// The exchanges below are fabricated examples, not transcripts.
+//
+// Deliberately excluded: no safety-escalation / injury-deferral demo tab.
+//
+// Before wiring this in:
+//   1. Decide whether it replaces Hero's existing single-bubble mockup
+//      outright, or the two coexist elsewhere on the page.
+//   2. Confirm copy still matches current product behavior.
+//   3. Get founder sign-off.
+//
+// Intended placement (per the session that staged this): swaps in for the
+// chat mockup block inside <Hero /> (src/components/Hero.astro, the
+// `<div class="w-full max-w-md mt-9 ...">` block). See the marker comment
+// in src/pages/index.astro.
+// ============================================================================
+
+const tabs = [
+  {
+    id: 'accountability',
+    label: 'Accountability',
+    initial: 'D',
+    name: "Dana&rsquo;s AI",
+    clientMessage: 'missed my session again. work has been insane',
+    replyParagraphs: [
+      "Third one this month, and all three landed on Thursdays after your late meetings. That&rsquo;s a pattern, not a willpower problem.",
+      "Let&rsquo;s move Thursday to a 20 minute session you can actually finish, or push it to Saturday morning where you&rsquo;ve never missed once.",
+      "Which one&rsquo;s more likely to happen?",
+    ],
+  },
+  {
+    id: 'programming',
+    label: 'Programming',
+    initial: 'S',
+    name: "Sarah&rsquo;s AI",
+    clientMessage: "honestly I&rsquo;m wrecked today. squats gonna happen?",
+    replyParagraphs: [
+      "Ha, I believe it. You hit 275 for 5 on Monday and then went straight into that Thursday pull session, so you&rsquo;ve earned the beat-up feeling.",
+      "Let&rsquo;s keep the squat but drop to 65% and stay at 3 sets. You&rsquo;ll move, you won&rsquo;t dig a deeper hole, and Saturday&rsquo;s session will actually be worth doing.",
+      "If the warmup sets still feel like garbage, text me and we&rsquo;ll swap it out.",
+    ],
+  },
+  {
+    id: 'coaching-style',
+    label: 'Coaching style',
+    initial: 'M',
+    name: "Marcus&rsquo;s AI",
+    clientMessage: 'is 3 sets enough for chest? feels like I should be doing more',
+    replyParagraphs: [
+      "More isn&rsquo;t the lever you think it is. You did 3 sets of incline press to a real 1-2 reps in reserve last week, that&rsquo;s more stimulus than 5 junk sets ever was.",
+      'Add the fourth set when the third one stops being hard. Not before.',
+      "You&rsquo;re impatient. That&rsquo;s usually a good sign.",
+    ],
+  },
+];
+---
+
+<div
+  class="chat-demo-tabs w-full max-w-md mt-9 bg-surface-1/85 backdrop-blur-md border border-hairline-dark rounded-[22px] shadow-2xl text-left overflow-hidden"
+  data-chat-demo-tabs
+>
+  <div class="flex items-center gap-1 p-1.5 border-b border-hairline-dark" role="tablist" aria-label="Chat demo examples">
+    {tabs.map((tab, i) => (
+      <button
+        type="button"
+        role="tab"
+        id={`chat-demo-tab-${tab.id}`}
+        aria-controls={`chat-demo-panel-${tab.id}`}
+        aria-selected={i === 0 ? 'true' : 'false'}
+        data-tab-trigger={tab.id}
+        class:list={[
+          'flex-1 font-label text-xs uppercase tracking-[0.08em] px-3 py-2.5 rounded-2xl transition-colors',
+          i === 0
+            ? 'bg-azure-deep text-white'
+            : 'text-text-soft hover:text-text hover:bg-white/5',
+        ]}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
+
+  {tabs.map((tab, i) => (
+    <div
+      role="tabpanel"
+      id={`chat-demo-panel-${tab.id}`}
+      aria-labelledby={`chat-demo-tab-${tab.id}`}
+      data-tab-panel={tab.id}
+      class:list={['p-5', { hidden: i !== 0 }]}
+    >
+      <div class="flex items-center gap-3 pb-4 mb-4 border-b border-hairline-dark">
+        <div class="w-10 h-10 rounded-full bg-azure-deep flex items-center justify-center font-display text-white text-base shrink-0">
+          {tab.initial}
+        </div>
+        <div>
+          <p class="font-body font-bold text-sm text-text leading-tight" set:html={tab.name} />
+          <p class="font-label text-xs text-text-soft">illustrative example &middot; not a real client</p>
+        </div>
+      </div>
+
+      <div class="max-w-[85%] bg-surface-2 text-text-soft text-sm leading-relaxed rounded-2xl rounded-bl-[5px] px-4 py-3 mb-3" set:html={tab.clientMessage} />
+
+      <div class="max-w-[92%] ml-auto bg-azure-deep text-white text-sm font-medium leading-relaxed rounded-2xl rounded-br-[5px] px-4 py-3 space-y-2.5">
+        {tab.replyParagraphs.map((p) => (
+          <p set:html={p} />
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-chat-demo-tabs]').forEach((root) => {
+    const triggers = root.querySelectorAll<HTMLButtonElement>('[data-tab-trigger]');
+    const panels = root.querySelectorAll<HTMLElement>('[data-tab-panel]');
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const target = trigger.dataset.tabTrigger;
+
+        triggers.forEach((t) => {
+          const active = t.dataset.tabTrigger === target;
+          t.setAttribute('aria-selected', active ? 'true' : 'false');
+          t.classList.toggle('bg-azure-deep', active);
+          t.classList.toggle('text-white', active);
+          t.classList.toggle('text-text-soft', !active);
+        });
+
+        panels.forEach((p) => {
+          p.classList.toggle('hidden', p.dataset.tabPanel !== target);
+        });
+      });
+    });
+  });
+</script>
