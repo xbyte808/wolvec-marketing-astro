@@ -1,8 +1,14 @@
+SUPERSEDED VERSION — preserved per counsel's instruction (2026-07-26).
+This is the exact content of src/pages/consumer-health-data.astro as it was
+published/last-updated 2026-07-14, before the 2026-07-26 retention-wording
+split (Section 11, safety-event records bullet). Not a live route — archived
+for the record only. Live version: src/pages/consumer-health-data.astro.
+
 ---
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-07-14';
-const dateModified = '2026-07-26';
+const dateModified = '2026-07-14';
 ---
 
 <Layout
@@ -31,7 +37,7 @@ const dateModified = '2026-07-26';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>July 14, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>July 26, 2026</time>
+        Last Updated: <time datetime={dateModified}>July 14, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Introduction</h2>
@@ -301,8 +307,7 @@ const dateModified = '2026-07-26';
         <li>Injury, illness, pain, or safety disclosures in check-ins: duration of the coaching relationship plus 12 months</li>
         <li>Injury, illness, pain, or safety disclosures in chat: duration of the coaching relationship plus 12 months</li>
         <li>Workout, training, and wellness data: duration of the coaching relationship plus 12 months</li>
-        <li>Health-specific safety-event details: Health categories, verbatim client statements, symptom descriptions, source-message references, and related health-specific safety details are retained for the duration of the coaching relationship plus twelve (12) months after the coaching relationship ends, unless deleted or redacted earlier in response to a valid request or retained longer under an applicable legal hold, active dispute, claim, safety investigation, or regulatory requirement.</li>
-        <li>Limited safety-event compliance and coach-acknowledgment records: Wolvec retains limited records documenting that a safety event occurred and how the Platform and coach responded for the life of the client account plus seven (7) years after account closure, or longer if subject to a legal hold or unresolved claim, dispute, safety incident, security incident, or regulatory inquiry. After health-specific information is deleted or redacted, these limited records do not include the health category, the client's verbatim statement, symptom details, or the source-message reference.</li>
+        <li>Health-screening status, coach-acknowledgment records, safety flags, and AI unlock status: duration of the account plus 12 months, unless retained longer as a legal, audit, safety, compliance, or dispute-resolution record</li>
         <li>18+ attestation or age-confirmation status: duration of the account plus 12 months</li>
         <li>Backup and audit logs: retained for limited periods consistent with Wolvec's backup, security, and compliance practices</li>
       </ul>
