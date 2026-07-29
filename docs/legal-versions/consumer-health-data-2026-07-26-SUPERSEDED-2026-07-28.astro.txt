@@ -1,8 +1,14 @@
+SUPERSEDED VERSION — preserved per counsel's instruction (2026-07-26 convention).
+This is the exact content of src/pages/consumer-health-data.astro as it was
+published/last-updated 2026-07-26, before the 2026-07-28 retention-wording
+update (Section 11, acceptance/consent records paragraphs). Not a live route
+— archived for the record only. Live version: src/pages/consumer-health-data.astro.
+
 ---
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-07-14';
-const dateModified = '2026-07-28';
+const dateModified = '2026-07-26';
 ---
 
 <Layout
@@ -31,7 +37,7 @@ const dateModified = '2026-07-28';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>July 14, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>July 28, 2026</time>
+        Last Updated: <time datetime={dateModified}>July 26, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Introduction</h2>
@@ -313,19 +319,16 @@ const dateModified = '2026-07-28';
         Where applicable law requires deletion from archived or backup systems, deletion from such systems may be delayed for the period permitted by law.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may retain limited agreement, consent, eligibility, audit, safety, and compliance records where reasonably necessary to document legal acceptance, age eligibility, health-information consent under this Consumer Health Data Privacy Policy, agreement enforcement, security, dispute resolution, regulatory compliance, and related legal obligations.
+        Wolvec may retain limited acceptance and consent records as necessary to document what you agreed to, when you agreed to it, and what agreement, Privacy Policy, Consumer Health Data Privacy Policy, and consent language was shown to you at the time of acceptance.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        These limited records may include agreement, Privacy Policy, and Consumer Health Data Privacy Policy versions, exact agreement and checkbox text shown, checkbox selections, typed legal name, signer identity and role, timestamps, IP address, user-agent information, signature records, PDF hashes, delivery status, acceptance-event information, document hashes, and 18+ eligibility representations.
+        These retained records may include your name, email address, account identifier, accepted document version, Privacy Policy version or URL, Consumer Health Data Privacy Policy version or URL, exact agreement text shown at the time of acceptance, exact checkbox text shown, checkbox selections, timestamp, IP address, user agent or browser metadata, acceptance event ID, signature record, document hash or snapshot hash, and related audit logs.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec retains these records for the life of the account plus seven (7) years. If a dispute, claim, safety incident, security incident, breach, regulatory inquiry, legal hold, chargeback, threatened claim, or similar matter arises, Wolvec may retain relevant records until the matter is fully resolved plus a reasonable additional period.
+        Wolvec retains acceptance and consent records for the life of your account plus seven (7) years, or longer if required for a dispute, claim, safety incident, security incident, breach, regulatory inquiry, legal hold, chargeback, threatened claim, or similar matter.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Records retained under this section will be used only for legal, compliance, security, audit, dispute-resolution, agreement-enforcement, or recordkeeping purposes and will not be used for marketing or ordinary product personalization.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Ordinary profile and eligibility data, including date of birth where collected, follows Wolvec's standard account-data retention and deletion schedule and is not retained under the longer evidentiary schedule solely because an 18+ representation survives.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">12. Your Consumer Health Data Rights</h2>
