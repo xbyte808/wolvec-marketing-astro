@@ -1,0 +1,58 @@
+---
+const cards = [
+  {
+    title: 'A real exercise catalog, not a guess',
+    body: 'Nearly 1,400 exercises with animated demonstrations. Programs are built from this catalog, so the AI is never inventing an exercise that doesn’t exist. Add your own when the library doesn’t have your movement.',
+  },
+  {
+    title: 'Build it your way',
+    body: 'The AI drafts the program. You change whatever you want, swap exercises, adjust sets and reps, restructure the week. Or start from a blank page yourself.',
+  },
+  {
+    title: 'Supersets, circuits, AMRAP, timed work',
+    body: 'Program the way you actually coach. Not just straight sets.',
+  },
+  {
+    title: 'Every set logged, even offline',
+    body: 'Clients log sets from the gym floor, signal or not. Nothing gets lost waiting on a connection.',
+  },
+  {
+    title: 'Swap it mid-workout',
+    body: 'No cable machine today? Your client swaps the exercise from inside the workout. No message to you required.',
+  },
+  {
+    title: 'Reusable templates',
+    body: 'Build a program once, use it again. Stop starting from a blank page for every client.',
+  },
+  {
+    title: 'Progress you can actually see',
+    body: 'Every logged set becomes history. You see what a client lifted last time and how it’s trending, without asking for a screenshot.',
+  },
+  {
+    title: 'Check-ins and effort ratings',
+    body: 'Weekly check-ins in your voice, plus a quick effort rating after every workout. You know how it’s landing without asking.',
+  },
+];
+---
+
+<section id="platform" class="py-21 px-6 bg-paper-1 text-on-paper">
+  <div class="max-w-5xl mx-auto">
+    <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">The platform</p>
+    <h2 class="font-display text-on-paper mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+      This isn&rsquo;t just a chat window.
+    </h2>
+    <p class="text-on-paper-soft text-lg max-w-2xl mb-11 text-balance">
+      Everything your clients need lives in one place: programs, logging, progress, check-ins,
+      and the conversation itself, all built and ready before your first client shows up.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {cards.map((c) => (
+        <div class="border border-hairline-light rounded-2xl p-6 bg-paper-2">
+          <h3 class="font-display text-on-paper text-lg mb-2">{c.title}</h3>
+          <p class="text-on-paper-soft text-[15.5px] leading-relaxed">{c.body}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
