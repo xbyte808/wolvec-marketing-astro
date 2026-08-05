@@ -2,7 +2,7 @@
 
 **Status: Pre-launch. Wolvec is not yet onboarding coaches and is accepting early-access applications. Everything below describes what Wolvec will offer at launch.**
 
-> Wolvec will be an AI coaching layer for online fitness coaches. It will create an AI version of the coach through one structured conversation, then operate on the coach's behalf with their clients: handling check-ins, routine questions, generating training programs grounded in the coach's actual methodology, and accountability between sessions.
+> Wolvec will be the coach's whole coaching setup, not an add-on to it. It will create an AI version of the coach through one structured conversation, no existing content library required, and it will run the everyday with clients: check-ins, routine questions, training programs grounded in the coach's actual methodology, and accountability between sessions.
 
 Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It provides fitness and wellness coaching support only, and does not diagnose, treat, or give medical advice.
 
