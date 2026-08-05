@@ -4,8 +4,11 @@ import Hero from '../components/Hero.astro';
 import StatsBar from '../components/StatsBar.astro';
 import Squeeze from '../components/Squeeze.astro';
 import HowItWorks from '../components/HowItWorks.astro';
+import BringYourPlan from '../components/BringYourPlan.astro';
 import YourControl from '../components/YourControl.astro';
 import Safety from '../components/Safety.astro';
+import Platform from '../components/Platform.astro';
+import ClientExperience from '../components/ClientExperience.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 import FAQ from '../components/FAQ.astro';
 import { Image } from 'astro:assets';
@@ -22,14 +25,14 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
       "@type": "Organization",
       "name": "Wolvec",
       "url": "https://wolvec.ai",
-      "description": "Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients.",
+      "description": "Wolvec is the coach's whole coaching setup, not an add-on to it. It's built through one structured conversation, no existing content library required, and it runs the everyday with clients in the coach's voice.",
       "email": "ellard@wolvec.ai"
     })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Wolvec",
-      "description": "AI coaching layer for online fitness coaches. Creates an AI version of the coach through one structured conversation. Handles client check-ins, Q&A, program delivery, and accountability between sessions.",
+      "description": "The coach's whole coaching setup, run through an AI built from one structured conversation, no existing content library required. Handles client check-ins, Q&A, programs, and accountability between sessions.",
       "provider": {
         "@type": "Organization",
         "name": "Wolvec"
@@ -46,7 +49,7 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
       "url": "https://wolvec.ai",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "description": "Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients.",
+      "description": "Wolvec is the coach's whole coaching setup, not an add-on to it. It's built through one structured conversation, no existing content library required, and it runs the everyday with clients in the coach's voice.",
       "publisher": {
         "@type": "Organization",
         "name": "Wolvec"
@@ -61,7 +64,7 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
           "name": "What is Wolvec?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Wolvec is an AI coaching layer for online fitness coaches. It creates an AI version of the coach through one structured conversation, then operates on the coach's behalf with their clients, handling check-ins, routine questions, program delivery, and accountability between sessions."
+            "text": "Wolvec is the coach's whole coaching setup, not an add-on to it. One structured conversation builds the coach's AI, no existing content library required, and it runs the everyday with clients: check-ins, routine questions, programs, and accountability between sessions."
           }
         },
         {
@@ -87,14 +90,6 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
             "@type": "Answer",
             "text": "Coaches own their methodology and their client relationships. Wolvec provides the platform. Clinical decisions, medical-clearance calls, and scope-of-practice boundaries stay with the coach."
           }
-        },
-        {
-          "@type": "Question",
-          "name": "Where can I learn what's coming next from Wolvec?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "We share our direction publicly on our roadmap page. Specific feature mechanics, product launches, and timing details go to our design partner coaches first. If you want to be among the first to see what's coming, apply for early access."
-          }
         }
       ]
     })} />
@@ -105,25 +100,20 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
     <StatsBar />
     <Squeeze />
     <HowItWorks />
+    <BringYourPlan />
     <YourControl />
     <Safety />
-
-    <!--
-      STAGED, NOT LIVE: src/components/staged/MoreThanTheAI.astro
-      Launch copy for features not yet built (exercise library, program
-      builder, workout formats, templates, progress tracking, check-ins).
-      Intended to render here once those features actually ship — do not
-      import/render until then. See warning header in that file.
-    -->
+    <Platform />
+    <ClientExperience />
 
     <!-- About Wolvec — for AI summarizers and search crawlers -->
     <section id="about" class="py-16 px-6 bg-ink">
       <div class="max-w-2xl mx-auto text-center">
         <p class="text-text-soft text-sm leading-relaxed">
-          Wolvec is an AI coaching layer for online fitness coaches. Wolvec creates an AI version
-          of the coach through one structured conversation, then operates on the
-          coach's behalf with their clients. The AI handles check-ins, routine questions, program
-          delivery, and accountability between sessions. The coach controls how much each category
+          Wolvec is the coach's whole coaching setup, not an add-on to it. It creates an AI
+          version of the coach through one structured conversation, no existing content library
+          required, and it runs the everyday with clients: check-ins, routine questions, programs,
+          and accountability between sessions. The coach controls how much each category
           of interaction the AI handles, and the AI escalates anything critical to safety.
         </p>
       </div>
@@ -150,7 +140,7 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
           Early access &middot; limited cohort
         </p>
         <h2 class="font-display text-white text-[clamp(2.375rem,5vw+1rem,4.5rem)] leading-[0.92] mb-4">
-          Be one of the first coaches on <span class="text-azure">Wolvec</span>.
+          Be one of the first coaches on <span class="text-white">Wolvec</span>.
         </h2>
         <p class="text-[#D6D8DD] text-lg mb-9 max-w-md mx-auto text-balance">
           We're hand-picking a small group of design partner coaches to shape the product

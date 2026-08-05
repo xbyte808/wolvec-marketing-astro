@@ -1,0 +1,61 @@
+---
+const scenarios = [
+  {
+    label: 'The leg press is down',
+    quote: '“Leg press is out at my gym this week.”',
+    body: 'Their AI swaps it for a comparable movement from your programming, same target, same intent, and they’re back to training in the time it takes to read the reply.',
+  },
+  {
+    label: 'No gym for two weeks',
+    quote: '“Travelling for two weeks, nowhere to train.”',
+    body: 'Their AI rebuilds the block around whatever they’ve actually got, hotel room, bodyweight, resistance bands, so two weeks on the road don’t undo the two months before it.',
+  },
+  {
+    label: 'The rower’s taken',
+    quote: '“Rower’s taken and I can’t wait around.”',
+    body: 'Their AI has a substitute ready before they’ve finished reading the message. No message to you, no standing around the gym floor.',
+  },
+];
+
+const chips = [
+  'Their own app, not a browser tab',
+  'Notified the moment their AI replies',
+  'Logging that survives losing signal mid-workout',
+];
+---
+
+<section id="client-experience" class="py-21 px-6 bg-ink">
+  <div class="max-w-5xl mx-auto">
+    <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">The client experience</p>
+    <h2 class="font-display text-text mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+      Whatever comes up, they don&rsquo;t wait on you.
+    </h2>
+    <p class="text-text-soft text-lg max-w-2xl mb-11 text-balance">
+      Every message reaches your AI first, in your voice, with full context of their program. Not
+      a chatbot standing in. The version of you that never logs off.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-9">
+      {scenarios.map((s) => (
+        <div class="border border-hairline-dark rounded-2xl p-6 bg-surface-1">
+          <h3 class="font-display text-text text-lg mb-2">{s.label}</h3>
+          <p class="text-text-soft text-[15.5px] leading-relaxed italic mb-3">{s.quote}</p>
+          <p class="text-text-soft text-[15.5px] leading-relaxed">{s.body}</p>
+        </div>
+      ))}
+    </div>
+
+    <p class="text-text-soft text-base max-w-2xl mb-7 text-balance">
+      None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set, and
+      anything that touches on pain, injury, or health still comes straight to you.
+    </p>
+
+    <div class="flex flex-wrap gap-6 text-sm text-text-soft">
+      {chips.map((c) => (
+        <span class="inline-flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> {c}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>
