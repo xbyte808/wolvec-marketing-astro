@@ -120,7 +120,12 @@ export const POST: APIRoute = async ({ request }) => {
     if (!resend) throw new Error('RESEND_API_KEY is not configured');
     const subjectName = name.replace(/[\r\n]+/g, ' ').slice(0, 80);
     await resend.emails.send({
-      from: 'Wolvec <noreply@wolvec.ai>',
+      // Deliberately NOT noreply@wolvec.ai: that address also carries the
+      // coaching platform's safety-escalation mail, and this traffic must
+      // never be able to affect that reputation. Requires mail.wolvec.ai
+      // verified in Resend (its own DKIM key + send.mail.wolvec.ai
+      // Return-Path) before this can send successfully.
+      from: 'Wolvec <noreply@mail.wolvec.ai>',
       to: 'ellard@wolvec.ai',
       subject: `New early access application: ${subjectName}`,
       html: `<html>
