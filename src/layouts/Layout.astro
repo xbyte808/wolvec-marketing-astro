@@ -42,6 +42,9 @@ const canonicalUrl = canonical;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content="https://wolvec.ai/og-default.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Wolvec" />
     <meta property="og:site_name" content="Wolvec" />
 
     <!-- Twitter Card -->
@@ -49,6 +52,7 @@ const canonicalUrl = canonical;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://wolvec.ai/og-default.png" />
+    <meta name="twitter:image:alt" content="Wolvec" />
 
     <slot name="head" />
   </head>
