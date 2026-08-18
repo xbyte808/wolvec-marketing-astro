@@ -1,10 +1,7 @@
 ---
-// NOTE: the FAQPage JSON-LD in src/pages/index.astro currently declares four
-// questions while this component renders one, and the wording of the shared
-// question differs between the two. That mismatch predates this pass and is
-// reported rather than resolved here, because closing it means either
-// publishing three answers that no one has approved for display or deleting
-// schema entries. Both are copy decisions, not implementation details.
+// The FAQPage JSON-LD in src/pages/index.astro declares exactly the questions
+// rendered here. Founder ruling: the three extra schema entries were deleted
+// rather than published. Adding a question here means adding it there too.
 const faqs = [
   {
     id: 'who-owns-the-data',
@@ -16,7 +13,7 @@ const faqs = [
 
 <section id="faq" class="py-16 px-6 bg-ink">
   <div class="max-w-2xl mx-auto">
-    <p class="eyebrow mb-5" data-reveal>Questions</p>
+    <p class="eyebrow eyebrow-on-ink mb-5" data-reveal>Questions</p>
     <h2 class="section-heading text-text text-3xl" data-reveal style="--reveal-delay:70ms">
       Common questions
     </h2>
