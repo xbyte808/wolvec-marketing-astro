@@ -3,24 +3,23 @@ const scenarios = [
   {
     label: 'The leg press is down',
     quote: '“Leg press is out at my gym this week.”',
-    body: 'Their AI swaps it for a comparable movement from your programming, same target, same intent, and they’re back to training in the time it takes to read the reply.',
+    body: 'Their AI swaps it for a comparable movement from your programming, same target, same intent, for today only, and they’re back to training in the time it takes to tap through the options.',
   },
   {
-    label: 'No gym for two weeks',
-    quote: '“Travelling for two weeks, nowhere to train.”',
-    body: 'Their AI rebuilds the block around whatever they’ve actually got, hotel room, bodyweight, resistance bands, so two weeks on the road don’t undo the two months before it.',
+    label: 'Hotel gym, no barbell',
+    quote: '“Hotel gym today, dumbbells only.”',
+    body: 'Their AI swaps today’s session for a dumbbell-only version, same target, same intent, and tomorrow they’re back on the program exactly as you wrote it.',
   },
   {
     label: 'The rower’s taken',
     quote: '“Rower’s taken and I can’t wait around.”',
-    body: 'Their AI has a substitute ready before they’ve finished reading the message. No message to you, no standing around the gym floor.',
+    body: 'They tap Swap, and their AI has a substitute ready before they’ve decided where else to stand. No message to you, no standing around the gym floor.',
   },
 ];
 
 const chips = [
   'Their own app, not a browser tab',
-  'Notified the moment their AI replies',
-  'Logging that survives losing signal mid-workout',
+  'Offline workout logging',
 ];
 ---
 
@@ -28,11 +27,10 @@ const chips = [
   <div class="max-w-5xl mx-auto">
     <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">The client experience</p>
     <h2 class="font-display text-text mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
-      Whatever comes up, they don&rsquo;t wait on you.
+      Routine questions can be handled without waiting for a live Coach reply.
     </h2>
     <p class="text-text-soft text-lg max-w-2xl mb-11 text-balance">
-      Every message reaches your AI first, in your voice, with full context of their program. Not
-      a chatbot standing in. The version of you that never logs off.
+      Client messages can be handled by an AI configured from your coaching methodology and communication style, within the context Wolvec makes available to it.
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-9">
@@ -46,8 +44,7 @@ const chips = [
     </div>
 
     <p class="text-text-soft text-base max-w-2xl mb-7 text-balance">
-      None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set, and
-      anything that touches on pain, injury, or health still comes straight to you.
+      None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set. Certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, or other physical distress can trigger Wolvec&rsquo;s limited safety controls and be flagged for you. These controls may not identify every concern.
     </p>
 
     <div class="flex flex-wrap gap-6 text-sm text-text-soft">
