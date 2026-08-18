@@ -19,16 +19,36 @@ import Logo from '../assets/wolvec-logo.svg';
       <a href="/#your-control" class="hover-link text-text-soft hover:text-text text-sm font-medium">
         Your control
       </a>
-      <a
-        href="/#early-access"
-        class="hover-button bg-azure-deep hover:bg-azure-deep/90 text-white text-sm font-bold px-5 py-2.5 rounded-full"
-      >
-        Get early access
-      </a>
+      <!--
+        Account controls, grouped away from the section links. Sign in routes
+        to the app; there is deliberately no separate sign-up control, because
+        there is no self-serve signup to route one to. Off-allowlist visitors
+        reach the app's request-access screen, which is a real destination.
+      -->
+      <div class="flex items-center gap-5 pl-1">
+        <a
+          href="https://app.wolvec.ai"
+          class="hover-link text-text-soft hover:text-text text-sm font-medium"
+        >
+          Sign in
+        </a>
+        <a
+          href="/#early-access"
+          class="hover-button bg-azure-deep hover:bg-azure-deep/90 text-white text-sm font-bold px-5 py-2.5 rounded-full"
+        >
+          Get early access
+        </a>
+      </div>
     </div>
 
-    <!-- Mobile: logo mark + CTA only -->
-    <div class="flex md:hidden">
+    <!-- Mobile: logo mark + account controls only -->
+    <div class="flex md:hidden items-center gap-4">
+      <a
+        href="https://app.wolvec.ai"
+        class="hover-link text-text-soft hover:text-text text-sm font-medium"
+      >
+        Sign in
+      </a>
       <a
         href="/#early-access"
         class="hover-button bg-azure-deep hover:bg-azure-deep/90 text-white text-sm font-bold px-4 py-2.5 rounded-full"

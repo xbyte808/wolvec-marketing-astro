@@ -114,9 +114,14 @@ const ORG_ID = 'https://wolvec.ai/#organization';
 
     <!--
       Early Access Section. The page's primary call to action.
-      Inverted ground: solid azure rather than the ink/paper alternation the
-      rest of the page runs on, so it reads as the one place to act. The photo
-      that used to sit behind the form has been removed; it competed with it.
+
+      Was a solid azure field. It won the page: the eye landed on the ground
+      instead of the form. Primacy is now carried by elevation rather than
+      hue. The ground is ink, continuous with the dark run above it, and the
+      azure is spent only where it points at the form -- a glow behind the
+      panel and a tinted edge on it. The panel is the lightest surface on the
+      page and its submit button the only saturated fill, so the form is what
+      the eye reaches first. Section and form are otherwise unchanged.
     -->
     <section id="early-access" class="early-access relative overflow-hidden py-26 px-6 text-center">
       <div class="early-access-wash absolute inset-0" aria-hidden="true"></div>
@@ -142,7 +147,7 @@ const ORG_ID = 'https://wolvec.ai/#organization';
         </p>
 
         <div
-          class="bg-ink/85 backdrop-blur-md border border-white/15 rounded-[22px] p-6 md:p-8 text-left shadow-2xl"
+          class="early-access-panel rounded-[22px] p-6 md:p-8 text-left"
           data-reveal
           style="--reveal-delay:210ms"
         >
@@ -155,13 +160,13 @@ const ORG_ID = 'https://wolvec.ai/#organization';
           style="--reveal-delay:280ms"
         >
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> 14-day free trial
+            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> 14-day free trial
           </span>
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> No card required to start
+            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> No card required to start
           </span>
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> Founding-coach discount
+            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> Founding-coach discount
           </span>
         </div>
       </div>
@@ -170,16 +175,45 @@ const ORG_ID = 'https://wolvec.ai/#organization';
 </Layout>
 
 <style>
+  /* Ink ground. The section above it is also ink, so the hairline and the
+     glow, not a colour change, are what separate them. */
+  .early-access {
+    background: var(--color-ink);
+    border-top: 1px solid var(--color-hairline-dark);
+  }
+
+  /* The glow sits behind an opaque panel, so it reads as a halo thrown by
+     the form rather than a field the form is floating on. */
   .early-access-wash {
     background:
-      radial-gradient(ellipse 90% 70% at 50% 0%, #3b6bff 0%, transparent 62%),
-      linear-gradient(180deg, #2451d9 0%, #1c3fac 100%);
+      radial-gradient(
+        ellipse 76% 62% at 50% 54%,
+        rgba(59, 107, 255, 0.26),
+        rgba(59, 107, 255, 0.08) 48%,
+        transparent 76%
+      ),
+      radial-gradient(
+        ellipse 130% 44% at 50% 0%,
+        rgba(59, 107, 255, 0.07),
+        transparent 72%
+      );
+  }
+
+  /* Lightest surface on the page. The form's own inputs are ink, so they sit
+     as wells inside it, and its submit button is the only saturated fill in
+     the section. */
+  .early-access-panel {
+    background: var(--color-surface-1);
+    border: 1px solid rgba(94, 133, 255, 0.32);
+    box-shadow:
+      0 30px 70px -24px rgba(0, 0, 0, 0.85),
+      0 0 70px -18px rgba(59, 107, 255, 0.35);
   }
 
   /*
-    The only eyebrow on the site that is not azure. Azure text on an azure
-    ground is unreadable, so this one is white. Reported as an exception
-    rather than changed silently.
+    The only eyebrow on the site that is not azure. It was white because the
+    ground was azure; the ground is ink now, but the exception is retained by
+    founder ruling. White on ink measures 19.3:1.
   */
   .early-access-eyebrow {
     font-family: var(--font-body);
