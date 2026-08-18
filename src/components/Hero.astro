@@ -1,38 +1,30 @@
 ---
-import { Image } from 'astro:assets';
-import heroPhoto from '../assets/photos/hero.jpg';
+// Hero setting is specified in absolute values at the mobile baseline and
+// scaled proportionally with clamp() at larger viewports. The mobile values
+// below are exactly as briefed; see the note on --hero-nav-clearance.
 ---
 
-<section id="hero" class="relative overflow-hidden pt-40 pb-22 px-6 bg-ink text-center">
-  <Image
-    src={heroPhoto}
-    alt=""
-    width={1920}
-    height={960}
-    format="webp"
-    quality={75}
-    loading="eager"
-    fetchpriority="high"
-    class="absolute inset-0 h-full w-full object-cover"
-    style="filter: grayscale(0.4) brightness(0.34)"
-  />
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(13,14,17,.55),rgba(13,14,17,.92))]"></div>
+<section id="hero" class="hero relative overflow-hidden bg-ink text-center">
+  <!-- Ground: azure accent lifted out of the dark base. Decorative only. -->
+  <div class="hero-wash absolute inset-0" aria-hidden="true"></div>
 
   <div class="relative max-w-2xl mx-auto flex flex-col items-center">
-    <p class="font-label text-white text-sm uppercase tracking-[0.28em] mb-4">
-      For online fitness coaches
-    </p>
+    <p class="eyebrow hero-eyebrow" data-reveal>For online fitness coaches</p>
 
-    <h1 class="font-display text-white leading-[0.92] mb-0 text-[clamp(2.75rem,7vw,5.5rem)]">
+    <h1 class="hero-headline text-white" data-reveal style="--reveal-delay:70ms">
       Add clients.<br />Not <span class="text-white">hours</span>.
     </h1>
 
-    <p class="text-[#CFD2D7] text-lg mt-5 max-w-md text-balance">
+    <p class="hero-subhead" data-reveal style="--reveal-delay:140ms">
       Programs, workouts, check-ins, client chat. Your AI runs the everyday in your
       voice, built from one conversation. No content library required.
     </p>
 
-    <div class="w-full max-w-md mt-9 bg-surface-1/85 backdrop-blur-md border border-hairline-dark rounded-[22px] p-5 shadow-2xl text-left">
+    <div
+      class="w-full max-w-md hero-bubble bg-surface-1/85 backdrop-blur-md border border-hairline-dark rounded-[22px] p-5 shadow-2xl text-left"
+      data-reveal
+      style="--reveal-delay:210ms"
+    >
       <div class="flex items-center gap-3 pb-4 mb-4 border-b border-hairline-dark">
         <div class="w-10 h-10 rounded-full bg-azure-deep flex items-center justify-center font-display text-white text-base shrink-0">
           S
@@ -59,19 +51,140 @@ import heroPhoto from '../assets/photos/hero.jpg';
       </div>
     </div>
 
-    <div class="flex flex-wrap items-center justify-center gap-3 mt-8">
+    <div
+      class="flex flex-wrap items-center justify-center gap-3 hero-actions"
+      data-reveal
+      style="--reveal-delay:280ms"
+    >
       <a
         href="#early-access"
-        class="inline-flex items-center gap-2 bg-azure-deep hover:bg-azure-deep/90 text-white font-bold text-[15.5px] px-7 py-4 rounded-full transition-colors"
+        class="hover-button inline-flex items-center gap-2 bg-azure-deep hover:bg-azure-deep/90 text-white font-bold text-[15.5px] px-7 py-4 rounded-full"
       >
         Get early access
       </a>
       <a
         href="#how-it-works"
-        class="inline-flex items-center gap-2 bg-white/6 hover:border-azure border border-hairline-dark text-white font-semibold text-[15.5px] px-7 py-4 rounded-full transition-colors"
+        class="hover-button inline-flex items-center gap-2 bg-white/6 hover:border-azure border border-hairline-dark text-white font-semibold text-[15.5px] px-7 py-4 rounded-full"
       >
         See how it works
       </a>
     </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    /* The nav is position:fixed and roughly 73px tall, so it overlays the top
+       of this section. The briefed 40px is the space below the nav, not the
+       space above the eyebrow in the document. Drop the clearance term to get
+       a literal 40px and the eyebrow lands underneath the nav. */
+    --hero-nav-clearance: 73px;
+    --hero-pad-top: 40px;
+    --hero-pad-side: 24px;
+    --hero-pad-bottom: 44px;
+
+    padding-top: calc(var(--hero-nav-clearance) + var(--hero-pad-top));
+    padding-right: var(--hero-pad-side);
+    padding-bottom: var(--hero-pad-bottom);
+    padding-left: var(--hero-pad-side);
+  }
+
+  /* Azure accent against the dark ground. Peak azure sits at ~22% over ink,
+     which keeps white headline text at roughly 15:1, far clear of the 4.5:1
+     minimum. */
+  .hero-wash {
+    background:
+      radial-gradient(
+        ellipse 115% 78% at 50% 4%,
+        rgba(59, 107, 255, 0.22),
+        rgba(59, 107, 255, 0.07) 45%,
+        transparent 72%
+      ),
+      radial-gradient(
+        ellipse 70% 50% at 50% 100%,
+        rgba(59, 107, 255, 0.06),
+        transparent 70%
+      ),
+      var(--color-ink);
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 22px;
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 46px;
+    line-height: 0.94;
+    letter-spacing: -0.005em;
+    margin-bottom: 20px;
+  }
+
+  .hero-subhead {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 270px;
+    margin-bottom: 28px;
+    color: #cfd2d7;
+  }
+
+  .hero-bubble {
+    margin-bottom: 32px;
+  }
+
+  /* Proportional scale-up. The mobile baseline above is the briefed setting;
+     these only take effect at wider viewports. */
+  @media (min-width: 640px) {
+    .hero {
+      --hero-pad-top: 56px;
+      --hero-pad-side: 32px;
+      --hero-pad-bottom: 62px;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 26px;
+    }
+
+    .hero-headline {
+      font-size: clamp(46px, 3.6vw + 32px, 88px);
+      margin-bottom: 24px;
+    }
+
+    .hero-subhead {
+      font-size: clamp(15px, 0.35vw + 13.7px, 18px);
+      max-width: clamp(270px, 22vw + 187px, 420px);
+      margin-bottom: 34px;
+    }
+
+    .hero-bubble {
+      margin-bottom: 38px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero {
+      --hero-pad-top: 72px;
+      --hero-pad-side: 40px;
+      --hero-pad-bottom: 80px;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 30px;
+    }
+
+    .hero-headline {
+      margin-bottom: 27px;
+    }
+
+    .hero-subhead {
+      margin-bottom: 40px;
+    }
+
+    .hero-bubble {
+      margin-bottom: 44px;
+    }
+  }
+</style>

@@ -4,15 +4,15 @@ const tiers = ['Off', 'Draft', 'Auto'];
 
 <section id="your-control" class="pt-5 pb-8 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
-    <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">Your control</p>
-    <h2 class="font-display text-on-paper mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+    <p class="eyebrow mb-5" data-reveal>Your control</p>
+    <h2 class="section-heading text-on-paper max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
       You decide how much supported routine coaching the AI handles.
     </h2>
-    <p class="text-on-paper-soft text-lg max-w-2xl text-balance">
+    <p class="section-lede text-on-paper-soft text-lg max-w-2xl text-balance" data-reveal style="--reveal-delay:140ms">
       Stay hands-on, review drafts, or let supported categories run automatically. You can change it any time.
     </p>
 
-    <div class="flex flex-wrap items-center gap-3 mt-7">
+    <div class="flex flex-wrap items-center gap-3 mt-7" data-reveal style="--reveal-delay:210ms">
       {tiers.map((tier) => (
         <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-paper-2 border border-hairline-light font-label text-xs uppercase tracking-wide text-on-paper-soft">
           {tier}

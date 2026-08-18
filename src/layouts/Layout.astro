@@ -36,6 +36,13 @@ const canonicalUrl = canonical;
     />
     <meta name="generator" content={Astro.generator} />
 
+    {/* Marks that scripting is available, before first paint, so the reveal
+        and disclosure start states only apply when JS can undo them. Without
+        JS the class is never set and every section and panel renders open. */}
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -44,7 +51,10 @@ const canonicalUrl = canonical;
     <meta property="og:image" content="https://wolvec.ai/og-default.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Wolvec" />
+    <meta
+      property="og:image:alt"
+      content="Wolvec logo mark above the headline Add clients. Not hours."
+    />
     <meta property="og:site_name" content="Wolvec" />
 
     <!-- Twitter Card -->
@@ -52,7 +62,10 @@ const canonicalUrl = canonical;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content="https://wolvec.ai/og-default.png" />
-    <meta name="twitter:image:alt" content="Wolvec" />
+    <meta
+      name="twitter:image:alt"
+      content="Wolvec logo mark above the headline Add clients. Not hours."
+    />
 
     <slot name="head" />
   </head>
@@ -60,5 +73,73 @@ const canonicalUrl = canonical;
     <Nav />
     <slot />
     <Footer />
+
+    <script>
+      // Progressive enhancement only. Every string these two features act on
+      // is already in the server HTML; nothing here creates or injects copy.
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      // ---- Scroll reveal -----------------------------------------------
+      // Toggles a class on elements that are already rendered. Reveals once,
+      // then stops observing, so scrolling back up never re-animates.
+      const revealTargets =
+        document.querySelectorAll<HTMLElement>('[data-reveal]');
+
+      if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+        revealTargets.forEach((el) => el.classList.add('is-revealed'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            });
+          },
+          { rootMargin: '0px 0px -8% 0px', threshold: 0.06 }
+        );
+
+        revealTargets.forEach((el) => {
+          // Anything already on screen at load reveals immediately rather
+          // than waiting for a scroll that may never come.
+          const box = el.getBoundingClientRect();
+          if (box.top < window.innerHeight * 0.92) {
+            el.classList.add('is-revealed');
+          } else {
+            observer.observe(el);
+          }
+        });
+      }
+
+      // ---- Disclosure panels (Platform features, FAQ) -------------------
+      // Panels ship expanded in the HTML. Collapse them here so that a
+      // no-JS reader keeps the full text.
+      document
+        .querySelectorAll<HTMLButtonElement>('[data-disclosure-trigger]')
+        .forEach((trigger) => {
+          const panelId = trigger.getAttribute('aria-controls');
+          if (!panelId) return;
+          const panel = document.getElementById(panelId);
+          if (!panel) return;
+
+          const startOpen = trigger.dataset.disclosureDefault === 'open';
+          const setOpen = (open: boolean) => {
+            trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (open) {
+              panel.setAttribute('data-open', '');
+              panel.removeAttribute('hidden');
+            } else {
+              panel.removeAttribute('data-open');
+              panel.setAttribute('hidden', '');
+            }
+          };
+
+          setOpen(startOpen);
+
+          trigger.addEventListener('click', () => {
+            setOpen(trigger.getAttribute('aria-expanded') !== 'true');
+          });
+        });
+    </script>
   </body>
 </html>

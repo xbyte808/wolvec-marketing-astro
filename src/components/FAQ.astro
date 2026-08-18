@@ -1,19 +1,69 @@
 ---
+// NOTE: the FAQPage JSON-LD in src/pages/index.astro currently declares four
+// questions while this component renders one, and the wording of the shared
+// question differs between the two. That mismatch predates this pass and is
+// reported rather than resolved here, because closing it means either
+// publishing three answers that no one has approved for display or deleting
+// schema entries. Both are copy decisions, not implementation details.
+const faqs = [
+  {
+    id: 'who-owns-the-data',
+    question: 'Who owns the data?',
+    defaultOpen: true,
+  },
+];
 ---
 
 <section id="faq" class="py-16 px-6 bg-ink">
   <div class="max-w-2xl mx-auto">
-    <h2 class="font-display text-text text-3xl mb-10">Common questions</h2>
+    <p class="eyebrow mb-5" data-reveal>Questions</p>
+    <h2 class="section-heading text-text text-3xl" data-reveal style="--reveal-delay:70ms">
+      Common questions
+    </h2>
 
-    <div class="flex flex-col gap-8">
-      <div>
-        <h3 class="text-text font-semibold mb-2">Who owns the data?</h3>
-        <p class="text-text-soft leading-relaxed">
-          You own your methodology and your client relationships. Wolvec provides the platform.
-          Clinical decisions, medical-clearance calls, and scope-of-practice boundaries stay with
-          you. <a href="/#early-access" class="text-azure-deep hover:underline">Apply for early access</a> if that's the setup you want.
-        </p>
-      </div>
+    <!--
+      Answer text is rendered into the HTML on the server. Collapsing is CSS
+      driven and scoped to html.js, so without JavaScript the answer shows.
+    -->
+    <div class="border-t border-hairline-dark mt-8" data-reveal style="--reveal-delay:140ms">
+      {faqs.map((faq) => (
+        <div class="border-b border-hairline-dark">
+          <h3>
+            <button
+              type="button"
+              class="disclosure-trigger hover-row w-full flex items-center justify-between gap-5 text-left py-5 cursor-pointer hover:bg-surface-1 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-azure"
+              id={`faq-trigger-${faq.id}`}
+              aria-controls={`faq-panel-${faq.id}`}
+              aria-expanded="false"
+              data-disclosure-trigger
+              data-disclosure-default={faq.defaultOpen ? 'open' : 'closed'}
+            >
+              <span class="font-display text-text text-[clamp(1.125rem,1vw+0.85rem,1.5rem)] leading-[1.15]">
+                {faq.question}
+              </span>
+              <span
+                class="disclosure-icon shrink-0 text-azure text-2xl leading-none select-none"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </button>
+          </h3>
+
+          <div
+            id={`faq-panel-${faq.id}`}
+            role="region"
+            aria-labelledby={`faq-trigger-${faq.id}`}
+            data-disclosure-panel
+          >
+            <p class="text-text-soft leading-relaxed pb-6 pr-8">
+              You own your methodology and your client relationships. Wolvec provides the platform.
+              Clinical decisions, medical-clearance calls, and scope-of-practice boundaries stay with
+              you. <a href="/#early-access" class="hover-link text-azure hover:text-white underline underline-offset-4">Apply for early access</a> if that's the setup you want.
+            </p>
+          </div>
+        </div>
+      ))}
     </div>
   </div>
 </section>

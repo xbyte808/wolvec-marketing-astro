@@ -28,8 +28,8 @@ const steps = [
 
 <section id="how-it-works" class="bg-ink">
   <div class="max-w-5xl mx-auto px-6 pt-16 pb-2">
-    <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">How it works</p>
-    <h2 class="font-display text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+    <p class="eyebrow mb-5" data-reveal>How it works</p>
+    <h2 class="section-heading text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
       One conversation does the heavy lifting.
     </h2>
   </div>
@@ -41,6 +41,8 @@ const steps = [
           'relative min-h-[420px] flex items-end p-8',
           i < steps.length - 1 && 'md:border-r border-hairline-dark',
         ]}
+        data-reveal
+        style={`--reveal-delay:${i * 90}ms`}
       >
         <Image
           src={step.photo}

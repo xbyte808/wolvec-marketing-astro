@@ -18,24 +18,24 @@ const scenarios = [
 ];
 
 const chips = [
-  'Their own app, not a browser tab',
+  'Nothing in their program changes without you',
   'Offline workout logging',
 ];
 ---
 
 <section id="client-experience" class="py-21 px-6 bg-ink">
   <div class="max-w-5xl mx-auto">
-    <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">The client experience</p>
-    <h2 class="font-display text-text mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+    <p class="eyebrow mb-5" data-reveal>The client experience</p>
+    <h2 class="section-heading text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
       Routine questions can be handled without waiting for a live Coach reply.
     </h2>
-    <p class="text-text-soft text-lg max-w-2xl mb-11 text-balance">
+    <p class="section-lede text-text-soft text-lg max-w-2xl mb-11 text-balance" data-reveal style="--reveal-delay:140ms">
       Client messages can be handled by an AI configured from your coaching methodology and communication style, within the context Wolvec makes available to it.
     </p>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-9">
-      {scenarios.map((s) => (
-        <div class="border border-hairline-dark rounded-2xl p-6 bg-surface-1">
+      {scenarios.map((s, i) => (
+        <div class="hover-card border border-hairline-dark rounded-2xl p-6 bg-surface-1" data-reveal style={`--reveal-delay:${i * 70}ms`}>
           <h3 class="font-display text-text text-lg mb-2">{s.label}</h3>
           <p class="text-text-soft text-[15.5px] leading-relaxed italic mb-3">{s.quote}</p>
           <p class="text-text-soft text-[15.5px] leading-relaxed">{s.body}</p>
@@ -43,11 +43,11 @@ const chips = [
       ))}
     </div>
 
-    <p class="text-text-soft text-base max-w-2xl mb-7 text-balance">
+    <p class="section-lede text-text-soft text-base max-w-2xl mb-7 text-balance" data-reveal>
       None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set. Certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, or other physical distress can trigger Wolvec&rsquo;s limited safety controls and be flagged for you. These controls may not identify every concern.
     </p>
 
-    <div class="flex flex-wrap gap-6 text-sm text-text-soft">
+    <div class="flex flex-wrap gap-6 text-sm text-text-soft" data-reveal>
       {chips.map((c) => (
         <span class="inline-flex items-center gap-2">
           <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> {c}
