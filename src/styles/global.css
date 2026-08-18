@@ -61,7 +61,31 @@
        for small type and goes gappy at 12px. */
     letter-spacing: 0.18em;
     text-transform: uppercase;
+    /* Paper is the default ground. azure-deep measures 5.63:1 on paper-1
+       (#2451D9 on #EEF0EE), clear of the 4.5:1 AA floor for 12px text. The
+       same colour is only 2.99:1 on ink, so ink sections take the variant
+       below rather than this. */
     color: var(--color-azure-deep);
+  }
+
+  /*
+    Ink ground. azure-deep is unusable here (2.99:1, under even the 3:1
+    large-text floor), so ink sections get the lighter azure: #3B6BFF on
+    #0D0E11 measures 4.35:1.
+
+    4.35:1 clears AA for large text but is 0.15 short of the 4.5:1 normal-text
+    floor a 12px eyebrow is held to. It is the value this site ran before the
+    regression and it is what was asked for, so it is what is applied --
+    reported, not changed quietly. #4272FF would reach 4.67:1 on ink if the
+    founder wants the floor cleared outright.
+
+    The hero is the one ink section whose ground is not flat ink: the azure
+    wash peaks at ~22% azure over ink (#172245), where this colour measures
+    3.50:1. Same caveat, one step further down, and unchanged from before the
+    regression. azure-deep there would be 2.41:1.
+  */
+  .eyebrow-on-ink {
+    color: var(--color-azure);
   }
 }
 
