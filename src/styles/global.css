@@ -44,3 +44,161 @@
 
   --font-family-sans: 'Archivo', system-ui, sans-serif;
 }
+
+/* ==========================================================================
+   Eyebrow labels
+   Archivo, all caps. Single definition so every eyebrow on the site stays in
+   step. Space Mono remains in use for non-eyebrow labels (the Hero chat
+   bubble meta, the Your-control tier pills).
+   ========================================================================== */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--color-azure);
+  }
+}
+
+/* ==========================================================================
+   Section rhythm
+   Headings below the hero share the hero's line-height and spacing
+   generosity. Sizes stay per-section; the rhythm does not.
+   ========================================================================== */
+@layer components {
+  .section-heading {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 0.96;
+    letter-spacing: -0.005em;
+    margin-bottom: 20px;
+  }
+
+  .section-lede {
+    font-family: var(--font-body);
+    font-weight: 400;
+    line-height: 1.7;
+  }
+}
+
+/* ==========================================================================
+   In-page anchors
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  /* Clears the fixed nav so an anchored heading is not parked underneath it. */
+  scroll-padding-top: 5.5rem;
+}
+
+/* ==========================================================================
+   Scroll reveal
+   Animates CSS properties on markup that is ALREADY in the server HTML.
+   Nothing is rendered conditionally and nothing is mounted by JS.
+
+   The hidden start state is scoped to html.js, which is set by a tiny inline
+   script in the document head. With JavaScript unavailable the rule never
+   applies, so every section renders fully visible rather than stuck at
+   opacity 0.
+   ========================================================================== */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 460ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 460ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+html.js [data-reveal].is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================================
+   Consistent hover treatment
+   ========================================================================== */
+@layer components {
+  .hover-link {
+    transition: color 180ms ease;
+  }
+
+  .hover-button {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      transform 180ms ease;
+  }
+
+  .hover-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .hover-card {
+    transition:
+      transform 200ms ease,
+      border-color 200ms ease,
+      background-color 200ms ease;
+  }
+
+  .hover-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-azure);
+  }
+
+  .hover-row {
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease;
+  }
+}
+
+/* ==========================================================================
+   Disclosure panels (Platform features, FAQ)
+   Panel bodies are always in the server HTML. Collapsing is CSS only, and is
+   scoped to html.js so that without JavaScript every panel renders open and
+   readable rather than permanently shut.
+   ========================================================================== */
+html.js [data-disclosure-panel][hidden],
+html.js [data-disclosure-panel]:not([data-open]) {
+  display: none;
+}
+
+@layer components {
+  .disclosure-trigger .disclosure-icon {
+    transition: transform 200ms ease;
+  }
+
+  .disclosure-trigger[aria-expanded='true'] .disclosure-icon {
+    transform: rotate(45deg);
+  }
+}
+
+/* ==========================================================================
+   Reduced motion
+   Disables motion outright rather than shortening it. Reveal elements are
+   forced to their final visible state so nothing depends on an animation
+   that will not run.
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  html.js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    will-change: auto;
+  }
+}

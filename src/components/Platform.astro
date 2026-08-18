@@ -6,11 +6,11 @@ const cards = [
   },
   {
     title: 'Build it your way',
-    body: 'The AI drafts the program. You change whatever you want, swap exercises, adjust sets and reps, restructure the week. Or start from a blank page yourself.',
+    body: "The AI drafts the program. You change whatever you want, swap exercises, adjust sets and reps, restructure the week, then approve it before your client sees a thing. Or start from a blank page yourself.",
   },
   {
     title: 'Supersets, circuits, AMRAP, timed work',
-    body: 'Program the way you actually coach. Not just straight sets.',
+    body: "The AI drafts the week in straight sets. You layer in supersets, circuits, AMRAP and timed work wherever you'd program them.",
   },
   {
     title: 'Every set logged, even offline',
@@ -37,24 +37,76 @@ const cards = [
     body: 'Clients log meals and track macros without leaving the platform. One more piece of the relationship that doesn’t need a separate app.',
   },
 ];
+
+const slug = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 ---
 
 <section id="platform" class="py-21 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
-    <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">The platform</p>
-    <h2 class="font-display text-on-paper mb-4 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+    <p class="eyebrow mb-5" data-reveal>The platform</p>
+    <h2
+      class="section-heading text-on-paper max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]"
+      data-reveal
+      style="--reveal-delay:70ms"
+    >
       This isn&rsquo;t just a chat window.
     </h2>
-    <p class="text-on-paper-soft text-lg max-w-2xl mb-11 text-balance">
+    <p
+      class="section-lede text-on-paper-soft text-lg max-w-2xl mb-11 text-balance"
+      data-reveal
+      style="--reveal-delay:140ms"
+    >
       Everything your clients need lives in one place: programs, logging, progress, check-ins,
       and the conversation itself, all built and ready before your first client shows up.
     </p>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {cards.map((c) => (
-        <div class="border border-hairline-light rounded-2xl p-6 bg-paper-2">
-          <h3 class="font-display text-on-paper text-lg mb-2">{c.title}</h3>
-          <p class="text-on-paper-soft text-[15.5px] leading-relaxed">{c.body}</p>
+    <!--
+      Expandable feature list. Every body below is rendered into the HTML on
+      the server; collapsing is CSS driven and only applies when JavaScript is
+      available, so a no-JS reader gets the full list expanded.
+    -->
+    <div class="border-t border-hairline-light">
+      {cards.map((c, i) => (
+        <div
+          class="border-b border-hairline-light"
+          data-reveal
+          style={`--reveal-delay:${Math.min(i, 5) * 55}ms`}
+        >
+          <h3>
+            <button
+              type="button"
+              class="disclosure-trigger hover-row w-full flex items-center justify-between gap-5 text-left py-5 md:py-6 cursor-pointer hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-azure-deep"
+              id={`platform-trigger-${slug(c.title)}`}
+              aria-controls={`platform-panel-${slug(c.title)}`}
+              aria-expanded="false"
+              data-disclosure-trigger
+            >
+              <span class="font-display text-on-paper text-[clamp(1.25rem,1.4vw+0.9rem,1.875rem)] leading-[1.05]">
+                {c.title}
+              </span>
+              <span
+                class="disclosure-icon shrink-0 text-azure-deep text-2xl leading-none select-none"
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </button>
+          </h3>
+
+          <div
+            id={`platform-panel-${slug(c.title)}`}
+            role="region"
+            aria-labelledby={`platform-trigger-${slug(c.title)}`}
+            data-disclosure-panel
+          >
+            <p class="text-on-paper-soft text-[15.5px] leading-relaxed max-w-2xl pb-6 pr-10">
+              {c.body}
+            </p>
+          </div>
         </div>
       ))}
     </div>

@@ -17,14 +17,14 @@ const points = [
 
 <section id="squeeze" class="py-21 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
-    <p class="font-label text-azure-deep text-xs uppercase tracking-[0.24em] mb-3">Where it breaks down</p>
-    <h2 class="font-display text-on-paper mb-11 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)] leading-[0.98]">
+    <p class="eyebrow mb-5" data-reveal>Where it breaks down</p>
+    <h2 class="section-heading text-on-paper mb-11 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
       What nobody tells you about growing
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-      {points.map((p) => (
-        <div class="border border-hairline-light rounded-2xl p-6 bg-paper-2">
+      {points.map((p, i) => (
+        <div class="hover-card border border-hairline-light rounded-2xl p-6 bg-paper-2" data-reveal style={`--reveal-delay:${i * 70}ms`}>
           <h3 class="font-display text-on-paper text-xl mb-2">{p.label}</h3>
           <p class="text-on-paper-soft text-[15.5px] leading-relaxed">{p.body}</p>
         </div>

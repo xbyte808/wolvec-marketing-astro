@@ -11,8 +11,15 @@ import Platform from '../components/Platform.astro';
 import ClientExperience from '../components/ClientExperience.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 import FAQ from '../components/FAQ.astro';
-import { Image } from 'astro:assets';
-import earlyAccessPhoto from '../assets/photos/early-access.jpg';
+
+// One canonical identifier for the company. Every Organization node that can
+// be reached from this file either IS this node or is a reference to it, so
+// consumers resolve them to a single entity instead of several look-alikes.
+//
+// Out of reach from here: the publisher nodes inside the WebPage schema on
+// /privacy and /consumer-health-data. Those are counsel-owned files and are
+// deliberately left untouched.
+const ORG_ID = 'https://wolvec.ai/#organization';
 ---
 
 <Layout
@@ -23,6 +30,7 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": ORG_ID,
       "name": "Wolvec",
       "url": "https://wolvec.ai",
       "logo": "https://wolvec.ai/wolvec-logo-mark.png",
@@ -36,6 +44,7 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
       "description": "The coach's whole coaching setup, run through an AI built from one structured conversation, no existing content library required. Handles client check-ins, Q&A, programs, and accountability between sessions.",
       "provider": {
         "@type": "Organization",
+        "@id": ORG_ID,
         "name": "Wolvec"
       },
       "audience": {
@@ -53,6 +62,7 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
       "description": "Wolvec is the coach's whole coaching setup, not an add-on to it. It's built through one structured conversation, no existing content library required, and it runs the everyday with clients in the coach's voice.",
       "publisher": {
         "@type": "Organization",
+        "@id": ORG_ID,
         "name": "Wolvec"
       }
     })} />
@@ -109,8 +119,8 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
 
     <!-- About Wolvec — for AI summarizers and search crawlers -->
     <section id="about" class="py-16 px-6 bg-ink">
-      <div class="max-w-2xl mx-auto text-center">
-        <p class="text-text-soft text-sm leading-relaxed">
+      <div class="max-w-2xl mx-auto text-center" data-reveal>
+        <p class="section-lede text-text-soft text-sm leading-relaxed">
           Wolvec is the coach's whole coaching setup, not an add-on to it. It creates an AI
           version of the coach through one structured conversation, no existing content library
           required, and it runs the everyday with clients: check-ins, routine questions, programs,
@@ -122,49 +132,83 @@ import earlyAccessPhoto from '../assets/photos/early-access.jpg';
 
     <FAQ />
 
-    <!-- Early Access Section -->
-    <section id="early-access" class="relative overflow-hidden py-26 px-6 text-center">
-      <Image
-        src={earlyAccessPhoto}
-        alt=""
-        width={1920}
-        height={1000}
-        format="webp"
-        quality={75}
-        loading="lazy"
-        class="absolute inset-0 h-full w-full object-cover"
-        style="filter: grayscale(0.4) brightness(0.36)"
-      />
-      <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(13,14,17,.7),rgba(13,14,17,.94))]"></div>
+    <!--
+      Early Access Section. The page's primary call to action.
+      Inverted ground: solid azure rather than the ink/paper alternation the
+      rest of the page runs on, so it reads as the one place to act. The photo
+      that used to sit behind the form has been removed; it competed with it.
+    -->
+    <section id="early-access" class="early-access relative overflow-hidden py-26 px-6 text-center">
+      <div class="early-access-wash absolute inset-0" aria-hidden="true"></div>
 
       <div class="relative max-w-2xl mx-auto">
-        <p class="font-label text-azure text-xs uppercase tracking-[0.24em] mb-3">
+        <p class="early-access-eyebrow" data-reveal>
           Early access &middot; limited cohort
         </p>
-        <h2 class="font-display text-white text-[clamp(2.375rem,5vw+1rem,4.5rem)] leading-[0.92] mb-4">
+        <h2
+          class="section-heading text-white text-[clamp(2.375rem,5vw+1rem,4.5rem)] !leading-[0.92] !mb-4"
+          data-reveal
+          style="--reveal-delay:70ms"
+        >
           Be one of the first coaches on <span class="text-white">Wolvec</span>.
         </h2>
-        <p class="text-[#D6D8DD] text-lg mb-9 max-w-md mx-auto text-balance">
+        <p
+          class="section-lede text-white/85 text-lg mb-9 max-w-md mx-auto text-balance"
+          data-reveal
+          style="--reveal-delay:140ms"
+        >
           We're opening Wolvec to a small group of founding coaches before broader
           availability.
         </p>
 
-        <div class="bg-surface-1/90 backdrop-blur-md border border-hairline-dark rounded-[22px] p-6 md:p-8 text-left">
+        <div
+          class="bg-ink/85 backdrop-blur-md border border-white/15 rounded-[22px] p-6 md:p-8 text-left shadow-2xl"
+          data-reveal
+          style="--reveal-delay:210ms"
+        >
           <EarlyAccessCTA client:load />
         </div>
 
-        <div class="flex flex-wrap gap-6 justify-center mt-7 text-sm text-[#B7BAC1]">
+        <div
+          class="flex flex-wrap gap-6 justify-center mt-7 text-sm text-white/85"
+          data-reveal
+          style="--reveal-delay:280ms"
+        >
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> 14-day free trial
+            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> 14-day free trial
           </span>
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> No card required to start
+            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> No card required to start
           </span>
           <span class="inline-flex items-center gap-2">
-            <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> Founding-coach discount
+            <span class="w-1.5 h-1.5 rounded-full bg-white"></span> Founding-coach discount
           </span>
         </div>
       </div>
     </section>
   </main>
 </Layout>
+
+<style>
+  .early-access-wash {
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 0%, #3b6bff 0%, transparent 62%),
+      linear-gradient(180deg, #2451d9 0%, #1c3fac 100%);
+  }
+
+  /*
+    The only eyebrow on the site that is not azure. Azure text on an azure
+    ground is unreadable, so this one is white. Reported as an exception
+    rather than changed silently.
+  */
+  .early-access-eyebrow {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 22px;
+  }
+</style>
