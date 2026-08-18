@@ -1,33 +1,32 @@
 # Wolvec
 
-**Status: Pre-launch. Wolvec is not yet onboarding coaches and is accepting early-access applications. Everything below describes what Wolvec will offer at launch.**
-
-> Wolvec will be the coach's whole coaching setup, not an add-on to it. It will create an AI version of the coach through one structured conversation, no existing content library required, and it will run the everyday with clients: check-ins, routine questions, training programs grounded in the coach's actual methodology, and accountability between sessions.
+> Wolvec is the coach's whole coaching setup, not an add-on to it. It creates an AI version of the coach through one structured conversation, no existing content library required, and it runs the everyday with clients: check-ins, routine questions, training programs grounded in the coach's actual methodology, and accountability between sessions.
 
 Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It provides fitness and wellness coaching support only, and does not diagnose, treat, or give medical advice.
 
-## How it will work
+## How it works
 
-- One guided conversation will build the coach's AI. No existing content library will be required.
-- Coaches will set autonomy per category of interaction, on a three-tier scale (Off / Draft / Auto), and will be able to change it at any time.
+- One guided conversation builds the coach's AI. No existing content library is required.
+- Coaches set autonomy per category of interaction, on a three-tier scale (Off / Draft / Auto), and can change it at any time.
 - Wolvec uses limited automated safety controls for certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress. Depending on the circumstances, those controls may pause AI-assisted coaching, display a safety notice, or flag the issue for the Client's assigned Coach in Wolvec. These controls may not identify every health or safety concern and are not medical or emergency monitoring.
-- New clients will complete a PAR-Q+ pre-participation health screening, which the coach will review before the AI begins full interaction.
-- Coaches will retain ownership of their methodology and client relationships; Wolvec will provide the platform.
+- New clients complete a PAR-Q+ pre-participation health screening, which the coach reviews before the AI begins full interaction.
+- Coaches retain ownership of their methodology and client relationships; Wolvec provides the platform.
 
-## Programming and tracking, at launch
+## Programming and tracking
 
-- Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches will be able to add their own exercises and their own videos.
-- Program building: the AI will generate programs grounded in the coach's actual methodology. Coaches will be able to edit any program — swap exercises, adjust sets and reps, restructure — or build one from scratch.
+- Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches can add their own exercises and their own videos.
+- Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program — swap exercises, adjust sets and reps, restructure — or build one from scratch.
 - Workout formats: supersets, circuits, AMRAP, and timed work.
 - Reusable program templates.
-- Progress tracking: clients will log every set. Coaches will see exercise history, weights, body metrics, and progress photos.
+- Progress tracking: clients log every set. Coaches see exercise history, weights, body metrics, and progress photos.
 - Weekly check-ins and post-workout ratings.
 
 ## Key pages
 
 - [Homepage](https://wolvec.ai/): product overview, how it works, FAQ.
-- [Roadmap](https://wolvec.ai/roadmap): the four-phase build direction. Phase 1 (the core platform being built toward initial early access), Phase 2 (in-conversation program adjustments), Phase 3 (depth), Phase 4 (reach/marketplace). Wolvec does not commit to ship dates.
+- [Roadmap](https://wolvec.ai/roadmap): the four-phase build direction. Phase 1 (the core platform), Phase 2 (in-conversation program adjustments), Phase 3 (depth), Phase 4 (reach/marketplace). Wolvec does not commit to ship dates.
 - [Privacy Policy](https://wolvec.ai/privacy): data collection, use, and consumer health data disclosures (including Washington My Health My Data Act and CCPA sections).
+- [Consumer Health Data Privacy Policy](https://wolvec.ai/consumer-health-data): consumer health data categories, sources, purposes, sharing, and consumer rights.
 - [Blog](https://wolvec.ai/blog): no posts published yet as of this writing.
 - [Changelog](https://wolvec.ai/changelog): no entries published yet as of this writing.
 
