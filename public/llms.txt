@@ -10,7 +10,7 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 
 - One guided conversation will build the coach's AI. No existing content library will be required.
 - Coaches will set autonomy per category of interaction, on a three-tier scale (Off / Draft / Auto), and will be able to change it at any time.
-- Any client message mentioning pain, injury, illness, or dizziness is automatically escalated to the human coach. The AI does not handle safety-critical conversations independently.
+- Wolvec uses limited automated safety controls for certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress. Depending on the circumstances, those controls may pause AI-assisted coaching, display a safety notice, or flag the issue for the Client's assigned Coach in Wolvec. These controls may not identify every health or safety concern and are not medical or emergency monitoring.
 - New clients will complete a PAR-Q+ pre-participation health screening, which the coach will review before the AI begins full interaction.
 - Coaches will retain ownership of their methodology and client relationships; Wolvec will provide the platform.
 
