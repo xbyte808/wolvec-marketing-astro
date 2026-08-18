@@ -54,12 +54,14 @@
 @layer components {
   .eyebrow {
     font-family: var(--font-body);
-    font-size: 10px;
+    font-size: 12px;
     font-weight: 500;
     line-height: 1;
-    letter-spacing: 0.24em;
+    /* Tracking drops with the size increase: wide letterspacing compensates
+       for small type and goes gappy at 12px. */
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-azure);
+    color: var(--color-azure-deep);
   }
 }
 
