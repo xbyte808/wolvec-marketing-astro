@@ -69,31 +69,11 @@ const ORG_ID = 'https://wolvec.ai/#organization';
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
+      // Exactly the questions src/components/FAQ.astro renders. Three further
+      // entries were declared here while the page showed one; they are deleted
+      // rather than published, because their answers were never approved for
+      // display. Anything added back here has to ship as visible copy first.
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "What is Wolvec?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Wolvec is the coach's whole coaching setup, not an add-on to it. One structured conversation builds the coach's AI, no existing content library required, and it runs the everyday with clients: check-ins, routine questions, programs, and accountability between sessions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Do I need a content library to use Wolvec?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "No. Wolvec builds your AI through one structured conversation. Coaches who are new to online coaching and have no existing content can use Wolvec from day one."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How does Wolvec handle client safety?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Limited safety controls can pause AI-assisted coaching for certain physical health concerns and flag the issue for the coach. They are not medical monitoring and may not identify every concern. Every new client also completes PAR-Q+ pre-participation health screening, and the coach reviews those responses before the AI begins full interaction."
-          }
-        },
         {
           "@type": "Question",
           "name": "Who owns the data?",
