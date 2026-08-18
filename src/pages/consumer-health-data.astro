@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-07-14';
-const dateModified = '2026-08-16';
+const dateModified = '2026-08-17';
 ---
 
 <Layout
@@ -31,7 +31,7 @@ const dateModified = '2026-08-16';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>July 14, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>August 16, 2026</time>
+        Last Updated: <time datetime={dateModified}>August 17, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Introduction</h2>
@@ -213,15 +213,7 @@ const dateModified = '2026-08-16';
         Purpose: Debugging, reliability, security, and incident response.
       </p>
 
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.5 Push Notification Infrastructure</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may use push notification infrastructure to send generic operational alerts to coaches. These alerts are configured not to include client names, health information, or message content.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Purpose: Operational alerts that route the coach back into the Wolvec platform.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.6 Other Service Providers</h3>
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.5 Other Service Providers</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Wolvec may use other service providers for email delivery, support, bug triage, security, and platform operations. These providers may process personal information as described in the general Privacy Policy. Wolvec does not authorize these providers to use consumer health data for unrelated purposes.
       </p>
@@ -236,12 +228,8 @@ const dateModified = '2026-08-16';
         <li>Sentry: error monitoring and performance diagnostics, configured to exclude health content and other personal information where reasonably feasible</li>
         <li>Resend: email delivery for account and agreement communications</li>
         <li>Notion: internal support, bug triage, and product-support workflows where applicable</li>
-        <li>Google push notification infrastructure: generic operational coach alerts without client names, health information, or message content</li>
         <li>OpenAI: Voice transcription and text embeddings. When a Coach or a Client records voice input in the Platform, Wolvec transmits that audio recording to OpenAI for transcription and stores only the returned text. Client voice input can contain consumer health data, and OpenAI therefore does receive client consumer health data when a Client uses voice input. Wolvec also transmits Coach onboarding and methodology content to OpenAI to generate text embeddings, which Wolvec stores and does not currently use to generate coaching responses.</li>
       </ul>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec will update this Policy if its service-provider practices materially change.
-      </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">8. What Wolvec Does Not Do</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">Wolvec does not:</p>
