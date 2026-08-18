@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-07-14';
-const dateModified = '2026-07-28';
+const dateModified = '2026-08-17';
 ---
 
 <Layout
@@ -31,7 +31,7 @@ const dateModified = '2026-07-28';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>July 14, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>July 28, 2026</time>
+        Last Updated: <time datetime={dateModified}>August 17, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Introduction</h2>
@@ -89,7 +89,7 @@ const dateModified = '2026-07-28';
         Clients may voluntarily disclose injury, illness, pain, dizziness, symptoms, medication changes, medical appointments, or other health-related information during check-ins, chat interactions, onboarding, or other coaching interactions.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Purpose: Wolvec uses this information to trigger safety escalation, notify the client's coach, limit AI-generated coaching responses where appropriate, and support appropriate coach follow-up.
+        Purpose: Wolvec uses covered physical-symptom information to apply limited safety controls that may pause AI-assisted coaching, create a safety workflow record, or flag an issue for the assigned Coach. Other health-related information disclosed during coaching interactions may be stored and processed as part of the coaching service as described in this Policy.
       </p>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">3.3 Fitness, Training, and Wellness Data</h3>
@@ -113,7 +113,7 @@ const dateModified = '2026-07-28';
         Wolvec may collect coaching chat messages, check-in responses, and related conversation history. These interactions may include consumer health data if the client discusses physical symptoms, injury, illness, readiness to train, recovery, wellness, or other health-related topics.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Purpose: Wolvec uses this information to operate the AI-assisted coaching experience, provide summaries and recommendations for coach review, identify safety concerns, and support client-coach communication.
+        Purpose: Wolvec uses this information to operate AI-assisted coaching, support Coach review and Client communication, and apply limited physical-safety controls where applicable.
       </p>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">3.5 Health Screening Status and Safety Workflow Records</h3>
@@ -139,10 +139,10 @@ const dateModified = '2026-07-28';
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">3.7 Health-Related Inferences and Safety Flags</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may generate limited health-related inferences, summaries, or safety flags from client-provided information. For example, the platform may identify that a check-in mentions pain, injury, illness, dizziness, or other symptoms requiring coach attention.
+        Wolvec may generate limited safety flags from Client-provided information. For example, Wolvec may identify certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, or other physical distress for purposes of applying the Platform's limited safety controls.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Purpose: Wolvec uses these inferences and flags for safety escalation, coach review, and platform operation. Wolvec does not use them to diagnose, treat, or provide medical advice.
+        Wolvec does not use these flags to diagnose, treat, or provide medical advice, and the safety controls may not identify every health or safety concern.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">4. Sources of Consumer Health Data</h2>
@@ -167,7 +167,7 @@ const dateModified = '2026-07-28';
         <li>Enabling coach review of health screening, check-ins, and safety flags</li>
         <li>Generating AI-assisted program recommendations, check-in summaries, and coaching support</li>
         <li>Personalizing fitness programs, habits, and accountability support</li>
-        <li>Detecting and escalating mentions of pain, injury, illness, dizziness, or other safety concerns</li>
+        <li>Applying limited safety controls to certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress</li>
         <li>Preventing AI-assisted coaching from continuing when a safety escalation requires human coach review</li>
         <li>Maintaining platform reliability, security, auditability, and compliance</li>
         <li>Responding to user requests, legal requests, security incidents, unauthorized disclosures, or regulatory obligations</li>
@@ -213,15 +213,7 @@ const dateModified = '2026-07-28';
         Purpose: Debugging, reliability, security, and incident response.
       </p>
 
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.5 Push Notification Infrastructure</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may use push notification infrastructure to send generic operational alerts to coaches. These alerts are configured not to include client names, health information, or message content.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Purpose: Operational alerts that route the coach back into the Wolvec platform.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.6 Other Service Providers</h3>
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.5 Other Service Providers</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Wolvec may use other service providers for email delivery, support, bug triage, security, and platform operations. These providers may process personal information as described in the general Privacy Policy. Wolvec does not authorize these providers to use consumer health data for unrelated purposes.
       </p>
@@ -236,12 +228,8 @@ const dateModified = '2026-07-28';
         <li>Sentry: error monitoring and performance diagnostics, configured to exclude health content and other personal information where reasonably feasible</li>
         <li>Resend: email delivery for account and agreement communications</li>
         <li>Notion: internal support, bug triage, and product-support workflows where applicable</li>
-        <li>Google push notification infrastructure: generic operational coach alerts without client names, health information, or message content</li>
-        <li>OpenAI: coach-side voice transcription and coach-methodology embeddings only; based on Wolvec's current architecture, OpenAI does not receive client consumer health data</li>
+        <li>OpenAI: Voice transcription and text embeddings. When a Coach or a Client records voice input in the Platform, Wolvec transmits that audio recording to OpenAI for transcription and stores only the returned text. Client voice input can contain consumer health data, and OpenAI therefore does receive client consumer health data when a Client uses voice input. Wolvec also transmits Coach onboarding and methodology content to OpenAI to generate text embeddings, which Wolvec stores and does not currently use to generate coaching responses.</li>
       </ul>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec will update this Policy if its service-provider practices materially change.
-      </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">8. What Wolvec Does Not Do</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">Wolvec does not:</p>
@@ -256,96 +244,67 @@ const dateModified = '2026-07-28';
         <li>Use individual client conversations to train a generally available AI model</li>
       </ul>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">9. Consent</h2>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">9. Consent and Other Permitted Processing</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Before collecting consumer health data through client onboarding, health screening, or AI-assisted coaching features, Wolvec presents the relevant disclosures and obtains affirmative consent through the Client Consent and onboarding flow.
+        Where Wolvec relies on consent to collect or share consumer health data, Wolvec obtains affirmative consent before the applicable processing and provides the disclosures required by applicable law.
       </p>
-      <p class="text-neutral-300 leading-relaxed mb-3">Wolvec's consent flow is designed to disclose:</p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Wolvec may also collect or share consumer health data to the extent necessary to provide a product or service the consumer requested or as otherwise permitted by applicable law.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Where applicable law requires consent to sharing to be separate and distinct from consent to collection, Wolvec will obtain separate consent if consent is the basis for that sharing.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        A consumer may withdraw consent prospectively by contacting privacy@wolvec.ai. Withdrawal affects two categories of processing differently, and this Policy states each separately.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Processing that Wolvec carries out because the consumer consented to it, and that is not necessary to provide a service the consumer continues to request, stops when consent is withdrawn. Wolvec ceases that collection, use, or sharing going forward.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Processing that is necessary to provide a product or service the consumer has requested, or that applicable law otherwise permits without consent, continues after withdrawal for as long as the consumer continues to request that service.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Wolvec's safety controls are part of how the coaching service itself operates. They are not an optional feature a consumer consents to separately, and Wolvec does not switch them off in response to a withdrawal request. If withdrawing consent would leave a service unable to operate lawfully or as designed, Wolvec's response is to stop providing that service to the consumer. Wolvec does not continue providing a service without its safety controls.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Withdrawal does not affect processing that occurred before withdrawal.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">10. Retention and Deletion</h2>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Wolvec retains consumer health data only for as long as reasonably necessary for the purposes disclosed in this Policy and as permitted or required by applicable law.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Retention depends on the category of information, the Client's relationship with Wolvec and the assigned Coach, safety and security needs, and applicable legal requirements.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        When Wolvec receives a valid deletion request, Wolvec deletes covered consumer health data and notifies applicable recipients as required by applicable law. Data stored in archived or backup systems may be deleted on a different schedule where applicable law permits additional time.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Wolvec may retain limited information where permitted by applicable law for purposes such as security, fraud prevention, system integrity, dispute resolution, legal holds, regulatory compliance, or enforcement of legal rights.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Agreement and consent evidence may be retained to document what was presented and accepted, but only to the extent permitted by applicable law. Wolvec does not apply a blanket seven-year retention period to records that themselves constitute consumer health data.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Information retained solely for legal, security, compliance, or dispute purposes is not used for marketing or ordinary product personalization.
+      </p>
+
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">11. Consumer Health Data Rights</h2>
+      <p class="text-neutral-300 leading-relaxed mb-3">
+        Depending on where you live, where your consumer health data is collected, and the law that applies, you may have rights relating to consumer health data, including the right to:
+      </p>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>The categories of consumer health data collected</li>
-        <li>The purposes for collection and use</li>
-        <li>The categories of entities with whom consumer health data may be shared</li>
-        <li>The role of the assigned coach</li>
-        <li>The role of service providers</li>
-        <li>How consent may be withdrawn</li>
+        <li>Confirm whether Wolvec collects, shares, or sells consumer health data about you;</li>
+        <li>Access consumer health data;</li>
+        <li>Request deletion;</li>
+        <li>Request correction where applicable law provides that right;</li>
+        <li>Withdraw consent to future collection or sharing where applicable;</li>
+        <li>Obtain information about third parties or affiliates that received consumer health data where applicable; and</li>
+        <li>Appeal certain denials of a rights request where applicable.</li>
       </ul>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Withdrawal of consent will prevent Wolvec from continuing to provide AI-assisted coaching features because health screening, safety monitoring, coach review, and AI-assisted coaching require the processing of consumer health data.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Withdrawal does not affect processing that occurred before the withdrawal.
-      </p>
-
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">10. Retention</h2>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec retains consumer health data only as long as reasonably necessary for the purposes described in this Policy, the general Privacy Policy, the Client Consent, and applicable law.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-3">Current retention periods are:</p>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>PAR-Q+ and health-screening responses: duration of the coaching relationship plus 12 months after account termination</li>
-        <li>Injury, illness, pain, or safety disclosures in check-ins: duration of the coaching relationship plus 12 months</li>
-        <li>Injury, illness, pain, or safety disclosures in chat: duration of the coaching relationship plus 12 months</li>
-        <li>Workout, training, and wellness data: duration of the coaching relationship plus 12 months</li>
-        <li>Health-specific safety-event details: Health categories, verbatim client statements, symptom descriptions, source-message references, and related health-specific safety details are retained for the duration of the coaching relationship plus twelve (12) months after the coaching relationship ends, unless deleted or redacted earlier in response to a valid request or retained longer under an applicable legal hold, active dispute, claim, safety investigation, or regulatory requirement.</li>
-        <li>Limited safety-event compliance and coach-acknowledgment records: Wolvec retains limited records documenting that a safety event occurred and how the Platform and coach responded for the life of the client account plus seven (7) years after account closure, or longer if subject to a legal hold or unresolved claim, dispute, safety incident, security incident, or regulatory inquiry. After health-specific information is deleted or redacted, these limited records do not include the health category, the client's verbatim statement, symptom details, or the source-message reference.</li>
-        <li>18+ attestation or age-confirmation status: duration of the account plus 12 months</li>
-        <li>Backup and audit logs: retained for limited periods consistent with Wolvec's backup, security, and compliance practices</li>
-      </ul>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        If you request deletion of consumer health data, Wolvec will delete or deidentify consumer health data subject to applicable legal, security, fraud-prevention, backup, dispute-resolution, regulatory-compliance, agreement-enforcement, and recordkeeping obligations.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Where applicable law requires deletion from archived or backup systems, deletion from such systems may be delayed for the period permitted by law.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may retain limited agreement, consent, eligibility, audit, safety, and compliance records where reasonably necessary to document legal acceptance, age eligibility, health-information consent under this Consumer Health Data Privacy Policy, agreement enforcement, security, dispute resolution, regulatory compliance, and related legal obligations.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        These limited records may include agreement, Privacy Policy, and Consumer Health Data Privacy Policy versions, exact agreement and checkbox text shown, checkbox selections, typed legal name, signer identity and role, timestamps, IP address, user-agent information, signature records, PDF hashes, delivery status, acceptance-event information, document hashes, and 18+ eligibility representations.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec retains these records for the life of the account plus seven (7) years. If a dispute, claim, safety incident, security incident, breach, regulatory inquiry, legal hold, chargeback, threatened claim, or similar matter arises, Wolvec may retain relevant records until the matter is fully resolved plus a reasonable additional period.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Records retained under this section will be used only for legal, compliance, security, audit, dispute-resolution, agreement-enforcement, or recordkeeping purposes and will not be used for marketing or ordinary product personalization.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Ordinary profile and eligibility data, including date of birth where collected, follows Wolvec's standard account-data retention and deletion schedule and is not retained under the longer evidentiary schedule solely because an 18+ representation survives.
-      </p>
-
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">11. Your Consumer Health Data Rights</h2>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Regardless of your state of residence, Wolvec offers the following rights with respect to consumer health data, subject to verification and applicable legal exceptions.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">11.1 Right to Access</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        You may request access to the consumer health data Wolvec holds about you.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">11.2 Right to Delete</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        You may request deletion of your consumer health data. Wolvec will delete or deidentify consumer health data subject to the retention exceptions described in this Policy and applicable law.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">11.3 Right to Correct</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        You may request correction of inaccurate consumer health data.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">11.4 Right to Withdraw Consent</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        You may withdraw consent to Wolvec's collection, use, or sharing of consumer health data. Withdrawal will prevent Wolvec from continuing to provide AI-assisted coaching features that require health screening, safety monitoring, coach review, or AI-assisted processing.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">11.5 Right to a List of Third Parties</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        You may request a list of third parties and affiliates with whom Wolvec has shared or sold consumer health data, where required by applicable law. Wolvec does not sell consumer health data.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">11.6 Right to Appeal</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Where required by applicable law, you may appeal Wolvec's denial of a consumer health data rights request.
+        Wolvec will honor consumer health data rights to the extent required by applicable law.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">12. How to Exercise Your Rights</h2>
@@ -362,7 +321,7 @@ const dateModified = '2026-07-28';
         <li>Any information reasonably necessary for Wolvec to verify your identity and locate your account</li>
       </ul>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec will verify your identity before responding to a request. Wolvec will respond within the timeframe required by applicable law. Where permitted by law, Wolvec may extend the response period when reasonably necessary due to the complexity or number of requests.
+        Wolvec will respond to authenticated or verified requests within the timeframe required by applicable law. Wolvec may request additional information reasonably necessary to authenticate or verify a request. Where applicable law permits an extension, Wolvec may extend the response period and will provide any notice required by that law.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         If Wolvec cannot verify your identity using commercially reasonable efforts, Wolvec may request additional information reasonably necessary to authenticate the request.
@@ -394,7 +353,7 @@ const dateModified = '2026-07-28';
         Third parties and affiliates with whom consumer health data may be shared: the assigned coach and the service providers described in Sections 6 and 7. Wolvec does not currently share consumer health data with affiliates.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Washington rights: Washington consumers may exercise the rights described in Section 11, including access, deletion, withdrawal of consent, and a list of third parties and affiliates with whom consumer health data has been shared or sold. Wolvec does not sell consumer health data.
+        Washington rights: If the Washington My Health My Data Act applies to you, you may request confirmation of whether Wolvec collects, shares, or sells consumer health data about you; access covered consumer health data and applicable recipient information; withdraw consent to future collection or sharing where consent applies; request deletion; and appeal a refusal to act on a request.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Appeals: If Wolvec denies your request, you may appeal by contacting privacy@wolvec.ai with the subject line "MHMDA Appeal." Wolvec will respond to appeals within the timeframe required by Washington law.
@@ -408,47 +367,35 @@ const dateModified = '2026-07-28';
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">14. Nevada Residents</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        If you are a Nevada resident, your consumer health data may be protected by Nevada consumer health data law.
+        Nevada rights: If Nevada consumer health data law applies to you, you may request confirmation of whether Wolvec collects, shares, or sells consumer health data about you; obtain the applicable third-party recipient list; request that Wolvec cease covered collection, sharing, or sale; request deletion; and appeal a refusal to act on a request.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec does not sell consumer health data. Wolvec does not share consumer health data for advertising or marketing purposes.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Nevada residents may exercise the rights described in Section 11 by contacting privacy@wolvec.ai.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Because Wolvec does not sell consumer health data, Wolvec does not seek an authorization to sell consumer health data. If Wolvec's practices materially change, Wolvec will update this Policy and obtain any consent or authorization required by applicable law before engaging in the changed practice.
+        Wolvec does not sell consumer health data and does not share consumer health data for advertising or marketing purposes.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">15. California Residents</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        If you are a California resident, certain health-related information processed by Wolvec may be protected under California privacy laws, including the California Consumer Privacy Act and, where applicable, the Confidentiality of Medical Information Act.
+        California privacy or health-information laws may provide additional rights depending on Wolvec's activities and whether the applicable law covers the information at issue.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec is a fitness and wellness technology platform and does not provide medical care, diagnosis, treatment, healthcare services, physical therapy, or mental health treatment.
+        Wolvec does not sell consumer health data or disclose it for unrelated advertising or marketing purposes.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec does not sell health-related information. Wolvec does not disclose health-related information to third parties for direct marketing or advertising purposes.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        To the extent California law treats any information processed by Wolvec as medical information or otherwise imposes California health-privacy obligations, Wolvec will protect that information in accordance with applicable law.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        California residents may exercise the rights described in this Policy and the general Privacy Policy by contacting privacy@wolvec.ai.
+        Wolvec will honor applicable California privacy rights to the extent required by law. Requests may be submitted to privacy@wolvec.ai.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">16. Connecticut Residents</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        If you are a Connecticut resident, Wolvec's processing of consumer health data may be subject to the Connecticut Data Privacy Act.
+        Where the Connecticut Data Privacy Act applies, consumer health data may constitute sensitive data requiring consent before processing.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec obtains opt-in consent before collecting or processing consumer health data through the client onboarding, health screening, and consent flow. You may withdraw consent at any time by contacting privacy@wolvec.ai. Withdrawal does not affect processing that occurred before the withdrawal.
+        Wolvec provides an effective mechanism to revoke consent where required. Consent-based processing will cease as soon as practicable and, where Connecticut law applies, no later than 15 days after receipt of the revocation request.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Connecticut residents may exercise the rights described in Section 11, including access, deletion, correction, withdrawal of consent, and appeal rights where applicable.
+        Withdrawal does not affect processing that lawfully occurred before the withdrawal.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Appeals: If Wolvec denies your request, you may appeal by contacting privacy@wolvec.ai with the subject line "CTDPA Appeal." Wolvec will respond to appeals within the timeframe required by applicable law.
+        Connecticut consumers may exercise applicable rights or submit an appeal through privacy@wolvec.ai.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">17. Security</h2>

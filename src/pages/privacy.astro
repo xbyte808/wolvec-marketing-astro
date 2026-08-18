@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-06-02';
-const dateModified = '2026-07-28';
+const dateModified = '2026-08-17';
 ---
 
 <Layout title="Privacy Policy | Wolvec" description="Wolvec privacy policy. Effective June 2, 2026.">
@@ -28,7 +28,7 @@ const dateModified = '2026-07-28';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>June 2, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>July 28, 2026</time>
+        Last Updated: <time datetime={dateModified}>August 17, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Who We Are</h2>
@@ -48,7 +48,7 @@ const dateModified = '2026-07-28';
         <li>Uploaded training content and methodology documents</li>
         <li>Nutrition coaching approaches and preferences</li>
         <li>Business preferences and coaching style</li>
-        <li>Voice samples (audio recordings for communication style calibration)</li>
+        <li>Voice input recorded in the Platform in place of typing. Wolvec transmits the audio to its transcription provider and stores only the resulting text. Wolvec does not store the original audio recording.</li>
         <li>Billing information (processed by third-party payment processors)</li>
       </ul>
 
@@ -60,6 +60,7 @@ const dateModified = '2026-07-28';
         <li>Training progress, soreness reports, and mood check-ins</li>
         <li>Check-in responses, which may occasionally include mentions of pain, injury, or illness</li>
         <li>Workout logs and program completion data</li>
+        <li>Voice input recorded in the Platform in place of typing. Wolvec transmits the audio to its transcription provider and stores only the resulting text. Wolvec does not store the original audio recording.</li>
       </ul>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">Automatically Collected Data</h3>
@@ -106,8 +107,8 @@ const dateModified = '2026-07-28';
       </p>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-2 mb-4">
         <li>Anthropic (AI text generation and reasoning): Coach and client content, including check-in responses and coaching conversations, is processed through Anthropic's Claude AI to generate coaching responses and program recommendations.</li>
-        <li>OpenAI (voice transcription): Voice recordings uploaded by coaches are processed by OpenAI's transcription service.</li>
-        <li>OpenAI (text embeddings): Coach onboarding content is processed to generate vector embeddings that power coaching personalization features.</li>
+        <li>OpenAI (voice transcription): When a Coach or a Client records voice input in the Platform, Wolvec transmits that audio recording to OpenAI's transcription service and receives back a text transcript. Wolvec stores the transcript. Wolvec does not store the original audio.</li>
+        <li>OpenAI (text embeddings): Coach onboarding and methodology content may be transmitted to OpenAI to generate text embeddings, which Wolvec stores. Wolvec does not currently use these embeddings to generate coaching responses.</li>
         <li>Resend (email delivery): Agreement confirmation emails containing coach and client names and email addresses are sent via Resend's email delivery service.</li>
         <li>Neon (database storage): Your account data, program data, check-in responses, and coaching content are stored in Wolvec's managed database hosted by Neon, a serverless PostgreSQL provider.</li>
         <li>Vercel (platform operations): The Wolvec application is hosted and served by Vercel. Requests to the platform are processed through Vercel's serverless compute infrastructure.</li>
@@ -115,7 +116,7 @@ const dateModified = '2026-07-28';
         <li>Cloudflare (security): Cloudflare provides edge security, DDoS protection, and web application firewall services. Cloudflare may process request metadata, including IP addresses, as part of security screening.</li>
         <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, health content, session cookies, IP addresses, and other personal information from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
-        <li>Google push notification infrastructure may be used to send generic operational alerts to coaches. These alerts are configured not to include client names, health information, or message content.</li>
+        <li>Notification delivery providers: device identifiers used to deliver operational notifications.</li>
         <li>Google Sign-In / Google OAuth: Wolvec may use Google authentication services to allow users to create or access their Wolvec account. Google may process login-related information according to Google's own terms and privacy policies. Wolvec uses Google Sign-In only for authentication and account-access purposes.</li>
       </ul>
       <p class="text-neutral-300 leading-relaxed mb-3">
@@ -137,9 +138,9 @@ const dateModified = '2026-07-28';
         Wolvec does not sell consumer health data and does not use or share consumer health data for targeted advertising.
       </p>
 
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Safety Escalation</h3>
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Safety Controls</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        If a client mentions pain, injury, illness, dizziness, or another safety concern in a coaching interaction, the Platform may limit the AI response, recommend professional care, and notify the client's assigned coach. This safety-escalation feature is a core platform safeguard and is not optional.
+        Wolvec uses limited automated safety controls for certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress. Depending on the circumstances, those controls may pause AI-assisted coaching, display a safety notice, or flag the issue for the Client's assigned Coach in Wolvec. These controls may not identify every health or safety concern and are not medical or emergency monitoring.
       </p>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">FTC Health Breach Notification</h3>
@@ -154,175 +155,65 @@ const dateModified = '2026-07-28';
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">6. Data Retention and Deletion</h2>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>Coach account data: retained for the duration of your account plus 12 months after termination</li>
-        <li>Client data: retained for the duration of the coaching relationship plus 12 months</li>
-        <li>Voice recordings: transcribed and may be retained as text; original audio deleted within 90 days</li>
-        <li>Check-in data: retained for the duration of the coaching relationship</li>
-        <li>Backup and audit logs: retained up to 12 months</li>
-      </ul>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Your Rights: You may request access to, correction of, or deletion of your personal data at any time by contacting us at privacy@wolvec.ai. We will respond within 30 days.
+        Wolvec retains personal information only for as long as reasonably necessary for the purposes described in this Privacy Policy, to provide and secure the Platform, resolve disputes, maintain appropriate business and transaction records, and comply with applicable law.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Deletion requests for client data may be fulfilled by the coach (who manages the coaching relationship) or directly by Wolvec upon verified request.
-      </p>
-
-      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Deletion and Legal-Retention Exception</h3>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        If you request deletion of your personal data, Wolvec will delete or de-identify personal data that is no longer needed for the purposes described in this Privacy Policy, subject to the exceptions below.
+        Retention periods vary depending on the type of information and the reason it is processed.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may retain limited agreement, consent, eligibility, audit, safety, and compliance records where reasonably necessary to document legal acceptance, age eligibility, health-information consent, agreement enforcement, security, dispute resolution, regulatory compliance, and related legal obligations.
+        Voice input is handled as follows. Wolvec does not retain the original audio of voice input. The audio is transmitted to Wolvec's transcription provider, the resulting text is stored, and the audio recording is not written to Wolvec's database, to file storage, or to disk.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        These limited records may include agreement and policy versions, exact agreement and checkbox text shown, checkbox selections, typed legal name, signer identity and role, timestamps, IP address, user-agent information, signature records, PDF hashes, delivery status, acceptance-event information, document hashes, and 18+ eligibility representations.
+        Consumer health data is subject to the additional practices and applicable deletion rights described in Wolvec's Consumer Health Data Privacy Policy.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec retains these records for the life of the account plus seven (7) years. If a dispute, claim, safety incident, security incident, breach, regulatory inquiry, legal hold, chargeback, threatened claim, or similar matter arises, Wolvec may retain relevant records until the matter is fully resolved plus a reasonable additional period.
+        When Wolvec receives a valid deletion request, Wolvec deletes covered information as required by applicable law, subject to applicable exceptions and permitted timing for backup or archived systems.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Records retained under this section will be used only for legal, compliance, security, audit, dispute-resolution, agreement-enforcement, or recordkeeping purposes and will not be used for marketing or ordinary product personalization.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Ordinary profile and eligibility data, including date of birth where collected, follows Wolvec's standard account-data retention and deletion schedule and is not retained under the longer evidentiary schedule solely because an 18+ representation survives.
+        Wolvec may retain limited agreement-acceptance, billing, transaction, security, fraud-prevention, dispute, and legal records where reasonably necessary for those purposes and permitted by applicable law.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">7. Data Security</h2>
-      <p class="text-neutral-300 leading-relaxed mb-3">We implement industry-standard security measures including:</p>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>Encrypted data transmission (HTTPS/TLS)</li>
-        <li>Encrypted data storage (Neon managed PostgreSQL with encryption at rest)</li>
-        <li>Access controls and authentication requirements</li>
-        <li>Error monitoring and incident response (Sentry)</li>
-        <li>Regular security assessments</li>
-      </ul>
-
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">8. California Residents</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec voluntarily offers California residents the access and deletion rights described below, regardless of whether CCPA's revenue or data volume thresholds technically apply to Wolvec at this time.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-3">Your Rights:</p>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>Right to know what personal information we collect</li>
-        <li>Right to delete personal information</li>
-        <li>Right to opt-out of sale (we do not sell personal data)</li>
-        <li>Right to non-discrimination for exercising your rights</li>
-      </ul>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec handles health-adjacent fitness and wellness information. Wolvec does not provide medical care, diagnosis, treatment, or healthcare services.
+        Wolvec uses administrative, technical, and organizational safeguards designed to protect personal information, including access controls and protections for data in transit and at rest where applicable.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        To exercise your California rights, contact us at privacy@wolvec.ai.
+        No system can be guaranteed completely secure.
       </p>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">9. Washington State Residents: My Health My Data Act (MHMDA)</h2>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">8. Privacy Rights and Consumer Health Data</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Washington's My Health My Data Act (RCW 19.373) applies to consumer health data collected by entities not regulated by HIPAA. This section applies to Washington residents who interact with Wolvec in an individual or household capacity.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Your consumer health data rights under MHMDA are governed by this Privacy Policy. Section 5 (Consumer Health Data) and this Section 9 together describe the categories of consumer health data we collect, our handling practices, and your rights.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-3">
-        Categories of consumer health data we collect from Washington residents: PAR-Q+ health screening responses, injury and illness disclosures in check-in and chat sessions, workout and biometric data, self-reported wellness indicators, health screening status, and date of birth.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-3">
-        Sources: Directly from you during account setup, health screening, check-in submissions, and AI coaching interactions.
+        Depending on applicable law, you may have rights concerning personal information Wolvec maintains about you. Requests may be submitted to privacy@wolvec.ai.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Purposes: Safety screening, coach review, AI-assisted program generation, and safety escalation.
+        Consumer health data is governed by Wolvec's standalone Consumer Health Data Privacy Policy, which describes applicable consumer-health-data rights, request procedures, and state-specific disclosures.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Third parties with access: Anthropic (AI response generation), OpenAI (transcription and embeddings), your assigned coach (coaching services). We do not sell consumer health data. We do not share it for advertising purposes.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-3">Your rights:</p>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>Right to access your consumer health data</li>
-        <li>Right to delete your consumer health data</li>
-        <li>Right to correct inaccurate consumer health data</li>
-        <li>Right to withdraw consent to collection (note: withdrawal prevents use of AI coaching features)</li>
-        <li>Right to a list of third parties who have received your consumer health data</li>
-        <li>Right to appeal a denial of a rights request (send appeal to privacy@wolvec.ai, subject line: MHMDA Appeal)</li>
-      </ul>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Opt-in consent: Wolvec obtains your consent before collecting consumer health data through the health screening and onboarding flow. You may withdraw consent at any time by contacting privacy@wolvec.ai.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        To exercise your Washington rights, contact us at privacy@wolvec.ai.
+        Wolvec does not sell personal information or consumer health data.
       </p>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">10. California Residents: Confidentiality of Medical Information Act (CMIA)</h2>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        California's Confidentiality of Medical Information Act (Cal. Civ. Code Section 56 et seq.), as amended by AB 1436 (2021), extends certain protections to health-related information collected by mobile applications and digital health platforms.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec does not disclose your health-related information to third parties for direct marketing or advertising purposes. We do not sell your medical information.
-      </p>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>Right to access your medical information held by Wolvec</li>
-        <li>Right to receive a copy of your medical information</li>
-        <li>Right to correct inaccurate medical information</li>
-        <li>Right to restrict disclosure of your medical information to third parties</li>
-      </ul>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        To exercise these rights, contact privacy@wolvec.ai.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        In addition to CMIA rights, California residents retain all rights under the California Consumer Privacy Act (CCPA) described in the California section of this Privacy Policy (Section 8).
-      </p>
-
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">11. Nevada Residents: Consumer Health Data (SB 370)</h2>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Nevada SB 370, effective March 31, 2024, established consumer health data protections for Nevada residents. This law is enforced by the Nevada Attorney General; it does not provide a private right of action.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        If you are a Nevada resident, Wolvec's collection and use of your consumer health data is subject to SB 370. Wolvec does not sell consumer health data. Wolvec does not share consumer health data for advertising purposes.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Nevada residents may exercise the access, deletion, correction, and consent-withdrawal rights as described in this Privacy Policy, or by contacting privacy@wolvec.ai.
-      </p>
-
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">12. Connecticut Residents: Data Privacy Act (CTDPA)</h2>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        The Connecticut Data Privacy Act (CTDPA), effective July 1, 2023, includes heightened protections for sensitive personal data, including consumer health data. If you are a Connecticut resident, Wolvec is required to obtain your opt-in consent before collecting and processing sensitive health data.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec obtains your explicit consent through the health screening and client onboarding flow. You may withdraw consent at any time by contacting privacy@wolvec.ai. Withdrawal of consent does not affect the lawfulness of data processing that occurred before withdrawal.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        Connecticut residents have the right to appeal a denial of a data rights request. To appeal, contact privacy@wolvec.ai with the subject line: CTDPA Appeal.
-      </p>
-      <p class="text-neutral-300 leading-relaxed mb-4">
-        To exercise access, deletion, correction, portability, or opt-out rights, contact privacy@wolvec.ai.
-      </p>
-
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">13. International Users</h2>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">9. International Users</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Wolvec currently accepts client accounts only from individuals whose country of residence is the United States. Coach access may be available from other countries where supported by Wolvec.
       </p>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">14. Children's Privacy</h2>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">10. Children's Privacy</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Wolvec is not directed to individuals under 18 years of age. We do not knowingly collect personal information from users under 18. If you believe someone under 18 has provided us with personal information, contact us at privacy@wolvec.ai and we will delete it.
       </p>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">15. Third-Party Links and Services</h2>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">11. Third-Party Links and Services</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Our platform may integrate with third-party services. This Privacy Policy does not cover third-party practices. We encourage you to review the privacy policies of any third-party services you use in connection with Wolvec.
       </p>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">16. Changes to This Policy</h2>
-      <p class="text-neutral-300 leading-relaxed mb-3">We may update this Privacy Policy from time to time. We will notify you of material changes by:</p>
-      <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
-        <li>Posting the updated policy on our website</li>
-        <li>Sending an email to your registered address</li>
-        <li>Displaying a notice in the platform</li>
-      </ul>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">12. Changes to This Policy</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Continued use of the platform after changes constitutes acceptance of the updated policy.
+        Wolvec may update this Privacy Policy from time to time. Wolvec will post the updated Policy with a revised "Last Updated" date. Where applicable law requires direct notice or consent before a change takes effect, Wolvec will provide that notice or obtain that consent as required.
       </p>
 
-      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">17. Contact Us</h2>
+      <h2 class="text-2xl font-semibold text-white mt-10 mb-4">13. Contact Us</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">For privacy questions, requests, or concerns:</p>
       <p class="text-neutral-300 leading-relaxed mb-1">Wolvec L.L.C.</p>
       <p class="text-neutral-300 leading-relaxed mb-4">
@@ -331,7 +222,6 @@ const dateModified = '2026-07-28';
       <p class="text-neutral-300 leading-relaxed mb-4">
         For data deletion or access requests, include your full name and the email address associated with your account.
       </p>
-      <p class="text-sm text-neutral-500 mt-8">This privacy policy was last reviewed in June 2026.</p>
 
     </div>
   </main>
