@@ -24,8 +24,8 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 ## Key pages
 
 - [Homepage](https://wolvec.ai/): product overview, how it works, FAQ.
-- [Roadmap](https://wolvec.ai/roadmap): the four-phase build direction. Phase 1 (the core platform), Phase 2 (in-conversation program adjustments), Phase 3 (depth), Phase 4 (reach/marketplace). Wolvec does not commit to ship dates.
-- [Privacy Policy](https://wolvec.ai/privacy): data collection, use, and consumer health data disclosures (including Washington My Health My Data Act and CCPA sections).
+- [Roadmap](https://wolvec.ai/roadmap): Wolvec does not commit to ship dates.
+- [Privacy Policy](https://wolvec.ai/privacy): data collection, use, and consumer health data disclosures.
 - [Consumer Health Data Privacy Policy](https://wolvec.ai/consumer-health-data): consumer health data categories, sources, purposes, sharing, and consumer rights.
 - [Blog](https://wolvec.ai/blog): no posts published yet as of this writing.
 - [Changelog](https://wolvec.ai/changelog): no entries published yet as of this writing.
