@@ -89,13 +89,44 @@
     padding-left: var(--hero-pad-side);
   }
 
-  /* Azure accent against the dark ground. Peak azure sits at ~22% over ink,
-     which keeps white headline text at roughly 15:1, far clear of the 4.5:1
-     minimum. */
+  /* Azure accent against the dark ground. White headline text sits at roughly
+     15:1 anywhere in it, far clear of the 4.5:1 minimum.
+
+     The eyebrow was the problem. The wash used to peak at 50% 4% -- the
+     eyebrow's own row. Sampled off the rendered page, the ground under the
+     type came out #151F3A, which put the eyebrow at 3.67:1 (3.65:1 at 375px).
+     Lightening the type would only have been correct at one point on a
+     gradient, so the ground moved instead, in two parts:
+
+       1. The peak is relocated from 4% to 22%, so the brightest part of the
+          wash lands behind the headline and the chat bubble. The vertical
+          radius tightens from 78% to 64% to keep the wash's total reach down
+          the hero roughly where it was.
+       2. An ink cap, layered above the azure, holds solid ink through the
+          eyebrow's row and then releases. The eyebrow therefore sits on
+          #0D0E11 exactly, not on a gradient sample.
+
+     Everything below the cap -- headline, subhead, bubble, buttons, corners --
+     keeps the wash, and keeps it stronger there than before, since the peak
+     now sits among them rather than above them. */
   .hero-wash {
+    /* Bottom of the eyebrow: nav clearance + the hero's top padding + the
+       12px line box, plus 12px of clearance. Derived from the same custom
+       properties the padding uses, so it stays correct at all three
+       breakpoints without a second set of numbers to keep in sync. */
+    --hero-wash-cap: calc(var(--hero-nav-clearance) + var(--hero-pad-top) + 24px);
+
     background:
+      /* The cap. Ends on ink at zero alpha rather than `transparent`, so the
+         fade cannot run through any other hue on its way out. */
+      linear-gradient(
+        180deg,
+        var(--color-ink) 0,
+        var(--color-ink) var(--hero-wash-cap),
+        rgba(13, 14, 17, 0) calc(var(--hero-wash-cap) + 180px)
+      ),
       radial-gradient(
-        ellipse 115% 78% at 50% 4%,
+        ellipse 115% 64% at 50% 22%,
         rgba(59, 107, 255, 0.22),
         rgba(59, 107, 255, 0.07) 45%,
         transparent 72%

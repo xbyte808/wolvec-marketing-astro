@@ -13,11 +13,16 @@
   --color-on-paper: #16181D;
   --color-on-paper-soft: #5B6069;
 
-  /* Azure: decorative use on dark surfaces. azure-deep is the WCAG AA-safe
-     variant (~6.5:1 on white, ~6.5:1 white-on-fill) for any text or
-     interactive control, on paper or dark surfaces alike. */
+  /* Azure. One decorative value and two text-safe values, one per ground.
+     There is no single azure that clears AA as text on both paper and ink,
+     which is what the previous note here got wrong: azure-deep is AA-safe on
+     paper (5.63:1 on paper-1, 6.45:1 white-on-fill) but only 2.99:1 as text
+     on ink. Use azure-deep for text and controls on paper, azure-ink for text
+     on ink, and plain azure for decoration only -- dots, rules, icon fills.
+     Ratios in the eyebrow block below. */
   --color-azure: #3B6BFF;
   --color-azure-deep: #2451D9;
+  --color-azure-ink: #4272FF;
 
   --color-safety-text: #ff8a80;
   --color-safety-bg: #2a1215;
@@ -69,23 +74,22 @@
   }
 
   /*
-    Ink ground. azure-deep is unusable here (2.99:1, under even the 3:1
-    large-text floor), so ink sections get the lighter azure: #3B6BFF on
-    #0D0E11 measures 4.35:1.
+    Ink ground. Measured on #0D0E11:
 
-    4.35:1 clears AA for large text but is 0.15 short of the 4.5:1 normal-text
-    floor a 12px eyebrow is held to. It is the value this site ran before the
-    regression and it is what was asked for, so it is what is applied --
-    reported, not changed quietly. #4272FF would reach 4.67:1 on ink if the
-    founder wants the floor cleared outright.
+      #2451D9 azure-deep  2.99:1  fails even the 3:1 large-text floor
+      #3B6BFF azure       4.35:1  large-text only, 0.15 under the AA floor
+      #4272FF azure-ink   4.67:1  clears AA for normal text  <- in use
 
-    The hero is the one ink section whose ground is not flat ink: the azure
-    wash peaks at ~22% azure over ink (#172245), where this colour measures
-    3.50:1. Same caveat, one step further down, and unchanged from before the
-    regression. azure-deep there would be 2.41:1.
+    A 12px eyebrow is normal text, so 4.5:1 is the bar and azure-ink is the
+    first of the three to clear it.
+
+    This holds only over flat ink. The hero's ground is the azure wash, and
+    the wash used to peak right where the eyebrow sits; see the cap in
+    Hero.astro, which holds that row at flat ink so this ratio is the one that
+    actually applies there.
   */
   .eyebrow-on-ink {
-    color: var(--color-azure);
+    color: var(--color-azure-ink);
   }
 }
 
