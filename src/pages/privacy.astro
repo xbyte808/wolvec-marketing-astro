@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-06-02';
-const dateModified = '2026-08-17';
+const dateModified = '2026-09-02';
 ---
 
 <Layout title="Privacy Policy | Wolvec" description="Wolvec privacy policy. Effective June 2, 2026.">
@@ -28,7 +28,7 @@ const dateModified = '2026-08-17';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>June 2, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>August 17, 2026</time>
+        Last Updated: <time datetime={dateModified}>September 2, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Who We Are</h2>
@@ -81,6 +81,11 @@ const dateModified = '2026-08-17';
         Prospective Coach / Early Access Signup Data: name, email address, years coaching, approximate client count, current platform, and related information submitted through early-access or contact forms.
       </p>
 
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Prospective Client Application Data</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Prospective Client Application Data. If you apply to work with a Coach through a public Wolvec page, we collect your name, email address, selected plan, application status, scheduling availability, self-described experience level, equipment access, time zone, and budget band.
+      </p>
+
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">3. How We Use Your Information</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">We use collected information to:</p>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
@@ -90,6 +95,7 @@ const dateModified = '2026-08-17';
         <li>Improve platform performance and reliability</li>
         <li>Communicate with you about your account and our services</li>
         <li>Comply with legal obligations</li>
+        <li>To receive and administer prospective Client applications, including making application information available to the selected Coach for review and recording the Coach's approval or decline.</li>
       </ul>
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">Account-Linked Usage and Behavioral Data for Platform Improvement</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
@@ -110,7 +116,7 @@ const dateModified = '2026-08-17';
         <li>OpenAI (voice transcription): When a Coach or a Client records voice input in the Platform, Wolvec transmits that audio recording to OpenAI's transcription service and receives back a text transcript. Wolvec stores the transcript. Wolvec does not store the original audio.</li>
         <li>OpenAI (text embeddings): Coach onboarding and methodology content may be transmitted to OpenAI to generate text embeddings, which Wolvec stores. Wolvec does not currently use these embeddings to generate coaching responses.</li>
         <li>Resend (email delivery): Agreement confirmation emails containing coach and client names and email addresses are sent via Resend's email delivery service.</li>
-        <li>Neon (database storage): Your account data, program data, check-in responses, and coaching content are stored in Wolvec's managed database hosted by Neon, a serverless PostgreSQL provider.</li>
+        <li>Neon (database storage): Your account data, program data, check-in responses, coaching content, and Prospective Client Application Data are stored in Wolvec's managed database hosted by Neon, a serverless PostgreSQL provider.</li>
         <li>Vercel (platform operations): The Wolvec application is hosted and served by Vercel. Requests to the platform are processed through Vercel's serverless compute infrastructure.</li>
         <li>Neon (early access applications): If you submit the early access application form on our marketing site, your submission (name, email address, and coaching background responses) is stored in Wolvec's managed PostgreSQL database hosted by Neon, a serverless PostgreSQL provider, until we process your application.</li>
         <li>Cloudflare (security): Cloudflare provides edge security, DDoS protection, and web application firewall services. Cloudflare may process request metadata, including IP addresses, as part of security screening.</li>
@@ -220,7 +226,7 @@ const dateModified = '2026-08-17';
         Email: <a href="mailto:privacy@wolvec.ai" class="text-brand-accent hover:underline">privacy@wolvec.ai</a>
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        For data deletion or access requests, include your full name and the email address associated with your account.
+        For data deletion or access requests, include your full name and the email address associated with your account or application.
       </p>
 
     </div>
