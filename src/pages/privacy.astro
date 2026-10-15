@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-06-02';
-const dateModified = '2026-10-10';
+const dateModified = '2026-10-15';
 ---
 
 <Layout title="Privacy Policy | Wolvec" description="Wolvec privacy policy. Effective June 2, 2026.">
@@ -28,7 +28,7 @@ const dateModified = '2026-10-10';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>June 2, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>October 10, 2026</time>
+        Last Updated: <time datetime={dateModified}>October 15, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Who We Are</h2>
@@ -49,7 +49,7 @@ const dateModified = '2026-10-10';
         <li>Nutrition coaching approaches and preferences</li>
         <li>Business preferences and coaching style</li>
         <li>Voice input recorded in the Platform in place of typing. Wolvec transmits the audio to its transcription provider and stores only the resulting text. Wolvec does not store the original audio recording.</li>
-        <li>Billing information (processed by third-party payment processors)</li>
+        <li>Subscription and Billing Information: plan, price or amount, subscription status, and payment processor identifiers. Payment card information is collected and processed by Stripe and is not received or stored by Wolvec.</li>
       </ul>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">Client Data</h3>
@@ -60,6 +60,7 @@ const dateModified = '2026-10-10';
         <li>Training progress, soreness reports, and mood check-ins</li>
         <li>Check-in responses, which may occasionally include mentions of pain, injury, or illness</li>
         <li>Workout logs and program completion data</li>
+        <li>Nutrition and Meal Data: foods and meals you log, serving information, calories, macronutrients, and related dietary entries.</li>
         <li>Voice input recorded in the Platform in place of typing. Wolvec transmits the audio to its transcription provider and stores only the resulting text. Wolvec does not store the original audio recording.</li>
       </ul>
 
@@ -70,6 +71,11 @@ const dateModified = '2026-10-10';
         <li>Usage data and interaction logs</li>
         <li>Error reports (via Sentry)</li>
       </ul>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">Cookies</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Cookies: Wolvec uses first party cookies that are necessary to authenticate users, maintain sessions, remember limited preferences, and operate the Platform. Wolvec does not use these cookies for advertising or cross site tracking.
+      </p>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">Google Sign-In Data</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
@@ -92,6 +98,7 @@ const dateModified = '2026-10-10';
         <li>Generate and operate your AI coaching assistant based on coach methodology and preferences</li>
         <li>Deliver personalized fitness programs and coaching support</li>
         <li>Process check-in responses and provide coaching feedback</li>
+        <li>Record the meals and nutrition entries you log, calculate nutrition totals from those entries, and make those records available to your Coach</li>
         <li>Improve platform performance and reliability</li>
         <li>Communicate with you about your account and our services</li>
         <li>Comply with legal obligations</li>
@@ -113,10 +120,11 @@ const dateModified = '2026-10-10';
         <li>Neon (database storage): Your account data, program data, check-in responses, coaching content, and Prospective Client Application Data are stored in Wolvec's managed database hosted by Neon, a serverless PostgreSQL provider.</li>
         <li>Vercel (platform operations): The Wolvec application is hosted and served by Vercel. Requests to the platform are processed through Vercel's serverless compute infrastructure.</li>
         <li>Neon (early access applications): If you submit the early access application form on our marketing site, your submission (name, email address, and coaching background responses) is stored in Wolvec's managed PostgreSQL database hosted by Neon, a serverless PostgreSQL provider, until we process your application.</li>
-        <li>Cloudflare (security): Cloudflare provides edge security, DDoS protection, and web application firewall services. Cloudflare may process request metadata, including IP addresses, as part of security screening.</li>
+        <li>Cloudflare: Wolvec uses Cloudflare for network and edge security, bot detection and abuse prevention, object storage for platform assets, and database backup storage for disaster recovery. Cloudflare Turnstile may process technical information about signup or application traffic to help distinguish legitimate users from automated abuse.</li>
         <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, health content, session cookies, IP addresses, and other personal information from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
-        <li>Notification delivery providers: device identifiers used to deliver operational notifications.</li>
+        <li>Google Firebase Cloud Messaging: Wolvec uses Firebase Cloud Messaging to deliver push notifications. Google may receive a device push token and related technical delivery information. Wolvec does not include Client names, message text, or health content text in the push payload.</li>
+        <li>Stripe: Wolvec uses Stripe to process subscription and Client purchase payments. Payment card information is collected and processed on Stripe hosted services. Wolvec receives payment related identifiers, transaction status, plan and amount information, and related account information, but does not receive or store raw card numbers, CVV codes, or card expiration dates.</li>
         <li>Google Sign-In / Google OAuth: Wolvec may use Google authentication services to allow users to create or access their Wolvec account. Google may process login-related information according to Google's own terms and privacy policies. Wolvec uses Google Sign-In only for authentication and account-access purposes.</li>
       </ul>
       <p class="text-neutral-300 leading-relaxed mb-3">
@@ -126,7 +134,7 @@ const dateModified = '2026-10-10';
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">5. Consumer Health Data</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec handles certain health-adjacent and consumer health data, including PAR-Q+ screening responses, fitness goals, training history, workout logs, soreness or wellness check-ins, injury or illness disclosures, safety flags, and related coaching context.
+        Wolvec handles certain health-adjacent and consumer health data, including PAR-Q+ screening responses, fitness goals, training history, workout logs, meal and nutrition logs, soreness or wellness check-ins, injury or illness disclosures, safety flags, and related coaching context.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Wolvec is not a medical provider, health plan, healthcare clearinghouse, physical therapy provider, mental health provider, or dietetics provider. The Platform does not provide medical advice, diagnosis, treatment, physical therapy, mental health counseling, or emergency support.
