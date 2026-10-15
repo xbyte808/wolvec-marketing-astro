@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 
 const datePublished = '2026-07-14';
-const dateModified = '2026-09-02';
+const dateModified = '2026-10-15';
 ---
 
 <Layout
@@ -31,7 +31,7 @@ const dateModified = '2026-09-02';
       <p class="text-sm text-neutral-500 mb-8">
         Effective Date: <time datetime={datePublished}>July 14, 2026</time>
         &nbsp;&middot;&nbsp;
-        Last Updated: <time datetime={dateModified}>September 2, 2026</time>
+        Last Updated: <time datetime={dateModified}>October 15, 2026</time>
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">1. Introduction</h2>
@@ -150,12 +150,21 @@ const dateModified = '2026-09-02';
         Prospective Client Application Information. Where applicable law treats information identifying an individual as seeking fitness or health-related services as consumer health data, Wolvec treats covered information submitted through a prospective Client application accordingly.
       </p>
 
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">3.9 Nutrition and Dietary Information</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Nutrition and Dietary Information: foods and meals you record, serving information, calories, macronutrients, and related dietary entries.
+      </p>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Purpose: Wolvec uses this information to record the meals and nutrition entries a Client logs, calculate nutrition totals from those entries, and make those records available to the Client's assigned Coach.
+      </p>
+
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">4. Sources of Consumer Health Data</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">Wolvec collects consumer health data from the following sources:</p>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
         <li>Directly from clients during onboarding, health screening, check-ins, chat interactions, and platform use</li>
         <li>From assigned coaches when they provide client context, program information, training limitations, or coaching notes</li>
         <li>From client activity within the Wolvec platform, such as workout completion and check-in history</li>
+        <li>Directly from clients when they log meals and nutrition entries, and from Wolvec's calculations of nutrition totals from those entries</li>
         <li>From Wolvec's internal systems when generating safety flags, coaching summaries, or workflow status records</li>
         <li>From service providers that process information on Wolvec's behalf to operate the platform</li>
         <li>directly from a prospective Client when the application is submitted; and</li>
@@ -174,6 +183,7 @@ const dateModified = '2026-09-02';
         <li>Enabling coach review of health screening, check-ins, and safety flags</li>
         <li>Generating AI-assisted program recommendations, check-in summaries, and coaching support</li>
         <li>Personalizing fitness programs, habits, and accountability support</li>
+        <li>Recording meals and nutrition entries a client logs, calculating nutrition totals from those entries, and making those records available to the client's assigned coach</li>
         <li>Applying limited safety controls to certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress</li>
         <li>Preventing AI-assisted coaching from continuing when a safety escalation requires human coach review</li>
         <li>Maintaining platform reliability, security, auditability, and compliance</li>
@@ -194,7 +204,7 @@ const dateModified = '2026-09-02';
         For a prospective Client, Wolvec may disclose the application information to the Coach the individual selected so that Coach can review and approve or decline the application. Once someone becomes a Client, the existing Client-stage disclosures apply.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may make a client's consumer health data available to the client's assigned coach. This may include health-screening responses, check-ins, conversations, injury or illness disclosures, safety flags, workout logs, and related coaching context.
+        Wolvec may make a client's consumer health data available to the client's assigned coach. This may include health-screening responses, check-ins, conversations, injury or illness disclosures, safety flags, workout logs, meal and nutrition logs, and related coaching context.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Purpose: Coaching, safety review, program personalization, client follow-up, and coach oversight.
@@ -226,7 +236,7 @@ const dateModified = '2026-09-02';
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">6.5 Other Service Providers</h3>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec may use other service providers for email delivery, support, bug triage, security, and platform operations. These providers may process personal information as described in the general Privacy Policy. Wolvec does not authorize these providers to use consumer health data for unrelated purposes.
+        Wolvec may use other service providers for email delivery, push notification delivery, payment processing, support, bug triage, security, and platform operations. These providers may process personal information as described in the general Privacy Policy. Wolvec does not authorize these providers to use consumer health data for unrelated purposes.
       </p>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">7. Current Named Service Providers</h2>
@@ -240,6 +250,8 @@ const dateModified = '2026-09-02';
         <li>Resend: email delivery for account and agreement communications</li>
         <li>Notion: internal support, bug triage, and product-support workflows where applicable</li>
         <li>OpenAI: Voice transcription and text embeddings. When a Coach or a Client records voice input in the Platform, Wolvec transmits that audio recording to OpenAI for transcription and stores only the returned text. Client voice input can contain consumer health data, and OpenAI therefore does receive client consumer health data when a Client uses voice input. Wolvec also transmits Coach onboarding and methodology content to OpenAI to generate text embeddings, which Wolvec stores and does not currently use to generate coaching responses.</li>
+        <li>Google Firebase Cloud Messaging: push notification delivery. Google may receive a device push token and related technical delivery information. Wolvec does not include Client names, message text, or health content text in the push payload.</li>
+        <li>Stripe: processing of Client purchase payments. Payment card information is collected and processed on Stripe hosted services, and Wolvec does not receive or store raw card numbers, CVV codes, or card expiration dates.</li>
       </ul>
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">8. What Wolvec Does Not Do</h2>
@@ -358,7 +370,7 @@ const dateModified = '2026-09-02';
         Purposes for collection and use: the purposes listed in Section 5.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Categories of consumer health data shared: health-screening responses, injury or illness disclosures, coaching conversations, workout and wellness data, safety flags, related coaching context, and prospective Client application information shared with the selected Coach for application review, where necessary to provide the Wolvec platform.
+        Categories of consumer health data shared: health-screening responses, injury or illness disclosures, coaching conversations, workout and wellness data, meal and nutrition logs, safety flags, related coaching context, and prospective Client application information shared with the selected Coach for application review, where necessary to provide the Wolvec platform.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Third parties and affiliates with whom consumer health data may be shared: the assigned coach and the service providers described in Sections 6 and 7. Wolvec does not currently share consumer health data with affiliates.
@@ -367,7 +379,7 @@ const dateModified = '2026-09-02';
         Washington rights: If the Washington My Health My Data Act applies to you, you may request confirmation of whether Wolvec collects, shares, or sells consumer health data about you; access covered consumer health data and applicable recipient information; withdraw consent to future collection or sharing where consent applies; request deletion; and appeal a refusal to act on a request.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Appeals: If Wolvec denies your request, you may appeal by contacting privacy@wolvec.ai with the subject line "MHMDA Appeal." Wolvec will respond to appeals within the timeframe required by Washington law.
+        Appeals: If Wolvec refuses to act on your request, in whole or in part, you may appeal by emailing privacy@wolvec.ai with the subject line "MHMDA Appeal." Wolvec will respond to your appeal in writing within the period required by Washington law, stating any action taken or not taken in response to the appeal and the reasons for that decision. If Wolvec denies your appeal, the written response will tell you how to contact the Washington State Attorney General to submit a complaint.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         No sale or advertising: Wolvec does not sell consumer health data and does not share consumer health data for targeted advertising.
