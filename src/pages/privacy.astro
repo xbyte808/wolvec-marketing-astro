@@ -49,7 +49,7 @@ const dateModified = '2026-10-15';
         <li>Nutrition coaching approaches and preferences</li>
         <li>Business preferences and coaching style</li>
         <li>Voice input recorded in the Platform in place of typing. Wolvec transmits the audio to its transcription provider and stores only the resulting text. Wolvec does not store the original audio recording.</li>
-        <li>Billing information (processed by third-party payment processors)</li>
+        <li>Subscription and Billing Information: plan, price or amount, subscription status, and payment processor identifiers. Payment card information is collected and processed by Stripe and is not received or stored by Wolvec.</li>
       </ul>
 
       <h3 class="text-xl font-semibold text-white mt-6 mb-3">Client Data</h3>
@@ -123,7 +123,6 @@ const dateModified = '2026-10-15';
         <li>Cloudflare: Wolvec uses Cloudflare for network and edge security, bot detection and abuse prevention, object storage for platform assets, and database backup storage for disaster recovery. Cloudflare Turnstile may process technical information about signup or application traffic to help distinguish legitimate users from automated abuse.</li>
         <li>Sentry provides error monitoring and performance diagnostics. Wolvec configures its systems to exclude message bodies, health-screening responses, health content, session cookies, IP addresses, and other personal information from error-monitoring transmissions where reasonably feasible. Sentry may process technical metadata needed for debugging, reliability, and security.</li>
         <li>Notion (bug triage and support): If you submit bug reports or feedback through the Platform, or if Wolvec staff engage in internal support workflows related to your account, report content, contact information, and related technical context may be processed in Notion for internal triage, debugging, and product support.</li>
-        <li>Notification delivery providers: device identifiers used to deliver operational notifications.</li>
         <li>Google Firebase Cloud Messaging: Wolvec uses Firebase Cloud Messaging to deliver push notifications. Google may receive a device push token and related technical delivery information. Wolvec does not include Client names, message text, or health content text in the push payload.</li>
         <li>Stripe: Wolvec uses Stripe to process subscription and Client purchase payments. Payment card information is collected and processed on Stripe hosted services. Wolvec receives payment related identifiers, transaction status, plan and amount information, and related account information, but does not receive or store raw card numbers, CVV codes, or card expiration dates.</li>
         <li>Google Sign-In / Google OAuth: Wolvec may use Google authentication services to allow users to create or access their Wolvec account. Google may process login-related information according to Google's own terms and privacy policies. Wolvec uses Google Sign-In only for authentication and account-access purposes.</li>
@@ -135,7 +134,7 @@ const dateModified = '2026-10-15';
 
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">5. Consumer Health Data</h2>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Wolvec handles certain health-adjacent and consumer health data, including PAR-Q+ screening responses, fitness goals, training history, workout logs, soreness or wellness check-ins, injury or illness disclosures, safety flags, and related coaching context.
+        Wolvec handles certain health-adjacent and consumer health data, including PAR-Q+ screening responses, fitness goals, training history, workout logs, meal and nutrition logs, soreness or wellness check-ins, injury or illness disclosures, safety flags, and related coaching context.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         Wolvec is not a medical provider, health plan, healthcare clearinghouse, physical therapy provider, mental health provider, or dietetics provider. The Platform does not provide medical advice, diagnosis, treatment, physical therapy, mental health counseling, or emergency support.

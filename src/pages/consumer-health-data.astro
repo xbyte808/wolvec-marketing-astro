@@ -158,13 +158,23 @@ const dateModified = '2026-10-15';
         Purpose: Wolvec uses this information to record the meals and nutrition entries a Client logs, calculate nutrition totals from those entries, and make those records available to the Client's assigned Coach.
       </p>
 
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">3.10 Push Delivery Information</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Push Delivery Information: a device push token and related technical delivery information used to deliver notifications.
+      </p>
+
+      <h3 class="text-xl font-semibold text-white mt-6 mb-3">3.11 Client Purchase Information</h3>
+      <p class="text-neutral-300 leading-relaxed mb-4">
+        Client Purchase Information: payment-related identifiers, transaction status, plan and amount information associated with a Client's purchase of coaching services. Wolvec does not receive or store raw payment card information.
+      </p>
+
       <h2 class="text-2xl font-semibold text-white mt-10 mb-4">4. Sources of Consumer Health Data</h2>
       <p class="text-neutral-300 leading-relaxed mb-3">Wolvec collects consumer health data from the following sources:</p>
       <ul class="list-disc list-inside text-neutral-300 leading-relaxed space-y-1 mb-4">
         <li>Directly from clients during onboarding, health screening, check-ins, chat interactions, and platform use</li>
         <li>From assigned coaches when they provide client context, program information, training limitations, or coaching notes</li>
         <li>From client activity within the Wolvec platform, such as workout completion and check-in history</li>
-        <li>Directly from clients when they log meals and nutrition entries, and from Wolvec's calculations of nutrition totals from those entries</li>
+        <li>Directly from Clients when they log meals and nutrition entries, and from Wolvec's calculations based on those entries</li>
         <li>From Wolvec's internal systems when generating safety flags, coaching summaries, or workflow status records</li>
         <li>From service providers that process information on Wolvec's behalf to operate the platform</li>
         <li>directly from a prospective Client when the application is submitted; and</li>
@@ -245,7 +255,7 @@ const dateModified = '2026-10-15';
         <li>Anthropic: AI text generation, reasoning, check-in analysis, chat responses, and AI-assisted coaching functionality involving client coaching content</li>
         <li>Neon: database storage and managed PostgreSQL infrastructure</li>
         <li>Vercel: hosting and platform operations</li>
-        <li>Cloudflare: edge security, DDoS protection, and web application firewall services</li>
+        <li>Cloudflare: network and edge security, DDoS protection, web application firewall services, and object storage for database backup copies used for disaster recovery. Database backup copies stored with Cloudflare may contain consumer health data.</li>
         <li>Sentry: error monitoring and performance diagnostics, configured to exclude health content and other personal information where reasonably feasible</li>
         <li>Resend: email delivery for account and agreement communications</li>
         <li>Notion: internal support, bug triage, and product-support workflows where applicable</li>
@@ -379,7 +389,7 @@ const dateModified = '2026-10-15';
         Washington rights: If the Washington My Health My Data Act applies to you, you may request confirmation of whether Wolvec collects, shares, or sells consumer health data about you; access covered consumer health data and applicable recipient information; withdraw consent to future collection or sharing where consent applies; request deletion; and appeal a refusal to act on a request.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
-        Appeals: If Wolvec refuses to act on your request, in whole or in part, you may appeal by emailing privacy@wolvec.ai with the subject line "MHMDA Appeal." Wolvec will respond to your appeal in writing within the period required by Washington law, stating any action taken or not taken in response to the appeal and the reasons for that decision. If Wolvec denies your appeal, the written response will tell you how to contact the Washington State Attorney General to submit a complaint.
+        Appeals: If Wolvec refuses to act on your request, in whole or in part, you may appeal by emailing privacy@wolvec.ai with the subject line "MHMDA Appeal." Within 45 days of receiving your appeal, Wolvec will inform you in writing of any action taken or not taken in response to the appeal and explain the reasons for that decision. If Wolvec denies your appeal, the written response will tell you how to contact the Washington State Attorney General to submit a complaint.
       </p>
       <p class="text-neutral-300 leading-relaxed mb-4">
         No sale or advertising: Wolvec does not sell consumer health data and does not share consumer health data for targeted advertising.
