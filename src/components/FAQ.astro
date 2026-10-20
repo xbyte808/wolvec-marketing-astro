@@ -2,10 +2,13 @@
 // The FAQPage JSON-LD in src/pages/index.astro declares exactly the questions
 // rendered here. Founder ruling: the three extra schema entries were deleted
 // rather than published. Adding a question here means adding it there too.
+// COUNSEL-APPROVED VERBATIM 2026-10-19. Do not edit without counsel review. See Standing Decision "MARKETING FAQ WORDING".
 const faqs = [
   {
-    id: 'who-owns-the-data',
-    question: 'Who owns the data?',
+    id: 'what-stays-mine',
+    question: 'What stays mine, and what am I responsible for?',
+    answer:
+      'You retain any ownership rights you have in content you create and provide through Wolvec. Your clients are your clients, and you retain full responsibility for the coaching relationship. You determine whether medical clearance is required and remain responsible for the professional judgment to proceed within your scope of practice. Wolvec provides the platform.',
     defaultOpen: true,
   },
 ];
@@ -54,9 +57,7 @@ const faqs = [
             data-disclosure-panel
           >
             <p class="text-text-soft leading-relaxed pb-6 pr-8">
-              You own your methodology and your client relationships. Wolvec provides the platform.
-              Clinical decisions, medical-clearance calls, and scope-of-practice boundaries stay with
-              you. <a href="/#early-access" class="hover-link text-azure hover:text-white underline underline-offset-4">Apply for early access</a> if that's the setup you want.
+              {faq.answer}
             </p>
           </div>
         </div>
