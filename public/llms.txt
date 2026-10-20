@@ -7,7 +7,7 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 ## How it works
 
 - One guided conversation builds the coach's AI. No existing content library is required.
-- Coaches set autonomy per category of interaction, on a three-tier scale (Off / Draft / Auto), and can change it at any time.
+- Coaches choose how client chat is handled: All off, Drafted for review (the default), or Fully autonomous, and can change it at any time. Some clients always stay on review even when the coach picks Fully autonomous. Program changes always need the coach's approval.
 - Wolvec uses limited automated safety controls for certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress. Depending on the circumstances, those controls may pause AI-assisted coaching, display a safety notice, or flag the issue for the Client's assigned Coach in Wolvec. These controls may not identify every health or safety concern and are not medical or emergency monitoring.
 - New clients complete a PAR-Q+ pre-participation health screening, which the coach reviews before the AI begins full interaction.
 
