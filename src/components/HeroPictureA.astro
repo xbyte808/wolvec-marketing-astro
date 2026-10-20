@@ -1,0 +1,8 @@
+---
+// Hero picture, variant A (W734, the committed default): coach teaches, AI
+// drafts and coach approves, client trains from it.
+import HeroPicture from './HeroPicture.astro';
+import { coachTeaches, aiDraftsCoachApproves, clientTrains } from './heroPanels';
+---
+
+<HeroPicture panels={[coachTeaches, aiDraftsCoachApproves, clientTrains]} />

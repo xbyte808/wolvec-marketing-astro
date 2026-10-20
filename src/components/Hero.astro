@@ -2,6 +2,14 @@
 // Hero setting is specified in absolute values at the mobile baseline and
 // scaled proportionally with clamp() at larger viewports. The mobile values
 // below are exactly as briefed; see the note on --hero-nav-clearance.
+import HeroPictureA from './HeroPictureA.astro';
+import HeroPictureB from './HeroPictureB.astro';
+
+// Which hero picture renders under the buttons (W734). 'A' is three panels
+// (coach teaches, AI drafts and coach approves, client trains) and is the
+// committed default. 'B' is the first two panels only.
+const HERO_PICTURE_VARIANT = 'A' as 'A' | 'B';
+const HeroPicture = { A: HeroPictureA, B: HeroPictureB }[HERO_PICTURE_VARIANT];
 ---
 
 <section id="hero" class="hero relative overflow-hidden bg-ink text-center">
@@ -39,6 +47,10 @@
         See how it works
       </a>
     </div>
+  </div>
+
+  <div class="relative">
+    <HeroPicture />
   </div>
 </section>
 

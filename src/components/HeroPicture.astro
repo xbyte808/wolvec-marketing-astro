@@ -1,0 +1,165 @@
+---
+// Shared renderer for the hero picture variants (W734). HeroPictureA and
+// HeroPictureB only choose which panels to pass; Hero.astro picks between
+// them with one constant.
+import { Image } from 'astro:assets';
+import { heroPictureFootnote, type HeroPanel } from './heroPanels';
+
+interface Props {
+  panels: HeroPanel[];
+}
+
+const { panels } = Astro.props;
+
+// On wide screens the panels share one row at one height, so each column is
+// as wide as its image's aspect ratio. The ratios come from the image files
+// themselves, not hand-copied numbers, so a re-crop cannot desync them.
+const ratios = panels.map((p) => p.image.width / p.image.height);
+const ratioSum = ratios.reduce((a, b) => a + b, 0);
+const columns = ratios.map((r) => `minmax(0, ${r.toFixed(4)}fr)`).join(' ');
+const ROW_MAX = 1280;
+
+const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
+---
+
+<div class="hero-picture" data-reveal style="--reveal-delay:350ms">
+  <div class="hero-picture-row" style={`--hero-picture-columns:${columns}`}>
+    {panels.map((panel, i) => {
+      const { image } = panel;
+      const rowWidth = Math.round((ROW_MAX * ratios[i]) / ratioSum);
+      return (
+        <figure
+          class="hero-panel"
+          style={panel.maxWidthStacked ? `--hero-panel-max:${panel.maxWidthStacked}` : undefined}
+        >
+          <figcaption class="hero-panel-label">{panel.label}</figcaption>
+          <div class="hero-panel-frame">
+            <Image
+              src={image}
+              alt={panel.alt}
+              widths={panel.widths}
+              sizes={`(min-width: 1024px) ${rowWidth}px, min(calc(100vw - 48px), ${panel.maxWidthStacked ?? '560px'})`}
+              format="webp"
+              quality={80}
+              loading="eager"
+              decoding="async"
+              class="hero-panel-image"
+            />
+            {panel.highlights.map((h) => (
+              <span
+                class="hero-panel-highlight"
+                aria-hidden="true"
+                style={`left:${pct(h.x, image.width)};top:${pct(h.y, image.height)};width:${pct(h.width, image.width)};height:${pct(h.height, image.height)}`}
+              ></span>
+            ))}
+          </div>
+        </figure>
+      );
+    })}
+  </div>
+  <p class="hero-picture-footnote">{heroPictureFootnote}</p>
+</div>
+
+<style>
+  .hero-picture {
+    width: 100%;
+    max-width: 1280px;
+    margin: 44px auto 0;
+  }
+
+  /* Narrow screens: panels stack, each centred and capped so a desktop
+     capture does not stretch past a readable width. */
+  .hero-picture-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .hero-panel {
+    width: 100%;
+    max-width: var(--hero-panel-max, 560px);
+    margin: 0;
+    text-align: left;
+  }
+
+  .hero-panel-label {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 1.35;
+    color: var(--color-text);
+    margin-bottom: 10px;
+  }
+
+  .hero-panel-frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 14px;
+    border: 1px solid var(--color-hairline-dark);
+    background: var(--color-surface-1);
+    box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.9);
+  }
+
+  .hero-panel-image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* The one mark drawn over a screen: an azure outline around the words
+     "floor session". Outline only, no fill, so the captured text underneath
+     stays exactly as captured. The thin ink ring outside the azure line is
+     what keeps it visible where it crosses the coach's own blue bubble in
+     panel 1; azure on that blue alone nearly disappears. */
+  .hero-panel-highlight {
+    position: absolute;
+    border: 1px solid var(--color-azure);
+    border-radius: 6px;
+    box-shadow:
+      0 0 0 1px rgba(13, 14, 17, 0.7),
+      0 0 12px rgba(59, 107, 255, 0.35);
+    pointer-events: none;
+  }
+
+  .hero-picture-footnote {
+    margin-top: 22px;
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--color-text-soft);
+  }
+
+  /* Wide screens: one row. Subgrid lines the labels up on one track and the
+     images on the next, so a label that wraps to two lines in the narrow
+     phone column does not push its image below the others. */
+  @media (min-width: 1024px) {
+    .hero-picture {
+      margin-top: 64px;
+    }
+
+    .hero-picture-row {
+      display: grid;
+      grid-template-columns: var(--hero-picture-columns);
+      grid-template-rows: auto auto;
+      column-gap: 24px;
+      row-gap: 0;
+      align-items: end;
+    }
+
+    .hero-panel {
+      max-width: none;
+      display: grid;
+      grid-row: span 2;
+      grid-template-rows: subgrid;
+    }
+
+    .hero-panel-label {
+      align-self: end;
+    }
+
+    .hero-panel-frame {
+      align-self: start;
+    }
+  }
+</style>
