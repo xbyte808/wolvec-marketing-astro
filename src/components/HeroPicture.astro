@@ -1,56 +1,85 @@
 ---
-// Shared renderer for the hero picture variants (W734). HeroPictureA and
-// HeroPictureB only choose which panels to pass; Hero.astro picks between
-// them with one constant.
+// Hero picture under the hero buttons (W734): coach teaches, AI drafts and
+// coach approves, client trains. Panel content lives in heroPanels.ts.
 import { Image } from 'astro:assets';
-import { heroPictureFootnote, type HeroPanel } from './heroPanels';
+import { heroPanels, heroPictureFootnote, type HeroShot } from './heroPanels';
 
-interface Props {
-  panels: HeroPanel[];
-}
+// Wide screens: one row. Columns keep the proportions of each panel's
+// `column` width at 1440px, so panel 3's phone text stays readable and panel
+// 1 stays wide enough for its outline to reach 2px. Images therefore differ
+// in height and align on their top edge.
+const ROW_MAX = heroPanels.reduce((sum, p) => sum + p.column, 0);
+const columns = heroPanels.map((p) => `minmax(0, ${p.column}fr)`).join(' ');
+const narrowSizes = (p: { maxWidthStacked?: string }) =>
+  `min(calc(100vw - 48px), ${p.maxWidthStacked ?? '560px'})`;
 
-const { panels } = Astro.props;
-
-// On wide screens the panels share one row at one height, so each column is
-// as wide as its image's aspect ratio. The ratios come from the image files
-// themselves, not hand-copied numbers, so a re-crop cannot desync them.
-const ratios = panels.map((p) => p.image.width / p.image.height);
-const ratioSum = ratios.reduce((a, b) => a + b, 0);
-const columns = ratios.map((r) => `minmax(0, ${r.toFixed(4)}fr)`).join(' ');
-const ROW_MAX = 1280;
-
-const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
+// The outline is drawn in the image's own pixels (see heroPanels.ts): a dark
+// ring outside an azure stroke, both growing outward from the measured inner
+// edge, so neither can reach a glyph at any rendered size.
+const RING = 0.4;
+const outline = (h: HeroShot['highlights'][number]) => {
+  const s = h.stroke;
+  const r = s * RING;
+  const radius = s * 3;
+  return {
+    ring: { x: h.x - s - r / 2, y: h.y - s - r / 2, width: h.width + 2 * s + r, height: h.height + 2 * s + r, rx: radius + s / 2 + r / 2, strokeWidth: r },
+    line: { x: h.x - s / 2, y: h.y - s / 2, width: h.width + s, height: h.height + s, rx: radius, strokeWidth: s },
+  };
+};
 ---
 
-<div class="hero-picture" data-reveal style="--reveal-delay:350ms">
+<div class="hero-picture" data-reveal style={`--reveal-delay:350ms;max-width:${ROW_MAX + 48}px`}>
   <div class="hero-picture-row" style={`--hero-picture-columns:${columns}`}>
-    {panels.map((panel, i) => {
-      const { image } = panel;
-      const rowWidth = Math.round((ROW_MAX * ratios[i]) / ratioSum);
+    {heroPanels.map((panel) => {
+      const shots = [
+        { shot: panel.shot, cls: panel.narrowShots ? 'hero-wide-only' : '', sizes: `(min-width: 1024px) ${panel.column}px, ${narrowSizes(panel)}` },
+        ...(panel.narrowShots ?? []).map((shot) => ({ shot, cls: 'hero-narrow-only', sizes: narrowSizes(panel) })),
+      ];
       return (
         <figure
           class="hero-panel"
           style={panel.maxWidthStacked ? `--hero-panel-max:${panel.maxWidthStacked}` : undefined}
         >
           <figcaption class="hero-panel-label">{panel.label}</figcaption>
-          <div class="hero-panel-frame">
-            <Image
-              src={image}
-              alt={panel.alt}
-              widths={panel.widths}
-              sizes={`(min-width: 1024px) ${rowWidth}px, min(calc(100vw - 48px), ${panel.maxWidthStacked ?? '560px'})`}
-              format="webp"
-              quality={80}
-              loading="eager"
-              decoding="async"
-              class="hero-panel-image"
-            />
-            {panel.highlights.map((h) => (
-              <span
-                class="hero-panel-highlight"
-                aria-hidden="true"
-                style={`left:${pct(h.x, image.width)};top:${pct(h.y, image.height)};width:${pct(h.width, image.width)};height:${pct(h.height, image.height)}`}
-              ></span>
+          <div class="hero-panel-shots">
+            {shots.map(({ shot, cls, sizes }) => (
+              <div class:list={['hero-panel-frame', cls]}>
+                {/* Lazy for two reasons: a media-hidden alternate is then
+                    never downloaded, and on phones, where every panel is
+                    below the fold, the images stop competing with the fonts
+                    the headline and subhead (the measured LCP elements) wait
+                    on. Eager panels cost about 370ms of mobile LCP in
+                    Lighthouse. */}
+                <Image
+                  src={shot.image}
+                  alt={shot.alt}
+                  widths={shot.widths}
+                  sizes={sizes}
+                  format="webp"
+                  quality={80}
+                  loading="lazy"
+                  decoding="async"
+                  class="hero-panel-image"
+                />
+                {shot.highlights.length > 0 && (
+                  <svg
+                    class="hero-panel-marks"
+                    viewBox={`0 0 ${shot.image.width} ${shot.image.height}`}
+                    preserveAspectRatio="none"
+                    aria-hidden="true"
+                  >
+                    {shot.highlights.map((h) => {
+                      const { ring, line } = outline(h);
+                      return (
+                        <>
+                          <rect x={ring.x} y={ring.y} width={ring.width} height={ring.height} rx={ring.rx} fill="none" stroke="rgba(13, 14, 17, 0.7)" stroke-width={ring.strokeWidth} />
+                          <rect x={line.x} y={line.y} width={line.width} height={line.height} rx={line.rx} fill="none" stroke="#3B6BFF" stroke-width={line.strokeWidth} />
+                        </>
+                      );
+                    })}
+                  </svg>
+                )}
+              </div>
             ))}
           </div>
         </figure>
@@ -61,9 +90,9 @@ const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
 </div>
 
 <style>
+  /* max-width is set inline: the three columns plus two 24px gaps. */
   .hero-picture {
     width: 100%;
-    max-width: 1280px;
     margin: 44px auto 0;
   }
 
@@ -92,6 +121,12 @@ const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
     margin-bottom: 10px;
   }
 
+  .hero-panel-shots {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .hero-panel-frame {
     position: relative;
     overflow: hidden;
@@ -108,18 +143,27 @@ const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
   }
 
   /* The one mark drawn over a screen: an azure outline around the words
-     "floor session". Outline only, no fill, so the captured text underneath
-     stays exactly as captured. The thin ink ring outside the azure line is
-     what keeps it visible where it crosses the coach's own blue bubble in
-     panel 1; azure on that blue alone nearly disappears. */
-  .hero-panel-highlight {
+     "floor session", outline only, so the captured text underneath stays
+     exactly as captured. The dark ring is what keeps it visible where it
+     crosses the coach's own blue bubble in panel 1. */
+  .hero-panel-marks {
     position: absolute;
-    border: 1px solid var(--color-azure);
-    border-radius: 6px;
-    box-shadow:
-      0 0 0 1px rgba(13, 14, 17, 0.7),
-      0 0 12px rgba(59, 107, 255, 0.35);
+    inset: 0;
+    width: 100%;
+    height: 100%;
     pointer-events: none;
+  }
+
+  @media (max-width: 640px) {
+    .hero-wide-only {
+      display: none;
+    }
+  }
+
+  @media (min-width: 641px) {
+    .hero-narrow-only {
+      display: none;
+    }
   }
 
   .hero-picture-footnote {
@@ -131,7 +175,7 @@ const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
   }
 
   /* Wide screens: one row. Subgrid lines the labels up on one track and the
-     images on the next, so a label that wraps to two lines in the narrow
+     images on the next, so a label that wraps to two lines in the narrower
      phone column does not push its image below the others. */
   @media (min-width: 1024px) {
     .hero-picture {
@@ -144,7 +188,7 @@ const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
       grid-template-rows: auto auto;
       column-gap: 24px;
       row-gap: 0;
-      align-items: end;
+      align-items: start;
     }
 
     .hero-panel {
@@ -158,7 +202,7 @@ const pct = (n: number, of: number) => `${((n / of) * 100).toFixed(3)}%`;
       align-self: end;
     }
 
-    .hero-panel-frame {
+    .hero-panel-shots {
       align-self: start;
     }
   }
