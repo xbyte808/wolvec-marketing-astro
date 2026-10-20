@@ -1,6 +1,6 @@
 # Wolvec
 
-> Wolvec is the coach's whole coaching setup, not an add-on to it. It creates an AI version of the coach through one structured conversation, no existing content library required, and it runs the everyday with clients: check-ins, routine questions, training programs grounded in the coach's actual methodology, and accountability between sessions.
+> Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week.
 
 Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It provides fitness and wellness coaching support only, and does not diagnose, treat, or give medical advice.
 
@@ -16,10 +16,9 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 
 - Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches can add their own exercises and their own videos.
 - Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program — swap exercises, adjust sets and reps, restructure — or build one from scratch.
-- Workout formats: supersets, circuits, AMRAP, and timed work.
 - Reusable program templates.
-- Progress tracking: clients log every set. Coaches see exercise history, weights, body metrics, and progress photos.
-- Weekly check-ins and post-workout ratings.
+- Progress tracking: clients log every set, and coaches see each logged session.
+- Weekly check-ins and optional post-workout ratings.
 
 ## Key pages
 
