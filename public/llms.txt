@@ -10,12 +10,11 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 - Coaches set autonomy per category of interaction, on a three-tier scale (Off / Draft / Auto), and can change it at any time.
 - Wolvec uses limited automated safety controls for certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress. Depending on the circumstances, those controls may pause AI-assisted coaching, display a safety notice, or flag the issue for the Client's assigned Coach in Wolvec. These controls may not identify every health or safety concern and are not medical or emergency monitoring.
 - New clients complete a PAR-Q+ pre-participation health screening, which the coach reviews before the AI begins full interaction.
-- Coaches retain ownership of their methodology and client relationships; Wolvec provides the platform.
 
 ## Programming and tracking
 
 - Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches can add their own exercises and their own videos.
-- Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program — swap exercises, adjust sets and reps, restructure — or build one from scratch.
+- Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program (swap exercises, adjust sets and reps, restructure) or build one from scratch.
 - Reusable program templates.
 - Progress tracking: clients log every set, and coaches see each logged session.
 - Weekly check-ins and optional post-workout ratings.
