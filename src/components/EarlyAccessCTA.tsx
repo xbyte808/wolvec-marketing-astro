@@ -159,9 +159,9 @@ export default function EarlyAccessCTA() {
           >
             <option value="" disabled>Select...</option>
             <option value="Less than 6 months">Less than 6 months</option>
-            <option value="6–12 months">6–12 months</option>
-            <option value="1–2 years">1–2 years</option>
-            <option value="2+ years">2+ years</option>
+            <option value="6–12 months">6 to 12 months</option>
+            <option value="1–2 years">1 to 2 years</option>
+            <option value="2+ years">More than 2 years</option>
           </select>
         </div>
 
@@ -177,10 +177,10 @@ export default function EarlyAccessCTA() {
             className="bg-brand border border-white/20 rounded-md px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-colors appearance-none"
           >
             <option value="" disabled>Select...</option>
-            <option value="0–5">0–5</option>
-            <option value="6–15">6–15</option>
-            <option value="16–30">16–30</option>
-            <option value="30+">30+</option>
+            <option value="0–5">0 to 5</option>
+            <option value="6–15">6 to 15</option>
+            <option value="16–30">16 to 30</option>
+            <option value="30+">More than 30</option>
           </select>
         </div>
       </div>

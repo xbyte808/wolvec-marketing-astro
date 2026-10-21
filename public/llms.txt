@@ -14,7 +14,7 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 ## Programming and tracking
 
 - Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches can add their own exercises and their own video links.
-- Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program (swap exercises, adjust sets and reps, restructure) or build one from scratch.
+- Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program (swap exercises, adjust sets and reps, restructure), or build their own workouts from the exercise library and reuse them as templates.
 - Workout formats: coaches can add superset, circuit, AMRAP, EMOM and timed blocks to a program.
 - Reusable program templates.
 - Progress tracking: clients log every set, and coaches see each logged session.
