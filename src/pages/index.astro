@@ -24,7 +24,7 @@ const ORG_ID = 'https://wolvec.ai/#organization';
 
 <Layout
   title="Wolvec | AI platform for fitness coaches"
-  description="Wolvec is the AI platform for fitness coaches. Your AI learns how you coach in one conversation, no content library required. You decide how much it handles."
+  description="Wolvec is the AI platform for fitness coaches. Your AI learns how you coach in one conversation, no content library required. You set how much it handles."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -89,7 +89,6 @@ const ORG_ID = 'https://wolvec.ai/#organization';
 
   <main>
     <Hero />
-    <StatsBar />
     <Squeeze />
     <HowItWorks />
     <BringYourPlan />
@@ -102,8 +101,7 @@ const ORG_ID = 'https://wolvec.ai/#organization';
     <section id="about" class="py-16 px-6 bg-ink">
       <div class="max-w-2xl mx-auto text-center" data-reveal>
         <p class="section-lede text-text-soft text-sm leading-relaxed">
-          Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week. The coach controls which supported categories
-          of interaction the AI handles, and Wolvec uses limited safety controls for certain physical health concerns.
+          Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week. The coach sets how much client chat the AI may handle, and Wolvec uses limited safety controls for certain physical health concerns.
         </p>
       </div>
     </section>

@@ -1,67 +1,77 @@
 ---
 import { Image } from 'astro:assets';
-import step01Photo from '../assets/photos/step-01.jpg';
-import step02Photo from '../assets/photos/step-02.jpg';
-import step03Photo from '../assets/photos/step-03.jpg';
+import interview from '../assets/hero/panel-1-A04-interview-floor-session.png';
+import draft from '../assets/hero/panel-2-B14b-week1-draft-floor-session.png';
+import workout from '../assets/hero/panel-3-F34-floor-session-in-workout.png';
 
 const steps = [
   {
     number: '01',
     title: 'Talk it through',
-    body: 'One guided conversation about how you program and coach. You just answer.',
-    photo: step01Photo,
+    body: 'One guided conversation about how you program, progress people and talk to clients. What you explain is what your AI works from. No content library required.',
+    photo: interview,
+    caption: 'Leah explains her Floor Session: show up, do the floor, never zero.',
   },
   {
     number: '02',
-    title: 'We build your AI',
-    body: 'An AI that carries your methodology and how you’d coach it.',
-    photo: step02Photo,
+    title: 'Bring clients in',
+    body: 'Invite them, or let them apply or buy one of your plans on your page. They set up their account and complete intake on their own.',
+    card: true,
+    caption: 'Maya joins and completes intake. Leah approves her.',
   },
   {
     number: '03',
+    title: 'A program built for each client',
+    body: 'Your AI drafts it the way you would, from your method and what each client tells you: their goals, experience, the equipment they have and the days they can train. You approve each week before they see it.',
+    photo: draft,
+    caption: 'Leah’s Floor Session, in Maya’s Week 1 draft.',
+  },
+  {
+    number: '04',
     title: "It's on when you're off",
-    body: 'Routine client questions get an answer based on how you coach, sent automatically or drafted for you to approve. Clients who fall behind on their week get a reminder.',
-    photo: step03Photo,
+    body: 'Routine questions get an answer in your method, sent automatically or drafted for you to approve. Clients who fall behind on their week get a reminder.',
+    photo: workout,
+    caption: 'Her note, inside Maya’s workout.',
   },
 ];
 ---
 
 <section id="how-it-works" class="bg-ink">
-  <div class="max-w-5xl mx-auto px-6 pt-16 pb-2">
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-2">
     <p class="eyebrow eyebrow-on-ink mb-5" data-reveal>How it works</p>
     <h2 class="section-heading text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
-      One conversation does the heavy lifting.
+      From one conversation to your first client.
     </h2>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-3 mt-9">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-9 pb-16">
     {steps.map((step, i) => (
-      <div
-        class:list={[
-          'relative min-h-[420px] flex items-end p-8',
-          i < steps.length - 1 && 'md:border-r border-hairline-dark',
-        ]}
-        data-reveal
-        style={`--reveal-delay:${i * 90}ms`}
-      >
-        <Image
-          src={step.photo}
-          alt=""
-          width={900}
-          height={640}
-          format="webp"
-          quality={75}
-          loading="eager"
-          class="absolute inset-0 h-full w-full object-cover"
-          style="filter: grayscale(0.35) brightness(0.5)"
-        />
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-ink/95"></div>
-        <div class="relative">
-          <p class="font-display text-azure text-5xl leading-[0.8] mb-3">{step.number}</p>
-          <h3 class="font-display text-white text-2xl mb-2">{step.title}</h3>
-          <p class="text-[#CFD2D7] text-[15.5px]">{step.body}</p>
+      <div class="flex flex-col" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+        <div class="step-frame">
+          {step.photo && <Image src={step.photo} alt="" width={900} format="webp" quality={80} loading="eager" class="step-img" />}
+          {step.card && (
+            <div class="join-card">
+              <p class="jc-row"><span class="jc-dot"></span>Maya accepted your invite</p>
+              <p class="jc-row"><span class="jc-dot"></span>Intake done: goals, experience, equipment, days</p>
+              <p class="jc-row jc-act"><span class="jc-dot"></span>Approve Maya to start</p>
+            </div>
+          )}
         </div>
+        <p class="step-cap">{step.caption}</p>
+        <p class="font-display text-azure text-4xl leading-[0.8] mt-4 mb-3">{step.number}</p>
+        <h3 class="font-display text-white text-2xl mb-2">{step.title}</h3>
+        <p class="text-[#CFD2D7] text-[15.5px]">{step.body}</p>
       </div>
     ))}
   </div>
+  <p class="max-w-6xl mx-auto px-6 pb-14 -mt-8 text-[12px] text-[#A0A5AE]">Real Wolvec screens from an example coach account, cropped. Step 02 is an illustration.</p>
 </section>
+<style>
+  .step-frame { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 14px; border: 1px solid rgba(255,255,255,.10); background: #16181D; }
+  .step-img { width: 100%; height: 100%; object-fit: cover; object-position: left top; }
+  .step-cap { margin-top: 8px; font-size: 12.5px; color: #A0A5AE; }
+  .join-card { position: absolute; inset: 0; padding: 14px; display: grid; align-content: center; gap: 8px; }
+  .jc-row { display: flex; gap: 10px; align-items: flex-start; font-size: 13px; line-height: 1.35; color: #CFD2D7; background: #1E2128; border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 8px 10px; }
+  .jc-dot { flex: none; margin-top: 6px; width: 7px; height: 7px; border-radius: 50%; background: #3B6BFF; }
+  .jc-act { border-color: rgba(59,107,255,.55); color: #ECEEF1; }
+</style>

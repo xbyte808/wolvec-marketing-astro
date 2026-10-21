@@ -1,23 +1,51 @@
 ---
-const tiers = ['All off', 'Drafted for review', 'Fully autonomous'];
+const levels = [
+  { key: 'auto', name: 'Fully autonomous', copy: 'Your AI answers routine questions in your method. You can read every conversation, reply directly at any time, or pause your AI for that client.', topics: ['Today’s session', 'How to do an exercise', 'Effort and load', 'Scheduling', 'Motivation'] },
+  { key: 'review', name: 'Drafted for review', copy: 'Your AI drafts routine replies in your method. You review them before they send.' },
+  { key: 'off', name: 'All off', copy: 'Client messages come to you. Your AI does not draft or send replies.' },
+];
 ---
 
 <section id="your-control" class="pt-5 pb-8 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
     <p class="eyebrow mb-5" data-reveal>Your control</p>
     <h2 class="section-heading text-on-paper max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
-      You decide how much your AI handles.
+      You set how much your AI handles.
     </h2>
     <p class="section-lede text-on-paper-soft text-lg max-w-2xl text-balance" data-reveal style="--reveal-delay:140ms">
-      Client chat runs at the level you pick: All off, Drafted for review, or Fully autonomous. Drafted for review is the default, and some clients always stay on review even when you pick Fully autonomous. Program changes never apply without your approval. Change it any time.
+      Client chat runs at the level you pick: Fully autonomous, Drafted for review, or All off. Drafted for review is the default, and some clients always stay on review even when you pick Fully autonomous. Program changes never apply without your approval. Change it any time.
     </p>
 
-    <div class="flex flex-wrap items-center gap-3 mt-7" data-reveal style="--reveal-delay:210ms">
-      {tiers.map((tier) => (
-        <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-paper-2 border border-hairline-light font-label text-xs uppercase tracking-wide text-on-paper-soft">
-          {tier}
-        </span>
+    <div class="mt-7" data-reveal style="--reveal-delay:210ms">
+      <div class="flex flex-wrap gap-2" role="tablist" aria-label="Client chat levels">
+        {levels.map((l) => (
+          <button type="button" role="tab" class="lvl-tab" data-level={l.key} aria-selected={l.key === 'auto' ? 'true' : 'false'}>{l.name}</button>
+        ))}
+      </div>
+      {levels.map((l) => (
+        <div class="lvl-panel" data-panel={l.key} role="tabpanel" hidden={l.key !== 'auto'}>
+          <p class="lvl-kicker">{l.name}{l.key === 'review' ? ' (default)' : ''}</p>
+          <p class="lvl-copy">{l.copy}</p>
+          {l.topics && <div class="flex flex-wrap items-center gap-2 mt-4"><span class="lvl-lead">Routine questions like</span>{l.topics.map((t) => <span class="lvl-chip">{t}</span>)}</div>}
+        </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  document.querySelectorAll('.lvl-tab').forEach((b) => b.addEventListener('click', () => {
+    const k = b.getAttribute('data-level');
+    document.querySelectorAll('.lvl-tab').forEach((x) => x.setAttribute('aria-selected', String(x === b)));
+    document.querySelectorAll('.lvl-panel').forEach((p) => { (p as HTMLElement).hidden = p.getAttribute('data-panel') !== k; });
+  }));
+</script>
+<style>
+  .lvl-tab { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(13,14,17,.15); background: #FFFFFF; font-size: 14px; font-weight: 600; color: #5B6069; cursor: pointer; }
+  .lvl-tab[aria-selected="true"] { background: #2451D9; border-color: #2451D9; color: #FFFFFF; }
+  .lvl-panel { margin-top: 14px; max-width: 42rem; background: #FFFFFF; border: 1px solid rgba(13,14,17,.10); border-radius: 16px; padding: 20px 22px; }
+  .lvl-kicker { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: #2451D9; margin-bottom: 8px; }
+  .lvl-copy { font-size: 18px; line-height: 1.5; color: #16181D; }
+  .lvl-lead { font-size: 13px; color: #5B6069; margin-right: 2px; }
+  .lvl-chip { font-size: 13px; color: #5B6069; border: 1px solid rgba(13,14,17,.12); border-radius: 999px; padding: 4px 12px; }
+</style>
