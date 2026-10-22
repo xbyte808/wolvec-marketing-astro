@@ -9,16 +9,8 @@ const cards = [
     body: 'The catalog comes with animated demos and step-by-step instructions, so you are not filming or writing them up yourself. Add your own exercises, with your own video link, when something is missing.',
   },
   {
-    title: 'Clients swap exercises mid-workout',
-    body: 'No cable machine today? They tap Swap inside the workout for that session only and keep training. No message to you required, and you are notified.',
-  },
-  {
     title: 'Weekly check-ins and workout ratings',
     body: 'Clients send a weekly check-in, so you see how their week went without chasing anyone. They can also rate how hard each workout felt.',
-  },
-  {
-    title: 'Set logging that works with no signal',
-    body: 'Clients can log sets during a workout without a connection, with supported workout data syncing when connectivity returns.',
   },
   {
     title: 'Progress and lift history',
@@ -45,7 +37,7 @@ const cards = [
 const byTitle = Object.fromEntries(cards.map((c) => [c.title, c]));
 const groups = [
   { n: '01', name: 'Build the training', items: ['Programs drafted by your AI, approved by you', 'Nearly 1,400 exercises, demos included', 'Supersets, circuits, AMRAP and timed work', 'Reusable program templates'] },
-  { n: '02', name: 'Run the week', items: ['Clients swap exercises mid-workout', 'Set logging that works with no signal', 'Weekly check-ins and workout ratings', 'Nutrition and macro logging'] },
+  { n: '02', name: 'Run the week', items: ['Weekly check-ins and workout ratings', 'Nutrition and macro logging'] },
   { n: '03', name: 'Stay on top of it', items: ['Know who needs you', 'Progress and lift history'] },
 ].map((g) => ({ ...g, items: g.items.map((t) => { if (!byTitle[t]) throw new Error('Platform group lists a card title that does not exist: ' + t); return byTitle[t]; }) }));
 ---
