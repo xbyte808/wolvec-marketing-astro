@@ -1,23 +1,22 @@
 ---
 const scenarios = [
   {
-    label: 'The leg press is down',
-    body: 'They tap Swap inside the workout and keep training with a substitute. It applies to today’s session only. Their program stays as you wrote it.',
+    label: 'A question between sessions?',
+    body: 'Depending on the chat level you choose, your AI can answer routine questions based on how you coach, draft a reply for you to review, or stay off.',
   },
   {
-    label: 'Behind on the week',
-    body: 'If they are behind on the week, they get a reminder on Thursday morning, unless you turn reminders off.',
+    label: 'Cable machine broken?',
+    body: 'They tap Swap, pick from alternatives suggested for that exercise, including any substitutes you’ve set, and keep training without waiting on you. It applies to today’s session only, and you’re notified.',
   },
   {
-    label: 'Hotel gym all week',
+    label: 'Traveling this week?',
     quote: '“Hotel gym this week. Can I swap the back squat for something with dumbbells?”',
-    body: 'Asking in chat sends you a swap to approve, one exercise at a time. Approve it and it holds for the rest of the week. Next week goes back to the program you wrote.',
+    body: 'A change for the whole week goes through you. Asking in chat sends you an adjustment to their week to approve, one exercise at a time. Approve it and it holds for the rest of the week, then their program goes back to the one you wrote.',
   },
-];
-
-const chips = [
-  'Nothing in their program changes without you',
-  'Offline workout logging',
+  {
+    label: 'Basement gym, no signal?',
+    body: 'Clients can log sets during a workout without a connection, with supported workout data syncing when connectivity returns.',
+  },
 ];
 // Optional photo: renders only when src/assets/photos/client-training.(jpg|jpeg|png|webp) exists.
 // Source and licence for every photo are recorded in src/assets/photos/LICENSES.md.
@@ -33,11 +32,8 @@ const clientPhoto = Object.values(
     <div>
     <p class="eyebrow eyebrow-on-ink mb-5" data-reveal>The client experience</p>
     <h2 class="section-heading text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
-      Your clients can get routine answers between sessions.
+      Your clients keep training when you&rsquo;re not around.
     </h2>
-    <p class="section-lede text-text-soft text-lg max-w-2xl text-balance" data-reveal style="--reveal-delay:140ms">
-      Depending on the chat level you choose, your AI can answer routine questions based on how you coach, draft a reply for you to review, or stay off.
-    </p>
     </div>
     {clientPhoto && (
       <figure class="photo-slot" data-reveal>
@@ -46,7 +42,7 @@ const clientPhoto = Object.values(
     )}
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-9">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
       {scenarios.map((s, i) => (
         <div class="hover-card border border-hairline-dark rounded-2xl p-6 bg-surface-1" data-reveal style={`--reveal-delay:${i * 70}ms`}>
           <h3 class="font-display text-text text-lg mb-2">{s.label}</h3>
@@ -56,17 +52,6 @@ const clientPhoto = Object.values(
       ))}
     </div>
 
-    <p class="section-lede text-text-soft text-base max-w-2xl mb-7 text-balance" data-reveal>
-      None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set.
-    </p>
-
-    <div class="flex flex-wrap gap-6 text-sm text-text-soft" data-reveal>
-      {chips.map((c) => (
-        <span class="inline-flex items-center gap-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-azure"></span> {c}
-        </span>
-      ))}
-    </div>
   </div>
 </section>
 
