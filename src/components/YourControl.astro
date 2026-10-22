@@ -1,7 +1,7 @@
 ---
 const levels = [
-  { key: 'auto', name: 'Fully autonomous', copy: 'Your AI answers routine questions in your method. You can read every conversation, reply directly at any time, or pause your AI for that client.', topics: ['Today’s session', 'How to do an exercise', 'Effort and load', 'Scheduling', 'Motivation'] },
-  { key: 'review', name: 'Drafted for review', copy: 'Your AI drafts routine replies in your method. You review them before they send.' },
+  { key: 'auto', name: 'Fully autonomous', copy: 'Your AI answers routine questions based on how you coach. You can read every conversation, reply directly at any time, or pause your AI for that client.', topics: ['Today’s session', 'How to do an exercise', 'Effort and load', 'Scheduling', 'Motivation'] },
+  { key: 'review', name: 'Drafted for review', copy: 'Your AI drafts routine replies based on how you coach. You review them before they send.' },
   { key: 'off', name: 'All off', copy: 'Client messages come to you. Your AI does not draft or send replies.' },
 ];
 ---
@@ -41,7 +41,7 @@ const levels = [
   }));
 </script>
 <style>
-  .lvl-tab { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(13,14,17,.15); background: #FFFFFF; font-size: 14px; font-weight: 600; color: #5B6069; cursor: pointer; }
+  .lvl-tab { min-height: 44px; padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(13,14,17,.15); background: #FFFFFF; font-size: 14px; font-weight: 600; color: #5B6069; cursor: pointer; }
   .lvl-tab[aria-selected="true"] { background: #2451D9; border-color: #2451D9; color: #FFFFFF; }
   .lvl-panel { margin-top: 14px; max-width: 42rem; background: #FFFFFF; border: 1px solid rgba(13,14,17,.10); border-radius: 16px; padding: 20px 22px; }
   .lvl-kicker { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: #2451D9; margin-bottom: 8px; }

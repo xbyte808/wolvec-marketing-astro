@@ -13,14 +13,26 @@ const points = [
     body: 'You may have no book, podcast or course for an AI to learn from. Wolvec starts with one conversation instead.',
   },
 ];
+
+// Optional photo: renders only when src/assets/photos/problem-coach.(jpg|jpeg|png|webp) exists.
+// Source and licence for every photo are recorded in src/assets/photos/LICENSES.md.
+import { Image } from 'astro:assets';
+const problemPhoto = Object.values(
+  import.meta.glob('../assets/photos/problem-coach.{jpg,jpeg,png,webp}', { eager: true, import: 'default' }),
+)[0] as ImageMetadata | undefined;
 ---
 
 <section id="squeeze" class="py-21 px-6 bg-paper-1 text-on-paper">
   <div class="max-w-5xl mx-auto">
-    <p class="eyebrow mb-5" data-reveal>Growing pains</p>
-    <h2 class="section-heading text-on-paper mb-11 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
-      What nobody tells you about growing
+    <h2 class="section-heading text-on-paper mb-11 max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal>
+      Why coaches hit a ceiling
     </h2>
+
+    {problemPhoto && (
+      <figure class="photo-band" data-reveal>
+        <Image src={problemPhoto} alt="" width={1600} format="webp" quality={75} class="photo-band-img" />
+      </figure>
+    )}
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
       {points.map((p, i) => (
@@ -32,3 +44,8 @@ const points = [
     </div>
   </div>
 </section>
+
+<style>
+  .photo-band { margin: 0 0 24px; height: clamp(180px, 22vw, 280px); border-radius: 18px; overflow: hidden; }
+  .photo-band-img { width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, 50% 60%); }
+</style>

@@ -29,10 +29,18 @@ marketer's paraphrase.
 4. **All email senders are `wolvec.ai` only** — `ermstack.dev` is never a
    sender; it is not a verified Resend domain and sends from it silently
    fail (Standing Decision, 2026-06-09, *durable*).
-5. **Positioning guardrail**: the AI is "more access to your coach," never
-   automation or a bot replacing them — clients detect and resent
-   bot-flavored messaging. No specific interview duration in marketing copy
-   (Standing Decision, 2026-07-17, *durable*).
+5. **Positioning**: this coach-facing site may use automate / automation /
+   automatic language (founder ruling 2026-10-21, Standing Decision
+   superseding the 2026-07-17 "never automation" rule). Copy that clients
+   read inside the app still frames the AI as more access to their coach.
+   Automation claims must be true as written (review is the default, every
+   program week needs coach approval) or go to counsel. No specific
+   interview duration in marketing copy.
+6. **Never claim the AI reproduces the coach** (counsel, 2026-10-21): no
+   "much like you would", "like you", "sounds like you" or similar for replies or
+   program drafts. Say what it is configured from: "based on how you coach".
+   The Safety section's limitation ("may not identify every concern") is
+   never removed or weakened without counsel.
 
 Pull exact current wording from Notion "Standing Decisions" before relying on
 the summaries above — they compress, they do not replace, the record.

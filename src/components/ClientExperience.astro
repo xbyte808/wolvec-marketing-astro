@@ -19,17 +19,32 @@ const chips = [
   'Nothing in their program changes without you',
   'Offline workout logging',
 ];
+// Optional photo: renders only when src/assets/photos/client-training.(jpg|jpeg|png|webp) exists.
+// Source and licence for every photo are recorded in src/assets/photos/LICENSES.md.
+import { Image } from 'astro:assets';
+const clientPhoto = Object.values(
+  import.meta.glob('../assets/photos/client-training.{jpg,jpeg,png,webp}', { eager: true, import: 'default' }),
+)[0] as ImageMetadata | undefined;
 ---
 
 <section id="client-experience" class="py-21 px-6 bg-ink">
   <div class="max-w-5xl mx-auto">
+    <div class:list={['grid grid-cols-1 gap-8 items-center mb-11', clientPhoto && 'md:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]']}>
+    <div>
     <p class="eyebrow eyebrow-on-ink mb-5" data-reveal>The client experience</p>
     <h2 class="section-heading text-text max-w-2xl text-[clamp(1.875rem,3vw+1rem,2.75rem)]" data-reveal style="--reveal-delay:70ms">
       Your clients can get routine answers between sessions.
     </h2>
-    <p class="section-lede text-text-soft text-lg max-w-2xl mb-11 text-balance" data-reveal style="--reveal-delay:140ms">
-      Client messages can be handled by an AI configured from your coaching methodology and communication style, within the context Wolvec makes available to it.
+    <p class="section-lede text-text-soft text-lg max-w-2xl text-balance" data-reveal style="--reveal-delay:140ms">
+      Depending on the chat level you choose, your AI can answer routine questions based on how you coach, draft a reply for you to review, or stay off.
     </p>
+    </div>
+    {clientPhoto && (
+      <figure class="photo-slot" data-reveal>
+        <Image src={clientPhoto} alt="" width={900} format="webp" quality={75} class="photo-img" />
+      </figure>
+    )}
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-9">
       {scenarios.map((s, i) => (
@@ -42,7 +57,7 @@ const chips = [
     </div>
 
     <p class="section-lede text-text-soft text-base max-w-2xl mb-7 text-balance" data-reveal>
-      None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set. Certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, or other physical distress can trigger Wolvec&rsquo;s limited safety controls and be flagged for you. These controls may not identify every concern.
+      None of it goes around you. Every reply stays inside the autonomy you&rsquo;ve set.
     </p>
 
     <div class="flex flex-wrap gap-6 text-sm text-text-soft" data-reveal>
@@ -54,3 +69,8 @@ const chips = [
     </div>
   </div>
 </section>
+
+<style>
+  .photo-slot { position: relative; margin: 0; border-radius: 18px; overflow: hidden; aspect-ratio: 4 / 3; }
+  .photo-img { width: 100%; height: 100%; object-fit: cover; object-position: var(--photo-pos, 50% 40%); }
+</style>

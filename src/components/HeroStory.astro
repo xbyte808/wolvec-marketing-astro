@@ -4,13 +4,13 @@ const handled = [
   { t: '9:00 am', who: 'Chris', what: 'got a reminder. He is behind on the week.' },
   { t: '6:12 pm', who: 'Maya', what: 'logged her Floor Session.' },
   { t: '6:40 pm', who: 'Jordan', what: 'swapped the leg press for today. You were notified.' },
-  { t: '8:55 pm', who: 'Riley', what: 'asked what today’s session is. Your AI answered in your method.', tag: 'Fully autonomous' },
+  { t: '8:55 pm', who: 'Riley', what: 'asked what today’s session is. Your AI answered, based on how you coach.', tag: 'Fully autonomous' },
   { t: '9:10 pm', who: 'Sam', what: 'has week 4 drafted and ready for you.' },
 ];
 const needs = [
-  { who: 'Jordan', what: 'asked to swap squats for a hotel gym all week.', tag: 'Swap to approve' },
-  { who: 'Alex', what: 'has a reply draft waiting.', tag: 'Draft to review' },
-  { who: 'Sam', what: 'week 4 is ready.', tag: 'Week to approve' },
+  { who: 'Jordan', what: 'asked to swap squats for a hotel gym all week.', tag: 'Decide' },
+  { who: 'Alex', what: 'has a reply draft waiting.', tag: 'Open' },
+  { who: 'Sam’s', what: 'week 4 is ready for your review.', tag: 'Review' },
 ];
 ---
 <figure class="story" aria-label="Illustration: a coach's evening with example clients">
@@ -40,12 +40,13 @@ const needs = [
   .st-item::before { content: ''; position: absolute; left: -18px; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: #3B6BFF; }
   .st-time { font-size: 12px; color: #6F7580; padding-top: 1px; }
   .st-text b { color: #ECEEF1; font-weight: 600; }
-  .st-mode { display: inline-block; margin-left: 6px; font-style: normal; font-size: 11px; color: #CFD2D7; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 1px 8px; }
+  .st-mode { display: inline-block; margin-left: 6px; font-style: normal; font-size: 12px; color: #CFD2D7; border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 1px 8px; }
   .st-split { display: flex; align-items: center; gap: 10px; margin: 20px 0 12px; font-family: var(--font-display); font-weight: 600; font-size: 20px; color: #ECEEF1; }
   .st-split::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,.12); }
   .st-needs { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
   .st-need { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: center; background: #1E2128; border: 1px solid rgba(59,107,255,.35); border-radius: 12px; padding: 11px 12px; font-size: 14px; color: #CFD2D7; }
   .st-tag { font-size: 12px; color: #ECEEF1; background: rgba(59,107,255,.18); border: 1px solid rgba(59,107,255,.5); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
   .st-cap { margin-top: 10px; font-size: 12px; color: #A0A5AE; text-align: center; }
+  @media (max-width: 640px) { .st-item:nth-child(5) { display: none; } }
   @media (max-width: 420px) { .st-need { grid-template-columns: 1fr; } .st-tag { justify-self: start; } .st-item { grid-template-columns: 1fr; gap: 2px; } }
 </style>
