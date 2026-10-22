@@ -1,20 +1,21 @@
 # Wolvec
 
-> Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week.
+> Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. Each coach's AI is set up from one guided conversation about how they coach, with no existing content library required, then works from it to draft programs and answer routine client questions. It also includes workout logging and weekly check-ins.
 
 Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It provides fitness and wellness coaching support only, and does not diagnose, treat, or give medical advice.
 
 ## How it works
 
 - One guided conversation builds the coach's AI. No existing content library is required.
-- Coaches choose how client chat is handled: All off, Drafted for review (the default), or Fully autonomous, and can change it at any time. Some clients always stay on review even when the coach picks Fully autonomous. Program changes always need the coach's approval.
+- Coaches choose how client chat is handled: All off, Drafted for review (the default), or Fully autonomous, and can change it at any time. Safety controls and location based restrictions can require Coach review even when the coach chooses Fully autonomous. Program changes always need the coach's approval.
 - Wolvec uses limited automated safety controls for certain reports of pain, injury, illness, dizziness, chest or breathing symptoms, and other physical distress. Depending on the circumstances, those controls may pause AI-assisted coaching, display a safety notice, or flag the issue for the Client's assigned Coach in Wolvec. These controls may not identify every health or safety concern and are not medical or emergency monitoring.
+- Wolvec is available only to coaches and clients age 18 or older.
 - New clients complete a PAR-Q+ pre-participation health screening, which the coach reviews before the AI begins full interaction.
 
 ## Programming and tracking
 
 - Exercise library: nearly 1,400 exercises with animated demonstrations. Coaches can add their own exercises and their own video links.
-- Program building: the AI generates programs grounded in the coach's actual methodology. Coaches can edit any program (swap exercises, adjust sets and reps, restructure), or build their own workouts from the exercise library and reuse them as templates.
+- Program building: the AI drafts programs based on how the coach coaches, and the coach approves each week before the client sees it. Coaches can edit any program (swap exercises, adjust sets and reps, restructure), or build their own workouts from the exercise library and reuse them as templates.
 - Workout formats: coaches can add superset, circuit, AMRAP, EMOM and timed blocks to a program.
 - Reusable program templates.
 - Progress tracking: clients log every set, and coaches see each logged session.
