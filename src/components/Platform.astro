@@ -5,8 +5,8 @@ const cards = [
     body: "Your AI drafts each program week based on how you coach and the client's intake. Edit exercises, sets, reps or structure, then approve the week before the client sees it. Or build your own workouts from the exercise library and reuse them as templates.",
   },
   {
-    title: 'Nearly 1,400 exercises in the catalog',
-    body: 'The catalog includes animated demos and step-by-step instructions, so you do not have to create all of that material yourself. Add your own exercises, with your own video link, when something is missing.',
+    title: 'Nearly 1,400 exercises, demos included',
+    body: 'The catalog comes with animated demos and step-by-step instructions, so you are not filming or writing them up yourself. Add your own exercises, with your own video link, when something is missing.',
   },
   {
     title: 'Clients swap exercises mid-workout',
@@ -44,7 +44,7 @@ const cards = [
 
 const byTitle = Object.fromEntries(cards.map((c) => [c.title, c]));
 const groups = [
-  { n: '01', name: 'Build the training', items: ['Programs drafted by your AI, approved by you', 'Nearly 1,400 exercises in the catalog', 'Supersets, circuits, AMRAP and timed work', 'Reusable program templates'] },
+  { n: '01', name: 'Build the training', items: ['Programs drafted by your AI, approved by you', 'Nearly 1,400 exercises, demos included', 'Supersets, circuits, AMRAP and timed work', 'Reusable program templates'] },
   { n: '02', name: 'Run the week', items: ['Clients swap exercises mid-workout', 'Set logging that works with no signal', 'Weekly check-ins and workout ratings', 'Nutrition and macro logging'] },
   { n: '03', name: 'Stay on top of it', items: ['Know who needs you', 'Progress and lift history'] },
 ].map((g) => ({ ...g, items: g.items.map((t) => { if (!byTitle[t]) throw new Error('Platform group lists a card title that does not exist: ' + t); return byTitle[t]; }) }));
