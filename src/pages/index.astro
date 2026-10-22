@@ -11,6 +11,7 @@ import Platform from '../components/Platform.astro';
 import ClientExperience from '../components/ClientExperience.astro';
 import EarlyAccessCTA from '../components/EarlyAccessCTA';
 import FAQ from '../components/FAQ.astro';
+import { faqs } from '../data/faqs';
 
 // One canonical identifier for the company. Every Organization node that can
 // be reached from this file either IS this node or is a reference to it, so
@@ -24,7 +25,7 @@ const ORG_ID = 'https://wolvec.ai/#organization';
 
 <Layout
   title="Wolvec | AI platform for fitness coaches"
-  description="Wolvec is the AI platform for fitness coaches. Your AI learns how you coach in one conversation, no content library required. You set how much it handles."
+  description="Wolvec is the AI platform for fitness coaches. Your AI is built from one conversation about how you coach, no content library required. You set how much it handles."
 >
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify({
@@ -34,14 +35,14 @@ const ORG_ID = 'https://wolvec.ai/#organization';
       "name": "Wolvec",
       "url": "https://wolvec.ai",
       "logo": "https://wolvec.ai/wolvec-logo-mark.png",
-      "description": "Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week.",
+      "description": "Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. Each coach's AI is set up from one guided conversation about how they coach, with no existing content library required, then works from it to draft programs and answer routine client questions. It also includes workout logging and weekly check-ins.",
       "email": "ellard@wolvec.ai"
     })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Service",
       "name": "Wolvec",
-      "description": "An AI platform for fitness coaches. One guided conversation teaches the AI how the coach coaches, with no existing content library required. Includes AI-drafted programs, workout logging, weekly check-ins, client chat with AI replies the coach controls, and reminders for clients who fall behind on their week.",
+      "description": "An AI platform for fitness coaches. The coach's AI is set up from one guided conversation about how they coach, with no existing content library required. Includes AI-drafted programs, workout logging, weekly check-ins, and client chat with AI replies at the level the coach sets.",
       "provider": {
         "@type": "Organization",
         "@id": ORG_ID,
@@ -59,7 +60,7 @@ const ORG_ID = 'https://wolvec.ai/#organization';
       "url": "https://wolvec.ai",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "description": "Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week.",
+      "description": "Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. Each coach's AI is set up from one guided conversation about how they coach, with no existing content library required, then works from it to draft programs and answer routine client questions. It also includes workout logging and weekly check-ins.",
       "publisher": {
         "@type": "Organization",
         "@id": ORG_ID,
@@ -69,21 +70,13 @@ const ORG_ID = 'https://wolvec.ai/#organization';
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "FAQPage",
-      // Exactly the questions src/components/FAQ.astro renders. Three further
-      // entries were declared here while the page showed one; they are deleted
-      // rather than published, because their answers were never approved for
-      // display. Anything added back here has to ship as visible copy first.
-      "mainEntity": [
-        {
-          "@type": "Question",
-          // COUNSEL-APPROVED VERBATIM 2026-10-19. Do not edit without counsel review. See Standing Decision "MARKETING FAQ WORDING".
-          "name": "What stays mine, and what am I responsible for?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "You retain any ownership rights you have in content you create and provide through Wolvec. Your clients are your clients, and you retain full responsibility for the coaching relationship. You determine whether medical clearance is required and remain responsible for the professional judgment to proceed within your scope of practice. Wolvec provides the platform."
-          }
-        }
-      ]
+      // Built from src/data/faqs.ts, the same array src/components/FAQ.astro
+      // renders, so the structured data always matches the visible FAQ.
+      "mainEntity": faqs.map((f) => ({
+        "@type": "Question",
+        "name": f.question,
+        "acceptedAnswer": { "@type": "Answer", "text": f.answer },
+      }))
     })} />
   </Fragment>
 
@@ -155,7 +148,7 @@ const ORG_ID = 'https://wolvec.ai/#organization';
     <section id="about" class="pt-4 pb-14 px-6 bg-ink">
       <div class="max-w-2xl mx-auto text-center" data-reveal>
         <p class="section-lede text-text-soft text-[13px] leading-relaxed">
-          Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. It learns how a coach coaches through one guided conversation, with no existing content library required, then uses that methodology to draft programs and answer routine client questions. It also includes workout logging, weekly check-ins and reminders for clients who fall behind on their week. The coach sets how much client chat the AI may handle, and Wolvec uses limited safety controls for certain physical health concerns.
+          Wolvec is an AI platform for fitness coaches, the whole coaching setup rather than an add-on to it. Each coach's AI is set up from one guided conversation about how they coach, with no existing content library required, then works from it to draft programs and answer routine client questions. It also includes workout logging and weekly check-ins. The coach sets how much client chat the AI may handle, and Wolvec uses limited safety controls for certain physical health concerns.
         </p>
       </div>
     </section>

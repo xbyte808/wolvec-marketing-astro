@@ -1,17 +1,7 @@
 ---
-// The FAQPage JSON-LD in src/pages/index.astro declares exactly the questions
-// rendered here. Founder ruling: the three extra schema entries were deleted
-// rather than published. Adding a question here means adding it there too.
-// COUNSEL-APPROVED VERBATIM 2026-10-19. Do not edit without counsel review. See Standing Decision "MARKETING FAQ WORDING".
-const faqs = [
-  {
-    id: 'what-stays-mine',
-    question: 'What stays mine, and what am I responsible for?',
-    answer:
-      'You retain any ownership rights you have in content you create and provide through Wolvec. Your clients are your clients, and you retain full responsibility for the coaching relationship. You determine whether medical clearance is required and remain responsible for the professional judgment to proceed within your scope of practice. Wolvec provides the platform.',
-    defaultOpen: true,
-  },
-];
+// The questions and answers live in src/data/faqs.ts, which also feeds the
+// FAQPage JSON-LD in src/pages/index.astro. Edit them there, with counsel review.
+import { faqs } from '../data/faqs';
 ---
 
 <section id="faq" class="py-16 px-6 bg-ink">
