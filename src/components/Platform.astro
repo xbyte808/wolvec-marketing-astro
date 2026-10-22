@@ -2,11 +2,11 @@
 const cards = [
   {
     title: 'Programs drafted by your AI, approved by you',
-    body: "Your AI drafts each program week from your coaching method and the client's intake. Edit exercises, sets, reps or structure, then approve the week before the client sees it. Or build your own workouts from the exercise library and reuse them as templates.",
+    body: "Your AI drafts each program week based on how you coach and the client's intake. Edit exercises, sets, reps or structure, then approve the week before the client sees it. Or build your own workouts from the exercise library and reuse them as templates.",
   },
   {
-    title: 'Nearly 1,400 exercises with animated demos',
-    body: 'Nearly 1,400 exercises with animated demonstrations. Programs use Wolvec’s exercise catalog, and coaches can add movements that are not already in the library.',
+    title: 'Nearly 1,400 exercises, demos included',
+    body: 'The catalog comes with animated demos and step-by-step instructions, so you are not filming or writing them up yourself. Add your own exercises, with your own video link, when something is missing.',
   },
   {
     title: 'Clients swap exercises mid-workout',
@@ -34,7 +34,7 @@ const cards = [
   },
   {
     title: 'Know who needs you',
-    body: 'Your home screen brings unread client messages, reply drafts and program weeks waiting for approval into one attention list. The roster shows each client’s status at a glance.',
+    body: 'Your home screen puts what needs you in one place: requests waiting on your decision, new messages, reply drafts, and intakes and program weeks to review. Your client list shows where everyone stands.',
   },
   {
     title: 'Nutrition and macro logging',
@@ -42,11 +42,12 @@ const cards = [
   },
 ];
 
-const slug = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
+const byTitle = Object.fromEntries(cards.map((c) => [c.title, c]));
+const groups = [
+  { n: '01', name: 'Build the training', items: ['Programs drafted by your AI, approved by you', 'Nearly 1,400 exercises, demos included', 'Supersets, circuits, AMRAP and timed work', 'Reusable program templates'] },
+  { n: '02', name: 'Run the week', items: ['Clients swap exercises mid-workout', 'Set logging that works with no signal', 'Weekly check-ins and workout ratings', 'Nutrition and macro logging'] },
+  { n: '03', name: 'Stay on top of it', items: ['Know who needs you', 'Progress and lift history'] },
+].map((g) => ({ ...g, items: g.items.map((t) => { if (!byTitle[t]) throw new Error('Platform group lists a card title that does not exist: ' + t); return byTitle[t]; }) }));
 ---
 
 <section id="platform" class="py-21 px-6 bg-paper-1 text-on-paper">
@@ -57,59 +58,31 @@ const slug = (value: string) =>
       data-reveal
       style="--reveal-delay:70ms"
     >
-      This isn&rsquo;t just a chat window.
+      One place to run your coaching.
     </h2>
     <p
       class="section-lede text-on-paper-soft text-lg max-w-2xl mb-11 text-balance"
       data-reveal
       style="--reveal-delay:140ms"
     >
-      Everything your clients need lives in one place: programs, logging, progress, check-ins,
-      and the conversation itself, all built and ready before your first client shows up.
+      Programs, workout logging, progress, check-ins, nutrition and client chat,
+      with your AI built in, all ready before your first client shows up.
     </p>
 
-    <!--
-      Expandable feature list. Every body below is rendered into the HTML on
-      the server; collapsing is CSS driven and only applies when JavaScript is
-      available, so a no-JS reader gets the full list expanded.
-    -->
     <div class="border-t border-hairline-light">
-      {cards.map((c, i) => (
-        <div
-          class="border-b border-hairline-light"
-          data-reveal
-          style={`--reveal-delay:${Math.min(i, 5) * 55}ms`}
-        >
-          <h3>
-            <button
-              type="button"
-              class="disclosure-trigger hover-row w-full flex items-center justify-between gap-5 text-left py-5 md:py-6 cursor-pointer hover:bg-paper-2 focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-azure-deep"
-              id={`platform-trigger-${slug(c.title)}`}
-              aria-controls={`platform-panel-${slug(c.title)}`}
-              aria-expanded="false"
-              data-disclosure-trigger
-            >
-              <span class="font-display text-on-paper text-[clamp(1.25rem,1.4vw+0.9rem,1.875rem)] leading-[1.05]">
-                {c.title}
-              </span>
-              <span
-                class="disclosure-icon shrink-0 text-azure-deep text-2xl leading-none select-none"
-                aria-hidden="true"
-              >
-                +
-              </span>
-            </button>
-          </h3>
-
-          <div
-            id={`platform-panel-${slug(c.title)}`}
-            role="region"
-            aria-labelledby={`platform-trigger-${slug(c.title)}`}
-            data-disclosure-panel
-          >
-            <p class="text-on-paper-soft text-[15.5px] leading-relaxed max-w-2xl pb-6 pr-10">
-              {c.body}
-            </p>
+      {groups.map((g, gi) => (
+        <div class="grid grid-cols-1 md:grid-cols-[minmax(0,0.8fr)_minmax(0,2fr)] gap-x-10 gap-y-5 py-9 border-b border-hairline-light" data-reveal style={`--reveal-delay:${gi * 70}ms`}>
+          <div>
+            <p class="font-display text-azure-deep text-4xl leading-none mb-3">{g.n}</p>
+            <h3 class="font-display text-on-paper text-[clamp(1.5rem,1.2vw+1rem,2rem)] leading-[1.05]">{g.name}</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+            {g.items.map((c) => (
+              <div>
+                <h4 class="font-display text-on-paper text-xl leading-tight mb-1.5">{c.title}</h4>
+                <p class="text-on-paper-soft text-[15px] leading-relaxed">{c.body}</p>
+              </div>
+            ))}
           </div>
         </div>
       ))}
