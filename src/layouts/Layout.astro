@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   canonical?: string;
+  noindex?: boolean;
 }
 
 const {
   title = 'Wolvec',
   description = 'Wolvec. AI coaching for online fitness coaches. Your AI handles the routine. You handle what matters.',
   canonical = Astro.url.href,
+  noindex = false,
 } = Astro.props;
 
 const canonicalUrl = canonical;
@@ -28,6 +30,7 @@ const canonicalUrl = canonical;
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

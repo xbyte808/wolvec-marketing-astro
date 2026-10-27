@@ -10,6 +10,7 @@ const steps = [
     title: 'Talk it through once',
     body: 'A guided conversation at setup about how you program, progress people and talk to clients. Your AI works from what you explain there. No content library required.',
     photo: interview,
+    alt: "Wolvec setup conversation: a question about planning a four-day training week and the coach's answer.",
     caption: 'From Leah’s setup conversation: her rule that every working set stops two reps short of failure.',
   },
   {
@@ -24,6 +25,7 @@ const steps = [
     title: 'A program built for each client',
     body: 'Your AI drafts it based on how you coach and what each client tells you: their goals, experience, the equipment they have and the days they can train. You approve each week before they see it.',
     photo: draft,
+    alt: "A Week 1 program draft in Wolvec, waiting for the coach's approval.",
     caption: 'Her rule, built into Maya’s heavy squat day, waiting for Leah’s approval.',
   },
   {
@@ -31,6 +33,7 @@ const steps = [
     title: 'Your coaching goes with them',
     body: 'Your notes go with the program and into each workout, so clients train with your cues in front of them. Routine questions get an answer based on how you coach, sent automatically or drafted for you to approve.',
     photo: workout,
+    alt: "A client's workout screen in Wolvec showing the coach's note for the week and the Day 1 session.",
     caption: 'Before her first squat day, Maya reads the rule in Leah’s words.',
   },
 ];
@@ -48,7 +51,7 @@ const steps = [
     {steps.map((step, i) => (
       <div class="flex flex-col" data-reveal style={`--reveal-delay:${i * 90}ms`}>
         <div class="step-frame">
-          {step.photo && <Image src={step.photo} alt="" width={900} format="webp" quality={80} loading="eager" class="step-img" />}
+          {step.photo && <Image src={step.photo} alt={step.alt} width={900} format="webp" quality={80} loading="eager" class="step-img" />}
           {step.card && (
             <div class="join-card">
               <p class="jc-row"><span class="jc-dot"></span>Maya accepted your invite</p>

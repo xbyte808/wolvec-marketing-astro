@@ -10,7 +10,7 @@ export default defineConfig({
   site: 'https://wolvec.ai',
   output: 'static',
   adapter: vercel(),
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({ filter: (page) => !page.endsWith('/blog/') && !page.endsWith('/changelog/') })],
   vite: {
     plugins: [tailwindcss()],
   },
