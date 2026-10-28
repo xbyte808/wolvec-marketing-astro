@@ -1,0 +1,198 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const ORG_ID = 'https://wolvec.ai/#organization';
+const URL = 'https://wolvec.ai/guides/how-to-become-an-online-fitness-coach';
+const TITLE = 'How to Become an Online Fitness Coach: 7 Steps | Wolvec';
+const DESCRIPTION =
+  'How to become an online fitness coach, step by step: certification, scope, your niche and offer, business basics, your coaching system and first clients.';
+const H1 = 'How to become an online fitness coach';
+const PUBLISHED = '2026-10-28';
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: H1,
+  description: DESCRIPTION,
+  datePublished: PUBLISHED,
+  dateModified: PUBLISHED,
+  url: URL,
+  mainEntityOfPage: URL,
+  author: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+  publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+};
+---
+
+<Layout title={TITLE} description={DESCRIPTION} canonical={URL}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  </Fragment>
+
+  <main class="pt-32 pb-24 px-6 min-h-screen">
+    <article class="max-w-2xl mx-auto">
+      <h1 class="text-4xl font-bold text-white mb-6">How to become an online fitness coach</h1>
+      <p class="text-neutral-400 text-lg mb-6 leading-relaxed">
+        Online coaching means your clients train wherever they are. You write their program, they log their workouts, and you stay in touch through check-ins and chat between sessions. Many coaches start in person and move some clients online. Others start online from day one.
+      </p>
+      <p class="text-neutral-400 text-lg mb-12 leading-relaxed">
+        This guide covers what to sort out, in the order it matters: your credential, what you can and cannot advise on, who you coach, what you sell, the business basics, the system you run it on, and your first clients.
+      </p>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">1. Get a recognized certification</h2>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          The US Bureau of Labor Statistics notes that personal trainers usually must be certified before they work with clients, and that employers usually prefer certified trainers. Online, there is no gym checking your credentials, so your certification is how you show clients you are qualified.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          When choosing a general personal-trainer credential, look for a certification accredited by the National Commission for Certifying Agencies (NCCA) or compliant with ISO 17024. The US Registry of Exercise Professionals (USREPS) lists NCCA accredited personal trainer certifications from its member organizations, including ACE, ACSM, NCCPT, NCSF and NSCA.
+        </p>
+        <p class="text-neutral-400 leading-relaxed">
+          The BLS also notes that most trainers need CPR, first aid and AED certification. Keep yours current, even if every client is remote.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">2. Know your scope before your first client</h2>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          Online clients can live anywhere, which makes scope more important, not less.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          <b class="text-white">Nutrition.</b> Personal trainers can generally provide general nutrition education related to training and healthy eating within their qualifications. Medical nutrition therapy or individualized treatment of a medical condition is outside an ordinary personal trainer’s scope unless the trainer is separately qualified and legally authorized to provide it. State laws vary, so check the rules where you provide services and where the client is located when you provide them.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          <b class="text-white">Pain, injury and illness.</b> Personal trainers do not diagnose or treat injuries or medical conditions unless they hold separate qualifications that legally authorize them to do so. Stop an exercise if it causes pain. If pain or another symptom is severe, worsening, unexplained, outside your scope, or you are unsure whether exercise should continue, refer the client to an appropriate medical professional before continuing the affected activity.
+        </p>
+        <p class="text-neutral-400 leading-relaxed">
+          <b class="text-white">Health screening.</b> Have every new client complete a health screening before you program for them. One widely used tool is the PAR-Q+, a readiness questionnaire. If a client answers yes to its follow-up questions, the tool may direct them to further screening, a qualified exercise professional or their health care provider. Follow the tool’s next-step guidance and obtain any clearance it calls for before exercise.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">3. Decide who you coach</h2>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          A niche makes everything after this easier: programs, marketing and referrals. Describe it as who, what goal and what setting. For example: parents training at home with dumbbells, or lifters preparing for their first powerlifting meet.
+        </p>
+        <p class="text-neutral-400 leading-relaxed">
+          The easiest place to start is the clients you already have: people who travel, moved away, or want more structure between sessions.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">4. Decide what you sell</h2>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          First decide how you deliver coaching. Then decide how you bill for it.
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-neutral-400 leading-relaxed mb-4">
+          <li><b class="text-white">1:1 coaching:</b> an individual program, regular check-ins and messaging with you.</li>
+          <li><b class="text-white">Hybrid:</b> in-person sessions plus online programming between them.</li>
+          <li><b class="text-white">Group or small group:</b> one program for several clients, with shared check-ins or calls.</li>
+          <li><b class="text-white">Self-paced programs:</b> a fixed block a client follows on their own, with little or no contact.</li>
+        </ul>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          Billing is a separate choice: monthly, per program block, or a package paid up front.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          Then price the package by what it includes, not by your hours:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-neutral-400 leading-relaxed mb-4">
+          <li><b class="text-white">Scope:</b> what is in the package, and what is not.</li>
+          <li><b class="text-white">Contact:</b> how often clients check in, and how quickly you reply.</li>
+          <li><b class="text-white">Updates:</b> how often the program changes.</li>
+          <li><b class="text-white">Capacity:</b> how many clients you can coach well at that level of contact.</li>
+          <li><b class="text-white">Costs:</b> certification, insurance, software and payment fees you need to cover.</li>
+          <li><b class="text-white">Market:</b> what coaches serving the same niche publicly charge.</li>
+        </ul>
+        <p class="text-neutral-400 leading-relaxed">
+          Write the package down, so clients know what they get and you know where it ends.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">5. Set up the business basics</h2>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          <b class="text-white">Business structure.</b> The US Small Business Administration explains that a sole proprietorship does not separate your business liabilities from your personal ones, while an LLC protects you from personal liability in most instances, with limits. An accountant or attorney can tell you what fits.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          <b class="text-white">Insurance.</b> Carry professional liability insurance appropriate to the services you provide and confirm that remote or online coaching is covered. Coverage and exclusions vary, so check the policy terms and confirm whether any nutrition services or other added services require separate coverage.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          <b class="text-white">Client agreement.</b> Use a written agreement that covers the services provided, payment and cancellation terms, and the scope and limits of the coaching relationship. Have an attorney review it.
+        </p>
+        <p class="text-neutral-400 leading-relaxed">
+          <b class="text-white">Payments.</b> Keep business money in its own business bank account, separate from your personal account. It makes bookkeeping and taxes simpler.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">6. Build your coaching system</h2>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          Your clients need one place to see their program, log workouts, check in and message you. You need intake, programs, check-ins and client chat without juggling a stack of separate tools.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          Whatever you use, check that it covers:
+        </p>
+        <ul class="list-disc pl-6 space-y-2 text-neutral-400 leading-relaxed mb-4">
+          <li>A client app for the program, workout logging and check-ins</li>
+          <li>Messaging, with you in control of what gets sent</li>
+          <li>Intake and a health screening before programming starts</li>
+          <li>Taking payments</li>
+          <li>Getting the programs you already run into it, if you have them</li>
+        </ul>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          Common advice is to film an exercise video library and write program templates before you take anyone on. That is a lot of setup before your first online client.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-4">
+          One option built around that problem:
+        </p>
+        <p class="text-neutral-400 leading-relaxed">
+          Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it. Your AI is built from one conversation about how you coach, so you can start without a content library. Your AI drafts each program week based on how you coach and the client's intake, and you approve the week before the client sees it. Depending on the chat level you choose, your AI can answer routine questions based on how you coach, draft a reply for you to review, or stay off. The catalog comes with animated demos and step-by-step instructions, so you are not filming or writing them up yourself.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">7. Get your first clients</h2>
+        <ol class="list-decimal pl-6 space-y-3 text-neutral-400 leading-relaxed">
+          <li><b class="text-white">Start with people who already know you.</b> Current and past clients, and anyone who has asked you for training advice. Tell them what online coaching includes and who it suits.</li>
+          <li><b class="text-white">Put up one clear page.</b> Say who you coach, what they get and how to start.</li>
+          <li><b class="text-white">Give people one way to start:</b> an application form, a booking link or a sign-up page. With Wolvec, invite them, have them apply, or let them buy one of your plans on your page.</li>
+          <li><b class="text-white">Publish useful material where your niche already spends time.</b> Answer real questions, explain how you coach, and show the kind of program you write, under your own name.</li>
+          <li><b class="text-white">Ask for referrals</b> once a client is settled in and happy with the coaching.</li>
+          <li><b class="text-white">Track where every enquiry came from,</b> and do more of what works.</li>
+        </ol>
+      </section>
+
+      <section class="mb-12">
+        <h2 class="text-2xl font-bold text-white mb-4">Frequently asked questions</h2>
+        <p class="text-neutral-400 leading-relaxed mb-6">
+          <b class="text-white">Do you need a certification to be an online fitness coach?</b><br />Certification is not a government license. The BLS describes certification as a credential issued by a non-governmental body, while a license is issued by a government agency and conveys legal authority to work in an occupation. The BLS notes that personal trainers usually must be certified before they begin working with clients. When choosing a general personal-trainer credential, look for an NCCA-accredited or ISO 17024-compliant certification.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-6">
+          <b class="text-white">Do I need in-person training experience before coaching online?</b><br />It helps. Coaching people in person teaches you to correct technique, read effort and adjust a session as it happens, which is harder to learn over video. If you have little experience, start with a small number of clients you can also see in person or on video calls, and grow from there.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-6">
+          <b class="text-white">Can an online fitness coach give nutrition advice?</b><br />Personal trainers can generally provide general nutrition education related to training and healthy eating within their qualifications. Medical nutrition therapy or individualized treatment of a medical condition is outside an ordinary personal trainer’s scope unless the trainer is separately qualified and legally authorized to provide it. State laws vary, so check the rules where you provide services and where the client is located when you provide them.
+        </p>
+        <p class="text-neutral-400 leading-relaxed mb-6">
+          <b class="text-white">Can I keep training clients in person?</b><br />Yes. Many coaches run hybrid coaching: in-person sessions plus online programming and check-ins between them.
+        </p>
+        <p class="text-neutral-400 leading-relaxed">
+          <b class="text-white">Do I need videos, a course or a program library first?</b><br />Not with Wolvec. Your AI is set up from one guided conversation about how you program, progress people and talk to clients. If you have documents or programs, you can add them, but you can start without a content library.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-2xl font-bold text-white mb-4">Sources</h2>
+        <ul class="list-disc pl-6 space-y-2 text-neutral-400 leading-relaxed break-words">
+          <li><a href="https://www.bls.gov/ooh/personal-care-and-service/fitness-trainers-and-instructors.htm" rel="noopener" class="text-brand-accent hover:underline">US Bureau of Labor Statistics: Fitness Trainers and Instructors</a></li>
+          <li><a href="https://www.bls.gov/cps/certifications-and-licenses-faqs.htm" rel="noopener" class="text-brand-accent hover:underline">US Bureau of Labor Statistics: Certifications and licenses</a></li>
+          <li><a href="https://usreps.org/resources/credentials/" rel="noopener" class="text-brand-accent hover:underline">USREPS: Credentials</a></li>
+          <li><a href="https://www.nsca.com/certification/nsca-cpt/essentials-of-personal-training--3rd-edition/excerpts/personal-trainers-and-nutrition-advice/" rel="noopener" class="text-brand-accent hover:underline">NSCA: Personal trainers and nutrition advice</a></li>
+          <li><a href="https://www.acefitness.org/resources/pros/expert-articles/6405/how-to-train-a-client-with-chronic-injuries/" rel="noopener" class="text-brand-accent hover:underline">ACE: How to train a client with chronic injuries</a></li>
+          <li><a href="https://www.healthlinkbc.ca/living-well/physical-activity/general-information-and-tools/tools-and-resources/par-q-and-eparmed-x" rel="noopener" class="text-brand-accent hover:underline">HealthLink BC: PAR-Q+ and ePARmed-X+</a></li>
+          <li><a href="https://www.sba.gov/business-guide/launch-your-business/choose-business-structure" rel="noopener" class="text-brand-accent hover:underline">US Small Business Administration: Choose a business structure</a></li>
+          <li><a href="https://www.sba.gov/blog/5-ways-separate-your-personal-business-finances" rel="noopener" class="text-brand-accent hover:underline">US Small Business Administration: 5 ways to separate your personal and business finances</a></li>
+        </ul>
+      </section>
+    </article>
+  </main>
+</Layout>
