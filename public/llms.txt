@@ -25,6 +25,9 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 
 - [Homepage](https://wolvec.ai/): product overview, how it works, FAQ.
 - [Roadmap](https://wolvec.ai/roadmap): Wolvec does not commit to ship dates.
+- [How to become an online fitness coach](https://wolvec.ai/guides/how-to-become-an-online-fitness-coach): How to become an online fitness coach, step by step: certification, scope, your niche and offer, business basics, your coaching system and first clients.
+- [How to get clients as a personal trainer](https://wolvec.ai/guides/how-to-get-clients-as-a-personal-trainer): How personal trainers get clients, in person or online: a clear offer, your network, referrals, local partners, Google Business Profile and follow-up.
+- [RPE calculator and RPE chart](https://wolvec.ai/tools/rpe-calculator): RPE calculator and RPE chart for lifting. Enter a recent set to estimate a target weight, and see what each RPE scale rating means in reps in reserve.
 - [Privacy Policy](https://wolvec.ai/privacy): data collection, use, and consumer health data disclosures.
 - [Consumer Health Data Privacy Policy](https://wolvec.ai/consumer-health-data): consumer health data categories, sources, purposes, sharing, and consumer rights.
 - [Blog](https://wolvec.ai/blog): no posts published yet as of this writing.
