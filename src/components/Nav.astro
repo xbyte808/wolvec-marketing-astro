@@ -19,6 +19,9 @@ import Logo from '../assets/wolvec-logo.svg';
       <a href="/#your-control" class="hover-link text-text-soft hover:text-text text-sm font-medium">
         Your control
       </a>
+      <a href="/resources" class="hover-link text-text-soft hover:text-text text-sm font-medium">
+        Resources
+      </a>
       <!--
         Account controls, grouped away from the section links. Sign in routes
         to the app; there is deliberately no separate sign-up control, because
@@ -41,8 +44,14 @@ import Logo from '../assets/wolvec-logo.svg';
       </div>
     </div>
 
-    <!-- Mobile: logo mark + account controls only -->
+    <!-- Mobile: logo mark, Resources (375 px and wider, so the bar never wraps) and account controls -->
     <div class="flex md:hidden items-center gap-4">
+      <a
+        href="/resources"
+        class="hidden min-[375px]:inline hover-link text-text-soft hover:text-text text-sm font-medium"
+      >
+        Resources
+      </a>
       <a
         href="https://app.wolvec.ai"
         class="hover-link text-text-soft hover:text-text text-sm font-medium"

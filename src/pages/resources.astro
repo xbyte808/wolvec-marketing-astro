@@ -1,0 +1,80 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { GUIDES, TOOLS } from '../data/resources';
+
+// Copy reviewed by ChatGPT (READ ONLY relay, 2026-10-29): approved with the meta description
+// reworded so the RPE chart is not called a calculator, and "Free" added to the H1.
+const URL = 'https://wolvec.ai/resources';
+const TITLE = 'Guides and Free Tools | Wolvec';
+const DESCRIPTION =
+  'Free guides for personal trainers and online fitness coaches, and free lifting tools, including an RPE calculator and an RPE chart.';
+const H1 = 'Free guides and tools';
+const INTRO = 'Free guides for personal trainers and online fitness coaches, and free calculators for anyone who lifts.';
+const SECTIONS = [
+  { id: 'guides', heading: 'Guides', items: GUIDES },
+  { id: 'tools', heading: 'Free tools', items: TOOLS },
+];
+---
+
+<Layout title={TITLE} description={DESCRIPTION} canonical={URL}>
+  <main class="res">
+    <header class="res-hero">
+      <div class="res-wash" aria-hidden="true"></div>
+      <div class="res-hero-inner">
+        <p class="eyebrow eyebrow-on-ink mb-5"><a href="/" class="hover:underline">Wolvec</a> <span aria-hidden="true">/</span> Resources</p>
+        <h1 class="res-title">{H1}</h1>
+        <p class="res-lede">{INTRO}</p>
+      </div>
+    </header>
+
+    <div class="res-body">
+      <div class="res-inner">
+        {SECTIONS.map((s) => (
+          <section class="res-section" id={s.id}>
+            <h2>{s.heading}</h2>
+            <ul class="res-grid">
+              {s.items.map((r) => (
+                <li>
+                  <a class="res-card" href={r.href}>
+                    <span class="res-card-title">{r.title}</span>
+                    <span class="res-card-desc">{r.description}</span>
+                    <svg class="res-card-arrow" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11M11 5l5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .res { background: var(--color-ink); }
+  .res-hero { position: relative; overflow: hidden; padding: 148px 24px 64px; border-bottom: 1px solid var(--color-hairline-dark); }
+  .res-wash {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 70% at 85% 0%, rgba(59,107,255,0.22), rgba(13,14,17,0) 70%),
+      radial-gradient(40% 50% at 10% 100%, rgba(59,107,255,0.10), rgba(13,14,17,0) 70%);
+  }
+  .res-hero-inner { position: relative; max-width: 72rem; margin: 0 auto; }
+  .res-hero .eyebrow a { color: inherit; }
+  .res-title { font-family: var(--font-display); font-weight: 600; color: var(--color-text); line-height: 0.98; letter-spacing: -0.005em; font-size: clamp(2.6rem, 4.2vw + 1rem, 4.6rem); }
+  .res-lede { margin-top: 22px; max-width: 44rem; color: #CFD2D7; font-size: clamp(1.05rem, 0.4vw + 1rem, 1.25rem); line-height: 1.65; }
+
+  .res-body { background: var(--color-paper-1); color: var(--color-on-paper); padding: 0 24px; }
+  .res-inner { max-width: 72rem; margin: 0 auto; padding: 56px 0 96px; }
+  .res-section { scroll-margin-top: 96px; }
+  .res-section + .res-section { margin-top: 56px; }
+  .res-section h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.75rem, 1.2vw + 1.2rem, 2.25rem); line-height: 1.05; margin: 0 0 20px; color: var(--color-on-paper); }
+  .res-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
+  @media (min-width: 768px) { .res-grid { grid-template-columns: 1fr 1fr; } }
+  .res-card { position: relative; display: flex; flex-direction: column; gap: 10px; height: 100%; padding: 24px 56px 24px 24px; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 14px; color: #2A2D33; transition: border-color 0.15s ease, box-shadow 0.15s ease; }
+  .res-card:hover { border-color: var(--color-azure-deep); box-shadow: 0 6px 24px rgba(13,14,17,0.06); }
+  .res-card:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .res-card-title { font-family: var(--font-display); font-weight: 600; font-size: 23px; line-height: 1.15; color: var(--color-on-paper); }
+  .res-card-desc { font-size: 16px; line-height: 1.6; }
+  .res-card-arrow { position: absolute; right: 22px; top: 26px; width: 20px; height: 20px; color: var(--color-azure-deep); }
+</style>
