@@ -1,0 +1,216 @@
+---
+/*
+  RPE calculator (W811). Method and copy approved by counsel 2026-10-28
+  (Standing Decision "RPE CALCULATOR AND RPE EXPLANATION ON WOLVEC.AI").
+
+  LOCAL ONLY, a counsel condition: no <form>, no name attributes, no network
+  calls, no storage, no URL parameters, no logging. Everything a visitor types
+  stays in this page's memory and is gone on reload.
+
+  Method: reps in reserve = 10 - RPE (whole-number RPE 7 to 10 only).
+  Estimated reps to failure = reps + reps in reserve, allowed only below 10,
+  for the entered set AND the target set. Brzycki (1993):
+  1RM = weight / (1.0278 - 0.0278 * reps to failure); the target is the same
+  equation solved for weight from the unrounded 1RM. Rounded for display only.
+*/
+---
+
+<div class="rpe-calc" data-rpe-calc>
+  <div class="rpe-fields">
+    <div class="rpe-field rpe-weight">
+      <label for="rpe-weight">Weight lifted</label>
+      <div class="rpe-weight-row">
+        <input id="rpe-weight" type="number" inputmode="decimal" min="0" step="any" autocomplete="off" />
+        <div class="rpe-seg" role="radiogroup" aria-label="Unit">
+          <span class="rpe-seg-label" aria-hidden="true">Unit</span>
+          <button type="button" role="radio" aria-checked="true" data-unit="lb">lb</button>
+          <button type="button" role="radio" aria-checked="false" data-unit="kg">kg</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="rpe-field">
+      <label for="rpe-reps">Reps done (1 to 9)</label>
+      <select id="rpe-reps" autocomplete="off">
+        <option value=""></option>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => <option value={n}>{n}</option>)}
+      </select>
+    </div>
+    <div class="rpe-field">
+      <label for="rpe-rpe">RPE of that set (7, 8, 9 or 10)</label>
+      <select id="rpe-rpe" autocomplete="off">
+        <option value=""></option>
+        {[7, 8, 9, 10].map((n) => <option value={n}>{n}</option>)}
+      </select>
+    </div>
+
+    <div class="rpe-field">
+      <label for="rpe-treps">Target reps (1 to 9)</label>
+      <select id="rpe-treps" autocomplete="off">
+        <option value=""></option>
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => <option value={n}>{n}</option>)}
+      </select>
+    </div>
+    <div class="rpe-field">
+      <label for="rpe-trpe">Target RPE (7, 8, 9 or 10)</label>
+      <select id="rpe-trpe" autocomplete="off">
+        <option value=""></option>
+        {[7, 8, 9, 10].map((n) => <option value={n}>{n}</option>)}
+      </select>
+    </div>
+
+    <div class="rpe-field rpe-round">
+      <span class="rpe-label" id="rpe-round-label">Round to</span>
+      <div class="rpe-seg" role="radiogroup" aria-labelledby="rpe-round-label">
+        <button type="button" role="radio" aria-checked="true" data-inc="big">5 lb</button>
+        <button type="button" role="radio" aria-checked="false" data-inc="small">1 lb</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="rpe-out" aria-live="polite">
+    <p class="rpe-msg" data-msg hidden></p>
+    <div class="rpe-results" data-results hidden>
+      <p class="rpe-result"><span>Estimated one-rep max</span><strong data-out-1rm></strong></p>
+      <p class="rpe-result" data-target-row hidden><span>Estimated weight for your target</span><strong data-out-target></strong></p>
+      <p class="rpe-note">These numbers are estimates based on the set you entered. Use them as a starting point, not a prescribed load, and adjust to how the set actually feels. Stop an exercise if it causes pain.</p>
+    </div>
+  </div>
+</div>
+<p class="rpe-use">Designed for people who already use RPE in resistance training and are entering an exercise they already perform.</p>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-rpe-calc]');
+  if (root) {
+    const CAP = { lb: 2000, kg: 1000 } as const;
+    const INC = { lb: { big: 5, small: 1 }, kg: { big: 2.5, small: 0.5 } } as const;
+    const MSG = {
+      low: 'Enter a weight above 0.',
+      capLb: 'Enter a weight of 2000 lb or less.',
+      capKg: 'Enter a weight of 1000 kg or less.',
+      set: "This set is outside the formula's range. Reps done plus reps left (10 minus RPE) must be 9 or fewer.",
+      target: "This target is outside the formula's range. Target reps plus reps left (10 minus target RPE) must be 9 or fewer.",
+    };
+
+    let unit: 'lb' | 'kg' = 'lb';
+    let inc: 'big' | 'small' = 'big';
+
+    const weight = root.querySelector<HTMLInputElement>('#rpe-weight')!;
+    const reps = root.querySelector<HTMLSelectElement>('#rpe-reps')!;
+    const rpe = root.querySelector<HTMLSelectElement>('#rpe-rpe')!;
+    const treps = root.querySelector<HTMLSelectElement>('#rpe-treps')!;
+    const trpe = root.querySelector<HTMLSelectElement>('#rpe-trpe')!;
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const results = root.querySelector<HTMLElement>('[data-results]')!;
+    const out1 = root.querySelector<HTMLElement>('[data-out-1rm]')!;
+    const outT = root.querySelector<HTMLElement>('[data-out-target]')!;
+    const targetRow = root.querySelector<HTMLElement>('[data-target-row]')!;
+    const unitBtns = root.querySelectorAll<HTMLButtonElement>('[data-unit]');
+    const incBtns = root.querySelectorAll<HTMLButtonElement>('[data-inc]');
+
+    const factor = (rtf: number) => 1.0278 - 0.0278 * rtf;
+    const fmt = (x: number) => {
+      const step = INC[unit][inc];
+      const r = Math.round(x / step) * step;
+      const s = Number.isInteger(r) ? String(r) : r.toFixed(1);
+      return `${s} ${unit}`;
+    };
+    const hideAll = () => {
+      msg.hidden = true;
+      msg.textContent = '';
+      results.hidden = true;
+      targetRow.hidden = true;
+      out1.textContent = '';
+      outT.textContent = '';
+    };
+    const showMsg = (text: string) => {
+      hideAll();
+      msg.textContent = text;
+      msg.hidden = false;
+    };
+
+    const update = () => {
+      const raw = weight.value.trim();
+      const r = reps.value === '' ? NaN : Number(reps.value);
+      const p = rpe.value === '' ? NaN : Number(rpe.value);
+      if (raw === '' || Number.isNaN(r) || Number.isNaN(p)) {
+        // The weight field alone can already be judged.
+        if (raw !== '') {
+          const w0 = Number(raw);
+          if (!(w0 > 0)) return showMsg(MSG.low);
+          if (w0 > CAP[unit]) return showMsg(unit === 'lb' ? MSG.capLb : MSG.capKg);
+        }
+        return hideAll();
+      }
+      const w = Number(raw);
+      if (!(w > 0)) return showMsg(MSG.low);
+      if (w > CAP[unit]) return showMsg(unit === 'lb' ? MSG.capLb : MSG.capKg);
+      const rtf = r + (10 - p);
+      if (rtf > 9) return showMsg(MSG.set);
+
+      const tr = treps.value === '' ? NaN : Number(treps.value);
+      const tp = trpe.value === '' ? NaN : Number(trpe.value);
+      const haveTarget = !Number.isNaN(tr) && !Number.isNaN(tp);
+      if (haveTarget && tr + (10 - tp) > 9) return showMsg(MSG.target);
+
+      const oneRm = w / factor(rtf);
+      hideAll();
+      out1.textContent = fmt(oneRm);
+      if (haveTarget) {
+        outT.textContent = fmt(oneRm * factor(tr + (10 - tp)));
+        targetRow.hidden = false;
+      }
+      results.hidden = false;
+    };
+
+    const setUnit = (u: 'lb' | 'kg') => {
+      if (u === unit) return;
+      unit = u;
+      unitBtns.forEach((b) => b.setAttribute('aria-checked', String(b.dataset.unit === u)));
+      incBtns.forEach((b) => {
+        const k = b.dataset.inc as 'big' | 'small';
+        b.textContent = `${INC[u][k]} ${u}`;
+      });
+      // Changing units clears the weight and every result; it never converts.
+      weight.value = '';
+      hideAll();
+    };
+    const setInc = (k: 'big' | 'small') => {
+      inc = k;
+      incBtns.forEach((b) => b.setAttribute('aria-checked', String(b.dataset.inc === k)));
+      update();
+    };
+
+    unitBtns.forEach((b) => b.addEventListener('click', () => setUnit(b.dataset.unit as 'lb' | 'kg')));
+    incBtns.forEach((b) => b.addEventListener('click', () => setInc(b.dataset.inc as 'big' | 'small')));
+    weight.addEventListener('input', update);
+    [reps, rpe, treps, trpe].forEach((s) => s.addEventListener('change', update));
+    // No form exists, but stop Enter from doing anything unexpected in the weight field.
+    weight.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }
+</script>
+
+<style>
+  .rpe-calc { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 16px; padding: 22px; margin: 6px 0 12px; }
+  .rpe-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
+  .rpe-weight, .rpe-round { grid-column: 1 / -1; }
+  .rpe-field label, .rpe-label { display: block; font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-bottom: 6px; }
+  .rpe-weight-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .rpe-calc input, .rpe-calc select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #C9CDD3; border-radius: 10px; background: #fff; color: var(--color-on-paper); font: inherit; font-size: 16px; }
+  .rpe-weight-row input { flex: 1 1 160px; width: auto; }
+  .rpe-calc input:focus-visible, .rpe-calc select:focus-visible, .rpe-seg button:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .rpe-seg { display: inline-flex; align-items: center; gap: 6px; }
+  .rpe-seg-label { font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-right: 2px; }
+  .rpe-seg button { min-height: 40px; min-width: 56px; padding: 8px 14px; border-radius: 999px; border: 1px solid #C9CDD3; background: #fff; color: var(--color-on-paper); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .rpe-seg button[aria-checked='true'] { background: var(--color-azure-deep); border-color: var(--color-azure-deep); color: #fff; }
+  .rpe-out { margin-top: 18px; }
+  .rpe-msg { margin: 0; padding: 12px 14px; border-radius: 10px; background: #FFF4E5; color: #6B3D00; font-size: 15.5px; line-height: 1.5; }
+  .rpe-results { border-top: 1px solid var(--color-hairline-light); padding-top: 14px; }
+  .rpe-result { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 8px; font-size: 16px; }
+  .rpe-result strong { font-family: var(--font-display); font-weight: 600; font-size: 30px; color: var(--color-on-paper); white-space: nowrap; }
+  .rpe-note { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: #2A2D33; }
+  .rpe-use { font-size: 15px; color: var(--color-on-paper-soft); margin: 0 0 18px; }
+  @media (max-width: 520px) { .rpe-fields { grid-template-columns: 1fr; } .rpe-result { flex-direction: column; gap: 2px; } }
+</style>
