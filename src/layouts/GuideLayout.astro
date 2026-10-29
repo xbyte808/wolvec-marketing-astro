@@ -1,6 +1,6 @@
 ---
 import Layout from './Layout.astro';
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 
 interface TocItem { id: string; label: string; num?: string }
@@ -19,17 +19,37 @@ interface Props {
   heroAlt?: string;
   /** CSS object-position for the hero photo crop, e.g. '50% 30%'. */
   heroPosition?: string;
+  /** Breadcrumb label after "Wolvec /". */
+  crumb?: string;
 }
 
-const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%' } = Astro.props;
+const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%', crumb = 'Guides' } = Astro.props;
 const fmt = (d: string) =>
   new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 const shownDate = fmt(updated ?? published);
+
+// Structured data: fill the optional Article fields Google's Rich Results Test asks for
+// (image, dates with a time zone, author and publisher url). Page-level values win.
+const ORIGIN = 'https://wolvec.ai';
+const withTz = (d: unknown) => (typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d) ? `${d}T12:00:00-10:00` : d);
+const withUrl = (o: unknown) =>
+  o && typeof o === 'object' && !('url' in (o as Record<string, unknown>)) ? { ...(o as Record<string, unknown>), url: ORIGIN } : o;
+const ldImage = heroImage && !articleLd.image
+  ? new URL((await getImage({ src: heroImage, width: 1200, format: 'jpeg' })).src, ORIGIN).href
+  : undefined;
+const ld = {
+  ...articleLd,
+  datePublished: withTz(articleLd.datePublished),
+  dateModified: withTz(articleLd.dateModified),
+  author: withUrl(articleLd.author),
+  publisher: withUrl(articleLd.publisher),
+  ...(ldImage ? { image: [ldImage] } : {}),
+};
 ---
 
 <Layout title={title} description={description} canonical={url}>
   <Fragment slot="head">
-    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </Fragment>
 
   <main class="guide">
@@ -37,7 +57,7 @@ const shownDate = fmt(updated ?? published);
       <div class="g-wash" aria-hidden="true"></div>
       <div class={`g-hero-inner${heroImage ? ' g-has-img' : ''}`}>
         <div>
-        <p class="eyebrow eyebrow-on-ink mb-5"><a href="/" class="hover:underline">Wolvec</a> <span aria-hidden="true">/</span> Guides</p>
+        <p class="eyebrow eyebrow-on-ink mb-5"><a href="/" class="hover:underline">Wolvec</a> <span aria-hidden="true">/</span> {crumb}</p>
         <h1 class="g-title">{h1}</h1>
         <p class="g-lede">{lede}</p>
         <p class="g-meta">

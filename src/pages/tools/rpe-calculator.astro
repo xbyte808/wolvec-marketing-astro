@@ -1,0 +1,129 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import RpeCalculator from '../../components/RpeCalculator.astro';
+
+// Publish copy: Notion "RPE page FINAL COPY: RPE calculator and RPE chart (W811, counsel approved method 2026-10-28)".
+// Counsel: Standing Decision "RPE CALCULATOR AND RPE EXPLANATION ON WOLVEC.AI (counsel, 2026-10-28)" and its follow-up.
+const ORG_ID = 'https://wolvec.ai/#organization';
+const URL = 'https://wolvec.ai/tools/rpe-calculator';
+const TITLE = 'RPE Calculator, RPE Chart and Scale for Lifting | Wolvec';
+const DESCRIPTION =
+  'RPE calculator and RPE chart for lifting. Enter a recent set to estimate a target weight, and see what each RPE scale rating means in reps in reserve.';
+const H1 = 'RPE calculator and RPE chart';
+const PUBLISHED = '2026-10-28';
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: H1,
+  description: DESCRIPTION,
+  datePublished: PUBLISHED,
+  dateModified: PUBLISHED,
+  url: URL,
+  mainEntityOfPage: URL,
+  author: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+  publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+};
+const LEDE = 'RPE, short for rating of perceived exertion, rates how hard exercise feels. In lifting, a common version rates a set by how many more reps you could have done. Enter a recent set to estimate the weight for a different target, or use the chart to see what each rating means.';
+const TOC = [
+  { id: 'calculator', label: 'RPE calculator', num: '' },
+  { id: 'chart', label: 'RPE chart: the RPE scale for lifting', num: '' },
+  { id: 'what-rpe-means', label: 'What RPE means in strength training', num: '' },
+  { id: 'rate-a-set', label: 'How to rate a set', num: '' },
+  { id: 'coaches', label: 'How coaches use RPE in a program', num: '' },
+  { id: 'cardio', label: 'RPE for lifting is not the cardio RPE scale', num: '' },
+  { id: 'faq', label: 'Questions', num: '' },
+  { id: 'sources', label: 'Sources', num: '' },
+];
+const READ_MIN = 4;
+const CHART = [
+  ['10', 'Maximum effort. No reps left.'],
+  ['9.5', 'No more reps, but you could have added a little weight.'],
+  ['9', '1 rep left.'],
+  ['8.5', '1 or 2 reps left.'],
+  ['8', '2 reps left.'],
+  ['7.5', '2 or 3 reps left.'],
+  ['7', '3 reps left.'],
+  ['5 to 6', '4 to 6 reps left.'],
+  ['3 to 4', 'Light effort.'],
+  ['1 to 2', 'Little to no effort.'],
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={READ_MIN} toc={TOC} articleLd={articleLd} crumb="Tools">
+  <section class="g-step" id="calculator">
+    <h2>RPE calculator</h2>
+    <RpeCalculator />
+    <p><b>How it works.</b> The calculator uses the whole-number ratings of the lifting RPE scale below: RPE 10 means no reps left, RPE 9 one, RPE 8 two and RPE 7 three. Based on the RPE you enter, it adds those reps in reserve to the reps you completed to estimate how many repetitions the set might have reached at failure. It then applies the Brzycki equation: weight lifted / (1.0278 - 0.0278 × reps to failure).</p>
+    <p>Brzycki developed that equation for repetitions performed to fatigue and limited its use to fewer than 10 repetitions. The step of estimating reps to failure from RPE is an additional estimation used by this calculator; it is not part of the Brzycki or Zourdos methods, and the combined calculator was not validated in those publications.</p>
+    <p>For that reason, the calculator only produces a result when both the set you entered and the target set correspond to fewer than 10 estimated repetitions to failure. It then works back from the estimate for your target reps and RPE and rounds to the nearest increment you choose. Every result is an estimate. The calculation runs in your browser.</p>
+  </section>
+
+  <section class="g-step" id="chart">
+    <h2>RPE chart: the RPE scale for lifting</h2>
+    <table class="rpe-table">
+      <thead><tr><th scope="col">RPE</th><th scope="col">What it means</th></tr></thead>
+      <tbody>
+        {CHART.map(([r, m]) => (<tr><th scope="row">{r}</th><td>{m}</td></tr>))}
+      </tbody>
+    </table>
+    <p class="rpe-credit">Adapted from Zourdos and colleagues (2016).</p>
+  </section>
+
+  <section class="g-step" id="what-rpe-means">
+    <h2>What RPE means in strength training</h2>
+    <p>In strength training, RPE is often a 1 to 10 rating tied to reps in reserve, or RIR: how many more reps you could have done with the same weight. RPE 10 means you had nothing left, RPE 9 means one rep left, and RPE 8 means two. This version of the scale was used in powerlifting before Zourdos and colleagues tested it in a 2016 study.</p>
+  </section>
+
+  <section class="g-step" id="rate-a-set">
+    <h2>How to rate a set</h2>
+    <p>Rate the set right after you finish it. Ask how many more reps you could have done with the same weight, then find that number on the chart. For ratings between 7 and 10, the chart includes half steps at 7.5, 8.5 and 9.5. The calculator takes whole numbers only.</p>
+  </section>
+
+  <section class="g-step" id="coaches">
+    <h2>How coaches use RPE in a program</h2>
+    <p>Coaches who program with RPE write a target next to the sets and reps. "4 x 5 at RPE 8" means four sets of five reps, with a weight that leaves about two reps in reserve. Instead of a fixed weight, the client picks the weight that matches the target on the day, so the load can move with how they are performing. Helms and colleagues (2016) describe this as adjusting loads to the athlete set by set.</p>
+  </section>
+
+  <section class="g-step" id="cardio">
+    <h2>RPE for lifting is not the cardio RPE scale</h2>
+    <p>Other RPE scales rate overall effort during exercise such as cardio. The Borg scale runs from 6 to 20, and a modified version, the Borg CR10, runs from 0 to 10 (Cleveland Clinic). The scale on this page is the resistance training version, based on reps in reserve.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>What does RPE stand for?</h3><p>Rating of perceived exertion. On this page, it means the reps in reserve scale in the chart above.</p></div>
+      <div class="g-faq-item"><h3>What is an RPE chart?</h3><p>The chart on this page maps each lifting RPE rating to its meaning in reps in reserve or perceived effort.</p></div>
+      <div class="g-faq-item"><h3>What does RPE 8 mean?</h3><p>You finished the set with about two reps in reserve: you could have done two more reps with the same weight.</p></div>
+      <div class="g-faq-item"><h3>What does RPE 7 mean?</h3><p>You finished the set with about three reps in reserve: you could have done three more reps with the same weight.</p></div>
+      <div class="g-faq-item"><h3>Is RPE the same as RIR?</h3><p>On this lifting scale, RPE is linked to RIR. RPE 10 corresponds to 0 RIR, RPE 9 to 1 RIR, RPE 8 to 2 RIR and RPE 7 to 3 RIR.</p></div>
+      <div class="g-faq-item"><h3>How do you calculate RPE?</h3><p>RPE is a rating, not a measurement. After a set, ask how many more reps you could have done with the same weight and find that number on the chart. The calculator above uses that rating to estimate weights.</p></div>
+      <div class="g-faq-item"><h3>How accurate is an RPE calculator?</h3><p>Treat the result as an estimate. It depends on how accurately the set was rated, on the extra step of estimating reps to failure from RPE, and on the Brzycki equation, which Brzycki limited to fewer than 10 repetitions. Adjust to how the set actually feels.</p></div>
+    </div>
+  </section>
+
+  <section class="g-step" id="for-coaches">
+    <h2>For coaches</h2>
+    <div class="g-product g-product-solo"><p class="g-product-text">Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it. Your AI drafts each program week based on how you coach and the client's intake, and you approve the week before the client sees it.</p></div>
+  </section>
+
+  <section class="g-step" id="sources">
+    <h2>Sources</h2>
+    <ul class="g-sources">
+      <li><a href="https://doi.org/10.1519/JSC.0000000000001049" rel="noopener">Zourdos MC and colleagues. Novel resistance training-specific rating of perceived exertion scale measuring repetitions in reserve. Journal of Strength and Conditioning Research, 2016; 30(1):267 to 275.</a></li>
+      <li><a href="https://doi.org/10.1519/SSC.0000000000000218" rel="noopener">Helms ER, Cronin J, Storey A, Zourdos MC. Application of the repetitions in reserve-based rating of perceived exertion scale for resistance training. Strength and Conditioning Journal, 2016; 38(4):42 to 49.</a></li>
+      <li><a href="https://brzycki.scholar.princeton.edu/publications/strength-testing-%E2%80%93-predicting-one-rep-max-reps-fatigue" rel="noopener">Brzycki M. Strength testing: predicting a one-rep max from reps-to-fatigue. Journal of Physical Education, Recreation and Dance, 1993; 64(1):88 to 90.</a></li>
+      <li><a href="https://my.clevelandclinic.org/health/articles/17450-rated-perceived-exertion-rpe-scale" rel="noopener">Cleveland Clinic: Rated Perceived Exertion (RPE) Scale.</a></li>
+    </ul>
+  </section>
+</GuideLayout>
+
+<style>
+  .rpe-table { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 12px; overflow: hidden; font-size: 16px; margin: 4px 0 10px; }
+  .rpe-table th, .rpe-table td { text-align: left; padding: 11px 16px; border-bottom: 1px solid var(--color-hairline-light); vertical-align: top; }
+  .rpe-table tbody tr:last-child th, .rpe-table tbody tr:last-child td { border-bottom: 0; }
+  .rpe-table thead th { font-family: var(--font-label); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-on-paper-soft); font-weight: 400; background: var(--color-paper-1); }
+  .rpe-table tbody th { font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--color-azure-deep); width: 6.5rem; white-space: nowrap; }
+  .rpe-credit { font-size: 14px; color: var(--color-on-paper-soft); }
+</style>
