@@ -21,9 +21,12 @@ interface Props {
   heroPosition?: string;
   /** Breadcrumb label after "Wolvec /". */
   crumb?: string;
+  /** Image that represents the page, for pages without a hero photo: used as the Article image and the link preview. */
+  shareImage?: ImageMetadata;
+  shareImageAlt?: string;
 }
 
-const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%', crumb = 'Guides' } = Astro.props;
+const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%', crumb = 'Guides', shareImage, shareImageAlt = '' } = Astro.props;
 const fmt = (d: string) =>
   new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 const shownDate = fmt(updated ?? published);
@@ -34,9 +37,16 @@ const ORIGIN = 'https://wolvec.ai';
 const withTz = (d: unknown) => (typeof d === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(d) ? `${d}T12:00:00-10:00` : d);
 const withUrl = (o: unknown) =>
   o && typeof o === 'object' && !('url' in (o as Record<string, unknown>)) ? { ...(o as Record<string, unknown>), url: ORIGIN } : o;
-const ldImage = heroImage && !articleLd.image
-  ? new URL((await getImage({ src: heroImage, width: 1200, format: 'jpeg' })).src, ORIGIN).href
+const share = shareImage
+  ? { url: new URL((await getImage({ src: shareImage, width: shareImage.width, format: 'jpeg', quality: 88 })).src, ORIGIN).href, width: shareImage.width, height: shareImage.height }
   : undefined;
+const ldImage = articleLd.image
+  ? undefined
+  : share
+    ? share.url
+    : heroImage
+      ? new URL((await getImage({ src: heroImage, width: 1200, format: 'jpeg' })).src, ORIGIN).href
+      : undefined;
 const ld = {
   ...articleLd,
   datePublished: withTz(articleLd.datePublished),
@@ -47,7 +57,7 @@ const ld = {
 };
 ---
 
-<Layout title={title} description={description} canonical={url}>
+<Layout title={title} description={description} canonical={url} {...(share ? { ogImage: share.url, ogImageWidth: share.width, ogImageHeight: share.height, ogImageAlt: shareImageAlt } : {})}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   </Fragment>
