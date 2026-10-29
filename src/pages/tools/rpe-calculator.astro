@@ -1,6 +1,7 @@
 ---
 import GuideLayout from '../../layouts/GuideLayout.astro';
 import RpeCalculator from '../../components/RpeCalculator.astro';
+import chartImage from '../../assets/share/rpe-chart.jpg';
 
 // Publish copy: Notion "RPE page FINAL COPY: RPE calculator and RPE chart (W811, counsel approved method 2026-10-28)".
 // Counsel: Standing Decision "RPE CALCULATOR AND RPE EXPLANATION ON WOLVEC.AI (counsel, 2026-10-28)" and its follow-up.
@@ -50,11 +51,11 @@ const CHART = [
 ];
 ---
 
-<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={READ_MIN} toc={TOC} articleLd={articleLd} crumb="Tools">
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={READ_MIN} toc={TOC} articleLd={articleLd} crumb="Tools" shareImage={chartImage} shareImageAlt="RPE chart: the RPE scale for lifting">
   <section class="g-step" id="calculator">
     <h2>RPE calculator</h2>
     <RpeCalculator />
-    <p><b>How it works.</b> The calculator uses the whole-number ratings of the lifting RPE scale below: RPE 10 means no reps left, RPE 9 one, RPE 8 two and RPE 7 three. Based on the RPE you enter, it adds those reps in reserve to the reps you completed to estimate how many repetitions the set might have reached at failure. It then applies the Brzycki equation: weight lifted / (1.0278 - 0.0278 × reps to failure).</p>
+    <p><b>How it works.</b> The calculator uses the whole-number ratings of the lifting RPE scale below: RPE 10 means no reps left, RPE 9 one, RPE 8 two and RPE 7 three. Based on the RPE you enter, it adds those reps in reserve to the reps you completed to estimate how many repetitions the set might have reached at failure. It then applies <a href="https://brzycki.scholar.princeton.edu/publications/strength-testing-%E2%80%93-predicting-one-rep-max-reps-fatigue" rel="noopener">the Brzycki equation</a>: weight lifted / (1.0278 - 0.0278 × reps to failure).</p>
     <p>Brzycki developed that equation for repetitions performed to fatigue and limited its use to fewer than 10 repetitions. The step of estimating reps to failure from RPE is an additional estimation used by this calculator; it is not part of the Brzycki or Zourdos methods, and the combined calculator was not validated in those publications.</p>
     <p>For that reason, the calculator only produces a result when both the set you entered and the target set correspond to fewer than 10 estimated repetitions to failure. It then works back from the estimate for your target reps and RPE and rounds to the nearest increment you choose. Every result is an estimate. The calculation runs in your browser.</p>
   </section>
@@ -67,12 +68,12 @@ const CHART = [
         {CHART.map(([r, m]) => (<tr><th scope="row">{r}</th><td>{m}</td></tr>))}
       </tbody>
     </table>
-    <p class="rpe-credit">Adapted from Zourdos and colleagues (2016).</p>
+    <p class="rpe-credit">Adapted from <a href="https://doi.org/10.1519/JSC.0000000000001049" rel="noopener">Zourdos and colleagues (2016)</a>.</p>
   </section>
 
   <section class="g-step" id="what-rpe-means">
     <h2>What RPE means in strength training</h2>
-    <p>In strength training, RPE is often a 1 to 10 rating tied to reps in reserve, or RIR: how many more reps you could have done with the same weight. RPE 10 means you had nothing left, RPE 9 means one rep left, and RPE 8 means two. This version of the scale was used in powerlifting before Zourdos and colleagues tested it in a 2016 study.</p>
+    <p>In strength training, RPE is often a 1 to 10 rating tied to reps in reserve, or RIR: how many more reps you could have done with the same weight. RPE 10 means you had nothing left, RPE 9 means one rep left, and RPE 8 means two. This version of the scale was <a href="https://doi.org/10.1519/SSC.0000000000000218" rel="noopener">used in powerlifting</a> before Zourdos and colleagues tested it in <a href="https://doi.org/10.1519/JSC.0000000000001049" rel="noopener">a 2016 study</a>.</p>
   </section>
 
   <section class="g-step" id="rate-a-set">
@@ -82,12 +83,12 @@ const CHART = [
 
   <section class="g-step" id="coaches">
     <h2>How coaches use RPE in a program</h2>
-    <p>Coaches who program with RPE write a target next to the sets and reps. "4 x 5 at RPE 8" means four sets of five reps, with a weight that leaves about two reps in reserve. Instead of a fixed weight, the client picks the weight that matches the target on the day, so the load can move with how they are performing. Helms and colleagues (2016) describe this as adjusting loads to the athlete set by set.</p>
+    <p>Coaches who program with RPE write a target next to the sets and reps. "4 x 5 at RPE 8" means four sets of five reps, with a weight that leaves about two reps in reserve. Instead of a fixed weight, the client picks the weight that matches the target on the day, so the load can move with how they are performing. <a href="https://doi.org/10.1519/SSC.0000000000000218" rel="noopener">Helms and colleagues (2016)</a> describe this as adjusting loads to the athlete set by set.</p>
   </section>
 
   <section class="g-step" id="cardio">
     <h2>RPE for lifting is not the cardio RPE scale</h2>
-    <p>Other RPE scales rate overall effort during exercise such as cardio. The Borg scale runs from 6 to 20, and a modified version, the Borg CR10, runs from 0 to 10 (Cleveland Clinic). The scale on this page is the resistance training version, based on reps in reserve.</p>
+    <p>Other RPE scales rate overall effort during exercise such as cardio. The Borg scale runs from 6 to 20, and a modified version, the Borg CR10, runs from 0 to 10 (<a href="https://my.clevelandclinic.org/health/articles/17450-rated-perceived-exertion-rpe-scale" rel="noopener">Cleveland Clinic</a>). The scale on this page is the resistance training version, based on reps in reserve.</p>
   </section>
 
   <section class="g-step" id="faq">

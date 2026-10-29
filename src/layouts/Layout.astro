@@ -8,6 +8,11 @@ interface Props {
   description?: string;
   canonical?: string;
   noindex?: boolean;
+  /** Absolute URL of the link-preview image. Defaults to the site share card. */
+  ogImage?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
+  ogImageAlt?: string;
 }
 
 const {
@@ -15,6 +20,10 @@ const {
   description = 'Wolvec. AI coaching for online fitness coaches. Your AI handles the routine. You handle what matters.',
   canonical = Astro.url.href,
   noindex = false,
+  ogImage = 'https://wolvec.ai/og-default.png?v=3',
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
+  ogImageAlt = 'Wolvec logo mark above the headline Add Clients. Not Hours.',
 } = Astro.props;
 
 const canonicalUrl = canonical;
@@ -51,12 +60,12 @@ const canonicalUrl = canonical;
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:image" content="https://wolvec.ai/og-default.png?v=3" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content={String(ogImageWidth)} />
+    <meta property="og:image:height" content={String(ogImageHeight)} />
     <meta
       property="og:image:alt"
-      content="Wolvec logo mark above the headline Add Clients. Not Hours."
+      content={ogImageAlt}
     />
     <meta property="og:site_name" content="Wolvec" />
 
@@ -64,10 +73,10 @@ const canonicalUrl = canonical;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://wolvec.ai/og-default.png?v=3" />
+    <meta name="twitter:image" content={ogImage} />
     <meta
       name="twitter:image:alt"
-      content="Wolvec logo mark above the headline Add Clients. Not Hours."
+      content={ogImageAlt}
     />
 
     <slot name="head" />

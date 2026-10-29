@@ -129,7 +129,11 @@
       msg.hidden = false;
     };
 
-    const update = () => {
+    // strict is false only while the weight is being typed: some browsers report a half-typed
+    // number such as "12." as unreadable, so the message waits until the field is left.
+    const update = (strict = true) => {
+      // Text the browser cannot read as a number (for example 12..5) arrives as an empty value.
+      if (weight.validity.badInput) return strict ? showMsg(MSG.low) : hideAll();
       const raw = weight.value.trim();
       const r = reps.value === '' ? NaN : Number(reps.value);
       const p = rpe.value === '' ? NaN : Number(rpe.value);
@@ -183,8 +187,10 @@
 
     unitBtns.forEach((b) => b.addEventListener('click', () => setUnit(b.dataset.unit as 'lb' | 'kg')));
     incBtns.forEach((b) => b.addEventListener('click', () => setInc(b.dataset.inc as 'big' | 'small')));
-    weight.addEventListener('input', update);
-    [reps, rpe, treps, trpe].forEach((s) => s.addEventListener('change', update));
+    weight.addEventListener('input', () => update(false));
+    // blur, not change: a browser may not fire change when the unreadable text leaves the value empty.
+    weight.addEventListener('blur', () => update());
+    [reps, rpe, treps, trpe].forEach((s) => s.addEventListener('change', () => update()));
     // No form exists, but stop Enter from doing anything unexpected in the weight field.
     weight.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') e.preventDefault();
