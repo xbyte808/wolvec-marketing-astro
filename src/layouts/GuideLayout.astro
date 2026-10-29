@@ -19,14 +19,15 @@ interface Props {
   heroAlt?: string;
   /** CSS object-position for the hero photo crop, e.g. '50% 30%'. */
   heroPosition?: string;
-  /** Breadcrumb label after "Wolvec /". */
+  /** Breadcrumb label after "Wolvec /", and where it links on /resources. */
   crumb?: string;
+  crumbHref?: string;
   /** Image that represents the page, for pages without a hero photo: used as the Article image and the link preview. */
   shareImage?: ImageMetadata;
   shareImageAlt?: string;
 }
 
-const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%', crumb = 'Guides', shareImage, shareImageAlt = '' } = Astro.props;
+const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%', crumb = 'Guides', crumbHref = '/resources#guides', shareImage, shareImageAlt = '' } = Astro.props;
 const fmt = (d: string) =>
   new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 const shownDate = fmt(updated ?? published);
@@ -55,11 +56,21 @@ const ld = {
   publisher: withUrl(articleLd.publisher),
   ...(ldImage ? { image: [ldImage] } : {}),
 };
+const breadcrumbLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Wolvec', item: `${ORIGIN}/` },
+    { '@type': 'ListItem', position: 2, name: 'Resources', item: `${ORIGIN}/resources` },
+    { '@type': 'ListItem', position: 3, name: h1, item: url },
+  ],
+};
 ---
 
 <Layout title={title} description={description} canonical={url} {...(share ? { ogImage: share.url, ogImageWidth: share.width, ogImageHeight: share.height, ogImageAlt: shareImageAlt } : {})}>
   <Fragment slot="head">
     <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbLd)} />
   </Fragment>
 
   <main class="guide">
@@ -67,7 +78,7 @@ const ld = {
       <div class="g-wash" aria-hidden="true"></div>
       <div class={`g-hero-inner${heroImage ? ' g-has-img' : ''}`}>
         <div>
-        <p class="eyebrow eyebrow-on-ink mb-5"><a href="/" class="hover:underline">Wolvec</a> <span aria-hidden="true">/</span> {crumb}</p>
+        <p class="eyebrow eyebrow-on-ink mb-5"><a href="/" class="hover:underline">Wolvec</a> <span aria-hidden="true">/</span> <a href={crumbHref} class="hover:underline">{crumb}</a></p>
         <h1 class="g-title">{h1}</h1>
         <p class="g-lede">{lede}</p>
         <p class="g-meta">
