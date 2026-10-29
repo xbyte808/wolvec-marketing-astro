@@ -1,0 +1,157 @@
+---
+import Layout from './Layout.astro';
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface TocItem { id: string; label: string; num?: string }
+interface Props {
+  title: string;
+  description: string;
+  url: string;
+  h1: string;
+  lede: string;
+  published: string;
+  updated?: string;
+  readMinutes: number;
+  toc: TocItem[];
+  articleLd: Record<string, unknown>;
+  heroImage?: ImageMetadata;
+  heroAlt?: string;
+  /** CSS object-position for the hero photo crop, e.g. '50% 30%'. */
+  heroPosition?: string;
+}
+
+const { title, description, url, h1, lede, published, updated, readMinutes, toc, articleLd, heroImage, heroAlt = '', heroPosition = '50% 50%' } = Astro.props;
+const fmt = (d: string) =>
+  new Date(d + 'T12:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
+const shownDate = fmt(updated ?? published);
+---
+
+<Layout title={title} description={description} canonical={url}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  </Fragment>
+
+  <main class="guide">
+    <header class="g-hero">
+      <div class="g-wash" aria-hidden="true"></div>
+      <div class={`g-hero-inner${heroImage ? ' g-has-img' : ''}`}>
+        <div>
+        <p class="eyebrow eyebrow-on-ink mb-5"><a href="/" class="hover:underline">Wolvec</a> <span aria-hidden="true">/</span> Guides</p>
+        <h1 class="g-title">{h1}</h1>
+        <p class="g-lede">{lede}</p>
+        <p class="g-meta">
+          <span>By Wolvec</span><span aria-hidden="true">·</span>
+          <span>Updated <time datetime={updated ?? published}>{shownDate}</time></span><span aria-hidden="true">·</span>
+          <span>{readMinutes} min read</span>
+        </p>
+        </div>
+        {heroImage && (
+          <div class="g-hero-img"><Image src={heroImage} alt={heroAlt} width={900} format="webp" quality={78} loading="eager" style={`object-position: ${heroPosition}`} /></div>
+        )}
+      </div>
+    </header>
+
+    <div class="g-body">
+      <div class="g-grid">
+        <nav class="g-toc" aria-label="In this guide">
+          <p class="eyebrow mb-4">In this guide</p>
+          <ol>
+            {toc.map((t) => (
+              <li><a href={`#${t.id}`}>{t.num && <span class="g-toc-num">{t.num}</span>}<span>{t.label}</span></a></li>
+            ))}
+          </ol>
+        </nav>
+        <article class="g-article">
+          <slot />
+        </article>
+      </div>
+    </div>
+
+    <section class="g-cta">
+      <div class="g-cta-inner">
+        <p class="eyebrow eyebrow-on-ink mb-4">Wolvec</p>
+        <h2 class="section-heading text-text text-[clamp(2rem,3vw+1rem,3rem)]">Add Clients. Not Hours.</h2>
+        <div class="g-cta-row">
+          <a href="/#early-access" class="g-btn">Get early access</a>
+          <a href="/#how-it-works" class="g-link">How it works</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style is:global>
+  .guide { background: var(--color-ink); }
+  .g-hero { position: relative; overflow: hidden; padding: 148px 24px 72px; border-bottom: 1px solid var(--color-hairline-dark); }
+  .g-wash {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 70% at 85% 0%, rgba(59,107,255,0.22), rgba(13,14,17,0) 70%),
+      radial-gradient(40% 50% at 10% 100%, rgba(59,107,255,0.10), rgba(13,14,17,0) 70%);
+  }
+  .g-hero-inner { position: relative; max-width: 72rem; margin: 0 auto; display: grid; gap: 40px; align-items: center; }
+  @media (min-width: 1024px) { .g-hero-inner.g-has-img { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr); gap: 56px; } }
+  .g-hero-img { border-radius: 18px; overflow: hidden; border: 1px solid var(--color-hairline-dark); aspect-ratio: 4 / 5; max-height: 460px; }
+  @media (max-width: 1023px) { .g-hero-img { aspect-ratio: 1 / 1; max-height: none; max-width: 480px; } }
+  .g-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .g-hero .eyebrow a { color: inherit; }
+  .g-title { font-family: var(--font-display); font-weight: 600; color: var(--color-text); line-height: 0.98; letter-spacing: -0.005em; font-size: clamp(2.6rem, 4.2vw + 1rem, 4.6rem); max-width: 16ch; }
+  .g-lede { margin-top: 24px; max-width: 46rem; color: #CFD2D7; font-size: clamp(1.05rem, 0.4vw + 1rem, 1.25rem); line-height: 1.65; }
+  .g-meta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px 12px; font-family: var(--font-label); font-size: 12.5px; color: var(--color-text-soft); }
+
+  .g-body { background: var(--color-paper-1); color: var(--color-on-paper); }
+  .g-grid { max-width: 72rem; margin: 0 auto; padding: 64px 24px 88px; display: grid; grid-template-columns: 1fr; gap: 40px; }
+  @media (min-width: 1024px) { .g-grid { grid-template-columns: 220px minmax(0, 700px); gap: 72px; justify-content: center; } }
+
+  .g-toc { display: none; }
+  @media (min-width: 1024px) { .g-toc { display: block; position: sticky; top: 104px; align-self: start; } }
+  .g-toc ol { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; border-left: 1px solid var(--color-hairline-light); }
+  .g-toc a { display: flex; gap: 10px; padding: 7px 0 7px 14px; margin-left: -1px; border-left: 2px solid transparent; font-size: 14px; line-height: 1.35; color: var(--color-on-paper-soft); }
+  .g-toc a:hover { color: var(--color-on-paper); border-left-color: var(--color-azure-deep); }
+  .g-toc-num { font-family: var(--font-display); color: var(--color-azure-deep); min-width: 1.4em; }
+
+  .g-article { font-size: 17.5px; line-height: 1.75; color: #2A2D33; min-width: 0; }
+  .g-article > p, .g-step > p { margin: 0 0 18px; }
+  .g-intro { font-size: 19px; color: var(--color-on-paper); }
+  .g-step { padding-top: 48px; margin-top: 48px; border-top: 1px solid var(--color-hairline-light); scroll-margin-top: 96px; }
+  .g-step:first-of-type { margin-top: 32px; }
+  .g-article > .g-step:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+  .g-num { font-family: var(--font-display); font-weight: 600; color: var(--color-azure-deep); font-size: 44px; line-height: 0.8; margin-bottom: 14px !important; }
+  .g-article h2 { font-family: var(--font-display); font-weight: 600; color: var(--color-on-paper); font-size: clamp(1.75rem, 1.2vw + 1.2rem, 2.25rem); line-height: 1.05; margin: 0 0 18px; }
+  .g-article b, .g-article strong { color: var(--color-on-paper); font-weight: 600; }
+  .g-article a { color: var(--color-azure-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+  .g-note { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-left: 3px solid var(--color-azure-deep); border-radius: 12px; padding: 18px 20px; margin: 0 0 14px; font-size: 16.5px; line-height: 1.7; }
+  .g-dots, .g-check, .g-ol { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 10px; }
+  .g-dots li { position: relative; padding-left: 22px; }
+  .g-dots li::before { content: ''; position: absolute; left: 2px; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--color-azure); }
+  .g-check li { position: relative; padding: 12px 16px 12px 48px; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 10px; }
+  .g-check li::before { content: ''; position: absolute; left: 16px; top: 15px; width: 18px; height: 18px; border-radius: 5px; background: var(--color-azure-deep) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; }
+  .g-ol { counter-reset: g; }
+  .g-ol li { counter-increment: g; position: relative; padding-left: 52px; min-height: 36px; }
+  .g-ol li::before { content: counter(g); position: absolute; left: 0; top: 2px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display); font-weight: 600; font-size: 17px; color: #fff; background: var(--color-on-paper); }
+
+  .g-product { margin: 8px 0 20px; background: var(--color-ink); color: #CFD2D7; border-radius: 16px; overflow: hidden; }
+  .g-product-text { padding: 26px 26px 8px; font-size: 16.5px; line-height: 1.75; }
+  .g-product-solo .g-product-text { padding-bottom: 26px; margin: 0; }
+  .g-product figure { margin: 0; padding: 14px 18px 18px; }
+  .g-product img { width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--color-hairline-dark); background: var(--color-surface-1); }
+  .g-product figcaption { margin-top: 8px; font-size: 12.5px; color: var(--color-text-soft); }
+
+  .g-faq { display: grid; gap: 12px; }
+  .g-faq-item { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 12px; padding: 20px 22px; }
+  .g-faq-item h3 { font-family: var(--font-display); font-weight: 600; font-size: 21px; line-height: 1.2; color: var(--color-on-paper); margin: 0 0 8px; }
+  .g-faq-item p { margin: 0; font-size: 16.5px; line-height: 1.7; }
+
+  .g-sources { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 14.5px; line-height: 1.5; }
+  @media (min-width: 768px) { .g-sources { grid-template-columns: 1fr 1fr; column-gap: 28px; } }
+  .g-sources a { color: var(--color-on-paper-soft); text-decoration-color: rgba(13,14,17,0.25); overflow-wrap: anywhere; }
+
+  .g-cta { position: relative; overflow: hidden; padding: 88px 24px; background: radial-gradient(55% 80% at 15% 100%, rgba(59,107,255,0.22), rgba(13,14,17,0) 70%), var(--color-ink); }
+  .g-cta-inner { max-width: 72rem; margin: 0 auto; }
+  .g-cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 22px; margin-top: 8px; }
+  .g-btn { display: inline-flex; align-items: center; padding: 14px 24px; border-radius: 999px; background: var(--color-azure-deep); color: #fff; font-weight: 600; font-size: 15px; }
+  .g-btn:hover { background: var(--color-azure); }
+  .g-link { color: var(--color-text); font-weight: 500; font-size: 15px; text-decoration: underline; text-underline-offset: 4px; }
+</style>

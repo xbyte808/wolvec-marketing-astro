@@ -1,0 +1,158 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import heroPhoto from '../../assets/photos/guide-get-clients.jpg';
+
+const ORG_ID = 'https://wolvec.ai/#organization';
+const URL = 'https://wolvec.ai/guides/how-to-get-clients-as-a-personal-trainer';
+const TITLE = 'How to Get Clients as a Personal Trainer | Wolvec';
+const DESCRIPTION =
+  'How personal trainers get clients, in person or online: a clear offer, your network, referrals, local partners, Google Business Profile and follow-up.';
+const H1 = 'How to get clients as a personal trainer';
+const PUBLISHED = '2026-10-28';
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: H1,
+  description: DESCRIPTION,
+  datePublished: PUBLISHED,
+  dateModified: PUBLISHED,
+  url: URL,
+  mainEntityOfPage: URL,
+  author: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+  publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+};
+const LEDE = 'This guide focuses on three things you can do steadily: a clear offer, a simple way to start, and a habit of reaching out. It covers what to set up first, where to look for your first clients, and how to look after the ones you get. It applies whether you train people in person, online or both.';
+const TOC = [
+  { id: 'before', label: 'Before you look for clients', num: '' },
+  { id: 'step-1', label: 'Start with people who already know you', num: '01' },
+  { id: 'step-2', label: 'If you work in a gym, be known on the floor', num: '02' },
+  { id: 'step-3', label: 'Ask for referrals at the right moment', num: '03' },
+  { id: 'step-4', label: 'Build relationships with local groups and businesses', num: '04' },
+  { id: 'step-5', label: 'Make yourself findable locally', num: '05' },
+  { id: 'step-6', label: 'Show how you coach where your clients spend time', num: '06' },
+  { id: 'step-7', label: 'Collect the emails of interested people', num: '07' },
+  { id: 'step-8', label: 'Follow up', num: '08' },
+  { id: 'step-9', label: 'Look after the clients you have', num: '09' },
+  { id: 'step-10', label: 'Track where clients come from', num: '10' },
+  { id: 'faq', label: 'Questions', num: '' },
+  { id: 'sources', label: 'Sources', num: '' },
+];
+const READ_MIN = 6;
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={READ_MIN} toc={TOC} articleLd={articleLd} heroImage={heroPhoto} heroAlt="A trainer talks with a client during a cable exercise at the gym." heroPosition="50% 40%">
+  <section class="g-step" id="before">
+    <h2>Before you look for clients</h2>
+        <p class="g-note"><b>Know who you help.</b> "Anyone who wants to get fit" gives people nothing specific to pass on. Describe your clients by who they are, what they want and where they train. If you have not done this yet, start with step 3 of <a href="/guides/how-to-become-an-online-fitness-coach">How to become an online fitness coach</a>.
+        </p>
+        <p class="g-note"><b>Have one clear page.</b> One place that says who you coach, what is included and how to start. Every conversation, post and referral should point people to it.
+        </p>
+        <p class="g-note"><b>Make the first step easy.</b> Offer one way to start, such as a short intro call or an application form. When someone reaches out, reply promptly.
+        </p>
+        <p class="g-note"><b>Have a repeatable first conversation.</b> Ask what they want from coaching and what kind of support they are looking for, explain how your coaching works, and give them one clear next step.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-1">
+    <p class="g-num">01</p>
+    <h2>Start with people who already know you</h2>
+        <p>
+          That means current and past clients, friends, family, coworkers and people you know at your gym. Tell them plainly what you offer and who it is for, then ask who they know.
+        </p>
+        <p>
+          Be specific. "I coach busy parents who want to get strong at home. If you know someone like that, I would be glad to talk to them."
+        </p>
+        </section>
+
+  <section class="g-step" id="step-2">
+    <p class="g-num">02</p>
+    <h2>If you work in a gym, be known on the floor</h2>
+        <p>
+          Members who are already in the building are people you can reach every day. Spend time on the gym floor when you are not with a client, learn names, and be the trainer people feel comfortable asking a question. Get to know the front desk and membership staff, and ask how the gym passes new member inquiries to trainers. Follow your gym's rules on approaching members.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-3">
+    <p class="g-num">03</p>
+    <h2>Ask for referrals at the right moment</h2>
+        <p>
+          Ask when a client is settled in and happy with the coaching, for example after a good check-in. Say who you are looking for, and make it easy to pass on by sending the link to your page. For example: "I have room for a few more clients. If you know someone who wants to get stronger at home, I would be glad to talk to them. Here is the link to my page." Ask again from time to time.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-4">
+    <p class="g-num">04</p>
+    <h2>Build relationships with local groups and businesses</h2>
+        <p>
+          If you train people in person or run hybrid coaching, look for groups and businesses that serve the same people you do: sports clubs, running groups, community centers and local workplaces. Introduce yourself, explain who you coach, and offer to be a useful contact for their members or staff, for example with a short talk or workshop.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-5">
+    <p class="g-num">05</p>
+    <h2>Make yourself findable locally</h2>
+        <p>
+          If you have your own space where clients train with you, or you travel to your clients, you may be eligible for a Google Business Profile. Google requires a business to make in-person contact with customers during its stated hours, and a trainer who travels to clients may be eligible for a service-area Business Profile. Training clients at a gym you do not own or have authority to represent does not make that gym your eligible business location, and online-only businesses are not eligible, so in those cases rely on the other steps here.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-6">
+    <p class="g-num">06</p>
+    <h2>Show how you coach where your clients spend time</h2>
+        <p>
+          Pick one or two places your clients already spend time online, such as Instagram, YouTube, Facebook groups or Reddit, and show up there consistently under your own name. Answer real questions, explain how you approach a problem, and show what a week of your coaching looks like. Point people to your one page.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-7">
+    <p class="g-num">07</p>
+    <h2>Collect the emails of interested people</h2>
+        <p>
+          Not everyone who finds you is ready to start. Offer something useful in exchange for an email address, such as a checklist for your niche or a short guide to how you coach. Then send helpful emails on a regular schedule, and say when you have openings. Email lets you reach interested people directly, without depending on one platform's feed.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-8">
+    <p class="g-num">08</p>
+    <h2>Follow up</h2>
+        <p>
+          Keep a simple list of everyone who asked about coaching and did not start, with the date and how they found you. Check in a few weeks later with something useful, not just a sales message. For example: "Hi Sam, you asked about coaching last month. I wrote a short guide on fitting training into a busy week and thought of you. If now is a better time, here is the link to start." Do the same with past clients when you open new spots.
+        </p>
+        </section>
+
+  <section class="g-step" id="step-9">
+    <p class="g-num">09</p>
+    <h2>Look after the clients you have</h2>
+        <p>
+          Update programs on time, check in regularly, and answer questions between sessions.
+        </p>
+        <div class="g-product g-product-solo"><p class="g-product-text">One option for questions between sessions is Wolvec. Your clients can get support when you're not around. Depending on the chat level you choose, your AI can answer routine questions based on how you coach, draft a reply for you to review, or stay off.</p></div>
+        </section>
+
+  <section class="g-step" id="step-10">
+    <p class="g-num">10</p>
+    <h2>Track where clients come from</h2>
+        <p>
+          For every inquiry and every new client, write down where they came from. After a few months, look at which channels brought people in. Do more of those and drop what did not work. Paid ads can wait until you know which message and offer bring people in. Set a fixed time each week for outreach, posting and follow-up, so it still happens when your schedule fills.
+        </p>
+        </section>
+
+  <section class="g-step" id="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>How do online personal trainers get clients?</h3><p>Online trainers can use many of the same channels as in-person trainers: people they already know, referrals, a clear page, and places where their clients spend time online. The main difference is local search. Google Business Profiles are for businesses that make in-person contact with customers, so online-only coaches lean on content, their email list and referrals.</p></div>
+      <div class="g-faq-item"><h3>Do I need social media to get clients?</h3><p>Not necessarily. Your network, referrals and local partnerships are other ways to find clients. Social media is one place to show how you coach and answer questions from the people you want to reach.</p></div>
+      <div class="g-faq-item"><h3>What should my coaching page say?</h3><p>Who you coach, what is included, how to start, and one clear next step. Keep it short and specific to your niche, then point people to it. With Wolvec, invite them, have them apply, or let them buy one of your plans on your page.</p></div>
+    </div>
+  </section>
+
+  <section class="g-step" id="sources">
+    <h2>Sources</h2>
+    <ul class="g-sources">
+      <li><a href="https://support.google.com/business/answer/13763036" rel="noopener">Google Business Profile Help: Business eligibility and ownership guidelines</a></li>
+      <li><a href="https://support.google.com/business/answer/3038177" rel="noopener">Google Business Profile Help: Guidelines for representing your business on Google</a></li>
+      <li><a href="https://support.google.com/business/answer/7039811" rel="noopener">Google Business Profile Help: Get started with Google Business Profile</a></li>
+    </ul>
+  </section>
+</GuideLayout>
