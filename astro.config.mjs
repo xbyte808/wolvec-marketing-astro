@@ -13,5 +13,10 @@ export default defineConfig({
   integrations: [react(), sitemap({ filter: (page) => !page.endsWith('/blog/') && !page.endsWith('/changelog/') && !page.endsWith('/roadmap/') })],
   vite: {
     plugins: [tailwindcss()],
+    build: {
+      // Never inline font files as data: URIs. The CSP in vercel.json allows fonts only from
+      // 'self', so an inlined font is blocked (W832). Other assets keep Vite's default limit.
+      assetsInlineLimit: (filePath) => (/\.(woff2?|ttf|otf|eot)$/i.test(filePath) ? false : undefined),
+    },
   },
 });
