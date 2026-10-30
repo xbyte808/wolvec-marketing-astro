@@ -1,0 +1,32 @@
+---
+// Closing sections shared by the one rep max calculator pages (W821): the Wolvec box with
+// already-approved sentences, links to the other free tools, and the page's sources.
+import { ORM_TOOLS, SOURCES } from '../data/oneRepMax';
+
+interface Props {
+  /** This page's path, left out of the tool links. */
+  current: string;
+  sources: (keyof typeof SOURCES)[];
+}
+const { current, sources } = Astro.props;
+const tools = ORM_TOOLS.filter((t) => t.href !== current);
+---
+
+<section class="g-step" id="for-coaches">
+  <h2>For coaches</h2>
+  <div class="g-product g-product-solo"><p class="g-product-text">Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it. Your AI drafts each program week based on how you coach and the client's intake, and you approve the week before the client sees it.</p></div>
+</section>
+
+<section class="g-step" id="more-tools">
+  <h2>More free tools</h2>
+  <ul class="g-dots">
+    {tools.map((t) => <li><a href={t.href}>{t.label}</a></li>)}
+  </ul>
+</section>
+
+<section class="g-step" id="sources">
+  <h2>Sources</h2>
+  <ul class="g-sources">
+    {sources.map((k) => <li><a href={SOURCES[k].href} rel="noopener">{SOURCES[k].text}</a></li>)}
+  </ul>
+</section>

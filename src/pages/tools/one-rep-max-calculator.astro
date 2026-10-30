@@ -1,0 +1,65 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import OneRepMaxCalculator from '../../components/OneRepMaxCalculator.astro';
+import OrmPageEnd from '../../components/OrmPageEnd.astro';
+import { PUBLISHED, SOURCES, articleLd } from '../../data/oneRepMax';
+
+// Counsel: Standing Decision "ONE-REP-MAX CALCULATOR PAGES ON WOLVEC.AI (counsel, 2026-10-29)".
+const URL = 'https://wolvec.ai/tools/one-rep-max-calculator';
+const TITLE = 'One Rep Max Calculator: Estimate Your 1RM and 5RM | Wolvec';
+const DESCRIPTION =
+  'One rep max calculator. Estimate your one-rep max (1RM) and five-rep max (5RM) from a recent 1 to 9 rep set you already performed to failure.';
+const H1 = 'One rep max calculator';
+const LEDE =
+  'Your one-rep max (1RM) is the heaviest weight you can lift for one rep of an exercise with good form. Enter the weight and reps from a recent set where you could not have completed another rep with the same weight. The calculator estimates your one-rep max and your five-rep max (5RM).';
+const TOC = [
+  { id: 'calculator', label: 'One rep max calculator' },
+  { id: 'what-1rm-means', label: 'What 1RM and 5RM mean' },
+  { id: 'example', label: 'Example' },
+  { id: 'why-9-reps', label: 'Why it stops at 9 reps' },
+  { id: 'one-per-exercise', label: 'One estimate per exercise' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'sources', label: 'Sources' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={3} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  <section class="g-step" id="calculator">
+    <h2>One rep max calculator</h2>
+    <OneRepMaxCalculator />
+  </section>
+
+  <section class="g-step" id="what-1rm-means">
+    <h2>What 1RM and 5RM mean</h2>
+    <p>Your one-rep max is the heaviest weight you can lift for a single rep with good form. Your five-rep max (5RM) is the heaviest weight you can lift for five reps. Both are specific to the exercise: a bench press max and a squat max are different numbers. The calculator estimates them from a set you already did.</p>
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>If your last set was 60 kg for 4 reps, the calculator shows an estimated one-rep max of 65.5 kg and an estimated five-rep max of 58 kg. For 225 lb for 3 reps, it shows 238 lb and 212 lb.</p>
+  </section>
+
+  <section class="g-step" id="why-9-reps">
+    <h2>Why it stops at 9 reps</h2>
+    <p>Brzycki limited his equation to fewer than 10 repetitions. In a study of bench press in women, <a href={SOURCES.mayhew.href} rel="noopener">Mayhew and colleagues (2008)</a> found that prediction equations were more accurate when the sets used had fewer than 10 repetitions to fatigue. So the calculator accepts 1 to 9 reps.</p>
+  </section>
+
+  <section class="g-step" id="one-per-exercise">
+    <h2>One estimate per exercise</h2>
+    <p>An estimate only applies to the exercise you entered. A squat set does not give you a deadlift estimate. For the barbell bench press, squat and deadlift, see the <a href="/tools/bench-press-calculator">bench press</a>, <a href="/tools/squat-max-calculator">squat max</a> and <a href="/tools/deadlift-calculator">deadlift</a> calculators.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>What is a one rep max?</h3><p>The heaviest weight you can lift for one rep of an exercise with good form. It is usually written as 1RM.</p></div>
+      <div class="g-faq-item"><h3>How do you calculate your one rep max?</h3><p>Enter the weight and reps from a recent set where you could not have done another rep. The calculator applies the Brzycki equation to estimate your 1RM, then works back to the estimated equivalent weight for each rep count from 1 to 9.</p></div>
+      <div class="g-faq-item"><h3>What is a 5RM?</h3><p>Your five-rep max: the heaviest weight you can lift for five reps.</p></div>
+      <div class="g-faq-item"><h3>How accurate is a one rep max calculator?</h3><p>Treat the result as an estimate. It depends on whether the set really was to fatigue, and on the Brzycki equation, which Brzycki limited to fewer than 10 repetitions.</p></div>
+      <div class="g-faq-item"><h3>Can I enter 10 or more reps?</h3><p>No. Brzycki limited his equation to fewer than 10 repetitions, so the calculator accepts 1 to 9.</p></div>
+      <div class="g-faq-item"><h3>My set was not to failure. What should I use?</h3><p>The <a href="/tools/rpe-calculator">RPE calculator</a>. Rate the set by how many reps you had left, and it accounts for them.</p></div>
+    </div>
+  </section>
+
+  <OrmPageEnd current="/tools/one-rep-max-calculator" sources={['brzycki', 'mayhew']} />
+</GuideLayout>

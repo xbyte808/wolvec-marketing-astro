@@ -28,4 +28,28 @@ export const TOOLS: ResourceLink[] = [
     description:
       'RPE calculator and RPE chart for lifting. Enter a recent set to estimate a target weight, and see what each RPE scale rating means in reps in reserve.',
   },
+  {
+    href: '/tools/one-rep-max-calculator',
+    title: 'One rep max calculator',
+    description:
+      'One rep max calculator. Estimate your one-rep max (1RM) and five-rep max (5RM) from a recent 1 to 9 rep set you already performed to failure.',
+  },
+  {
+    href: '/tools/bench-press-calculator',
+    title: 'Bench press calculator',
+    description:
+      'Bench press 1RM calculator. Estimate your bench press 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.',
+  },
+  {
+    href: '/tools/squat-max-calculator',
+    title: 'Squat max calculator',
+    description:
+      'Squat max calculator. Estimate your squat 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.',
+  },
+  {
+    href: '/tools/deadlift-calculator',
+    title: 'Deadlift calculator',
+    description:
+      'Deadlift calculator. Estimate your deadlift 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.',
+  },
 ];

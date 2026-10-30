@@ -1,0 +1,59 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import OneRepMaxCalculator from '../../components/OneRepMaxCalculator.astro';
+import OrmPageEnd from '../../components/OrmPageEnd.astro';
+import { PUBLISHED, SOURCES, articleLd } from '../../data/oneRepMax';
+
+// Counsel: Standing Decision "ONE-REP-MAX CALCULATOR PAGES ON WOLVEC.AI (counsel, 2026-10-29)".
+// The research section and the underestimation answer are counsel's own wording. Counsel: never
+// call the deadlift estimate conservative, safe or accurate, or make the underestimation a safety claim.
+const URL = 'https://wolvec.ai/tools/deadlift-calculator';
+const TITLE = 'Deadlift Calculator: Estimate Your Deadlift Max | Wolvec';
+const DESCRIPTION =
+  'Deadlift calculator. Estimate your deadlift 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.';
+const H1 = 'Deadlift calculator';
+const LEDE =
+  'Enter the weight and reps from a recent barbell deadlift set where you could not have completed another rep with the same weight. The calculator estimates your deadlift one-rep max (1RM) and five-rep max (5RM).';
+const TOC = [
+  { id: 'calculator', label: 'Deadlift calculator' },
+  { id: 'covers', label: 'What this page covers' },
+  { id: 'research', label: 'What research found for the deadlift' },
+  { id: 'example', label: 'Example' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'sources', label: 'Sources' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={3} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  <section class="g-step" id="calculator">
+    <h2>Deadlift calculator</h2>
+    <OneRepMaxCalculator weightLabel="Deadlift weight" />
+  </section>
+
+  <section class="g-step" id="covers">
+    <h2>What this page covers</h2>
+    <p>This calculator is for the barbell deadlift. Enter a deadlift set, and the estimate is for the barbell deadlift only. For other exercises, use the <a href="/tools/one-rep-max-calculator">one rep max calculator</a>.</p>
+  </section>
+
+  <section class="g-step" id="research">
+    <h2>What research found for the deadlift</h2>
+    <p>In a 1997 study of 67 untrained college students, <a href={SOURCES.lesuer.href} rel="noopener">LeSuer and colleagues</a> tested the Brzycki equation and six other prediction equations against deadlift maxes the participants actually lifted. Brzycki significantly underestimated the measured deadlift max on average: 207.4 lb predicted versus 236.5 lb achieved, a difference of 29.1 lb or about 12% in that sample. All seven equations tested significantly underestimated the deadlift. Treat any deadlift estimate as a starting point, not a measured max.</p>
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>If your last deadlift set was 315 lb for 3 reps, the calculator shows an estimated one-rep max of 334 lb and an estimated five-rep max of 296 lb. For 140 kg for 3 reps, it shows 148 kg and 132 kg.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>Can I estimate my deadlift max without testing a max?</h3><p>If you have a recent deadlift set where you could not have done another rep, enter it and the calculator estimates your 1RM from it. If you stopped with reps left, use the <a href="/tools/rpe-calculator">RPE calculator</a> instead.</p></div>
+      <div class="g-faq-item"><h3>Is this for trap bar deadlifts?</h3><p>No. This page covers the barbell deadlift. For other exercises, use the <a href="/tools/one-rep-max-calculator">one rep max calculator</a>.</p></div>
+      <div class="g-faq-item"><h3>Do prediction equations underestimate the deadlift?</h3><p>In the 1997 study above, Brzycki was one of seven equations tested, and all seven significantly underestimated the measured deadlift max on average. Brzycki's estimate was 29.1 lb, or about 12%, below the measured deadlift max on average in that sample of untrained college students. Treat the result as a starting point, not a measured max.</p></div>
+      <div class="g-faq-item"><h3>How accurate is a deadlift calculator?</h3><p>Treat the result as an estimate. It depends on whether the set really was to fatigue, and on the Brzycki equation, which Brzycki limited to fewer than 10 repetitions. In the study above, all 7 equations tested significantly underestimated the deadlift on average.</p></div>
+    </div>
+  </section>
+
+  <OrmPageEnd current="/tools/deadlift-calculator" sources={['brzycki', 'lesuer']} />
+</GuideLayout>

@@ -1,0 +1,58 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import OneRepMaxCalculator from '../../components/OneRepMaxCalculator.astro';
+import OrmPageEnd from '../../components/OrmPageEnd.astro';
+import { PUBLISHED, SOURCES, articleLd } from '../../data/oneRepMax';
+
+// Counsel: Standing Decision "ONE-REP-MAX CALCULATOR PAGES ON WOLVEC.AI (counsel, 2026-10-29)".
+// The description and the research section are counsel's own wording.
+const URL = 'https://wolvec.ai/tools/bench-press-calculator';
+const TITLE = 'Bench Press Calculator: Estimate Your Bench Max | Wolvec';
+const DESCRIPTION =
+  'Bench press 1RM calculator. Estimate your bench press 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.';
+const H1 = 'Bench press calculator';
+const LEDE =
+  'Enter the weight and reps from a recent barbell bench press set where you could not have completed another rep with the same weight. The calculator estimates your bench press one-rep max (1RM) and five-rep max (5RM).';
+const TOC = [
+  { id: 'calculator', label: 'Bench press calculator' },
+  { id: 'covers', label: 'What this page covers' },
+  { id: 'research', label: 'What research found for the bench press' },
+  { id: 'example', label: 'Example' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'sources', label: 'Sources' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={3} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  <section class="g-step" id="calculator">
+    <h2>Bench press calculator</h2>
+    <OneRepMaxCalculator weightLabel="Bench press weight" />
+  </section>
+
+  <section class="g-step" id="covers">
+    <h2>What this page covers</h2>
+    <p>This calculator is for the barbell bench press. Enter a bench press set, and the estimate is for the barbell bench press only. For other exercises, use the <a href="/tools/one-rep-max-calculator">one rep max calculator</a>.</p>
+  </section>
+
+  <section class="g-step" id="research">
+    <h2>What research found for the bench press</h2>
+    <p>In a 1997 study of 67 untrained college students, <a href={SOURCES.lesuer.href} rel="noopener">LeSuer and colleagues</a> tested the Brzycki equation and six other prediction equations against bench press maxes the participants actually lifted. Brzycki significantly underestimated the measured bench press max on average: 131.9 lb predicted versus 137.3 lb achieved in that sample. <a href={SOURCES.mayhew.href} rel="noopener">Mayhew and colleagues (2008)</a>, studying bench press in women, found prediction equations were more accurate when sets had fewer than 10 repetitions to fatigue. Treat any bench estimate as a starting point, not a measured max.</p>
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>If your last bench set was 135 lb for 8 reps, the calculator shows an estimated one-rep max of 168 lb and an estimated five-rep max of 149 lb.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>Can I estimate my bench max without testing a max?</h3><p>If you have a recent bench set where you could not have done another rep, enter it and the calculator estimates your 1RM from it. If you stopped with reps left, use the <a href="/tools/rpe-calculator">RPE calculator</a> instead.</p></div>
+      <div class="g-faq-item"><h3>Is this for dumbbell or machine bench presses?</h3><p>No. This page covers the barbell bench press. For other exercises, use the <a href="/tools/one-rep-max-calculator">one rep max calculator</a>.</p></div>
+      <div class="g-faq-item"><h3>Why is my estimate different from what I can lift?</h3><p>Every result is an estimate. One reason can be a set that was not taken to failure; if you had reps left, use the RPE calculator. Research has also found that prediction equations can differ from actual bench press maxes.</p></div>
+      <div class="g-faq-item"><h3>How accurate is a bench press calculator?</h3><p>Treat the result as an estimate. It depends on whether the set really was to fatigue, and on the Brzycki equation, which Brzycki limited to fewer than 10 repetitions.</p></div>
+    </div>
+  </section>
+
+  <OrmPageEnd current="/tools/bench-press-calculator" sources={['brzycki', 'mayhew', 'lesuer']} />
+</GuideLayout>

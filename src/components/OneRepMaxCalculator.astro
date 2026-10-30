@@ -1,0 +1,212 @@
+---
+/*
+  One rep max calculator (W821), used on the general, bench press, squat and
+  deadlift pages. Method and copy approved by counsel 2026-10-29 (Standing
+  Decision "ONE-REP-MAX CALCULATOR PAGES ON WOLVEC.AI").
+
+  LOCAL ONLY, a counsel condition carried over from the RPE ruling: no <form>,
+  no name attributes, no network calls, no storage, no URL parameters, no
+  logging. Everything a visitor types stays in this page's memory and is gone
+  on reload.
+
+  Method: the reps entered (1 to 9) are reps to fatigue. Brzycki (1993):
+  1RM = weight / (1.0278 - 0.0278 * reps). The estimate for N reps (N = 1 to 9)
+  is the same equation solved for weight from the unrounded 1RM:
+  1RM * (1.0278 - 0.0278 * N). Rounded for display only, to 1 lb or 0.5 kg.
+*/
+interface Props {
+  /** Label for the weight field, e.g. "Bench press weight". */
+  weightLabel?: string;
+}
+const { weightLabel = 'Weight lifted' } = Astro.props;
+const BRZYCKI = 'https://brzycki.scholar.princeton.edu/publications/strength-testing-%E2%80%93-predicting-one-rep-max-reps-fatigue';
+const REPS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+---
+
+<div class="orm-calc" data-orm-calc>
+  <div class="orm-fields">
+    <div class="orm-field orm-weight">
+      <label for="orm-weight">{weightLabel}</label>
+      <div class="orm-weight-row">
+        <input id="orm-weight" type="number" inputmode="decimal" min="0" step="any" autocomplete="off" />
+        <div class="orm-seg" role="radiogroup" aria-label="Unit">
+          <span class="orm-seg-label" aria-hidden="true">Unit</span>
+          <button type="button" role="radio" aria-checked="true" data-unit="lb">lb</button>
+          <button type="button" role="radio" aria-checked="false" data-unit="kg">kg</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="orm-field orm-reps">
+      <label for="orm-reps">Reps done (1 to 9)</label>
+      <select id="orm-reps" autocomplete="off" aria-describedby="orm-reps-hint">
+        <option value=""></option>
+        {REPS.map((n) => <option value={n}>{n}</option>)}
+      </select>
+      <p class="orm-hint" id="orm-reps-hint">Enter a recent set where you could not have done another rep with the same weight. Count only the reps you completed. Sets of 10 or more reps are not used.</p>
+    </div>
+  </div>
+
+  <div class="orm-out" aria-live="polite">
+    <p class="orm-msg" data-msg hidden></p>
+    <div class="orm-results" data-results hidden aria-describedby="orm-note">
+      <p class="orm-result"><span>Estimated one-rep max</span><strong data-out-1rm></strong></p>
+      <p class="orm-result"><span>Estimated five-rep max</span><strong data-out-5rm></strong></p>
+      <button type="button" class="orm-toggle" aria-expanded="false" aria-controls="orm-table-wrap" data-toggle>Show estimates for 1 to 9 reps</button>
+      <div id="orm-table-wrap" class="orm-table-wrap" data-table-wrap hidden>
+        <table class="orm-table">
+          <thead><tr><th scope="col">Reps</th><th scope="col">Estimated weight</th></tr></thead>
+          <tbody>
+            {REPS.map((n) => (
+              <tr data-row={n}><th scope="row">{n}</th><td><span data-cell></span><span class="orm-yours" data-yours hidden>Your rep count</span></td></tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="orm-note" id="orm-note">These numbers are estimates based on the set you entered, not measured maxes or prescribed loads. Use them as planning references, not instructions to attempt a maximum. If you use an estimate in training, adjust to how the set actually feels. Stop an exercise if it causes pain.</p>
+    </div>
+  </div>
+</div>
+<p class="orm-use">Designed for people who already lift and are entering a set of an exercise they already perform.</p>
+<p><b>How it works.</b> Enter a recent set where you could not have done another rep with the same weight. The calculator applies <a href={BRZYCKI} rel="noopener">the Brzycki equation</a> to that set: weight lifted / (1.0278 - 0.0278 × reps). Brzycki developed the equation for repetitions performed to fatigue and limited its use to fewer than 10 repetitions, so the calculator accepts 1 to 9 reps.</p>
+<p>It then uses the same equation to work back to the estimated equivalent weight for each rep count from 1 to 9. Every number shown is rounded to the nearest 1 lb or 0.5 kg. Every result is an estimate. The calculation runs in your browser.</p>
+<p>If you stopped the set with reps left, use the <a href="/tools/rpe-calculator">RPE calculator</a> instead.</p>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-orm-calc]');
+  if (root) {
+    const CAP = { lb: 2000, kg: 1000 } as const;
+    const STEP = { lb: 1, kg: 0.5 } as const;
+    const MSG = {
+      low: 'Enter a weight above 0.',
+      capLb: 'Enter a weight of 2000 lb or less.',
+      capKg: 'Enter a weight of 1000 kg or less.',
+    };
+    const SHOW = 'Show estimates for 1 to 9 reps';
+    const HIDE = 'Hide estimates for 1 to 9 reps';
+
+    let unit: 'lb' | 'kg' = 'lb';
+
+    const weight = root.querySelector<HTMLInputElement>('#orm-weight')!;
+    const reps = root.querySelector<HTMLSelectElement>('#orm-reps')!;
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const results = root.querySelector<HTMLElement>('[data-results]')!;
+    const out1 = root.querySelector<HTMLElement>('[data-out-1rm]')!;
+    const out5 = root.querySelector<HTMLElement>('[data-out-5rm]')!;
+    const toggle = root.querySelector<HTMLButtonElement>('[data-toggle]')!;
+    const tableWrap = root.querySelector<HTMLElement>('[data-table-wrap]')!;
+    const rows = Array.from(root.querySelectorAll<HTMLTableRowElement>('[data-row]'));
+    const unitBtns = root.querySelectorAll<HTMLButtonElement>('[data-unit]');
+
+    const factor = (n: number) => 1.0278 - 0.0278 * n;
+    const fmt = (x: number) => {
+      const step = STEP[unit];
+      const r = Math.round(x / step) * step;
+      const s = Number.isInteger(r) ? String(r) : r.toFixed(1);
+      return `${s} ${unit}`;
+    };
+    const hideAll = () => {
+      msg.hidden = true;
+      msg.textContent = '';
+      results.hidden = true;
+      out1.textContent = '';
+      out5.textContent = '';
+      rows.forEach((row) => {
+        row.querySelector<HTMLElement>('[data-cell]')!.textContent = '';
+        row.querySelector<HTMLElement>('[data-yours]')!.hidden = true;
+        row.classList.remove('orm-mine');
+      });
+    };
+    const showMsg = (text: string) => {
+      hideAll();
+      msg.textContent = text;
+      msg.hidden = false;
+    };
+
+    // strict is false only while the weight is being typed: some browsers report a half-typed
+    // number such as "12." as unreadable, so the message waits until the field is left.
+    const update = (strict = true) => {
+      // Text the browser cannot read as a number (for example 12..5) arrives as an empty value.
+      if (weight.validity.badInput) return strict ? showMsg(MSG.low) : hideAll();
+      const raw = weight.value.trim();
+      const r = reps.value === '' ? NaN : Number(reps.value);
+      if (raw !== '') {
+        const w0 = Number(raw);
+        if (!(w0 > 0)) return showMsg(MSG.low);
+        if (w0 > CAP[unit]) return showMsg(unit === 'lb' ? MSG.capLb : MSG.capKg);
+      }
+      if (raw === '' || !(r >= 1 && r <= 9)) return hideAll();
+
+      const oneRm = Number(raw) / factor(r);
+      hideAll();
+      out1.textContent = fmt(oneRm);
+      out5.textContent = fmt(oneRm * factor(5));
+      rows.forEach((row) => {
+        const n = Number(row.dataset.row);
+        row.querySelector<HTMLElement>('[data-cell]')!.textContent = fmt(oneRm * factor(n));
+        const mine = n === r;
+        row.querySelector<HTMLElement>('[data-yours]')!.hidden = !mine;
+        row.classList.toggle('orm-mine', mine);
+      });
+      results.hidden = false;
+    };
+
+    const setUnit = (u: 'lb' | 'kg') => {
+      if (u === unit) return;
+      unit = u;
+      unitBtns.forEach((b) => b.setAttribute('aria-checked', String(b.dataset.unit === u)));
+      // Changing units clears the weight and every result; it never converts.
+      weight.value = '';
+      hideAll();
+    };
+
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.textContent = open ? HIDE : SHOW;
+      tableWrap.hidden = !open;
+    });
+    unitBtns.forEach((b) => b.addEventListener('click', () => setUnit(b.dataset.unit as 'lb' | 'kg')));
+    weight.addEventListener('input', () => update(false));
+    // blur, not change: a browser may not fire change when the unreadable text leaves the value empty.
+    weight.addEventListener('blur', () => update());
+    reps.addEventListener('change', () => update());
+    // No form exists, but stop Enter from doing anything unexpected in the weight field.
+    weight.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }
+</script>
+
+<style>
+  .orm-calc { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 16px; padding: 22px; margin: 6px 0 12px; }
+  .orm-fields { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .orm-field label { display: block; font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-bottom: 6px; }
+  .orm-weight-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .orm-calc input, .orm-calc select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #C9CDD3; border-radius: 10px; background: #fff; color: var(--color-on-paper); font: inherit; font-size: 16px; }
+  .orm-weight-row input { flex: 1 1 160px; width: auto; }
+  .orm-reps select { max-width: 220px; }
+  .orm-hint { margin: 8px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--color-on-paper-soft); }
+  .orm-calc input:focus-visible, .orm-calc select:focus-visible, .orm-seg button:focus-visible, .orm-toggle:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .orm-seg { display: inline-flex; align-items: center; gap: 6px; }
+  .orm-seg-label { font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-right: 2px; }
+  .orm-seg button { min-height: 40px; min-width: 56px; padding: 8px 14px; border-radius: 999px; border: 1px solid #C9CDD3; background: #fff; color: var(--color-on-paper); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .orm-seg button[aria-checked='true'] { background: var(--color-azure-deep); border-color: var(--color-azure-deep); color: #fff; }
+  .orm-out { margin-top: 18px; }
+  .orm-msg { margin: 0; padding: 12px 14px; border-radius: 10px; background: #FFF4E5; color: #6B3D00; font-size: 15.5px; line-height: 1.5; }
+  .orm-results { border-top: 1px solid var(--color-hairline-light); padding-top: 14px; }
+  .orm-result { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 8px; font-size: 16px; }
+  .orm-result strong { font-family: var(--font-display); font-weight: 600; font-size: 30px; color: var(--color-on-paper); white-space: nowrap; }
+  .orm-toggle { margin: 6px 0 0; padding: 0; border: 0; background: none; color: var(--color-azure-deep); font: inherit; font-size: 15.5px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+  .orm-table-wrap { margin-top: 12px; }
+  .orm-table { width: 100%; border-collapse: separate; border-spacing: 0; background: #fff; border: 1px solid var(--color-hairline-light); border-radius: 12px; overflow: hidden; font-size: 16px; }
+  .orm-table th, .orm-table td { text-align: left; padding: 9px 14px; border-bottom: 1px solid var(--color-hairline-light); }
+  .orm-table tbody tr:last-child th, .orm-table tbody tr:last-child td { border-bottom: 0; }
+  .orm-table thead th { font-family: var(--font-label); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-on-paper-soft); font-weight: 400; background: var(--color-paper-1); }
+  .orm-table tbody th { font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--color-azure-deep); width: 5rem; }
+  .orm-table tr.orm-mine th, .orm-table tr.orm-mine td { background: #EEF3FF; }
+  .orm-yours { margin-left: 10px; font-family: var(--font-label); font-size: 12px; letter-spacing: 0.03em; text-transform: uppercase; color: var(--color-azure-deep); }
+  .orm-note { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: #2A2D33; }
+  .orm-use { font-size: 15px; color: var(--color-on-paper-soft); margin: 0 0 18px; }
+  @media (max-width: 520px) { .orm-result { flex-direction: column; gap: 2px; } }
+</style>
