@@ -44,20 +44,25 @@
       </select>
     </div>
 
-    <div class="rpe-field">
-      <label for="rpe-treps">Target reps (1 to 9)</label>
-      <select id="rpe-treps" autocomplete="off">
-        <option value=""></option>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => <option value={n}>{n}</option>)}
-      </select>
-    </div>
-    <div class="rpe-field">
-      <label for="rpe-trpe">Target RPE (7, 8, 9 or 10)</label>
-      <select id="rpe-trpe" autocomplete="off">
-        <option value=""></option>
-        {[7, 8, 9, 10].map((n) => <option value={n}>{n}</option>)}
-      </select>
-    </div>
+    <details class="rpe-target" data-target-set>
+      <summary>Add a target set (optional)</summary>
+      <div class="rpe-target-fields">
+        <div class="rpe-field">
+          <label for="rpe-treps">Target reps (1 to 9)</label>
+          <select id="rpe-treps" autocomplete="off">
+            <option value=""></option>
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((n) => <option value={n}>{n}</option>)}
+          </select>
+        </div>
+        <div class="rpe-field">
+          <label for="rpe-trpe">Target RPE (7, 8, 9 or 10)</label>
+          <select id="rpe-trpe" autocomplete="off">
+            <option value=""></option>
+            {[7, 8, 9, 10].map((n) => <option value={n}>{n}</option>)}
+          </select>
+        </div>
+      </div>
+    </details>
 
     <div class="rpe-field rpe-round">
       <span class="rpe-label" id="rpe-round-label">Round to</span>
@@ -111,7 +116,9 @@
     const factor = (rtf: number) => 1.0278 - 0.0278 * rtf;
     const fmt = (x: number) => {
       const step = INC[unit][inc];
-      const r = Math.round(x / step) * step;
+      // Round half up. toFixed(6) first removes floating-point noise, so an exact half
+      // (for example 3.5 lb computed as 3.4999999999999996) rounds up, not down.
+      const r = Math.round(Number((x / step).toFixed(6))) * step;
       const s = Number.isInteger(r) ? String(r) : r.toFixed(1);
       return `${s} ${unit}`;
     };
@@ -185,6 +192,15 @@
       update();
     };
 
+    // Closing the target set clears it, so a hidden target never changes the result.
+    const targetSet = root.querySelector<HTMLDetailsElement>('[data-target-set]')!;
+    targetSet.addEventListener('toggle', () => {
+      if (targetSet.open) return;
+      treps.value = '';
+      trpe.value = '';
+      update();
+    });
+
     unitBtns.forEach((b) => b.addEventListener('click', () => setUnit(b.dataset.unit as 'lb' | 'kg')));
     incBtns.forEach((b) => b.addEventListener('click', () => setInc(b.dataset.inc as 'big' | 'small')));
     weight.addEventListener('input', () => update(false));
@@ -201,7 +217,10 @@
 <style>
   .rpe-calc { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 16px; padding: 22px; margin: 6px 0 12px; }
   .rpe-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; }
-  .rpe-weight, .rpe-round { grid-column: 1 / -1; }
+  .rpe-weight, .rpe-round, .rpe-target { grid-column: 1 / -1; }
+  .rpe-target summary { cursor: pointer; width: fit-content; font-size: 15.5px; font-weight: 600; color: var(--color-azure-deep); text-decoration: underline; text-underline-offset: 3px; }
+  .rpe-target summary:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .rpe-target-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 18px; margin-top: 14px; }
   .rpe-field label, .rpe-label { display: block; font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-bottom: 6px; }
   .rpe-weight-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
   .rpe-calc input, .rpe-calc select { width: 100%; min-height: 46px; padding: 10px 12px; border: 1px solid #C9CDD3; border-radius: 10px; background: #fff; color: var(--color-on-paper); font: inherit; font-size: 16px; }
@@ -218,5 +237,5 @@
   .rpe-result strong { font-family: var(--font-display); font-weight: 600; font-size: 30px; color: var(--color-on-paper); white-space: nowrap; }
   .rpe-note { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: #2A2D33; }
   .rpe-use { font-size: 15px; color: var(--color-on-paper-soft); margin: 0 0 18px; }
-  @media (max-width: 520px) { .rpe-fields { grid-template-columns: 1fr; } .rpe-result { flex-direction: column; gap: 2px; } }
+  @media (max-width: 520px) { .rpe-fields, .rpe-target-fields { grid-template-columns: 1fr; } .rpe-result { flex-direction: column; gap: 2px; } }
 </style>

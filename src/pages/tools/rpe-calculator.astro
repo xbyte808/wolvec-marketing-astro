@@ -55,6 +55,7 @@ const CHART = [
   <section class="g-step" id="calculator">
     <h2>RPE calculator</h2>
     <RpeCalculator />
+    <p>Already have a set you took to failure? The <a href="/tools/one-rep-max-calculator">one rep max calculator</a> estimates your max from weight and reps alone.</p>
     <p><b>How it works.</b> The calculator uses the whole-number ratings of the lifting RPE scale below: RPE 10 means no reps left, RPE 9 one, RPE 8 two and RPE 7 three. Based on the RPE you enter, it adds those reps in reserve to the reps you completed to estimate how many repetitions the set might have reached at failure. It then applies <a href="https://brzycki.scholar.princeton.edu/publications/strength-testing-%E2%80%93-predicting-one-rep-max-reps-fatigue" rel="noopener">the Brzycki equation</a>: weight lifted / (1.0278 - 0.0278 × reps to failure).</p>
     <p>Brzycki developed that equation for repetitions performed to fatigue and limited its use to fewer than 10 repetitions. The step of estimating reps to failure from RPE is an additional estimation used by this calculator; it is not part of the Brzycki or Zourdos methods, and the combined calculator was not validated in those publications.</p>
     <p>For that reason, the calculator only produces a result when both the set you entered and the target set correspond to fewer than 10 estimated repetitions to failure. It then works back from the estimate for your target reps and RPE and rounds to the nearest increment you choose. Every result is an estimate. The calculation runs in your browser.</p>

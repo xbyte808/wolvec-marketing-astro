@@ -1,0 +1,58 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import OneRepMaxCalculator from '../../components/OneRepMaxCalculator.astro';
+import OrmPageEnd from '../../components/OrmPageEnd.astro';
+import { PUBLISHED, SOURCES, articleLd } from '../../data/oneRepMax';
+
+// Counsel: Standing Decision "ONE-REP-MAX CALCULATOR PAGES ON WOLVEC.AI (counsel, 2026-10-29)".
+// The research section is counsel's own wording.
+const URL = 'https://wolvec.ai/tools/squat-max-calculator';
+const TITLE = 'Squat Max Calculator: Estimate Your Squat 1RM | Wolvec';
+const DESCRIPTION =
+  'Squat max calculator. Estimate your squat 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.';
+const H1 = 'Squat max calculator';
+const LEDE =
+  'Enter the weight and reps from a recent barbell back squat set where you could not have completed another rep with the same weight. The calculator estimates your squat one-rep max (1RM) and five-rep max (5RM).';
+const TOC = [
+  { id: 'calculator', label: 'Squat max calculator' },
+  { id: 'covers', label: 'What this page covers' },
+  { id: 'research', label: 'What research found for the squat' },
+  { id: 'example', label: 'Example' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'sources', label: 'Sources' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={3} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  <section class="g-step" id="calculator">
+    <h2>Squat max calculator</h2>
+    <OneRepMaxCalculator weightLabel="Squat weight" />
+  </section>
+
+  <section class="g-step" id="covers">
+    <h2>What this page covers</h2>
+    <p>This calculator is for the barbell back squat. Enter a squat set, and the estimate is for the barbell back squat only. For other exercises, use the <a href="/tools/one-rep-max-calculator">one rep max calculator</a>.</p>
+  </section>
+
+  <section class="g-step" id="research">
+    <h2>What research found for the squat</h2>
+    <p>In a 1997 study of 67 untrained college students, <a href={SOURCES.lesuer.href} rel="noopener">LeSuer and colleagues</a> tested the Brzycki equation and six other prediction equations against squat maxes the participants actually lifted. Brzycki significantly underestimated the measured squat max on average: 197.3 lb predicted versus 208.0 lb achieved in that sample. Treat any squat estimate as a starting point, not a measured max.</p>
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>If your last squat set was 100 kg for 6 reps, the calculator shows an estimated one-rep max of 116 kg and an estimated five-rep max of 103 kg. For 225 lb for 5 reps, it shows 253 lb, and the five-rep max matches the weight you entered.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>Can I estimate my squat max without testing a max?</h3><p>If you have a recent squat set where you could not have done another rep, enter it and the calculator estimates your 1RM from it. If you stopped with reps left, use the <a href="/tools/rpe-calculator">RPE calculator</a> instead.</p></div>
+      <div class="g-faq-item"><h3>Is this for front squats or other squat variations?</h3><p>No. This page covers the barbell back squat. For other exercises, use the <a href="/tools/one-rep-max-calculator">one rep max calculator</a>.</p></div>
+      <div class="g-faq-item"><h3>Why is my estimate different from what I can lift?</h3><p>Every result is an estimate. One reason can be a set that was not taken to failure; if you had reps left, use the RPE calculator. Research has also found that prediction equations can differ from actual squat maxes.</p></div>
+      <div class="g-faq-item"><h3>How accurate is a squat max calculator?</h3><p>Treat the result as an estimate. It depends on whether the set really was to fatigue, and on the Brzycki equation, which Brzycki limited to fewer than 10 repetitions.</p></div>
+    </div>
+  </section>
+
+  <OrmPageEnd current="/tools/squat-max-calculator" sources={['brzycki', 'lesuer']} />
+</GuideLayout>
