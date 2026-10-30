@@ -116,7 +116,9 @@
     const factor = (rtf: number) => 1.0278 - 0.0278 * rtf;
     const fmt = (x: number) => {
       const step = INC[unit][inc];
-      const r = Math.round(x / step) * step;
+      // Round half up. toFixed(6) first removes floating-point noise, so an exact half
+      // (for example 3.5 lb computed as 3.4999999999999996) rounds up, not down.
+      const r = Math.round(Number((x / step).toFixed(6))) * step;
       const s = Number.isInteger(r) ? String(r) : r.toFixed(1);
       return `${s} ${unit}`;
     };

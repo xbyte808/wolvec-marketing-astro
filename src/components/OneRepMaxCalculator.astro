@@ -101,7 +101,9 @@ const REPS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const factor = (n: number) => 1.0278 - 0.0278 * n;
     const fmt = (x: number) => {
       const step = STEP[unit];
-      const r = Math.round(x / step) * step;
+      // Round half up. toFixed(6) first removes floating-point noise, so an exact half such as
+      // 30.5 lb (computed as 30.499999999999996) rounds up to 31 instead of down to 30.
+      const r = Math.round(Number((x / step).toFixed(6))) * step;
       const s = Number.isInteger(r) ? String(r) : r.toFixed(1);
       return `${s} ${unit}`;
     };
