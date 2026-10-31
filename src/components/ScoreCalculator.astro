@@ -59,10 +59,13 @@ const NAME = { dots: 'DOTS score', wilks: 'Wilks score' };
   <div class="sc-out" aria-live="polite">
     <p class="sc-msg" data-msg hidden></p>
     <div class="sc-results" data-results hidden aria-describedby="sc-note">
+      {/* Each body weight range note sits directly under its own score row (counsel: keep each notice adjacent to the affected score). */}
       {ORDER.map((k, i) => (
-        <p class={i === 0 ? 'sc-result sc-first' : 'sc-result'}><span>{NAME[k]}</span><strong data-out={k}></strong></p>
+        <Fragment>
+          <p class={i === 0 ? 'sc-result sc-first' : 'sc-result'}><span>{NAME[k]}</span><strong data-out={k}></strong></p>
+          <p class="sc-range" data-range={k} hidden></p>
+        </Fragment>
       ))}
-      {ORDER.map((k) => <p class="sc-range" data-range={k} hidden></p>)}
       <p class="sc-note" id="sc-note">These scores are calculated from the values you entered using the selected formula. Different powerlifting organizations may use different scoring systems.</p>
     </div>
   </div>
@@ -210,7 +213,7 @@ const NAME = { dots: 'DOTS score', wilks: 'Wilks score' };
   .sc-result { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 8px; font-size: 16px; }
   .sc-result strong { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--color-on-paper); white-space: nowrap; }
   .sc-first strong { font-size: 30px; }
-  .sc-range { margin: 10px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--color-on-paper-soft); }
+  .sc-range { margin: 0 0 12px; font-size: 14.5px; line-height: 1.55; color: var(--color-on-paper-soft); }
   .sc-note { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: #2A2D33; }
   @media (max-width: 520px) { .sc-result { flex-direction: column; gap: 2px; } }
 </style>
