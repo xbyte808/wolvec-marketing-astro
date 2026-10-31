@@ -60,20 +60,6 @@ const ORG_ID = 'https://wolvec.ai/#organization';
     })} />
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Wolvec",
-      "url": "https://wolvec.ai",
-      "applicationCategory": "BusinessApplication",
-      "operatingSystem": "Web",
-      "description": "Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it. Each coach's AI is set up from one guided conversation about how they coach, with no existing content library required, then works from it to draft programs and answer routine client questions. It also includes workout logging and weekly check-ins.",
-      "publisher": {
-        "@type": "Organization",
-        "@id": ORG_ID,
-        "name": "Wolvec"
-      }
-    })} />
-    <script type="application/ld+json" set:html={JSON.stringify({
-      "@context": "https://schema.org",
       "@type": "FAQPage",
       // Built from src/data/faqs.ts, the same array src/components/FAQ.astro
       // renders, so the structured data always matches the visible FAQ.

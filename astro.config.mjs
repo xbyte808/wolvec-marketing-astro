@@ -10,7 +10,12 @@ export default defineConfig({
   site: 'https://wolvec.ai',
   output: 'static',
   adapter: vercel(),
-  integrations: [react(), sitemap({ filter: (page) => !page.endsWith('/blog/') && !page.endsWith('/changelog/') && !page.endsWith('/roadmap/') })],
+  integrations: [react(), sitemap({
+    filter: (page) => !page.endsWith('/blog/') && !page.endsWith('/changelog/') && !page.endsWith('/roadmap/'),
+    // List every page at its canonical URL, which has no trailing slash (the home page keeps "/").
+    // The sitemap used to list "/tools/x/" while the page's canonical said "/tools/x" (W841).
+    serialize: (item) => ({ ...item, url: item.url.replace(/^(https:\/\/wolvec\.ai\/.+?)\/$/, '$1') }),
+  })],
   vite: {
     plugins: [tailwindcss()],
     build: {
