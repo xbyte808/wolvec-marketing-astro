@@ -1,0 +1,68 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import ScoreCalculator from '../../components/ScoreCalculator.astro';
+import ScoreFormula from '../../components/ScoreFormula.astro';
+import ToolPageEnd from '../../components/ToolPageEnd.astro';
+import { PUBLISHED, SOURCES, articleLd } from '../../data/strengthTools';
+
+// W840. Counsel cleared this page's copy with edits (W840 round 2); the result note and the
+// "Within the same formula" sentence are counsel's wording.
+const URL = 'https://wolvec.ai/tools/dots-calculator';
+const TITLE = 'DOTS Score Calculator for Powerlifting | Wolvec';
+const DESCRIPTION =
+  'DOTS score calculator for powerlifting. Enter a total and body weight in lb or kg to see the DOTS score, with the Wilks score alongside for comparison.';
+const H1 = 'DOTS score calculator';
+const LEDE =
+  'DOTS is a powerlifting score that adjusts a total for body weight, so lifters of different body weights can be compared. Enter a total and body weight to see the DOTS score, with the Wilks score alongside.';
+const TOC = [
+  { id: 'calculator', label: 'DOTS score calculator' },
+  { id: 'what-dots-is', label: 'What a DOTS score is' },
+  { id: 'formula', label: 'The DOTS formula' },
+  { id: 'other-formulas', label: 'DOTS, Wilks and other formulas' },
+  { id: 'example', label: 'Example' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'sources', label: 'Sources' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={3} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  {/* GATE: the DOTS and Wilks page copy waits for counsel's sign-off (W840). */}
+  <section class="g-step" id="calculator">
+    <h2>DOTS score calculator</h2>
+    <ScoreCalculator primary="dots" />
+  </section>
+
+  <section class="g-step" id="what-dots-is">
+    <h2>What a DOTS score is</h2>
+    <p>A DOTS score turns a powerlifting total into a number adjusted for body weight, so a lighter lifter and a heavier lifter can be compared on one scale. Within the same formula and formula category, a higher score represents a larger total relative to body weight under that formula. According to the OpenPowerlifting source code, DOTS was introduced by the German powerlifting federation BVDK.</p>
+  </section>
+
+  <section class="g-step" id="formula">
+    <h2>The DOTS formula</h2>
+    <ScoreFormula formula="dots">
+      <p>Total and body weight (bw) are in kilograms. The coefficients below are the ones in the OpenPowerlifting source code. The formula is defined for body weights of 40 to 210 kg with the men's formula and 40 to 150 kg with the women's formula. Outside that range, the calculator uses the nearest end of it, as OpenPowerlifting does.</p>
+    </ScoreFormula>
+  </section>
+
+  <section class="g-step" id="other-formulas">
+    <h2>DOTS, Wilks and other formulas</h2>
+    <p>Powerlifting federations use different scoring formulas. The IPF uses its own GL points, which this page does not calculate. DOTS and Wilks are different formulas, so a DOTS score and a Wilks score for the same total are different numbers. Compare scores from the same formula.</p>
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>A 600 kg total at 90 kg body weight with the men's formula gives a DOTS score of 387.96 and a Wilks score of 383.04. A 500 kg total at 60 kg with the women's formula gives a DOTS score of 554.27 and a Wilks score of 557.44. In pounds, a 1150 lb total at 185 lb with the men's formula gives a DOTS score of 350.00 and a Wilks score of 345.96.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>What is a DOTS score?</h3><p>A score that adjusts a powerlifting total for body weight, so lifters of different body weights can be compared.</p></div>
+      <div class="g-faq-item"><h3>How is a DOTS score calculated?</h3><p>Total × 500, divided by a fourth degree polynomial of body weight, with total and body weight in kg. The men's and women's formulas use different coefficients, shown above.</p></div>
+      <div class="g-faq-item"><h3>Is a DOTS score the same as a Wilks score?</h3><p>No. They are different formulas, so the same total gives two different numbers. The calculator shows both.</p></div>
+      <div class="g-faq-item"><h3>Does this calculate IPF GL points?</h3><p>No. The IPF uses its own GL points, which this page does not calculate.</p></div>
+    </div>
+  </section>
+
+  <ToolPageEnd current="/tools/dots-calculator" sources={[SOURCES.oplDots, SOURCES.oplWilks, SOURCES.wikiWilks, SOURCES.ipfGl]} />
+</GuideLayout>

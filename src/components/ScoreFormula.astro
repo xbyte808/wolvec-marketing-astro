@@ -1,0 +1,48 @@
+---
+// The formula line and coefficient tables for the DOTS and Wilks pages (W840), drawn from the same
+// data the calculator uses (src/data/strengthTools.ts), so the page and the result cannot disagree.
+// The page's own explanation goes in the slot, between the formula and the tables.
+import { DOTS, WILKS } from '../data/strengthTools';
+
+interface Props {
+  formula: 'dots' | 'wilks';
+}
+const { formula } = Astro.props;
+const data = formula === 'dots' ? DOTS : WILKS;
+const TABLES = [
+  { caption: "Men's formula", f: data.men },
+  { caption: "Women's formula", f: data.women },
+];
+---
+
+{formula === 'dots' ? (
+  <p class="sc-formula">DOTS score = total × 500 / (A × bw<sup>4</sup> + B × bw<sup>3</sup> + C × bw<sup>2</sup> + D × bw + E)</p>
+) : (
+  <p class="sc-formula">Wilks score = total × 500 / (a + b × bw + c × bw<sup>2</sup> + d × bw<sup>3</sup> + e × bw<sup>4</sup> + f × bw<sup>5</sup>)</p>
+)}
+<slot />
+<div class="sc-coefs">
+  {TABLES.map(({ caption, f }) => (
+    <div class="sc-coef">
+      <table>
+        <caption>{caption}</caption>
+        <tbody>
+          {f.terms.map((t) => (
+            <tr><th scope="row">{t.name}</th><td><code>{t.text}</code></td></tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  ))}
+</div>
+
+<style>
+  .sc-formula { margin: 0 0 18px; padding: 14px 16px; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-left: 3px solid var(--color-azure-deep); border-radius: 12px; font-family: var(--font-label); font-size: 15px; line-height: 1.7; color: var(--color-on-paper); }
+  .sc-coefs { display: flex; flex-wrap: wrap; gap: 16px; margin: 4px 0 18px; }
+  .sc-coef { flex: 1 1 240px; min-width: 0; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 12px; padding: 12px 16px 6px; }
+  .sc-coef table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  .sc-coef caption { text-align: left; padding: 0 0 6px; font-family: var(--font-label); font-size: 12.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--color-on-paper-soft); }
+  .sc-coef th, .sc-coef td { text-align: left; padding: 7px 0; border-top: 1px solid var(--color-hairline-light); }
+  .sc-coef th { font-family: var(--font-display); font-weight: 600; font-size: 17px; color: var(--color-azure-deep); width: 2.5rem; }
+  .sc-coef code { font-family: var(--font-label); font-size: 14px; color: var(--color-on-paper); }
+</style>

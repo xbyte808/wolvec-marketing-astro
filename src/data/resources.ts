@@ -52,4 +52,22 @@ export const TOOLS: ResourceLink[] = [
     description:
       'Deadlift calculator. Estimate your deadlift 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.',
   },
+  {
+    href: '/tools/dots-calculator',
+    title: 'DOTS score calculator',
+    description:
+      'DOTS score calculator for powerlifting. Enter a total and body weight in lb or kg to see the DOTS score, with the Wilks score alongside for comparison.',
+  },
+  {
+    href: '/tools/wilks-calculator',
+    title: 'Wilks calculator',
+    description:
+      'Wilks calculator for powerlifting. Enter a total and body weight in lb or kg to see the Wilks score from the original formula, with the DOTS score alongside.',
+  },
+  {
+    href: '/tools/plate-calculator',
+    title: 'Plate calculator',
+    description:
+      'Barbell plate calculator. Enter a target weight in lb or kg, choose your bar and the plates you have, and see which weight plates go on each side.',
+  },
 ];

@@ -1,0 +1,297 @@
+---
+/*
+  Plate calculator (W840). LOCAL ONLY, as on the other calculators: no <form>, no name attributes,
+  no network calls, no storage, no URL parameters, no logging.
+
+  Method: all arithmetic in hundredths of the unit (integers), so there is no floating point error.
+  Per side = (target - bar) / 2. The side gets the heaviest total at or below that which the
+  selected plates can make (any number of each plate), and among the ways to make that total, the
+  one with the most of the heaviest plate, then the next heaviest, and so on. With every plate
+  selected this is the same as taking as many of the heaviest plate as fit, then the next.
+*/
+import { PLATES } from '../data/strengthTools';
+const UNITS = ['lb', 'kg'] as const;
+const id = (u: string, p: number) => `pc-${u}-${String(p).replace('.', '-')}`;
+---
+
+<div class="pc-calc" data-plate-calc>
+  <div class="pc-fields">
+    <div class="pc-field">
+      <label for="pc-target">Target weight (bar included)</label>
+      <div class="pc-row">
+        <input id="pc-target" type="number" inputmode="decimal" min="0" step="any" autocomplete="off" />
+        <div class="pc-seg" role="radiogroup" aria-label="Unit">
+          <span class="pc-seg-label" aria-hidden="true">Unit</span>
+          <button type="button" role="radio" aria-checked="true" data-unit="lb">lb</button>
+          <button type="button" role="radio" aria-checked="false" data-unit="kg">kg</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pc-field">
+      <span class="pc-label" id="pc-bar-label">Bar weight</span>
+      <div class="pc-seg" role="radiogroup" aria-labelledby="pc-bar-label">
+        {PLATES.lb.bars.map((b, i) => (
+          <button type="button" role="radio" aria-checked={i === 0 ? 'true' : 'false'} data-bar={i}>{b} lb</button>
+        ))}
+      </div>
+    </div>
+
+    {UNITS.map((u) => (
+      <fieldset class="pc-plates" data-plates={u} hidden={u === 'kg'}>
+        <legend>Plates available</legend>
+        <div class="pc-checks">
+          {PLATES[u].plates.map((p) => (
+            <span class="pc-check"><input type="checkbox" id={id(u, p)} checked data-plate={p} /><label for={id(u, p)}>{p} {u}</label></span>
+          ))}
+        </div>
+      </fieldset>
+    ))}
+  </div>
+
+  <div class="pc-out" aria-live="polite">
+    <p class="pc-msg" data-msg hidden></p>
+    <div class="pc-results" data-results hidden>
+      <p class="pc-result"><span>Loaded weight</span><strong data-out-loaded></strong></p>
+      <p class="pc-near" data-near hidden></p>
+      <p class="pc-sub" id="pc-list-label">Plates per side, heaviest first</p>
+      <ul class="pc-list" data-list aria-labelledby="pc-list-label"></ul>
+      <div class="pc-bar" data-visual aria-hidden="true" hidden>
+        <span class="pc-shaft"></span><span class="pc-stop"></span><span class="pc-load" data-load></span><span class="pc-sleeve"></span>
+      </div>
+    </div>
+  </div>
+</div>
+<p><b>How it works.</b> The calculator takes the bar off the target, splits the rest evenly between the two sides, and lists the plates for one side, heaviest first. It assumes you have as many of each plate as you need, and collars are not counted. If the plates selected cannot make the target exactly, it shows the closest weight at or below the target.</p>
+<p>The calculation runs in your browser.</p>
+
+<script>
+  import { PLATES } from '../data/strengthTools';
+
+  const root = document.querySelector<HTMLElement>('[data-plate-calc]');
+  if (root) {
+    type Unit = 'lb' | 'kg';
+    const CAP = { lb: 2000, kg: 1000 } as const;
+    const MSG = {
+      low: 'Enter a weight above 0.',
+      cap: { lb: 'Enter a weight of 2000 lb or less.', kg: 'Enter a weight of 1000 kg or less.' },
+      below: (bar: string) => `The target is below the bar weight of ${bar}.`,
+      none: 'Select at least one plate.',
+    };
+    // Drawing only: plate heights in percent by position in the unit's plate list. Pound plates get
+    // a color by position. Kilogram plates are all one neutral color: the IPF Technical Rulebook
+    // (2026, section 2.3) fixes colors only for 15, 20 and 25 kg discs; 10 kg and under may be any color.
+    const HEIGHT = { lb: [100, 90, 78, 60, 46, 38], kg: [100, 96, 88, 76, 56, 44, 36] } as const;
+    const LB_COLOR = ['#2451D9', '#3B6BFF', '#16181D', '#3A3F47', '#5B6069', '#8A9099'];
+    const KG_COLOR = '#5B6069';
+    // Above this many plates per side, the first ones are drawn with a "+N" label for the rest.
+    const MAX_DRAWN = 12;
+
+    let unit: Unit = 'lb';
+    let barIdx = 0;
+
+    const target = root.querySelector<HTMLInputElement>('#pc-target')!;
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const results = root.querySelector<HTMLElement>('[data-results]')!;
+    const outLoaded = root.querySelector<HTMLElement>('[data-out-loaded]')!;
+    const near = root.querySelector<HTMLElement>('[data-near]')!;
+    const list = root.querySelector<HTMLElement>('[data-list]')!;
+    const visual = root.querySelector<HTMLElement>('[data-visual]')!;
+    const load = root.querySelector<HTMLElement>('[data-load]')!;
+    const unitBtns = root.querySelectorAll<HTMLButtonElement>('[data-unit]');
+    const barBtns = root.querySelectorAll<HTMLButtonElement>('[data-bar]');
+    const plateSets = root.querySelectorAll<HTMLFieldSetElement>('[data-plates]');
+
+    // Hundredths of the unit. Bar and plate sizes have at most two decimals.
+    const hundredths = (n: number) => Math.round(n * 100);
+    const show = (h: number) => `${String(h / 100)} ${unit}`;
+    const gcd = (a: number, b: number): number => (b === 0 ? a : gcd(b, a % b));
+
+    // Counts of each plate (sizes in hundredths, heaviest first) for one side of at most `side`.
+    const loadSide = (side: number, sizes: number[]) => {
+      const g = sizes.reduce(gcd);
+      const n = Math.floor(side / g);
+      const steps = sizes.map((s) => s / g);
+      // can[i][v] = 1 when v steps can be made from plate i and the lighter ones.
+      const can: Uint8Array[] = [];
+      can[steps.length] = new Uint8Array(n + 1);
+      can[steps.length][0] = 1;
+      for (let i = steps.length - 1; i >= 0; i--) {
+        const row = new Uint8Array(n + 1);
+        const next = can[i + 1];
+        const s = steps[i];
+        for (let v = 0; v <= n; v++) row[v] = next[v] === 1 || (v >= s && row[v - s] === 1) ? 1 : 0;
+        can[i] = row;
+      }
+      let v = n;
+      while (can[0][v] !== 1) v--;
+      return steps.map((s, i) => {
+        let c = Math.floor(v / s);
+        while (c > 0 && can[i + 1][v - c * s] !== 1) c--;
+        v -= c * s;
+        return c;
+      });
+    };
+
+    const hideAll = () => {
+      msg.hidden = true;
+      msg.textContent = '';
+      results.hidden = true;
+      outLoaded.textContent = '';
+      near.hidden = true;
+      near.textContent = '';
+      list.replaceChildren();
+      load.replaceChildren();
+      visual.hidden = true;
+    };
+    const showMsg = (text: string) => {
+      hideAll();
+      msg.textContent = text;
+      msg.hidden = false;
+    };
+
+    // Messages appear only when the field is left or a choice is made (strict); while typing, a
+    // value that is not ready yet only hides the result.
+    const update = (strict = true) => {
+      const fail = (text: string) => (strict ? showMsg(text) : hideAll());
+      // Text the browser cannot read as a number (for example 12..5) arrives as an empty value.
+      if (target.validity.badInput) return fail(MSG.low);
+      const raw = target.value.trim();
+      if (raw === '') return hideAll();
+      const x = Number(raw);
+      if (!(x > 0)) return fail(MSG.low);
+      if (x > CAP[unit]) return fail(MSG.cap[unit]);
+
+      // The target in hundredths. A target with more than two decimals cannot be loaded exactly,
+      // so it is rounded down and marked as not whole.
+      const scaled = x * 100;
+      const nearest = Math.round(scaled);
+      const whole = Math.abs(scaled - nearest) < 1e-6;
+      const t = whole ? nearest : Math.floor(scaled);
+      const bar = hundredths(PLATES[unit].bars[barIdx]);
+      if (t < bar) return fail(MSG.below(show(bar)));
+
+      const set = Array.from(root.querySelectorAll<HTMLInputElement>(`[data-plates="${unit}"] [data-plate]`));
+      const picked = set.map((c, i) => ({ i, size: hundredths(Number(c.dataset.plate)), on: c.checked })).filter((p) => p.on);
+      // With no plates selected, a target equal to the bar is still the bar alone; above it, ask for plates.
+      if (picked.length === 0 && !(whole && t === bar)) return fail(MSG.none);
+
+      const counts: number[] = picked.length === 0 ? [] : loadSide(Math.floor((t - bar) / 2), picked.map((p) => p.size));
+      const side = counts.reduce((sum, c, k) => sum + c * picked[k].size, 0);
+      const loaded = bar + 2 * side;
+
+      hideAll();
+      outLoaded.textContent = show(loaded);
+      if (!(whole && loaded === t)) {
+        near.textContent = `${String(x)} ${unit} cannot be loaded exactly with the plates selected. The closest weight at or below it is ${show(loaded)}.`;
+        near.hidden = false;
+      }
+      const items: HTMLLIElement[] = [];
+      let drawn = 0;
+      counts.forEach((c, k) => {
+        if (c === 0) return;
+        const li = document.createElement('li');
+        li.textContent = `${c} × ${show(picked[k].size)}`;
+        items.push(li);
+        drawn += c;
+      });
+      if (items.length === 0) {
+        const li = document.createElement('li');
+        li.textContent = 'No plates, just the bar.';
+        items.push(li);
+      }
+      list.replaceChildren(...items);
+      if (drawn > 0) {
+        let placed = 0;
+        counts.forEach((c, k) => {
+          const pos = picked[k].i;
+          for (let j = 0; j < c && placed < MAX_DRAWN; j++, placed++) {
+            const plate = document.createElement('span');
+            plate.className = 'pc-plate';
+            plate.style.height = `${HEIGHT[unit][pos]}%`;
+            plate.style.background = unit === 'kg' ? KG_COLOR : LB_COLOR[pos];
+            load.append(plate);
+          }
+        });
+        if (drawn > MAX_DRAWN) {
+          const more = document.createElement('span');
+          more.className = 'pc-more';
+          more.textContent = `+${drawn - MAX_DRAWN}`;
+          load.append(more);
+        }
+        visual.hidden = false;
+      }
+      results.hidden = false;
+    };
+
+    const setBar = (i: number) => {
+      barIdx = i;
+      barBtns.forEach((b) => b.setAttribute('aria-checked', String(Number(b.dataset.bar) === i)));
+    };
+    const setUnit = (u: Unit) => {
+      if (u === unit) return;
+      unit = u;
+      unitBtns.forEach((b) => b.setAttribute('aria-checked', String(b.dataset.unit === u)));
+      barBtns.forEach((b) => (b.textContent = `${PLATES[u].bars[Number(b.dataset.bar)]} ${u}`));
+      setBar(0);
+      plateSets.forEach((f) => (f.hidden = f.dataset.plates !== u));
+      // Changing units clears the target and the result; it does not convert.
+      target.value = '';
+      hideAll();
+    };
+
+    unitBtns.forEach((b) => b.addEventListener('click', () => setUnit(b.dataset.unit as Unit)));
+    barBtns.forEach((b) =>
+      b.addEventListener('click', () => {
+        setBar(Number(b.dataset.bar));
+        update();
+      }),
+    );
+    root.querySelectorAll<HTMLInputElement>('[data-plate]').forEach((c) => c.addEventListener('change', () => update()));
+    target.addEventListener('input', () => update(false));
+    // blur, not change: a browser may not fire change when unreadable text leaves the value empty.
+    target.addEventListener('blur', () => update());
+    // No form exists, but stop Enter from doing anything unexpected.
+    target.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') e.preventDefault();
+    });
+  }
+</script>
+
+<style>
+  .pc-calc { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 16px; padding: 22px; margin: 6px 0 12px; }
+  .pc-fields { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .pc-field label, .pc-label, .pc-plates legend { display: block; font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-bottom: 6px; padding: 0; }
+  .pc-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .pc-calc input[type='number'] { flex: 1 1 160px; width: auto; min-width: 0; min-height: 46px; padding: 10px 12px; border: 1px solid #C9CDD3; border-radius: 10px; background: #fff; color: var(--color-on-paper); font: inherit; font-size: 16px; }
+  .pc-calc input:focus-visible, .pc-seg button:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .pc-seg { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .pc-seg-label { font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-right: 2px; }
+  .pc-seg button { min-height: 40px; min-width: 56px; padding: 8px 14px; border-radius: 999px; border: 1px solid #C9CDD3; background: #fff; color: var(--color-on-paper); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .pc-seg button[aria-checked='true'] { background: var(--color-azure-deep); border-color: var(--color-azure-deep); color: #fff; }
+  .pc-plates { border: 0; margin: 0; padding: 0; min-width: 0; }
+  .pc-plates[hidden] { display: none; }
+  .pc-checks { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pc-check { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 6px 14px 6px 10px; border: 1px solid #C9CDD3; border-radius: 999px; background: #fff; }
+  .pc-check input { width: 18px; height: 18px; margin: 0; accent-color: var(--color-azure-deep); }
+  .pc-check label { margin: 0; font-size: 15px; font-weight: 600; color: var(--color-on-paper); cursor: pointer; }
+  .pc-out { margin-top: 18px; }
+  .pc-msg { margin: 0; padding: 12px 14px; border-radius: 10px; background: #FFF4E5; color: #6B3D00; font-size: 15.5px; line-height: 1.5; }
+  .pc-results { border-top: 1px solid var(--color-hairline-light); padding-top: 14px; }
+  .pc-result { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 8px; font-size: 16px; }
+  .pc-result strong { font-family: var(--font-display); font-weight: 600; font-size: 30px; color: var(--color-on-paper); white-space: nowrap; }
+  .pc-near { margin: 0 0 10px; font-size: 15px; line-height: 1.55; color: #2A2D33; }
+  .pc-sub { margin: 10px 0 6px; font-size: 14px; font-weight: 600; color: var(--color-on-paper); }
+  .pc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .pc-list :global(li) { padding: 6px 12px; border-radius: 8px; background: var(--color-paper-1); font-size: 16px; font-weight: 600; color: var(--color-on-paper); }
+  .pc-bar { display: flex; align-items: center; height: 110px; margin-top: 16px; overflow: hidden; }
+  .pc-bar[hidden] { display: none; }
+  .pc-shaft { flex: 0 0 32px; height: 10px; background: #8A9099; border-radius: 2px 0 0 2px; }
+  .pc-stop { flex: 0 0 8px; height: 34px; background: #5B6069; border-radius: 2px; }
+  .pc-load { display: flex; align-items: center; gap: 2px; height: 100%; min-width: 0; padding: 0 2px; }
+  .pc-sleeve { flex: 1 1 24px; min-width: 16px; height: 14px; background: #B4B9C0; border-radius: 0 3px 3px 0; }
+  /* List items and plates are created by the script, so they carry no scoping attribute. */
+  .pc-load :global(.pc-plate) { flex: 0 1 14px; min-width: 6px; border-radius: 3px; }
+  .pc-load :global(.pc-more) { flex: 0 0 auto; padding: 0 4px; font-size: 13px; font-weight: 600; color: var(--color-on-paper-soft); }
+  @media (max-width: 520px) { .pc-result { flex-direction: column; gap: 2px; } }
+</style>
