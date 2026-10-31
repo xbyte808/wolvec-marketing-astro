@@ -1,0 +1,37 @@
+---
+// Closing sections for the DOTS, Wilks and plate calculator pages (W840): the Wolvec box, links to
+// the other free tools, and the page's sources. Written separately from OrmPageEnd so the product
+// box carries only this one approved sentence.
+import { ORM_TOOLS } from '../data/oneRepMax';
+
+interface Source { href: string; text: string }
+interface Props {
+  /** This page's path, left out of the tool links. */
+  current: string;
+  sources?: Source[];
+}
+const { current, sources = [] } = Astro.props;
+// One list for every tool page (ORM_TOOLS), each link once, without this page.
+const tools = ORM_TOOLS.filter((t, i) => t.href !== current && ORM_TOOLS.findIndex((u) => u.href === t.href) === i);
+---
+
+<section class="g-step" id="for-coaches">
+  <h2>For coaches</h2>
+  <div class="g-product g-product-solo"><p class="g-product-text">Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it.</p></div>
+</section>
+
+<section class="g-step" id="more-tools">
+  <h2>More free tools</h2>
+  <ul class="g-dots">
+    {tools.map((t) => <li><a href={t.href}>{t.label}</a></li>)}
+  </ul>
+</section>
+
+{sources.length > 0 && (
+  <section class="g-step" id="sources">
+    <h2>Sources</h2>
+    <ul class="g-sources">
+      {sources.map((s) => <li><a href={s.href} rel="noopener">{s.text}</a></li>)}
+    </ul>
+  </section>
+)}

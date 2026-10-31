@@ -32,6 +32,9 @@ Wolvec is not a medical provider, health plan, or healthcare clearinghouse. It p
 - [Bench press calculator](https://wolvec.ai/tools/bench-press-calculator): Bench press 1RM calculator. Estimate your bench press 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.
 - [Squat max calculator](https://wolvec.ai/tools/squat-max-calculator): Squat max calculator. Estimate your squat 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.
 - [Deadlift calculator](https://wolvec.ai/tools/deadlift-calculator): Deadlift calculator. Estimate your deadlift 1RM and five-rep max from a recent 1 to 9 rep set you already performed to failure.
+- [DOTS score calculator](https://wolvec.ai/tools/dots-calculator): DOTS score calculator for powerlifting. Enter a total and body weight in lb or kg to see the DOTS score, with the Wilks score alongside for comparison.
+- [Wilks calculator](https://wolvec.ai/tools/wilks-calculator): Wilks calculator for powerlifting. Enter a total and body weight in lb or kg to see the Wilks score from the original formula, with the DOTS score alongside.
+- [Plate calculator](https://wolvec.ai/tools/plate-calculator): Barbell plate calculator. Enter a target weight in lb or kg, choose your bar and the plates you have, and see which weight plates go on each side.
 - [Privacy Policy](https://wolvec.ai/privacy): data collection, use, and consumer health data disclosures.
 - [Consumer Health Data Privacy Policy](https://wolvec.ai/consumer-health-data): consumer health data categories, sources, purposes, sharing, and consumer rights.
 - [Blog](https://wolvec.ai/blog): no posts published yet as of this writing.
