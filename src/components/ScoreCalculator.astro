@@ -1,0 +1,219 @@
+---
+/*
+  DOTS and Wilks score calculator (W840), shared by the DOTS and Wilks pages. The primary prop
+  decides which score is listed first.
+
+  LOCAL ONLY, as on the other calculators: no <form>, no name attributes, no network calls, no
+  storage, no URL parameters, no logging. Everything a visitor types stays in this page's memory
+  and is gone on reload. The men's or women's choice is only the formula category each scoring
+  method requires; it is not kept anywhere.
+
+  Method (OpenPowerlifting, crates/coefficients/src/dots.rs and wilks.rs, see
+  src/data/strengthTools.ts): total and body weight in kg, pounds converted at 0.45359237 kg per
+  lb. A body weight outside the formula's range is moved to the nearest end of it.
+  Score = total * 500 / polynomial(body weight). Shown to 2 decimals, rounded half up.
+*/
+interface Props {
+  /** Which score is listed first. */
+  primary: 'dots' | 'wilks';
+}
+const { primary } = Astro.props;
+const ORDER = primary === 'dots' ? (['dots', 'wilks'] as const) : (['wilks', 'dots'] as const);
+const NAME = { dots: 'DOTS score', wilks: 'Wilks score' };
+---
+
+<div class="sc-calc" data-score-calc>
+  <div class="sc-fields">
+    <div class="sc-field">
+      <span class="sc-label" id="sc-unit-label">Unit</span>
+      <div class="sc-seg" role="radiogroup" aria-labelledby="sc-unit-label">
+        <button type="button" role="radio" aria-checked="true" data-unit="lb">lb</button>
+        <button type="button" role="radio" aria-checked="false" data-unit="kg">kg</button>
+      </div>
+    </div>
+
+    <div class="sc-field">
+      <label for="sc-total">Total</label>
+      <input id="sc-total" type="number" inputmode="decimal" min="0" step="any" autocomplete="off" aria-describedby="sc-total-hint" />
+      <p class="sc-hint" id="sc-total-hint">Squat, bench press and deadlift added together.</p>
+    </div>
+
+    <div class="sc-field">
+      <label for="sc-bw">Body weight</label>
+      <div class="sc-row">
+        <input id="sc-bw" type="number" inputmode="decimal" min="0" step="any" autocomplete="off" aria-describedby="sc-bw-unit" />
+        <span class="sc-unit" id="sc-bw-unit" data-bw-unit>lb</span>
+      </div>
+    </div>
+
+    <div class="sc-field">
+      <span class="sc-label" id="sc-cat-label">Formula category</span>
+      <div class="sc-seg" role="radiogroup" aria-labelledby="sc-cat-label" aria-describedby="sc-cat-hint">
+        <button type="button" role="radio" aria-checked="false" data-cat="men">Men's formula</button>
+        <button type="button" role="radio" aria-checked="false" data-cat="women">Women's formula</button>
+      </div>
+      <p class="sc-hint" id="sc-cat-hint">DOTS and Wilks each have a men's formula and a women's formula, with different coefficients.</p>
+    </div>
+  </div>
+
+  <div class="sc-out" aria-live="polite">
+    <p class="sc-msg" data-msg hidden></p>
+    <div class="sc-results" data-results hidden aria-describedby="sc-note">
+      {/* Each body weight range note sits directly under its own score row (counsel: keep each notice adjacent to the affected score). */}
+      {ORDER.map((k, i) => (
+        <Fragment>
+          <p class={i === 0 ? 'sc-result sc-first' : 'sc-result'}><span>{NAME[k]}</span><strong data-out={k}></strong></p>
+          <p class="sc-range" data-range={k} hidden></p>
+        </Fragment>
+      ))}
+      <p class="sc-note" id="sc-note">These scores are calculated from the values you entered using the selected formula. Different powerlifting organizations may use different scoring systems.</p>
+    </div>
+  </div>
+</div>
+<p><b>How it works.</b> Enter a total and body weight in the same unit and choose a formula category. The calculator converts pounds at 0.45359237 kg per lb, applies DOTS and the original Wilks formula as defined in the OpenPowerlifting source code, and rounds each score to 2 decimals.</p>
+<p>The calculation runs in your browser.</p>
+
+<script>
+  import { DOTS, WILKS, LB_TO_KG, scoreOf, round2, type Category, type Formula } from '../data/strengthTools';
+
+  const root = document.querySelector<HTMLElement>('[data-score-calc]');
+  if (root) {
+    type Unit = 'lb' | 'kg';
+    const CAP = { total: { lb: 3000, kg: 1400 }, bw: { lb: 700, kg: 320 } } as const;
+    const MSG = {
+      totalLow: 'Enter a total above 0.',
+      totalCap: { lb: 'Enter a total of 3000 lb or less.', kg: 'Enter a total of 1400 kg or less.' },
+      bwLow: 'Enter a body weight above 0.',
+      bwCap: { lb: 'Enter a body weight of 700 lb or less.', kg: 'Enter a body weight of 320 kg or less.' },
+      cat: 'Choose a formula category to see the scores.',
+    };
+    const FORMULAS: Record<'dots' | 'wilks', { name: string; data: Record<Category, Formula> }> = {
+      dots: { name: 'DOTS', data: DOTS },
+      wilks: { name: 'Wilks', data: WILKS },
+    };
+    const CAT_NAME: Record<Category, string> = { men: "men's", women: "women's" };
+
+    let unit: Unit = 'lb';
+    let cat: Category | null = null;
+
+    const total = root.querySelector<HTMLInputElement>('#sc-total')!;
+    const bw = root.querySelector<HTMLInputElement>('#sc-bw')!;
+    const bwUnit = root.querySelector<HTMLElement>('[data-bw-unit]')!;
+    const msg = root.querySelector<HTMLElement>('[data-msg]')!;
+    const results = root.querySelector<HTMLElement>('[data-results]')!;
+    const outs = Array.from(root.querySelectorAll<HTMLElement>('[data-out]'));
+    const ranges = Array.from(root.querySelectorAll<HTMLElement>('[data-range]'));
+    const unitBtns = root.querySelectorAll<HTMLButtonElement>('[data-unit]');
+    const catBtns = root.querySelectorAll<HTMLButtonElement>('[data-cat]');
+
+    const hideAll = () => {
+      msg.hidden = true;
+      msg.textContent = '';
+      results.hidden = true;
+      outs.forEach((o) => (o.textContent = ''));
+      ranges.forEach((r) => {
+        r.hidden = true;
+        r.textContent = '';
+      });
+    };
+    const showMsg = (text: string) => {
+      hideAll();
+      msg.textContent = text;
+      msg.hidden = false;
+    };
+    // The message for one field, or '' when the field is empty or fine.
+    const problem = (input: HTMLInputElement, low: string, cap: number, capMsg: string) => {
+      // Text the browser cannot read as a number (for example 12..5) arrives as an empty value.
+      if (input.validity.badInput) return low;
+      const raw = input.value.trim();
+      if (raw === '') return '';
+      const v = Number(raw);
+      if (!(v > 0)) return low;
+      if (v > cap) return capMsg;
+      return '';
+    };
+    const kgText = (x: number) => String(x);
+
+    // Messages appear only when a field is left or a choice is made (strict); while typing, a
+    // value that is not ready yet only hides the result.
+    const update = (strict = true) => {
+      const err =
+        problem(total, MSG.totalLow, CAP.total[unit], MSG.totalCap[unit]) ||
+        problem(bw, MSG.bwLow, CAP.bw[unit], MSG.bwCap[unit]);
+      if (err) return strict ? showMsg(err) : hideAll();
+      const t = total.value.trim();
+      const b = bw.value.trim();
+      if (t === '' || b === '') return hideAll();
+      if (cat === null) return strict ? showMsg(MSG.cat) : hideAll();
+
+      const k = unit === 'lb' ? LB_TO_KG : 1;
+      const totalKg = Number(t) * k;
+      const bodyKg = Number(b) * k;
+      hideAll();
+      outs.forEach((o) => {
+        const key = o.dataset.out as 'dots' | 'wilks';
+        const f = FORMULAS[key].data[cat!];
+        const r = scoreOf(f, totalKg, bodyKg);
+        o.textContent = round2(r.value);
+        if (r.outside) {
+          const note = ranges.find((x) => x.dataset.range === key)!;
+          note.textContent = `${FORMULAS[key].name} score: body weight is outside the ${CAT_NAME[cat!]} formula range of ${kgText(f.min)} to ${kgText(f.max)} kg, so ${kgText(r.used)} kg is used.`;
+          note.hidden = false;
+        }
+      });
+      results.hidden = false;
+    };
+
+    const setUnit = (u: Unit) => {
+      if (u === unit) return;
+      unit = u;
+      unitBtns.forEach((btn) => btn.setAttribute('aria-checked', String(btn.dataset.unit === u)));
+      bwUnit.textContent = u;
+      // Changing units clears both numbers and every result; it does not convert.
+      total.value = '';
+      bw.value = '';
+      hideAll();
+    };
+    const setCat = (c: Category) => {
+      cat = c;
+      catBtns.forEach((btn) => btn.setAttribute('aria-checked', String(btn.dataset.cat === c)));
+      update();
+    };
+
+    unitBtns.forEach((btn) => btn.addEventListener('click', () => setUnit(btn.dataset.unit as Unit)));
+    catBtns.forEach((btn) => btn.addEventListener('click', () => setCat(btn.dataset.cat as Category)));
+    [total, bw].forEach((input) => {
+      input.addEventListener('input', () => update(false));
+      // blur, not change: a browser may not fire change when unreadable text leaves the value empty.
+      input.addEventListener('blur', () => update());
+      // No form exists, but stop Enter from doing anything unexpected.
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') e.preventDefault();
+      });
+    });
+  }
+</script>
+
+<style>
+  .sc-calc { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 16px; padding: 22px; margin: 6px 0 12px; }
+  .sc-fields { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .sc-field label, .sc-label { display: block; font-size: 14px; font-weight: 600; color: var(--color-on-paper); margin-bottom: 6px; }
+  .sc-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .sc-calc input { display: block; width: 100%; min-width: 0; min-height: 46px; padding: 10px 12px; border: 1px solid #C9CDD3; border-radius: 10px; background: #fff; color: var(--color-on-paper); font: inherit; font-size: 16px; }
+  .sc-row input { flex: 1 1 160px; width: auto; }
+  .sc-unit { font-size: 15px; font-weight: 600; color: var(--color-on-paper-soft); min-width: 2em; }
+  .sc-hint { margin: 8px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--color-on-paper-soft); }
+  .sc-calc input:focus-visible, .sc-seg button:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .sc-seg { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .sc-seg button { min-height: 40px; min-width: 56px; padding: 8px 14px; border-radius: 999px; border: 1px solid #C9CDD3; background: #fff; color: var(--color-on-paper); font-weight: 600; font-size: 15px; cursor: pointer; }
+  .sc-seg button[aria-checked='true'] { background: var(--color-azure-deep); border-color: var(--color-azure-deep); color: #fff; }
+  .sc-out { margin-top: 18px; }
+  .sc-msg { margin: 0; padding: 12px 14px; border-radius: 10px; background: #FFF4E5; color: #6B3D00; font-size: 15.5px; line-height: 1.5; }
+  .sc-results { border-top: 1px solid var(--color-hairline-light); padding-top: 14px; }
+  .sc-result { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0 0 8px; font-size: 16px; }
+  .sc-result strong { font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--color-on-paper); white-space: nowrap; }
+  .sc-first strong { font-size: 30px; }
+  .sc-range { margin: 0 0 12px; font-size: 14.5px; line-height: 1.55; color: var(--color-on-paper-soft); }
+  .sc-note { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: #2A2D33; }
+  @media (max-width: 520px) { .sc-result { flex-direction: column; gap: 2px; } }
+</style>

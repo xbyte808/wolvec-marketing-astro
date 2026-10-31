@@ -1,0 +1,44 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import PlateCalculator from '../../components/PlateCalculator.astro';
+import ToolPageEnd from '../../components/ToolPageEnd.astro';
+import { PUBLISHED, articleLd } from '../../data/strengthTools';
+
+// W840. Counsel: no further review needed as scoped. The page describes how plates make up a weight
+// the visitor enters; it does not suggest what weight to lift.
+const URL = 'https://wolvec.ai/tools/plate-calculator';
+const TITLE = 'Barbell Plate Calculator: Plates per Side | Wolvec';
+const DESCRIPTION =
+  'Barbell plate calculator. Enter a target weight in lb or kg, choose your bar and the plates you have, and see which weight plates go on each side.';
+const H1 = 'Plate calculator';
+const LEDE = 'Enter a target weight, choose your bar and the plates you have, and see which plates go on each side of the barbell.';
+const TOC = [
+  { id: 'calculator', label: 'Plate calculator' },
+  { id: 'example', label: 'Example' },
+  { id: 'faq', label: 'Questions' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={2} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  <section class="g-step" id="calculator">
+    <h2>Plate calculator</h2>
+    <PlateCalculator />
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>For a 225 lb target on a 45 lb bar, each side gets 90 lb: two 45 lb plates. For a 100 kg target on a 20 kg bar, each side gets 40 kg: one 25 kg plate and one 15 kg plate. With every plate selected, 228 lb on a 45 lb bar cannot be made exactly, so the calculator shows 225 lb.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>What does a plate calculator do?</h3><p>It works out which plates go on each side of a barbell to make a target weight, from the bar and the plates you have.</p></div>
+      <div class="g-faq-item"><h3>Why does it show less than the weight I entered?</h3><p>The plates selected cannot make that weight exactly, so the calculator shows the closest weight at or below it. Selecting smaller plates can get closer.</p></div>
+      <div class="g-faq-item"><h3>Are collars included?</h3><p>No. Collars are not counted in the loaded weight.</p></div>
+      <div class="g-faq-item"><h3>Can I use kilograms?</h3><p>Yes. Switch the unit to kg for 20, 15 and 10 kg bars and plates from 25 kg down to 1.25 kg.</p></div>
+    </div>
+  </section>
+
+  <ToolPageEnd current="/tools/plate-calculator" />
+</GuideLayout>

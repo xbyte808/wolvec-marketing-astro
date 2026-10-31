@@ -21,12 +21,16 @@ export const SOURCES = {
 } as const;
 
 export interface ToolLink { href: string; label: string }
+// "More free tools" on every tool page (OrmPageEnd and ToolPageEnd); each page leaves itself out.
 export const ORM_TOOLS: ToolLink[] = [
   { href: '/tools/one-rep-max-calculator', label: 'One rep max calculator' },
   { href: '/tools/bench-press-calculator', label: 'Bench press calculator' },
   { href: '/tools/squat-max-calculator', label: 'Squat max calculator' },
   { href: '/tools/deadlift-calculator', label: 'Deadlift calculator' },
   { href: '/tools/rpe-calculator', label: 'RPE calculator and RPE chart' },
+  { href: '/tools/dots-calculator', label: 'DOTS score calculator' },
+  { href: '/tools/wilks-calculator', label: 'Wilks calculator' },
+  { href: '/tools/plate-calculator', label: 'Plate calculator' },
 ];
 
 export const articleLd = (headline: string, description: string, url: string) => ({

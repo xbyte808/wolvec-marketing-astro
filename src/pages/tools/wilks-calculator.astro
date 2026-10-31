@@ -1,0 +1,68 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+import ScoreCalculator from '../../components/ScoreCalculator.astro';
+import ScoreFormula from '../../components/ScoreFormula.astro';
+import ToolPageEnd from '../../components/ToolPageEnd.astro';
+import { PUBLISHED, SOURCES, articleLd } from '../../data/strengthTools';
+
+// W840. Counsel cleared this page's copy with edits (W840 round 2); the result note, the
+// "Within the same formula" sentence and "Robert Wilks developed the formula." are counsel's wording.
+const URL = 'https://wolvec.ai/tools/wilks-calculator';
+const TITLE = 'Wilks Calculator: Wilks Score and Wilks Formula | Wolvec';
+const DESCRIPTION =
+  'Wilks calculator for powerlifting. Enter a total and body weight in lb or kg to see the Wilks score from the original formula, with the DOTS score alongside.';
+const H1 = 'Wilks calculator';
+const LEDE =
+  'The Wilks score adjusts a powerlifting total for body weight, so lifters of different body weights can be compared. Enter a total and body weight to see the Wilks score from the original formula, with the DOTS score alongside.';
+const TOC = [
+  { id: 'calculator', label: 'Wilks calculator' },
+  { id: 'what-wilks-is', label: 'What a Wilks score is' },
+  { id: 'formula', label: 'The Wilks formula' },
+  { id: 'other-formulas', label: 'Wilks, DOTS and other formulas' },
+  { id: 'example', label: 'Example' },
+  { id: 'faq', label: 'Questions' },
+  { id: 'sources', label: 'Sources' },
+];
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={3} toc={TOC} articleLd={articleLd(H1, DESCRIPTION, URL)} crumb="Tools" crumbHref="/resources#tools">
+  {/* GATE: the DOTS and Wilks page copy waits for counsel's sign-off (W840). */}
+  <section class="g-step" id="calculator">
+    <h2>Wilks calculator</h2>
+    <ScoreCalculator primary="wilks" />
+  </section>
+
+  <section class="g-step" id="what-wilks-is">
+    <h2>What a Wilks score is</h2>
+    <p>The Wilks score turns a powerlifting total into a number adjusted for body weight, so a lighter lifter and a heavier lifter can be compared on one scale. It is the total multiplied by the Wilks coefficient, a multiplier that depends on body weight. Within the same formula and formula category, a higher score represents a larger total relative to body weight under that formula. Robert Wilks developed the formula.</p>
+  </section>
+
+  <section class="g-step" id="formula">
+    <h2>The Wilks formula</h2>
+    <ScoreFormula formula="wilks">
+      <p>Total and body weight (bw) are in kilograms. This calculator uses the original Wilks formula with the coefficients below, as in the OpenPowerlifting source code. It does not use the 2020 update to the formula, which has different coefficients and a 600 point scale, so its scores are not comparable with these. OpenPowerlifting limits body weight to 40 to 201.9 kg for the men's formula and 26.51 to 154.53 kg for the women's formula. Outside that range, the calculator uses the nearest end of it, as OpenPowerlifting does.</p>
+    </ScoreFormula>
+  </section>
+
+  <section class="g-step" id="other-formulas">
+    <h2>Wilks, DOTS and other formulas</h2>
+    <p>Powerlifting federations use different scoring formulas. The IPF uses its own GL points, which this page does not calculate. Wilks and DOTS are different formulas, so a Wilks score and a DOTS score for the same total are different numbers. Compare scores from the same formula.</p>
+  </section>
+
+  <section class="g-step" id="example">
+    <h2>Example</h2>
+    <p>A 600 kg total at 90 kg body weight with the men's formula gives a Wilks score of 383.04 and a DOTS score of 387.96. A 500 kg total at 60 kg with the women's formula gives a Wilks score of 557.44 and a DOTS score of 554.27. In pounds, a 1150 lb total at 185 lb with the men's formula gives a Wilks score of 345.96 and a DOTS score of 350.00.</p>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>What is a Wilks score?</h3><p>A score that adjusts a powerlifting total for body weight, so lifters of different body weights can be compared.</p></div>
+      <div class="g-faq-item"><h3>What is the Wilks formula?</h3><p>Total × 500, divided by a fifth degree polynomial of body weight, with total and body weight in kg. The men's and women's formulas use different coefficients, shown above.</p></div>
+      <div class="g-faq-item"><h3>Which version of the Wilks formula does this use?</h3><p>The original formula. It does not use the 2020 update, which has different coefficients and a 600 point scale.</p></div>
+      <div class="g-faq-item"><h3>Does this calculate IPF GL points?</h3><p>No. The IPF uses its own GL points, which this page does not calculate.</p></div>
+    </div>
+  </section>
+
+  <ToolPageEnd current="/tools/wilks-calculator" sources={[SOURCES.oplWilks, SOURCES.oplWilks2020, SOURCES.oplDots, SOURCES.wikiWilks, SOURCES.ipfGl]} />
+</GuideLayout>
