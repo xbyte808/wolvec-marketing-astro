@@ -85,6 +85,8 @@
 <p class="rpe-use">Designed for people who already use RPE in resistance training and are entering an exercise they already perform.</p>
 
 <script>
+  import { initRadioGroups } from '../lib/radioGroup';
+
   const root = document.querySelector<HTMLElement>('[data-rpe-calc]');
   if (root) {
     const CAP = { lb: 2000, kg: 1000 } as const;
@@ -211,6 +213,8 @@
     weight.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') e.preventDefault();
     });
+    // Unit and rounding options: one Tab stop per group, Arrow keys select.
+    initRadioGroups(root);
   }
 </script>
 
