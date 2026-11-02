@@ -67,6 +67,7 @@ const id = (u: string, p: number) => `pc-${u}-${String(p).replace('.', '-')}`;
 
 <script>
   import { PLATES } from '../data/strengthTools';
+  import { initRadioGroups } from '../lib/radioGroup';
 
   const root = document.querySelector<HTMLElement>('[data-plate-calc]');
   if (root) {
@@ -255,6 +256,8 @@ const id = (u: string, p: number) => `pc-${u}-${String(p).replace('.', '-')}`;
     target.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') e.preventDefault();
     });
+    // Unit and bar options: one Tab stop per group, Arrow keys select.
+    initRadioGroups(root);
   }
 </script>
 

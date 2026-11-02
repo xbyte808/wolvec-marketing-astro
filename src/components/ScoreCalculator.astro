@@ -75,6 +75,7 @@ const NAME = { dots: 'DOTS score', wilks: 'Wilks score' };
 
 <script>
   import { DOTS, WILKS, LB_TO_KG, scoreOf, round2, type Category, type Formula } from '../data/strengthTools';
+  import { initRadioGroups } from '../lib/radioGroup';
 
   const root = document.querySelector<HTMLElement>('[data-score-calc]');
   if (root) {
@@ -191,6 +192,8 @@ const NAME = { dots: 'DOTS score', wilks: 'Wilks score' };
         if (e.key === 'Enter') e.preventDefault();
       });
     });
+    // Unit and formula category options: one Tab stop per group, Arrow keys select.
+    initRadioGroups(root);
   }
 </script>
 
