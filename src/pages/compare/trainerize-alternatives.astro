@@ -1,0 +1,316 @@
+---
+// W785: Trainerize alternatives comparison page.
+// GATE: counsel clearance of copy and structure. Not linked from the header, footer, Resources hub
+// or llms.txt; marketing decides placement after counsel.
+// Every visible string below is generated from the W785 copy deck (title, meta description, H1 and
+// the BODY section) by a script; change the deck and regenerate rather than editing copy here.
+// The three notices are counsel-mandated and must stay verbatim and in place: the first directly
+// after the intro, the other two directly before the price table.
+import Layout from '../../layouts/Layout.astro';
+
+const ORG_ID = 'https://wolvec.ai/#organization';
+const ORIGIN = 'https://wolvec.ai';
+const URL = "https://wolvec.ai/compare/trainerize-alternatives";
+const TITLE = "Trainerize Alternatives for Fitness Coaches | Wolvec";
+const DESCRIPTION = "Alternatives to Trainerize for fitness coaches: Everfit, My PT Hub, TrueCoach and Wolvec, with competitor plans, prices and AI features from their own sites.";
+const H1 = "Trainerize alternatives for fitness coaches";
+const PUBLISHED = '2026-11-02';
+
+// Same Article pattern as the guides (GuideLayout fills the time zone and author and publisher url).
+// No FAQPage, Product, Review or rating schema on this page.
+const withTz = (d: string) => `${d}T12:00:00-10:00`;
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: H1,
+  description: DESCRIPTION,
+  datePublished: withTz(PUBLISHED),
+  dateModified: withTz(PUBLISHED),
+  url: URL,
+  mainEntityOfPage: URL,
+  author: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec', url: ORIGIN },
+  publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec', url: ORIGIN },
+  image: ['https://wolvec.ai/og-default.png?v=3'],
+};
+---
+
+<Layout title={TITLE} description={DESCRIPTION} canonical={URL}>
+  <Fragment slot="head">
+    <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+  </Fragment>
+
+  <main class="cmp">
+    <header class="c-hero">
+      <div class="c-wash" aria-hidden="true"></div>
+      <div class="c-hero-inner">
+        <h1 class="c-title">{H1}</h1>
+        <p class="c-lede">Alternatives to Trainerize include Everfit, My PT Hub, TrueCoach and Wolvec. They differ in how plans limit clients, which AI features are included or sold as add-ons, and what each lists for branded apps, payments and integrations. Wolvec is in early access by invitation.</p>
+        <p class="c-lede">Below is what each provider lists on its own website, with a checklist for comparing them.</p>
+      </div>
+    </header>
+
+    <div class="c-body">
+      <div class="c-inner">
+      <p class="c-notice">This page is published by Wolvec, which offers competing software for fitness coaches. Wolvec is not affiliated with, sponsored by, or endorsed by the companies named on this page. Third-party names and marks belong to their respective owners.</p>
+
+      <section class="c-sec" id="at-a-glance">
+        <h2>At a glance</h2>
+        <p class="c-notice">Wolvec does not currently publish pricing. The prices below are provided as current competitor information, not as a claim that Wolvec is cheaper or more expensive.</p>
+        <p class="c-notice">Information checked November 2, 2026. Products, features and prices can change. Verify current details with each provider.</p>
+        <h3 class="c-table-title" id="plans-and-prices-as-listed-by-each-provider">Plans and prices, as listed by each provider</h3>
+        <div class="c-table-block">
+          <div class="c-table-outer">
+            <div class="c-table-wrap" role="region" aria-labelledby="plans-and-prices-as-listed-by-each-provider" tabindex="0" data-scroll-cue>
+              <table class="c-table" aria-labelledby="plans-and-prices-as-listed-by-each-provider">
+                <colgroup><col class="c-col-head" /><col class="c-col" /><col class="c-col" /><col class="c-col" /><col class="c-col" /></colgroup>
+                <thead><tr><td class="c-corner"></td><th scope="col">Trainerize</th><th scope="col">Everfit</th><th scope="col">My PT Hub</th><th scope="col">TrueCoach</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Free plan</th><td>Yes, 1 client</td><td>Yes, up to 5 clients</td><td>Yes, 1 client, Lite plan (note C)</td><td>Not verified</td></tr>
+                  <tr><th scope="row">Free trial</th><td>Yes, 30 days, unlimited clients, no card</td><td>Yes, 30 days, no card</td><td>Yes, 30 days, no card</td><td>Yes, 14 days, no card</td></tr>
+                  <tr><th scope="row">Clients per plan</th><td>Grow 2; Pro 5 to 200; Studio Plus 500 to 1,000+</td><td>Pro 5 to 300; Studio 50 to 500; Enterprise 500+</td><td>Starter 3; Premium and Ultimate unlimited</td><td>Starter 5; Standard 20; Pro 50 (active clients)</td></tr>
+                  <tr><th scope="row">Entry paid plan, monthly billing</th><td>Grow, $10 per month (note A)</td><td>Pro for 5 clients, $19 per month</td><td>Starter, $25 per month</td><td>Note B</td></tr>
+                  <tr><th scope="row">Annual billing</th><td>10% discount</td><td>16% discount</td><td>Lower per-month prices</td><td>1 or 2 months free, by plan</td></tr>
+                  <tr><th scope="row">Currency</th><td>USD, plus taxes</td><td>Plan prices shown as $, no currency code; payments fee stated in USD</td><td>Shown as $, no currency code</td><td>USD</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <h3 class="c-table-title" id="features-as-listed-by-each-provider">Features, as listed by each provider</h3>
+        <div class="c-table-block">
+          <div class="c-table-outer">
+            <div class="c-table-wrap" role="region" aria-labelledby="features-as-listed-by-each-provider" tabindex="0" data-scroll-cue>
+              <table class="c-table" aria-labelledby="features-as-listed-by-each-provider">
+                <colgroup><col class="c-col-head" /><col class="c-col" /><col class="c-col" /><col class="c-col" /><col class="c-col" /></colgroup>
+                <thead><tr><td class="c-corner"></td><th scope="col">Trainerize</th><th scope="col">Everfit</th><th scope="col">My PT Hub</th><th scope="col">TrueCoach</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">AI drafts replies for the coach to review before sending</th><td>Yes, FitMetrics add-on (add-ons not included in the trial)</td><td>Yes, Smart Response on Pro and Studio (not included in the trial)</td><td>Yes, Check-Ins AI, $12 per month add-on on Premium; listed on Ultimate with no separate price</td><td>Not verified</td></tr>
+                  <tr><th scope="row">AI workout or program builder</th><td>Yes, Grow plan and up</td><td>Yes</td><td>Yes, Premium and Ultimate</td><td>Not verified</td></tr>
+                  <tr><th scope="row">Exercise library</th><td>Yes, over 2,100 filmed exercises; coaches can upload their own</td><td>Yes, 1,000+ exercises or create your own, all plans</td><td>Yes, over 8,000 HD exercise videos; coaches can upload their own</td><td>Yes, video exercise library; coaches can upload their own</td></tr>
+                  <tr><th scope="row">Custom branding or branded app</th><td>Yes, branded app in three tiers (Pro, Studio, Enterprise); $169 one-time setup fee on Pro; included in Studio</td><td>Yes, Custom Branding on Pro and Studio; Advanced Custom Branding, $75 one-time add-on on Pro and Studio; your own app-store listing through the White Label Solution on Enterprise</td><td>Yes, custom branded app, $95 one-time add-on on Starter and Premium; white label app (app store listing), $145 per month add-on on Premium; both listed on Ultimate with no separate price</td><td>Yes, custom-branded app on Standard and Pro</td></tr>
+                  <tr><th scope="row">Payments</th><td>Yes, Stripe add-on, $10 per month on Grow and Pro; included in Studio</td><td>Yes, add-on from $9 per month</td><td>Yes, Starter, Premium and Ultimate, through Stripe</td><td>Yes, all plans, through Stripe</td></tr>
+                  <tr><th scope="row">Integrations</th><td>Yes, including Apple Health, Garmin, Fitbit and MyFitnessPal; Zapier on paid plans</td><td>Yes, including Apple Health, Garmin, Fitbit, WHOOP, Oura and MyFitnessPal; Zapier as a paid plugin on Studio; API on Enterprise</td><td>Yes, wearables; Zapier, $19 per month add-on on Premium, listed on Ultimate with no separate price</td><td>Yes, wearables on Standard and Pro; MyFitnessPal on all plans</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <p class="c-notes-label">Notes:</p>
+        <ul class="c-notes">
+          <li>"Not verified" means the item could not be confirmed on the provider's own website or help pages when checked. It does not mean the provider lacks it.</li>
+          <li>Note A: Trainerize's pricing page shows Grow at $9 per month on its plan card and $10 per month in its FAQ and comparison table, with similar pairs for Pro 5 ($23 and $25) and Studio Plus ($248 and $275). Trainerize's own cost guide, dated October 30, 2026, lists the higher figure in each pair as the monthly billing price and the lower figure as the per-month price on annual billing. Trainerize's AI coaching article also refers to the "Grow plan ($9/month)".</li>
+          <li>Note B: TrueCoach's pricing page shows prices behind a monthly or annual selector; they could not be confirmed for monthly billing when checked.</li>
+          <li>Note C: My PT Hub's pricing page lists its Lite plan as "Free" for 1 client, and its FAQ says accounts move to the "Free" plan at the end of the 30-day trial.</li>
+        </ul>
+      </section>
+
+      <section class="c-sec" id="what-trainerize-lists-today">
+        <h2>What Trainerize lists today</h2>
+        <p>Trainerize has been part of ABC Fitness since September 2020, according to its <a href="https://www.trainerize.com/about/" rel="noopener">About page</a>. It lists a free plan for 1 client, a 30-day free trial with unlimited clients, and paid plans priced by number of clients, from Grow (2 clients) through Pro to Studio Plus, with a 10% discount for annual billing.</p>
+        <p>Its AI Workout Builder is included from the Grow plan up. FitMetrics, which Trainerize calls <a href="https://www.trainerize.com/blog/ai-coaching-software-with-coach-control/" rel="noopener">"a new AI add-on"</a>, drafts check-in replies. Trainerize's <a href="https://www.trainerize.com/features/fitmetrics/" rel="noopener">FitMetrics page</a> says "By default, you review every drafted reply before anything sends to a client."</p>
+        <p>FitMetrics is a paid add-on. Trainerize's public pages currently describe FitMetrics pricing differently, so this page does not state a FitMetrics price. Check <a href="https://www.trainerize.com/features/fitmetrics/" rel="noopener">Trainerize</a> for current pricing.</p>
+      </section>
+
+      <section class="c-sec" id="what-to-compare">
+        <h2>What to compare</h2>
+        <ul class="c-dots">
+          <li><b>Client limits.</b> How many clients each plan allows, at your client count now and the count you expect.</li>
+          <li><b>Add-ons.</b> Which features are included and which are billed separately.</li>
+          <li><b>AI.</b> What it does, whether you review its output before a client sees it, and how usage is billed.</li>
+          <li><b>Branding.</b> Whether you get custom branding inside the provider's app or your own app-store listing, which plan includes it, and any fee.</li>
+          <li><b>Payments.</b> Built in or an add-on, and the provider's current processing fees.</li>
+          <li><b>Integrations.</b> The wearables, nutrition apps and automation tools you already use.</li>
+          <li><b>Exercise library.</b> Whether demos are included, and whether you can add your own.</li>
+          <li><b>Trial or free plan.</b> Length, client limit, whether a card is required, and which features the trial includes.</li>
+        </ul>
+      </section>
+
+      <section class="c-sec" id="alternatives-to-trainerize-in-alphabetical-order">
+        <h2>Alternatives to Trainerize, in alphabetical order</h2>
+        <section class="c-provider" id="everfit">
+          <h3>Everfit</h3>
+          <p>Everfit lists a free Starter plan for up to 5 clients. Pro runs from $19 per month for 5 clients to $290 per month for 300 clients on monthly billing, and Studio runs from $105 per month for 50 clients to $430 per month for 500 clients. Its exercise library lists 1,000+ exercises, and coaches can create their own.</p>
+          <p>Everfit's <a href="https://everfit.io/integration/" rel="noopener">integrations page</a> names Apple Health, Google Health, Apple Watch, Garmin, Fitbit, WHOOP, Oura, MyFitnessPal, Cronometer, Stripe and Zapier. Its help center says Zapier is available <a href="https://help.everfit.io/en/articles/8543585-introducing-zapier-integration" rel="noopener">"as a Plugin on the Studio plan"</a> and that <a href="https://help.everfit.io/en/articles/15176278-everfit-api-integration-guide" rel="noopener">API access</a> is for Enterprise customers. Payments are an add-on, and Everfit's <a href="https://help.everfit.io/en/articles/5684968-processing-fees-for-payments" rel="noopener">payment fees page</a> lists an Everfit platform fee of USD $9 per month. Everfit lists Custom Branding on Pro and Studio, and its <a href="https://help.everfit.io/en/articles/5754312-advanced-custom-branding-bring-your-brand-to-the-next-level" rel="noopener">help center</a> lists Advanced Custom Branding as a $75 one-time add-on for Pro and Studio and points coaches who want their own app listings to its white-label solution on Enterprise.</p>
+          <p>Everfit lists an AI Workout Builder that turns notes or PDFs into a program, and Smart Response, which Everfit describes as <a href="https://everfit.io/ai-suite/" rel="noopener">"AI-drafted replies in your voice"</a> that coaches "just review, edit, and send." Its <a href="https://help.everfit.io/en/articles/13212021-ai-smart-response" rel="noopener">help center</a> says drafts can draw on the coach's Knowledge Base and Saved Responses. Smart Response is <a href="https://help.everfit.io/en/articles/16881431-ai-smart-response-credits-and-plans" rel="noopener">credit based and billed per coach</a>: each coach on an eligible paid plan gets 50 free credits per month, and a paid seat, assigned to a specific coach, includes 250, 1,200 or 3,500 credits per month for $15, $50 or $100 per month. Everfit says Smart Response is not available on Trial or Starter workspaces.</p>
+        </section>
+        <section class="c-provider" id="my-pt-hub">
+          <h3>My PT Hub</h3>
+          <p>My PT Hub lists a free Lite plan for 1 client, Starter for 3 clients at $25 per month on flexible monthly billing, and Premium and Ultimate with unlimited clients at $59 and $215 per month. On annual billing paid monthly, the three paid plans list at $22.50, $52 and $195 per month. Introductory promotions shown on the page, on plan prices and on the branded app fee, are not included here.</p>
+          <p>Its <a href="https://www.mypthub.net/pricing/" rel="noopener">pricing page</a> lists an AI workout builder and Nutrition AI on Premium and Ultimate. Check-Ins AI, described as "AI-powered check-ins," is a $12 per month add-on on Premium and is listed on Ultimate with no separate price. The pricing page says it can "Generate responses to clients in seconds using AI," and My PT Hub's <a href="https://www.mypthub.net/all-updates/" rel="noopener">product updates page</a> says Check-Ins AI lets AI "draft personalized feedback that you can review, regenerate, or edit before sending." Payment processing through Stripe is listed on Starter, Premium and Ultimate. Zapier is a $19 per month add-on on Premium and is listed on Ultimate with no separate price, and the page lists wearable integrations. Its <a href="https://www.mypthub.net/features/workout-features/" rel="noopener">workout features page</a> lists "over 8,000 HD exercise videos" and says trainers can upload their own.</p>
+        </section>
+        <section class="c-provider" id="truecoach">
+          <h3>TrueCoach</h3>
+          <p>TrueCoach lists Starter, Standard and Pro plans for up to 5, 20 and 50 active clients, a 14-day free trial, and a 90-day money-back guarantee on annual plans for first-time subscribers, subject to its <a href="https://truecoach.co/truecoach-guarantee-terms/" rel="noopener">terms</a>.</p>
+          <p>Its <a href="https://truecoach.co/pricing/" rel="noopener">pricing page</a> lists a video exercise library and says coaches can upload their own videos. Payments run through Stripe on all plans, and the branded app and wearable integrations (Apple, Garmin, WHOOP and others) are on Standard and Pro. Its <a href="https://truecoach.co/about/" rel="noopener">About page</a> says TrueCoach is "Powered by Xplor Technologies."</p>
+        </section>
+        <section class="c-provider" id="wolvec">
+          <h3>Wolvec</h3>
+          <p>Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it. Your AI is built from one conversation about how you coach, so you can start without a content library.</p>
+          <p>Depending on the chat level you choose, your AI can answer routine questions based on how you coach, draft a reply for you to review, or stay off. The catalog comes with animated demos and step-by-step instructions, so you are not filming or writing them up yourself.</p>
+          <p>Some of this overlaps with other platforms on this page. Trainerize, Everfit and My PT Hub list AI reply drafts that the coach reviews before sending, and Trainerize, Everfit, My PT Hub and TrueCoach list exercise libraries. The others also publish pricing and list free plans or trials, payments, branded apps and integrations, which this page does not cover for Wolvec. Wolvec does not currently publish pricing, and this page makes no statement about whether any Wolvec feature is included in a base price or carries a separate charge.</p>
+          <p>Wolvec is in early access by invitation.</p>
+        </section>
+      </section>
+
+      <section class="c-sec" id="looking-for-an-everfit-alternative">
+        <h2>Looking for an Everfit alternative?</h2>
+        <p>Alternatives to Everfit on this page are My PT Hub, Trainerize, TrueCoach and Wolvec. Everfit lists a free plan for up to 5 clients and credit-based AI replies, so compare free plan client limits and how each provider bills for AI.</p>
+      </section>
+
+      <section class="c-sec" id="looking-for-a-truecoach-alternative">
+        <h2>Looking for a TrueCoach alternative?</h2>
+        <p>The other platforms on this page are also alternatives to TrueCoach: Everfit, My PT Hub, Trainerize and Wolvec. Compare TrueCoach's active-client limits (5, 20 and 50) with how each one counts clients, and check which plan includes the branded app and integrations.</p>
+      </section>
+
+      <section class="c-sec" id="frequently-asked-questions">
+        <h2>Frequently asked questions</h2>
+        <div class="c-faq">
+        <div class="c-faq-item">
+          <h3>Is there a free alternative to Trainerize?</h3>
+          <p>Everfit lists a Starter plan that is free for up to 5 clients, and My PT Hub lists a free Lite plan for 1 client. Trainerize itself lists a free plan for 1 client. TrueCoach lists a 14-day free trial.</p>
+        </div>
+        <div class="c-faq-item">
+          <h3>Does Wolvec publish pricing?</h3>
+          <p>Wolvec does not currently publish pricing. Wolvec is in early access by invitation.</p>
+        </div>
+        </div>
+      </section>
+
+      <section class="c-sec" id="sources">
+        <h2>Sources</h2>
+        <p>Each provider's own pages, checked November 2, 2026:</p>
+        <ul class="c-sources">
+          <li>Trainerize pricing: <a href="https://www.trainerize.com/pricing/" rel="noopener">https://www.trainerize.com/pricing/</a></li>
+          <li>Trainerize cost guide (dated October 30, 2026): <a href="https://www.trainerize.com/blog/coaching-management-software-costs/" rel="noopener">https://www.trainerize.com/blog/coaching-management-software-costs/</a></li>
+          <li>Trainerize AI coaching article (dated September 11, 2026): <a href="https://www.trainerize.com/blog/ai-coaching-software-with-coach-control/" rel="noopener">https://www.trainerize.com/blog/ai-coaching-software-with-coach-control/</a></li>
+          <li>Trainerize FitMetrics: <a href="https://www.trainerize.com/features/fitmetrics/" rel="noopener">https://www.trainerize.com/features/fitmetrics/</a></li>
+          <li>Trainerize About: <a href="https://www.trainerize.com/about/" rel="noopener">https://www.trainerize.com/about/</a></li>
+          <li>Trainerize FAQ: <a href="https://resources.trainerize.com/faq" rel="noopener">https://resources.trainerize.com/faq</a></li>
+          <li>Everfit pricing: <a href="https://www.everfit.io/pricing" rel="noopener">https://www.everfit.io/pricing</a></li>
+          <li>Everfit AI Suite: <a href="https://everfit.io/ai-suite/" rel="noopener">https://everfit.io/ai-suite/</a></li>
+          <li>Everfit help, AI Smart Response: <a href="https://help.everfit.io/en/articles/13212021-ai-smart-response" rel="noopener">https://help.everfit.io/en/articles/13212021-ai-smart-response</a></li>
+          <li>Everfit help, AI Smart Response credits and plans: <a href="https://help.everfit.io/en/articles/16881431-ai-smart-response-credits-and-plans" rel="noopener">https://help.everfit.io/en/articles/16881431-ai-smart-response-credits-and-plans</a></li>
+          <li>Everfit help, Zapier integration: <a href="https://help.everfit.io/en/articles/8543585-introducing-zapier-integration" rel="noopener">https://help.everfit.io/en/articles/8543585-introducing-zapier-integration</a></li>
+          <li>Everfit help, API integration guide: <a href="https://help.everfit.io/en/articles/15176278-everfit-api-integration-guide" rel="noopener">https://help.everfit.io/en/articles/15176278-everfit-api-integration-guide</a></li>
+          <li>Everfit help, payment processing fees: <a href="https://help.everfit.io/en/articles/5684968-processing-fees-for-payments" rel="noopener">https://help.everfit.io/en/articles/5684968-processing-fees-for-payments</a></li>
+          <li>Everfit help, Advanced Custom Branding: <a href="https://help.everfit.io/en/articles/5754312-advanced-custom-branding-bring-your-brand-to-the-next-level" rel="noopener">https://help.everfit.io/en/articles/5754312-advanced-custom-branding-bring-your-brand-to-the-next-level</a></li>
+          <li>Everfit integrations: <a href="https://everfit.io/integration/" rel="noopener">https://everfit.io/integration/</a></li>
+          <li>My PT Hub pricing: <a href="https://www.mypthub.net/pricing/" rel="noopener">https://www.mypthub.net/pricing/</a></li>
+          <li>My PT Hub product updates: <a href="https://www.mypthub.net/all-updates/" rel="noopener">https://www.mypthub.net/all-updates/</a></li>
+          <li>My PT Hub workout features: <a href="https://www.mypthub.net/features/workout-features/" rel="noopener">https://www.mypthub.net/features/workout-features/</a></li>
+          <li>TrueCoach pricing: <a href="https://truecoach.co/pricing/" rel="noopener">https://truecoach.co/pricing/</a></li>
+          <li>TrueCoach guarantee terms: <a href="https://truecoach.co/truecoach-guarantee-terms/" rel="noopener">https://truecoach.co/truecoach-guarantee-terms/</a></li>
+          <li>TrueCoach About: <a href="https://truecoach.co/about/" rel="noopener">https://truecoach.co/about/</a></li>
+        </ul>
+      </section>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  // Tables wider than the screen scroll sideways inside their box. This darkens the edge on the
+  // side that has more columns, so the scroll is visible on phones with hidden scrollbars.
+  // (Wording and the ResizeObserver are deliberate: Tailwind scans this file, and bare utility
+  // names in it would add classes to the shared stylesheet and change every other page.)
+  document.querySelectorAll<HTMLElement>('[data-scroll-cue]').forEach((wrap) => {
+    const outer = wrap.parentElement;
+    if (!outer) return;
+    const update = () => {
+      const max = wrap.scrollWidth - wrap.clientWidth;
+      outer.classList.toggle('c-more-right', max > 1 && wrap.scrollLeft < max - 1);
+      outer.classList.toggle('c-more-left', max > 1 && wrap.scrollLeft > 1);
+    };
+    wrap.addEventListener('scroll', update, { passive: true });
+    new ResizeObserver(update).observe(wrap);
+    update();
+  });
+</script>
+
+<style>
+  /* Visual language of the guide pages (GuideLayout): ink hero with the azure wash, paper body,
+     Oswald headings, Archivo body text, paper-2 cards with hairline borders. */
+  .cmp { background: var(--color-ink); }
+  .c-hero { position: relative; overflow: hidden; padding: 148px 24px 72px; border-bottom: 1px solid var(--color-hairline-dark); }
+  .c-wash {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 70% at 85% 0%, rgba(59,107,255,0.22), rgba(13,14,17,0) 70%),
+      radial-gradient(40% 50% at 10% 100%, rgba(59,107,255,0.10), rgba(13,14,17,0) 70%);
+  }
+  .c-hero-inner { position: relative; max-width: 72rem; margin: 0 auto; }
+  .c-title { font-family: var(--font-display); font-weight: 600; color: var(--color-text); line-height: 0.98; letter-spacing: -0.005em; font-size: clamp(2.6rem, 4.2vw + 1rem, 4.6rem); max-width: 16ch; }
+  .c-lede { margin-top: 24px; max-width: 46rem; color: #CFD2D7; font-size: clamp(1.05rem, 0.4vw + 1rem, 1.25rem); line-height: 1.65; }
+  .c-lede + .c-lede { margin-top: 14px; }
+
+  .c-body { background: var(--color-paper-1); color: var(--color-on-paper); padding: 0 24px; }
+  .c-inner { max-width: 72rem; margin: 0 auto; padding: 56px 0 96px; font-size: 17.5px; line-height: 1.75; color: #2A2D33; }
+  .c-inner > .c-notice, .c-sec > :not(.c-table-block) { max-width: 46rem; }
+
+  .c-sec { padding-top: 48px; margin-top: 48px; border-top: 1px solid var(--color-hairline-light); scroll-margin-top: 96px; }
+  .c-sec h2 { font-family: var(--font-display); font-weight: 600; color: var(--color-on-paper); font-size: clamp(1.75rem, 1.2vw + 1.2rem, 2.25rem); line-height: 1.05; margin: 0 0 18px; }
+  .c-sec h3 { font-family: var(--font-display); font-weight: 600; color: var(--color-on-paper); font-size: 23px; line-height: 1.2; margin: 0 0 10px; }
+  .c-sec p { margin: 0 0 18px; }
+  .c-sec b { color: var(--color-on-paper); font-weight: 600; }
+  .c-sec a, .c-notice a { color: var(--color-azure-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* Counsel-mandated notices: full-size, normal-contrast text in a plain note box. */
+  .c-notice { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-left: 3px solid var(--color-azure-deep); border-radius: 12px; padding: 16px 20px; margin: 0 0 14px; font-size: 16.5px; line-height: 1.7; color: #2A2D33; }
+  .c-sec p.c-notice { margin: 0 0 14px; }
+  .c-sec .c-notice + .c-table-title { margin-top: 30px; }
+
+  .c-table-title { scroll-margin-top: 96px; }
+  .c-table-title ~ .c-table-title { margin-top: 36px; }
+  .c-table-block { margin: 6px 0 8px; }
+  .c-table-outer { position: relative; }
+  .c-table-wrap { overflow-x: auto; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 12px; scrollbar-width: thin; scrollbar-color: rgba(13,14,17,0.35) transparent; }
+  .c-table-wrap:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .c-table { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; font-size: 15.5px; line-height: 1.55; color: #2A2D33; }
+  .c-col-head { width: 11.5rem; }
+  .c-table th, .c-table td { text-align: left; vertical-align: top; padding: 14px 16px; border-bottom: 1px solid var(--color-hairline-light); overflow-wrap: break-word; }
+  .c-table td, .c-table thead th { border-left: 1px solid var(--color-hairline-light); }
+  .c-table tbody tr:last-child > * { border-bottom: 0; }
+  .c-table thead th, .c-table thead td { background: var(--color-paper-1); }
+  .c-table thead th { font-family: var(--font-display); font-weight: 600; font-size: 18px; line-height: 1.25; color: var(--color-on-paper); }
+  .c-table tbody th { font-weight: 600; color: var(--color-on-paper); background: var(--color-paper-2); }
+
+  /* Narrow screens: the table keeps readable columns and scrolls sideways inside its box, with
+     the row labels pinned. The page itself never scrolls sideways. */
+  @media (max-width: 899px) {
+    /* Row labels plus one provider column fill a 375px screen with part of the next column
+       showing, so it is clear there is more to the side. */
+    .c-table { width: 52.25rem; font-size: 15px; }
+    .c-col-head { width: 7.25rem; }
+    .c-table tbody th, .c-table thead td { position: sticky; left: 0; z-index: 1; }
+    .c-table tbody th { padding-left: 14px; padding-right: 12px; }
+    .c-table-outer.c-more-left .c-table tbody th, .c-table-outer.c-more-left .c-table thead td { box-shadow: 6px 0 8px -6px rgba(13,14,17,0.28); }
+  }
+  .c-table-outer::after {
+    content: ''; position: absolute; top: 1px; right: 1px; bottom: 1px; width: 32px; pointer-events: none;
+    border-radius: 0 11px 11px 0; opacity: 0; transition: opacity 160ms ease;
+    background: linear-gradient(to left, rgba(13,14,17,0.16), rgba(13,14,17,0));
+  }
+  .c-table-outer.c-more-right::after { opacity: 1; }
+  @media (max-width: 899px) { :global(html:not(.js)) .c-table-outer::after { opacity: 1; } }
+
+  .c-sec p.c-notes-label { font-weight: 600; color: var(--color-on-paper); margin: 22px 0 8px; font-size: 16px; }
+  .c-notes { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; font-size: 16px; line-height: 1.65; }
+  .c-notes li { position: relative; padding-left: 20px; }
+  .c-notes li::before { content: ''; position: absolute; left: 2px; top: 0.7em; width: 6px; height: 6px; border-radius: 50%; background: var(--color-on-paper-soft); }
+
+  .c-dots { list-style: none; padding: 0; margin: 0 0 20px; display: grid; gap: 10px; }
+  .c-dots li { position: relative; padding-left: 22px; }
+  .c-dots li::before { content: ''; position: absolute; left: 2px; top: 0.72em; width: 7px; height: 7px; border-radius: 50%; background: var(--color-azure); }
+
+  .c-provider { padding-top: 28px; margin-top: 28px; border-top: 1px solid var(--color-hairline-light); scroll-margin-top: 96px; }
+  .c-sec > h2 + .c-provider { padding-top: 6px; margin-top: 0; border-top: 0; }
+
+  .c-faq { display: grid; gap: 12px; }
+  .c-faq-item { background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 12px; padding: 20px 22px; }
+  .c-faq-item h3 { font-size: 21px; margin: 0 0 8px; }
+  .c-faq-item p { margin: 0; font-size: 16.5px; line-height: 1.7; }
+
+  .c-sources { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; font-size: 14.5px; line-height: 1.5; color: var(--color-on-paper-soft); }
+  .c-sources li { overflow-wrap: anywhere; }
+  .c-sec .c-sources a { color: var(--color-on-paper-soft); text-decoration-color: rgba(13,14,17,0.25); }
+</style>
