@@ -19,6 +19,12 @@ export const GUIDES: ResourceLink[] = [
     description:
       'How personal trainers get clients, in person or online: a clear offer, your network, referrals, local partners, Google Business Profile and follow-up.',
   },
+  {
+    href: '/guides/how-much-to-charge-for-personal-training',
+    title: 'How much to charge for personal training',
+    description:
+      'How much to charge for personal training, worked out from your costs, capacity and local market, plus how to build packages and price online coaching.',
+  },
 ];
 
 export const TOOLS: ResourceLink[] = [

@@ -1,0 +1,205 @@
+---
+import GuideLayout from '../../layouts/GuideLayout.astro';
+
+const ORG_ID = 'https://wolvec.ai/#organization';
+const URL = 'https://wolvec.ai/guides/how-much-to-charge-for-personal-training';
+const TITLE = 'How Much to Charge for Personal Training: 7 Steps | Wolvec';
+const DESCRIPTION =
+  'How much to charge for personal training, worked out from your costs, capacity and local market, plus how to build packages and price online coaching.';
+const H1 = 'How much to charge for personal training';
+const PUBLISHED = '2026-11-02';
+
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: H1,
+  description: DESCRIPTION,
+  datePublished: PUBLISHED,
+  dateModified: PUBLISHED,
+  url: URL,
+  mainEntityOfPage: URL,
+  author: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+  publisher: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec' },
+};
+const LEDE = 'There is no standard rate for personal training, and no published figure can tell you what to charge in your market. Set your price from what each package includes, what it costs you to deliver, how many clients you can coach well, and what comparable coaches in your market publicly charge. Then put it in writing.';
+const TOC = [
+  { id: 'step-1', label: 'Know what the published numbers measure', num: '01' },
+  { id: 'step-2', label: 'Work out your price floor', num: '02' },
+  { id: 'step-3', label: 'Combine cost, market and program pricing', num: '03' },
+  { id: 'step-4', label: 'Choose how clients pay', num: '04' },
+  { id: 'step-5', label: 'Build your personal training packages', num: '05' },
+  { id: 'step-6', label: 'Price online and hybrid coaching', num: '06' },
+  { id: 'step-7', label: 'Put your prices and terms in writing', num: '07' },
+  { id: 'faq', label: 'Questions', num: '' },
+  { id: 'sources', label: 'Sources', num: '' },
+];
+const READ_MIN = 12;
+---
+
+<GuideLayout title={TITLE} description={DESCRIPTION} url={URL} h1={H1} lede={LEDE} published={PUBLISHED} readMinutes={READ_MIN} toc={TOC} articleLd={articleLd}>
+  <p class="g-intro">This guide is for trainers who set their own prices, in person, online or both. It gives you a method rather than a number to copy. If you have not yet decided how you deliver coaching, start with <a href="/guides/how-to-become-an-online-fitness-coach#step-4">step 4 of How to become an online fitness coach</a>, which defines 1:1, hybrid, group and self-paced coaching.</p>
+  <section class="g-step" id="step-1">
+    <p class="g-num">01</p>
+    <h2>Know what the published numbers measure</h2>
+    <p>Before you use any published figure, check who published it, what it counted, where and when.</p>
+    <p>One index states its method: the Personal Trainer Price Index from the Institute of Personal Trainers, which sells business software to trainers. Updated October 31, 2026, it records 1,085 prices that 302 trainers and studios, mostly in the UK and US, publish on their own websites. Its stated limits: it is "not a random sample" (one website company built every site), most of the sites were last edited before 2023, several figures rest on 6 to 20 sites, and prices are not adjusted for inflation. It shows what one group of trainers advertise, not what coaches near you charge for an offer like yours, which step 3 has you check.</p>
+    <p>The closest government data is a wage, not a price. The US Bureau of Labor Statistics publishes what employed fitness trainers and instructors earn, not what their clients pay, and notes that its pay figure "does not include pay for self-employed workers."</p>
+  </section>
+
+  <section class="g-step" id="step-2">
+    <p class="g-num">02</p>
+    <h2>Work out your price floor</h2>
+    <p>Your floor is the lowest monthly price per client that covers your costs and your time. Work it out for each package.</p>
+    <p class="g-note"><b>Fixed costs per month (A).</b> What you pay however many clients you have: certification and continuing education, insurance, software, your website, and flat rent or gym fees. ISSA suggests adding up a typical year's expenses and dividing by 12. For insurance, see <a href="/guides/how-to-become-an-online-fitness-coach#step-5">step 5 of the online coach guide</a>.</p>
+    <p class="g-note"><b>Clients you expect (B).</b> Every paying client you expect across the business, in all packages, counting each paying group member. Use your expected number, not your maximum, which assumes you are always full and sets the floor too low. Your capacity caps it, and it must be more than zero.</p>
+    <p class="g-note"><b>Fixed per-client costs per month (C).</b> Costs each client in this package adds that do not change with the price, such as per-client software, travel, equipment, flat facility fees per session, and any fixed fee per payment times payments per month.</p>
+    <p class="g-note"><b>Hours per client per month (D).</b> All the time one client in this package takes: sessions, programming, check-ins, messages, travel and admin. For a group session, divide its time by the paying participants you expect.</p>
+    <p class="g-note"><b>Your hourly rate (E).</b> What an hour of your time needs to pay. If unsure, start from what an hour pays you now.</p>
+    <p class="g-note"><b>Percentage fees (P).</b> The percentage part of card processing, plus any billing, platform or facility percentage, added up and written as a decimal (the percentage divided by 100).</p>
+    <p>In the US, as listed on November 2, 2026, Stripe charges 2.9% plus 30 cents "per successful transaction for domestic cards" online, and Stripe Billing, its recurring payments tool, adds 0.7% of billing volume on its pay-as-you-go plan. Square's US fees list 2.6% plus 15 cents for tap, dip or swipe payments on its Square Free plan; its other plans differ. Percentages go in P; the cents, times payments per month, go in C. Check your processor's current fees and what each percentage is charged on, since the formula assumes every percentage applies to the full price.</p>
+    <p class="g-note"><b>Unpaid time.</b> Cover marketing, admin and learning one way, not both, or you count those hours twice: divide your monthly non-client hours by B and add the result to D, or raise E. Plan for time off: base your hours and capacity on the weeks you will actually work, and if clients do not pay while you are away, spread yearly fixed costs over the months they do pay.</p>
+    <p>For taxes, set aside what your accountant advises, and ask whether your rate should allow for them.</p>
+    <div class="g-table-wrap" role="region" aria-labelledby="tbl-1" tabindex="0">
+      <table class="g-table">
+        <caption id="tbl-1">Price floor worksheet</caption>
+        <thead><tr><th scope="col">Line</th><th scope="col">What to enter</th><th scope="col">Yours</th></tr></thead>
+        <tbody>
+          <tr><th scope="row" class="g-letter">A</th><td>Fixed costs per month, whole business</td><td class="g-fill"></td></tr>
+          <tr><th scope="row" class="g-letter">B</th><td>Paying clients you expect, whole business (more than zero)</td><td class="g-fill"></td></tr>
+          <tr><th scope="row" class="g-letter">C</th><td>Fixed per-client costs per month, this package</td><td class="g-fill"></td></tr>
+          <tr><th scope="row" class="g-letter">D</th><td>Hours per client per month, this package</td><td class="g-fill"></td></tr>
+          <tr><th scope="row" class="g-letter">E</th><td>Your hourly rate</td><td class="g-fill"></td></tr>
+          <tr><th scope="row" class="g-letter">P</th><td>Total percentage fees, as a decimal</td><td class="g-fill"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="g-formula">Price floor per client per month = (A / B + C + D x E) / (1 - P)</p>
+    <p>In words: A divided by B, plus C, plus D times E, all divided by one minus P, so what is left after percentage fees covers the rest.</p>
+    <p class="g-note"><b>Packages and units.</b> A, B and E stay the same across packages; work out C, D and P for each. The floor is monthly. For a per-session price, including inside a pack, divide the package's monthly floor by the sessions a client uses in a month, and compare per session with per session.</p>
+    <p>This is a floor, not a target. Check every package, after any discount, against its own floor.</p>
+  </section>
+
+  <section class="g-step" id="step-3">
+    <p class="g-num">03</p>
+    <h2>Combine cost, market and program pricing</h2>
+    <p>These approaches work together, and they are not the only ones. Cost sets your lowest price, the market shows what clients will compare you with, and a program changes what you are pricing.</p>
+    <p><b>Cost-based.</b> Start from your floor in step 2. If comparable coaches charge less than your floor, in the same unit, for a similar offer, change what the package includes or who it is for, rather than coaching at a loss.</p>
+    <p><b>Market comparison.</b> Look at what coaches serving the same kind of client, in your area or your online niche, publicly charge. ACE notes that "it is important to know what others in your area are charging." For each comparable coach, record:</p>
+    <ul class="g-dots">
+      <li>the price</li>
+      <li>the setting: in-home, studio, gym floor or online</li>
+      <li>session length, or for online coaching, the level of contact</li>
+      <li>what is included</li>
+      <li>the billing period and any minimum term</li>
+      <li>credentials or specialty</li>
+    </ul>
+    <p>If a price is not published to prospective customers, note it as unknown. Use public customer-facing prices for the comparison, and set your own prices independently. Do not coordinate prices, discounts or future pricing with other trainers. Compare like with like: the same setting, session length, inclusions and billing period, in the same unit. A 30-minute and a 60-minute session are different products. Keep these notes for step 5.</p>
+    <p>These factors, and experience, move a price within one market. As ISSA puts it, "the more experience you have, the more you can charge." Use the market to see where you fit, not to set your price alone.</p>
+    <p><b>Program-based.</b> Price a defined program instead of a count of sessions. ACE suggests marketing "a specific program" rather than "a series of sessions." Set how long it runs, what is included and how support works. Price what the program includes. Do not promise a result.</p>
+  </section>
+
+  <section class="g-step" id="step-4">
+    <p class="g-num">04</p>
+    <h2>Choose how clients pay</h2>
+    <p>Billing is separate from delivery, and each option trades off cash flow, commitment and admin.</p>
+    <ul class="g-dots">
+      <li><b>Per session.</b> ACE describes the traditional model as setting "a price for a single, one-hour session." It is simple, but you are paid only for sessions that happen, so your cancellation terms matter.</li>
+      <li><b>Session packs.</b> Sessions paid for up front. ISSA notes that some trainers "offer a discount to clients who sign up for a larger number" of sessions. You are paid before you deliver the sessions, which makes expiry and refunds topics to check (see Before you sell, below).</li>
+      <li><b>Monthly coaching.</b> A recurring price for a defined level of support, with or without sessions. Recurring billing can carry extra processor fees, as in step 2.</li>
+      <li><b>Fixed-length programs.</b> One price for a block with a set start and end. Plan what you offer when it ends.</li>
+      <li><b>Minimum terms.</b> A lower monthly price for a commitment of several months: steadier cash flow for you, less flexibility for the client.</li>
+    </ul>
+    <p class="g-note"><b>Before you sell:</b> rules on prepaid packages, session expiry, cancellation, refunds, contract length and automatic renewal of recurring billing differ from place to place, and if you coach online your clients may be in a different state from you. Whether a health studio or fitness contract law applies to you is another question to check. Ask an attorney which rules apply before you sell, and do not copy another trainer's terms.</p>
+  </section>
+
+  <section class="g-step" id="step-5">
+    <p class="g-num">05</p>
+    <h2>Build your personal training packages</h2>
+    <p>Whether you call them personal training packages, plans or programs, define each one by what the client gets, using the factors in <a href="/guides/how-to-become-an-online-fitness-coach#step-4">step 4 of the online coach guide</a>.</p>
+    <ul class="g-dots">
+      <li><b>Offer two or three,</b> so the differences are clear.</li>
+      <li><b>Change one or two things between them,</b> such as session count, check-in frequency, reply time or program updates. For example: a base plan with a program and a weekly check-in, a middle plan that adds faster replies, and a top plan that adds a monthly call. ISSA's view is that "the more personalized your program, the more you can charge."</li>
+      <li><b>Consider a shared option.</b> Small group or semi-private training can give clients a lower-priced way in. Price it per person, with each person's share of the session time in D, and cap the group at a size you can coach well.</li>
+      <li><b>Price extras on purpose.</b> If you travel to clients, build in the time and cost. Before adding nutrition support, read <a href="/guides/how-to-become-an-online-fitness-coach#step-2">step 2 of the online coach guide</a> on scope.</li>
+      <li><b>Tie discounts to something you get.</b> A bigger pack or a longer commitment can earn a lower price when it gives you cash up front, a client for longer (contract length is one of the topics in step 4 to check), or less admin. The discounted price must still clear that package's floor, in the same unit.</li>
+      <li><b>Price the first step.</b> If you offer a consult or assessment, say on your page whether it is free or paid and what it includes. See <a href="/guides/how-to-get-clients-as-a-personal-trainer#before">Before you look for clients</a> on making the first step easy.</li>
+    </ul>
+    <div class="g-table-wrap" role="region" aria-labelledby="tbl-2" tabindex="0">
+      <table class="g-table">
+        <caption id="tbl-2">Package record</caption>
+        <thead><tr><th scope="col">For each package</th><th scope="col">Yours</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Price floor from step 2, in the unit you charge</th><td class="g-fill"></td></tr>
+          <tr><th scope="row">Comparable offers, from step 3</th><td class="g-fill"></td></tr>
+          <tr><th scope="row">Your price</th><td class="g-fill"></td></tr>
+          <tr><th scope="row">Why you chose it</th><td class="g-fill"></td></tr>
+          <tr><th scope="row">Review date</th><td class="g-fill"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>After the first few weeks, compare the time clients actually take with D, and redo the floor if they differ. Note what prospects say about price and fit. On the review date, rerun the floor with current costs and clients.</p>
+  </section>
+
+  <section class="g-step" id="step-6">
+    <p class="g-num">06</p>
+    <h2>Price online and hybrid coaching</h2>
+    <p>How much to charge for online personal training comes down to what the client gets. In asynchronous online personal training packages, where you send programs and answer check-ins and messages in your own time, contact, program updates and capacity replace a session count. For live online sessions, length and number count too, as in person. A package can mix both. <a href="/guides/how-to-become-an-online-fitness-coach#step-4">Step 4 of the online coach guide</a> lists the factors. Count the time each part takes in D.</p>
+    <p>Hybrid coaching combines in-person sessions with online programming and support between them. Price each part, then decide whether the bundle costs less than the parts bought separately.</p>
+    <p>Do not assume online should cost more or less than in person. Use the same floor, then compare with coaches in your online niche, offer for offer.</p>
+  </section>
+
+  <section class="g-step" id="step-7">
+    <p class="g-num">07</p>
+    <h2>Put your prices and terms in writing</h2>
+    <p>Give each package a line on a simple price sheet, stating:</p>
+    <ul class="g-dots">
+      <li>its name and what is included: sessions or check-ins, reply time, program updates</li>
+      <li>the length or billing period</li>
+      <li>the price and how payment works</li>
+      <li>if billing renews, how it renews and how to cancel</li>
+      <li>how to start</li>
+    </ul>
+    <p>You can choose whether to show full prices or a genuine starting price. If you show a starting price, make sure the described service is actually available at that price, and check the price-disclosure rules where you sell if mandatory fees or charges apply. Make what each package includes and what the client will pay clear before anyone pays.</p>
+    <p>The price sheet says what clients get. The terms belong in an agreement. Use a written agreement that covers the services provided, payment and cancellation terms, and the scope and limits of the coaching relationship. Have an attorney review it.</p>
+    <p>Put the price sheet on the one page that says who you coach, what is included and how to start, as <a href="/guides/how-to-get-clients-as-a-personal-trainer#before">How to get clients as a personal trainer</a> recommends. Point every conversation there, and choose one way for new clients to start.</p>
+    <div class="g-product g-product-solo"><p class="g-product-text">With Wolvec, invite them, have them apply, or let them buy one of your plans on your page. Wolvec is an AI platform for fitness coaches and online personal trainers, the whole coaching setup rather than an add-on to it. Your AI is built from one conversation about how you coach, so you can start without a content library. Wolvec is in early access by invitation.</p></div>
+  </section>
+
+  <section class="g-step" id="faq">
+    <h2>Frequently asked questions</h2>
+    <div class="g-faq">
+      <div class="g-faq-item"><h3>How much should I charge for personal training?</h3><p>There is no standard rate. Work out your floor from your costs, expected clients and time per client, then compare with what coaches in your market publicly charge for similar packages. See steps 2 and 3.</p></div>
+      <div class="g-faq-item"><h3>How much should I charge for online personal training?</h3><p>Price it by what is included: check-ins, reply time and program updates for asynchronous coaching, plus length and number for live sessions. Do not assume online should cost more or less than in person; work out its floor the same way. See steps 2 and 6.</p></div>
+      <div class="g-faq-item"><h3>How do you price personal training packages?</h3><p>Decide what changes between packages, and whether a larger pack or a longer commitment earns a lower price. Keep to two or three, and check each one, after any discount, against its own floor in the same unit. Before you sell prepaid packs, ask an attorney which rules apply to you, because they vary. See steps 4 and 5.</p></div>
+      <div class="g-faq-item"><h3>What is the average price of a personal trainer?</h3><p>No published average can tell you what clients in your market pay for an offer like yours. The Institute of Personal Trainers' price index states its method, but it covers prices that a non-random sample of mostly UK and US trainers advertise. The Bureau of Labor Statistics publishes a wage for employed fitness trainers and instructors, not a price, and excludes self-employed workers. See step 1.</p></div>
+      <div class="g-faq-item"><h3>How much do personal trainers charge per session?</h3><p>It depends on the market, setting, session length and what a session includes, so compare like with like near you. A per-session price, including inside a pack, should clear the package's monthly floor divided by the sessions a client uses in a month. See step 2.</p></div>
+      <div class="g-faq-item"><h3>How do I tell clients about a price increase?</h3><p>Review your prices on the date you set, and when you are full or have a waitlist, your costs go up, or you earn a new credential. Before changing the price for an existing agreement, prepaid package or recurring plan, ask an attorney what your agreement and applicable law permit. If the change is permitted, tell clients clearly in writing what is changing and when, using any notice or consent process your attorney says applies.</p></div>
+    </div>
+  </section>
+
+  <section class="g-step" id="sources">
+    <h2>Sources</h2>
+    <ul class="g-sources">
+      <li><a href="https://www.bls.gov/ooh/personal-care-and-service/fitness-trainers-and-instructors.htm" rel="noopener">US Bureau of Labor Statistics: Fitness Trainers and Instructors</a></li>
+      <li><a href="https://instituteofpersonaltrainers.com/blog/personal-trainer-price-index" rel="noopener">Institute of Personal Trainers: Personal Trainer Price Index 2026</a></li>
+      <li><a href="https://www.acefitness.org/resources/pros/expert-articles/5114/how-to-determine-what-to-charge-for-your-services/" rel="noopener">ACE: How to determine what to charge for your services</a></li>
+      <li><a href="https://www.issaonline.com/blogs/business/how-much-should-i-charge-for-online-personal-training" rel="noopener">ISSA: How much should I charge for online personal training?</a></li>
+      <li><a href="https://stripe.com/pricing" rel="noopener">Stripe: Pricing</a></li>
+      <li><a href="https://squareup.com/help/us/en/article/5068-square-s-payment-processing-fees-and-pricing" rel="noopener">Square: Learn about Square fees</a></li>
+    </ul>
+  </section>
+</GuideLayout>
+
+<style>
+  /* Fill-in tables (step 2 worksheet, step 5 package record) and the step 2 formula. Scoped to this page. */
+  .g-table-wrap { margin: 6px 0 22px; overflow-x: auto; background: var(--color-paper-2); border: 1px solid var(--color-hairline-light); border-radius: 12px; }
+  .g-table-wrap:focus-visible { outline: 2px solid var(--color-azure-deep); outline-offset: 2px; }
+  .g-table { width: 100%; border-collapse: collapse; font-size: 15.5px; line-height: 1.5; }
+  .g-table caption { caption-side: top; text-align: left; padding: 16px 18px 12px; font-family: var(--font-display); font-weight: 600; font-size: 20px; line-height: 1.2; color: var(--color-on-paper); }
+  .g-table th, .g-table td { padding: 11px 14px; text-align: left; vertical-align: top; border-top: 1px solid var(--color-hairline-light); }
+  .g-table thead th { font-family: var(--font-label); font-weight: 400; font-size: 12.5px; letter-spacing: 0.02em; color: var(--color-on-paper-soft); padding-top: 9px; padding-bottom: 9px; }
+  .g-table tbody th { font-weight: 600; color: var(--color-on-paper); }
+  .g-table tbody th.g-letter { font-family: var(--font-display); font-size: 19px; line-height: 1.2; color: var(--color-azure-deep); width: 3.2rem; }
+  .g-table td.g-fill { width: 34%; min-width: 5.5rem; background: var(--color-paper-1); border-left: 1px solid var(--color-hairline-light); }
+  .g-formula { margin: 4px 0 18px; padding: 18px 20px; background: var(--color-ink); color: #FFFFFF; border-radius: 12px; font-family: var(--font-label); font-size: 15px; line-height: 1.6; overflow-wrap: anywhere; }
+</style>
