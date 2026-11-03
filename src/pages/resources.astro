@@ -1,15 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { GUIDES, TOOLS } from '../data/resources';
+import { GUIDES, COMPARE, TOOLS } from '../data/resources';
 
 const URL = 'https://wolvec.ai/resources';
 const TITLE = 'Guides and Free Tools | Wolvec';
 const DESCRIPTION =
   'Free guides for personal trainers and online fitness coaches, and free lifting tools, including an RPE calculator and an RPE chart.';
 const H1 = 'Free guides and tools';
-const INTRO = 'Free guides for personal trainers and online fitness coaches, and free calculators for anyone who lifts.';
+const INTRO = 'Free guides for personal trainers and online fitness coaches, comparisons of coaching software, and free calculators for anyone who lifts.';
 const SECTIONS = [
   { id: 'guides', heading: 'Guides', items: GUIDES },
+  { id: 'compare', heading: 'Compare coaching software', items: COMPARE },
   { id: 'tools', heading: 'Free tools', items: TOOLS },
 ];
 ---
