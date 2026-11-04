@@ -15,6 +15,7 @@ const TITLE = "Trainerize Alternatives for Fitness Coaches | Wolvec";
 const DESCRIPTION = "Alternatives to Trainerize for fitness coaches: Everfit, My PT Hub, TrueCoach and Wolvec, with competitor plans, prices and AI features from their own sites.";
 const H1 = "Trainerize alternatives for fitness coaches";
 const PUBLISHED = '2026-11-02';
+const MODIFIED = "2026-11-03";
 
 // Same Article pattern as the guides (GuideLayout fills the time zone and author and publisher url).
 // No FAQPage, Product, Review or rating schema on this page.
@@ -25,7 +26,7 @@ const articleLd = {
   headline: H1,
   description: DESCRIPTION,
   datePublished: withTz(PUBLISHED),
-  dateModified: withTz(PUBLISHED),
+  dateModified: withTz(MODIFIED),
   url: URL,
   mainEntityOfPage: URL,
   author: { '@type': 'Organization', '@id': ORG_ID, name: 'Wolvec', url: ORIGIN },
@@ -56,7 +57,7 @@ const articleLd = {
       <section class="c-sec" id="at-a-glance">
         <h2>At a glance</h2>
         <p class="c-notice">Wolvec does not currently publish pricing. The prices below are provided as current competitor information, not as a claim that Wolvec is cheaper or more expensive.</p>
-        <p class="c-notice">Information checked November 2, 2026. Products, features and prices can change. Verify current details with each provider.</p>
+        <p class="c-notice">Information checked November 3, 2026. Products, features and prices can change. Verify current details with each provider.</p>
         <h3 class="c-table-title" id="plans-and-prices-as-listed-by-each-provider">Plans and prices, as listed by each provider</h3>
         <div class="c-table-block">
           <div class="c-table-outer">
@@ -65,10 +66,10 @@ const articleLd = {
                 <colgroup><col class="c-col-head" /><col class="c-col" /><col class="c-col" /><col class="c-col" /><col class="c-col" /></colgroup>
                 <thead><tr><td class="c-corner"></td><th scope="col">Trainerize</th><th scope="col">Everfit</th><th scope="col">My PT Hub</th><th scope="col">TrueCoach</th></tr></thead>
                 <tbody>
-                  <tr><th scope="row">Free plan</th><td>Yes, 1 client</td><td>Yes, up to 5 clients</td><td>Yes, 1 client, Lite plan (note C)</td><td>Not verified</td></tr>
+                  <tr><th scope="row">Free plan</th><td>Yes, 1 client</td><td>Yes, up to 5 clients</td><td>Yes, 1 client, Lite plan (note B)</td><td>Not verified</td></tr>
                   <tr><th scope="row">Free trial</th><td>Yes, 30 days, unlimited clients, no card</td><td>Yes, 30 days, no card</td><td>Yes, 30 days, no card</td><td>Yes, 14 days, no card</td></tr>
                   <tr><th scope="row">Clients per plan</th><td>Grow 2; Pro 5 to 200; Studio Plus 500 to 1,000+</td><td>Pro 5 to 300; Studio 50 to 500; Enterprise 500+</td><td>Starter 3; Premium and Ultimate unlimited</td><td>Starter 5; Standard 20; Pro 50 (active clients)</td></tr>
-                  <tr><th scope="row">Entry paid plan, monthly billing</th><td>Grow, $10 per month (note A)</td><td>Pro for 5 clients, $19 per month</td><td>Starter, $25 per month</td><td>Note B</td></tr>
+                  <tr><th scope="row">Entry paid plan, monthly billing</th><td>Grow, $10 per month (note A)</td><td>Pro for 5 clients, $19 per month</td><td>Starter, $25 per month</td><td>Starter, $29.98 per month</td></tr>
                   <tr><th scope="row">Annual billing</th><td>10% discount</td><td>16% discount</td><td>Lower per-month prices</td><td>1 or 2 months free, by plan</td></tr>
                   <tr><th scope="row">Currency</th><td>USD, plus taxes</td><td>Plan prices shown as $, no currency code; payments fee stated in USD</td><td>Shown as $, no currency code</td><td>USD</td></tr>
                 </tbody>
@@ -87,9 +88,9 @@ const articleLd = {
                   <tr><th scope="row">AI drafts replies for the coach to review before sending</th><td>Yes, FitMetrics add-on (add-ons not included in the trial)</td><td>Yes, Smart Response on Pro and Studio (not included in the trial)</td><td>Yes, Check-Ins AI, $12 per month add-on on Premium; listed on Ultimate with no separate price</td><td>Not verified</td></tr>
                   <tr><th scope="row">AI workout or program builder</th><td>Yes, Grow plan and up</td><td>Yes</td><td>Yes, Premium and Ultimate</td><td>Not verified</td></tr>
                   <tr><th scope="row">Exercise library</th><td>Yes, over 2,100 filmed exercises; coaches can upload their own</td><td>Yes, 1,000+ exercises or create your own, all plans</td><td>Yes, over 8,000 HD exercise videos; coaches can upload their own</td><td>Yes, video exercise library; coaches can upload their own</td></tr>
-                  <tr><th scope="row">Custom branding or branded app</th><td>Yes, branded app in three tiers (Pro, Studio, Enterprise); $169 one-time setup fee on Pro; included in Studio</td><td>Yes, Custom Branding on Pro and Studio; Advanced Custom Branding, $75 one-time add-on on Pro and Studio; your own app-store listing through the White Label Solution on Enterprise</td><td>Yes, custom branded app, $95 one-time add-on on Starter and Premium; white label app (app store listing), $145 per month add-on on Premium; both listed on Ultimate with no separate price</td><td>Yes, custom-branded app on Standard and Pro</td></tr>
-                  <tr><th scope="row">Payments</th><td>Yes, Stripe add-on, $10 per month on Grow and Pro; included in Studio</td><td>Yes, add-on from $9 per month</td><td>Yes, Starter, Premium and Ultimate, through Stripe</td><td>Yes, all plans, through Stripe</td></tr>
-                  <tr><th scope="row">Integrations</th><td>Yes, including Apple Health, Garmin, Fitbit and MyFitnessPal; Zapier on paid plans</td><td>Yes, including Apple Health, Garmin, Fitbit, WHOOP, Oura and MyFitnessPal; Zapier as a paid plugin on Studio; API on Enterprise</td><td>Yes, wearables; Zapier, $19 per month add-on on Premium, listed on Ultimate with no separate price</td><td>Yes, wearables on Standard and Pro; MyFitnessPal on all plans</td></tr>
+                  <tr><th scope="row">Custom branding or branded app</th><td>Yes, branded app in three tiers (Pro, Studio, Enterprise); $169 one-time setup fee on Pro; included in Studio Plus</td><td>Yes, Custom Branding on Pro and Studio; Advanced Custom Branding, $75 one-time add-on on Pro and Studio; your own app-store listing through the White Label Solution on Enterprise</td><td>Yes, custom branded app, $95 one-time add-on on Starter and Premium; white label app (app store listing), $145 per month add-on on Premium; both listed on Ultimate with no separate price</td><td>Yes, custom-branded app on Standard and Pro</td></tr>
+                  <tr><th scope="row">Payments</th><td>Yes, Stripe add-on, $10 per month on Grow and Pro; included in Studio Plus</td><td>Yes, add-on from $9 per month</td><td>Yes, Starter, Premium and Ultimate, through Stripe</td><td>Yes, all plans, through Stripe</td></tr>
+                  <tr><th scope="row">Integrations</th><td>Yes, including Apple Health, Garmin, Fitbit and MyFitnessPal, and Oura, WHOOP and other apps through Google Health Connect; Zapier on paid plans; API access on Studio Plus</td><td>Yes, including Apple Health, Garmin, Fitbit, WHOOP, Oura and MyFitnessPal; Zapier as a paid plugin on Studio; API on Enterprise</td><td>Yes, wearables; Zapier, $19 per month add-on on Premium, listed on Ultimate with no separate price</td><td>Yes, wearables on Standard and Pro; MyFitnessPal on all plans</td></tr>
                 </tbody>
               </table>
             </div>
@@ -99,15 +100,14 @@ const articleLd = {
         <ul class="c-notes">
           <li>"Not verified" means the item could not be confirmed on the provider's own website or help pages when checked. It does not mean the provider lacks it.</li>
           <li>Note A: Trainerize's pricing page shows Grow at $9 per month on its plan card and $10 per month in its FAQ and comparison table, with similar pairs for Pro 5 ($23 and $25) and Studio Plus ($248 and $275). Trainerize's own cost guide, dated October 30, 2026, lists the higher figure in each pair as the monthly billing price and the lower figure as the per-month price on annual billing. Trainerize's AI coaching article also refers to the "Grow plan ($9/month)".</li>
-          <li>Note B: TrueCoach's pricing page shows prices behind a monthly or annual selector; they could not be confirmed for monthly billing when checked.</li>
-          <li>Note C: My PT Hub's pricing page lists its Lite plan as "Free" for 1 client, and its FAQ says accounts move to the "Free" plan at the end of the 30-day trial.</li>
+          <li>Note B: My PT Hub's pricing page lists its Lite plan as "Free" for 1 client, and its FAQ says accounts move to the Lite plan at the end of the 30-day trial.</li>
         </ul>
       </section>
 
       <section class="c-sec" id="what-trainerize-lists-today">
         <h2>What Trainerize lists today</h2>
         <p>Trainerize has been part of ABC Fitness since September 2020, according to its <a href="https://www.trainerize.com/about/" rel="noopener">About page</a>. It lists a free plan for 1 client, a 30-day free trial with unlimited clients, and paid plans priced by number of clients, from Grow (2 clients) through Pro to Studio Plus, with a 10% discount for annual billing.</p>
-        <p>Its AI Workout Builder is included from the Grow plan up. FitMetrics, which Trainerize calls <a href="https://www.trainerize.com/blog/ai-coaching-software-with-coach-control/" rel="noopener">"a new AI add-on"</a>, drafts check-in replies. Trainerize's <a href="https://www.trainerize.com/features/fitmetrics/" rel="noopener">FitMetrics page</a> says "By default, you review every drafted reply before anything sends to a client."</p>
+        <p>Its AI Workout Builder is included from the Grow plan up. FitMetrics, which Trainerize calls <a href="https://www.trainerize.com/blog/ai-coaching-software-with-coach-control/" rel="noopener">"a new AI add-on"</a>, drafts check-in replies. Trainerize's <a href="https://www.trainerize.com/features/fitmetrics/" rel="noopener">FitMetrics page</a> says "By default, you review every drafted reply before anything sends to a client." The same page says: "Link your website or upload your own Q&amp;A knowledge base, and the AI Assistant learns your approach and tone so its drafts sound like you."</p>
         <p>FitMetrics is a paid add-on. Trainerize's public pages currently describe FitMetrics pricing differently, so this page does not state a FitMetrics price. Check <a href="https://www.trainerize.com/features/fitmetrics/" rel="noopener">Trainerize</a> for current pricing.</p>
       </section>
 
@@ -140,7 +140,7 @@ const articleLd = {
         </section>
         <section class="c-provider" id="truecoach">
           <h3>TrueCoach</h3>
-          <p>TrueCoach lists Starter, Standard and Pro plans for up to 5, 20 and 50 active clients, a 14-day free trial, and a 90-day money-back guarantee on annual plans for first-time subscribers, subject to its <a href="https://truecoach.co/truecoach-guarantee-terms/" rel="noopener">terms</a>.</p>
+          <p>TrueCoach lists Starter, Standard and Pro plans for up to 5, 20 and 50 active clients, at $29.98, $69.98 and $164.98 per month billed monthly, or $26.34, $57.99 and $136.99 per month billed annually. It also lists a 14-day free trial and a 90-day money-back guarantee on annual plans for first-time subscribers, subject to its <a href="https://truecoach.co/truecoach-guarantee-terms/" rel="noopener">terms</a>.</p>
           <p>Its <a href="https://truecoach.co/pricing/" rel="noopener">pricing page</a> lists a video exercise library and says coaches can upload their own videos. Payments run through Stripe on all plans, and the branded app and wearable integrations (Apple, Garmin, WHOOP and others) are on Standard and Pro. Its <a href="https://truecoach.co/about/" rel="noopener">About page</a> says TrueCoach is "Powered by Xplor Technologies."</p>
         </section>
         <section class="c-provider" id="wolvec">
@@ -178,7 +178,7 @@ const articleLd = {
 
       <section class="c-sec" id="sources">
         <h2>Sources</h2>
-        <p>Each provider's own pages, checked November 2, 2026:</p>
+        <p>Each provider's own pages, checked November 3, 2026:</p>
         <ul class="c-sources">
           <li>Trainerize pricing: <a href="https://www.trainerize.com/pricing/" rel="noopener">https://www.trainerize.com/pricing/</a></li>
           <li>Trainerize cost guide (dated October 30, 2026): <a href="https://www.trainerize.com/blog/coaching-management-software-costs/" rel="noopener">https://www.trainerize.com/blog/coaching-management-software-costs/</a></li>

@@ -27,6 +27,21 @@ export const GUIDES: ResourceLink[] = [
   },
 ];
 
+export const COMPARE: ResourceLink[] = [
+  {
+    href: '/compare/trainerize-alternatives',
+    title: 'Trainerize alternatives for fitness coaches',
+    description:
+      'Alternatives to Trainerize for fitness coaches: Everfit, My PT Hub, TrueCoach and Wolvec, with competitor plans, prices and AI features from their own sites.',
+  },
+  {
+    href: '/compare/everfit-vs-trainerize',
+    title: 'Everfit vs Trainerize',
+    description:
+      'Everfit vs Trainerize for fitness coaches: free plans, client limits, prices, AI reply drafts, branding and payments, as each lists them on its own site.',
+  },
+];
+
 export const TOOLS: ResourceLink[] = [
   {
     href: '/tools/rpe-calculator',
