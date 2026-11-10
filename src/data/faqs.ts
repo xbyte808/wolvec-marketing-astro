@@ -4,6 +4,8 @@
 //
 // Every answer here is COUNSEL-APPROVED VERBATIM. Do not edit without counsel review.
 // 'what-stays-mine': Standing Decision "MARKETING FAQ WORDING" (2026-10-19).
+// 'booking': Standing Decision "WEBSITE CATEGORY AND AUDIENCE WORDING (counsel, 2026-11-10)" (LEG-053),
+// kept by "WEBSITE ONLINE WORDING (counsel LEG-055, 2026-11-10)".
 // All others: Standing Decision "MARKETING FAQ BATCH AND HOMEPAGE WORDING, counsel round 3" (2026-10-22).
 export interface Faq {
   id: string;
@@ -31,6 +33,11 @@ export const faqs: Faq[] = [
     question: 'Can I bring the programs I already run?',
     answer:
       'Yes. Upload spreadsheets, Word (.docx) documents, text-based PDFs or plain text files. Wolvec matches each line to the exercise catalog and turns the program into a template. Every imported line starts unconfirmed until you check it.',
+  },
+  {
+    id: 'booking',
+    question: 'Does Wolvec include session booking or scheduling?',
+    answer: 'No. Wolvec does not include session booking or scheduling.',
   },
   {
     id: 'ai-disclosure',
