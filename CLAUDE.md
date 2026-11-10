@@ -57,6 +57,12 @@ Astro 6, deployed on Vercel. **No CI exists in this repo** — no
 `.github/workflows`, confirmed 2026-08-15. PRs merge under the project's merge tiers: docs, copy and config merge after the builder self-verifies and says so in the PR body. Any PR touching Privacy Policy, CHDP or other legal copy still needs the counsel reference in rule 1, checked by a human before merge. Nothing here is CI-gated. Fixing that (or choosing a different
 enforcement point for rule 1) is W226/W246's scope, not assumed done.
 
+### IndexNow
+
+- After a PR that adds or changes a page is merged and the change is live, run: `npm run indexnow -- <the changed page URLs>`
+- Run it once per deploy at most. Run it with no arguments only when many pages changed at once.
+- The verification file in public/ (a 32 character hex name ending in .txt) must never be renamed or deleted. Renaming it breaks verification.
+
 ## Where state lives
 
 This file holds repo practice only. Current state, open decisions, and
