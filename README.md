@@ -1,43 +1,21 @@
-# Astro Starter Kit: Minimal
+# wolvec-marketing-astro
 
-```sh
-npm create astro@latest -- --template minimal
+The marketing site for wolvec.ai, built with Astro and deployed on Vercel.
+
+## Commands
+
+```
+npm ci            install exact dependencies
+npm run dev       local dev server
+npm run build     static build into dist/
+npm run preview   serve the build locally
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Before you change anything
 
-## 🚀 Project Structure
+Read CLAUDE.md. Parts of this site carry counsel-approved legal and marketing copy that is not edited without a counsel reference.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Checks
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
-
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- `scripts/counsel_lock_check.py` checks the counsel-locked text on the Trainerize alternatives page and the personal training pricing guide in a built site. Usage is in CLAUDE.md.
+- `scripts/indexnow-submit.mjs` (`npm run indexnow`) tells IndexNow about changed pages after a deploy. Usage is in CLAUDE.md.
