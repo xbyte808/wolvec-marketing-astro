@@ -8,7 +8,9 @@ The expected strings below are copied from counsel's 2026-11-02 email as recorde
 Decisions; they are NOT read from the copy deck, so this check is independent of the generator.
 
 Usage: python3 -I counsel_lock_check.py <trainerize-alternatives index.html> <pricing guide index.html>
-Pass - in place of either path to skip that page's checks (e.g. when only one page is built yet).
+An optional third path, the Everfit vs Trainerize index.html, checks that page's FitMetrics wording
+(both copies). Omitting it skips those checks.
+Pass - in place of any path to skip that page's checks (e.g. when only one page is built yet).
 When the Trainerize page is checked, --checked "<Month D, YYYY>" is REQUIRED: notice 2's date must
 equal it exactly (added 2026-11-02 after a verifier showed the date was not locked).
 Exit code 0 only if every check that ran passes.
@@ -68,6 +70,7 @@ if "--checked" in args:
     CHECKED = args[i + 1]
     del args[i:i + 2]
 ta_path, pg_path = args[0], args[1]
+ev_path = args[2] if len(args) > 2 else "-"
 
 
 def run_ta(ta_path):
@@ -80,7 +83,8 @@ def run_ta(ta_path):
     present(TA, "TA notice 3", "Wolvec does not currently publish pricing. The prices below are provided as current competitor information, not as a claim that Wolvec is cheaper or more expensive.")
     present(TA, "TA counsel edit Q2 (Wolvec billing sentence)", "Wolvec does not currently publish pricing, and this page makes no statement about whether any Wolvec feature is included in a base price or carries a separate charge.")
     absent(TA, "TA old Q2 sentence", "makes no statement about how Wolvec bills for its AI")
-    present(TA, "TA counsel edit Q3 (FitMetrics conflict wording)", "Trainerize's public pages currently describe FitMetrics pricing differently, so this page does not state a FitMetrics price. Check Trainerize for current pricing.")
+    # LEG-048 (2026-10-31): correct or remove known inaccurate claims promptly; Trainerize sources agree as of 2026-11-21
+    present(TA, "TA counsel edit Q3 (FitMetrics conflict wording)", "This page does not state a FitMetrics price. Check Trainerize for current pricing.")
     present(TA, "TA counsel Q3 kept fact (paid add-on)", "FitMetrics is a paid add-on.")
     for s in ("$149", "$0.10", "$6/client", "$6 per client", "$150", "MCP call"):
         absent(TA, "TA FitMetrics price fragment", s)
@@ -118,8 +122,20 @@ def run_pg(pg_path):
 
 
 
+def run_ev(ev_path):
+    EV = visible_text(ev_path)
+    s = "This page does not state a FitMetrics price. Check Trainerize for current pricing."
+    n = EV.count(s)
+    # LEG-048 (2026-10-31): correct or remove known inaccurate claims promptly; Trainerize sources agree as of 2026-11-21
+    check("EV counsel edit Q3 (FitMetrics wording), copy 1 of 2 (FitMetrics section): present verbatim", n >= 1, f"count={n} :: {s[:90]}")
+    # LEG-048 (2026-10-31): correct or remove known inaccurate claims promptly; Trainerize sources agree as of 2026-11-21
+    check("EV counsel edit Q3 (FitMetrics wording), copy 2 of 2 (AI add-ons section): present verbatim", n >= 2, f"count={n} :: {s[:90]}")
+
+
 if ta_path != "-":
     run_ta(ta_path)
+if ev_path != "-":
+    run_ev(ev_path)
 if pg_path != "-":
     run_pg(pg_path)
 check("at least one page checked", ta_path != "-" or pg_path != "-")
