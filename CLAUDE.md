@@ -60,7 +60,7 @@ enforcement point for it) is W226/W246's scope, not assumed done.
 ### Counsel lock check
 
 - `scripts/counsel_lock_check.py` checks, in the BUILT HTML, that every counsel-locked sentence on the Trainerize alternatives page and the personal training pricing guide is present verbatim and every sentence counsel removed is absent.
-- After `npm run build`: `python3 -I scripts/counsel_lock_check.py dist/client/compare/trainerize-alternatives/index.html dist/client/guides/how-much-to-charge-for-personal-training/index.html --checked "<Month D, YYYY>"`, where the date is the Trainerize page's "Information checked" date. Use `python` instead of `python3` on Windows. Pass `-` in place of a page you are not checking.
+- After `npm run build`: `python3 -I scripts/counsel_lock_check.py dist/client/compare/trainerize-alternatives/index.html dist/client/guides/how-much-to-charge-for-personal-training/index.html dist/client/compare/everfit-vs-trainerize/index.html --checked "<Month D, YYYY>"`, where the date is the Trainerize page's "Information checked" date. Use `python` instead of `python3` on Windows. Pass `-` in place of a page you are not checking.
 - It exits 0 only if every check passes. A failure is a finding to report, never a reason to edit the page or the script. Changing an expected string in the script needs a counsel reference.
 
 ### IndexNow
