@@ -53,7 +53,7 @@ Build     npm run build
 Preview   npm run preview
 ```
 
-Astro 6, deployed on Vercel. There are no GitHub Actions workflows (no
+Astro 7, deployed on Vercel. There are no GitHub Actions workflows (no
 `.github/workflows`). A ruleset on `main` requires the Vercel status check, so a PR cannot merge until Vercel builds it successfully. That is a build check, not a test suite: nothing checks copy, counsel text or links automatically (ruleset confirmed with gh api by the W904 session). PRs merge under the project's merge tiers: docs, copy and config merge after the builder self-verifies and says so in the PR body. Any PR touching Privacy Policy, CHDP or other legal copy still needs the counsel reference in rule 1, checked by a human before merge. An automated check for rule 1 (or a different
 enforcement point for it) is W226/W246's scope, not assumed done.
 
