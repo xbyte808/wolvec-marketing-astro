@@ -9,6 +9,8 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://wolvec.ai',
   output: 'static',
+  // Astro 7 defaults to 'jsx', which can drop the space between inline elements; true keeps the v6 whitespace (W984).
+  compressHTML: true,
   adapter: vercel(),
   integrations: [react(), sitemap({
     filter: (page) => !page.endsWith('/blog/') && !page.endsWith('/changelog/') && !page.endsWith('/roadmap/'),
