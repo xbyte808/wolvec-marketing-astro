@@ -1,5 +1,12 @@
 ---
 import Logo from '../assets/wolvec-logo.svg';
+import { siInstagram, siTiktok, siYoutube } from 'simple-icons';
+
+const socialIcons = [
+  { name: 'Instagram', href: 'https://www.instagram.com/wolvecapp/', path: siInstagram.path },
+  { name: 'TikTok', href: 'https://www.tiktok.com/@wolvecapp', path: siTiktok.path },
+  { name: 'YouTube', href: 'https://www.youtube.com/channel/UCtYx-tbI5ALHoqLQErcrBGQ', path: siYoutube.path },
+];
 ---
 
 <footer class="border-t border-hairline-dark bg-ink">
@@ -16,6 +23,27 @@ import Logo from '../assets/wolvec-logo.svg';
         <a href="/consumer-health-data" class="hover-link hover:text-text">Consumer Health Data Privacy Policy</a>
         <a href="mailto:ellard@wolvec.ai" class="hover-link hover:text-text">Contact</a>
       </div>
+    </div>
+
+    <div class="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-text-soft">
+      {socialIcons.map((s) => (
+        <a
+          href={s.href}
+          aria-label={`Wolvec on ${s.name}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover-link hover:text-text inline-flex h-11 w-11 items-center justify-center"
+        >
+          <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true" focusable="false"><path d={s.path} /></svg>
+        </a>
+      ))}
+      <a
+        href="https://www.linkedin.com/company/wolvec"
+        aria-label="Wolvec on LinkedIn"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover-link hover:text-text inline-flex h-11 items-center px-2"
+      >LinkedIn</a>
     </div>
 
     <p class="text-text-soft text-xs">&copy; 2026 Wolvec L.L.C.</p>
